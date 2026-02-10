@@ -42,14 +42,21 @@ const TransientPrompt = ({
   </div>
 );
 
-export function Terminal() {
+interface TerminalProps {
+  initialCommand?: string;
+}
+
+export function Terminal({ initialCommand = "help" }: TerminalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const dimensions = useTerminalDimensions(containerRef);
-  const { history, input, setInput, handleKeyDown, suggestion } =
-    useTerminal(dimensions);
+
+  const { history, input, setInput, handleKeyDown, suggestion } = useTerminal(
+    dimensions,
+    initialCommand,
+  );
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });

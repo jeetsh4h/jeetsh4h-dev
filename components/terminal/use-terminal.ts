@@ -4,10 +4,45 @@ import { useState, useCallback, useMemo } from "react";
 import { HistoryItem, TerminalDimensions } from "./types";
 import { COMMAND_REGISTRY } from "./commands";
 
-export function useTerminal(dimensions: TerminalDimensions) {
-  const [history, setHistory] = useState<HistoryItem[]>([]);
-  const [input, setInput] = useState("");
+export function useTerminal(
+  dimensions: TerminalDimensions,
+  initialCommand?: string,
+) {
+  const [history, setHistory] = useState<HistoryItem[]>(() => {
+    if (!initialCommand) return [];
 
+    const cmdKey = initialCommand.toLowerCase();
+    const commandDef = COMMAND_REGISTRY[cmdKey];
+
+    if (commandDef) {
+      try {
+        // Mock the context for the initial render
+        const { result, status } = commandDef.action({
+          args: [],
+          dimensions,
+          pushToHistory: () => {},
+          clearHistory: () => {},
+        });
+
+        if (result) {
+          return [
+            {
+              id: "welcome",
+              type: "output",
+              content: result,
+              timestamp: 0,
+              status: status,
+            },
+          ];
+        }
+      } catch (error) {
+        console.error("Failed to execute initial command:", error);
+      }
+    }
+    return [];
+  });
+
+  const [input, setInput] = useState("");
   const [cmdHistory, setCmdHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
 

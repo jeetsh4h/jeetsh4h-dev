@@ -31,7 +31,7 @@ const TransientPrompt = ({
     <span
       className={cn(
         "text-lg leading-none select-none",
-        status === "error" ? "text-term-error" : "text-term-path",
+        status === "error" ? "text-term-error" : "text-term-success",
       )}
     >
       ❯

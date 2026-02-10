@@ -77,6 +77,7 @@ export function useTerminal(dimensions: TerminalDimensions) {
           status: commandStatus,
         };
       }
+
       const userEntry: HistoryItem = {
         id: crypto.randomUUID(),
         type: "command",
@@ -86,15 +87,19 @@ export function useTerminal(dimensions: TerminalDimensions) {
         status: commandStatus,
       };
 
-      // 4. Update State
       setHistory((prev) => {
-        if (commandDef?.aliases?.includes(cmdKey) || cmdKey === "clear")
+        if (cmdKey === "clear" || cmdKey === "cls") {
           return [];
+        }
         const newItems = outputEntry ? [userEntry, outputEntry] : [userEntry];
         return [...prev, ...newItems];
       });
 
-      setCmdHistory((prev) => [...prev, trimmed]);
+      setCmdHistory((prev) => {
+        // TODO: Don't add duplicates if it's the same as the very last command?
+        return [...prev, trimmed];
+      });
+
       setHistoryIndex(-1);
       setInput("");
     },

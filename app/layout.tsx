@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
@@ -12,6 +12,14 @@ export const metadata: Metadata = {
   title: "jeetsh4h",
   description:
     "Jeet Shah's personal website. Software developer. Co-founder of TriCatch.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  // This ensures the layout resizes when the keyboard opens
+  interactiveWidget: "resizes-content",
 };
 
 export default function RootLayout({

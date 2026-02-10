@@ -3,6 +3,9 @@
 import { useState, useEffect, RefObject } from "react";
 import { TerminalDimensions } from "./types";
 
+// not being used right now
+// this was built assuming we might have ascii art at some point
+// TODO: deprecate or use
 export function useTerminalDimensions(ref: RefObject<HTMLElement | null>) {
   const [dimensions, setDimensions] = useState<TerminalDimensions>({
     cols: 0,

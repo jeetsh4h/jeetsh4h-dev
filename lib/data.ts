@@ -39,7 +39,7 @@ export const EXPERIENCE = [
       "Developed ConvLSTM model for precipitation nowcasting in a high-security air-gapped HPC environment. Outperformed baselines by 30.7%.",
   },
   {
-    company: "National Federation of the Blind",
+    company: "National Federation of the Blind Maharashtra",
     role: "Project Solutions Intern",
     period: "May 2024 - Sep 2024",
     type: "internship",

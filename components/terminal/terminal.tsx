@@ -58,15 +58,15 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
   );
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [history]);
+    bottomRef.current?.scrollIntoView({ behavior: "auto" });
+  }, [history, dimensions]);
 
   const handleFocus = () => inputRef.current?.focus();
 
   return (
     <div
       ref={containerRef}
-      className="w-full max-w-3xl mx-auto h-[85vh] min-h-100 bg-term-bg border border-term-border rounded-xl shadow-2xl overflow-hidden flex flex-col font-mono text-sm relative transition-colors duration-300 ring-4 ring-term-border/20"
+      className="w-full h-full bg-term-bg border border-term-border rounded-xl shadow-2xl overflow-hidden flex flex-col font-mono text-sm relative transition-colors duration-300 ring-4 ring-term-border/20"
       onClick={handleFocus}
     >
       {/* Window Decorations / Header */}

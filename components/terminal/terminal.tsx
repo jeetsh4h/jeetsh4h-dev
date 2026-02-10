@@ -58,7 +58,15 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
   );
 
   useEffect(() => {
+    // Immediate scroll
     bottomRef.current?.scrollIntoView({ behavior: "auto" });
+
+    // Double-check scroll after 250ms (fixes iOS keyboard animation timing issues)
+    const timeout = setTimeout(() => {
+      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 250);
+
+    return () => clearTimeout(timeout);
   }, [history, dimensions]);
 
   const handleFocus = () => inputRef.current?.focus();
@@ -66,7 +74,7 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
   return (
     <div
       ref={containerRef}
-      className="w-full h-full bg-term-bg border border-term-border rounded-xl shadow-2xl overflow-hidden flex flex-col font-mono text-sm relative transition-colors duration-300 ring-4 ring-term-border/20"
+      className="w-full h-full bg-term-bg border border-term-border rounded-xl shadow-2xl overflow-hidden flex flex-col font-mono text-sm relative transition-colors duration-300 ring-4 ring-term-border/20 min-h-0"
       onClick={handleFocus}
     >
       {/* Window Decorations / Header */}

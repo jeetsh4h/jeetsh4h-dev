@@ -1,10 +1,43 @@
+"use client";
+
 import { Terminal } from "@/components/terminal/terminal";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 
 export default function TerminalPage() {
+  const [viewportHeight, setViewportHeight] = useState("100dvh");
+
+  useEffect(() => {
+    // Only run on client-side and if API is supported
+    if (!window.visualViewport) return;
+
+    const handleResize = () => {
+      // Force the height to match the actual visible area (minus keyboard)
+      setViewportHeight(`${window.visualViewport!.height}px`);
+
+      // Prevent the document from scrolling out of view
+      window.scrollTo(0, 0);
+    };
+
+    window.visualViewport.addEventListener("resize", handleResize);
+    window.visualViewport.addEventListener("scroll", handleResize);
+
+    // Set initial height
+    handleResize();
+
+    return () => {
+      window.visualViewport?.removeEventListener("resize", handleResize);
+      window.visualViewport?.removeEventListener("scroll", handleResize);
+    };
+  }, []);
+
   return (
-    <div className="flex h-dvh w-full flex-col overflow-hidden bg-term-bg">
+    <div
+      className="flex w-full flex-col overflow-hidden bg-term-bg relative"
+      style={{ height: viewportHeight }}
+    >
+      {/* Fixed Header */}
       <div className="flex-none p-4 pb-2">
         <Link href="/">
           <Button
@@ -19,6 +52,7 @@ export default function TerminalPage() {
         </Link>
       </div>
 
+      {/* Terminal fills remaining space */}
       <div className="w-full flex-1 min-h-0 max-w-3xl mx-auto px-4 pb-4 animate-in fade-in zoom-in-95 duration-500">
         <Terminal />
       </div>

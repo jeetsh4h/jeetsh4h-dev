@@ -8,13 +8,13 @@ import { cn } from "@/lib/utils";
 
 const ActivePrompt = ({ children }: { children: React.ReactNode }) => (
   <div className="mt-2 flex flex-col gap-1 animate-in fade-in duration-300">
-    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-50">
-      <span className="text-green-500">visitor</span>
-      <span className="text-muted-foreground">::</span>
-      <span className="text-blue-500">~</span>
+    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-60 select-none">
+      <span className="text-term-user">visitor</span>
+      <span className="text-term-muted">::</span>
+      <span className="text-term-host">~</span>
     </div>
     <div className="flex items-center gap-2">
-      <span className="text-yellow-500 text-lg leading-none">❯</span>
+      <span className="text-term-path text-lg leading-none">❯</span>
       {children}
     </div>
   </div>
@@ -31,7 +31,7 @@ const TransientPrompt = ({
     <span
       className={cn(
         "text-lg leading-none select-none",
-        status === "error" ? "text-red-500" : "text-green-500",
+        status === "error" ? "text-term-error" : "text-term-path",
       )}
     >
       ❯
@@ -60,16 +60,9 @@ export function Terminal() {
   return (
     <div
       ref={containerRef}
-      className="w-full max-w-3xl mx-auto h-150 bg-card border border-border rounded-xl shadow-2xl overflow-hidden flex flex-col font-mono text-sm p-4 relative ring-1 ring-border/50"
+      className="w-full max-w-3xl mx-auto h-[85vh] min-h-100 bg-term-bg border-2 border-term-border rounded-2xl shadow-xl overflow-hidden flex flex-col font-mono text-sm p-6 relative ring-offset-2 transition-colors duration-300"
       onClick={handleFocus}
     >
-      {/* Window Controls Decoration */}
-      {/* <div className="absolute top-4 right-4 flex gap-2 opacity-20 pointer-events-none">
-        <div className="w-2 h-2 rounded-full bg-foreground" />
-        <div className="w-2 h-2 rounded-full bg-foreground" />
-        <div className="w-2 h-2 rounded-full bg-foreground" />
-      </div> */}
-
       <ScrollArea className="flex-1 h-full pr-4">
         {history.map((item) => (
           <div
@@ -81,7 +74,7 @@ export function Terminal() {
                 command={item.content as string}
                 status={item.status}
               />
-            : <div className="pl-4 border-l-2 border-border/30 ml-1 animate-in slide-in-from-left-2 duration-200">
+            : <div className="pl-4 border-l-2 border-term-border/50 ml-1 animate-in slide-in-from-left-2 duration-200 text-term-muted">
                 {item.content}
               </div>
             }
@@ -90,12 +83,11 @@ export function Terminal() {
 
         <ActivePrompt>
           <div className="relative flex-1">
-            <span className="whitespace-pre-wrap break-all text-foreground">
+            <span className="whitespace-pre-wrap break-all text-foreground font-medium">
               {input}
             </span>
 
-            {/* The Cursor */}
-            <span className="inline-block w-0.5 h-4 bg-primary align-middle ml-px -mt-1 animate-caret-blink" />
+            <span className="inline-block w-0.5 h-5 bg-term-caret align-middle -mt-1 animate-caret-blink opacity-80" />
 
             <span className="text-muted-foreground opacity-50 select-none">
               {suggestion}

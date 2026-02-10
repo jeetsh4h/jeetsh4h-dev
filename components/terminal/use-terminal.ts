@@ -77,12 +77,6 @@ export function useTerminal(dimensions: TerminalDimensions) {
           status: commandStatus,
         };
       }
-
-      console.log("Command Result:", {
-        command: trimmed,
-        commandStatus,
-        outputEntry,
-      });
       const userEntry: HistoryItem = {
         id: crypto.randomUUID(),
         type: "command",

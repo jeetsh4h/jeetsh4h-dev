@@ -46,7 +46,7 @@ interface TerminalProps {
   initialCommand?: string;
 }
 
-export function Terminal({ initialCommand = "about" }: TerminalProps) {
+export function Terminal({ initialCommand = "help" }: TerminalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -69,7 +69,7 @@ export function Terminal({ initialCommand = "about" }: TerminalProps) {
       className="w-full max-w-3xl mx-auto h-[85vh] min-h-100 bg-term-bg border border-term-border rounded-xl shadow-2xl overflow-hidden flex flex-col font-mono text-sm relative transition-colors duration-300 ring-4 ring-term-border/20"
       onClick={handleFocus}
     >
-      {/* Window Decorations / Header - NOW OPAQUE */}
+      {/* Window Decorations / Header */}
       <div className="flex items-center justify-between px-4 py-3 bg-term-bg border-b border-term-border select-none sticky top-0 z-20">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e] hover:bg-[#ff5f56]/80 transition-colors shadow-sm" />

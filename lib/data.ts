@@ -31,7 +31,7 @@ export const EXPERIENCE = [
     ],
   },
   {
-    company: "ISRO (Space Apps Centre)",
+    company: "ISRO (Space Applications Centre)",
     role: "Research Intern (SRTD)",
     period: "May 2023 - Aug 2023",
     type: "research",
@@ -51,12 +51,21 @@ export const EXPERIENCE = [
     role: "Golf Content Writer",
     period: "Aug '23 - Oct '23",
     type: "internship",
+    description: "Golf Content Writer.",
   },
   {
     company: "Analyse India",
     role: "Intern",
     period: "May '22 - Aug '22",
     type: "internship",
+    description: "Automated technical analysis processes.",
+  },
+  {
+    company: "SNEHA",
+    role: "IT/IM Intern",
+    period: "Apr '22 - Jun '22",
+    type: "internship",
+    description: "Audited network diagrams.",
   },
 ];
 

@@ -45,57 +45,90 @@ const about: CommandDef = {
 const experience: CommandDef = {
   description: "My professional timeline",
   aliases: ["exp", "work"],
-  action: () => ({
-    result: (
-      <div className="flex flex-col gap-8 mt-2">
-        {EXPERIENCE.map((job, idx) => {
-          // Color logic based on index or type
-          const dotColor =
-            idx === 0 ? "bg-term-user"
-            : idx === 1 ? "bg-term-host"
-            : idx === 2 ? "bg-term-path"
-            : "bg-term-muted";
+  action: () => {
+    // TODO: demarcate this in data.ts itself
+    const featuredExp = EXPERIENCE.slice(0, 4);
+    const compactExp = EXPERIENCE.slice(4);
 
-          return (
-            <div
-              key={idx}
-              className={`relative ${job.description || job.achievements ? "" : "opacity-80"}`}
-            >
-              {/* Dot */}
+    return {
+      result: (
+        <div className="flex flex-col gap-8 mt-2">
+          {featuredExp.map((job, idx) => {
+            // Color logic based on index
+            const dotColor =
+              idx === 0 ? "bg-term-user"
+              : idx === 1 ? "bg-term-host"
+              : idx === 2 ? "bg-term-path"
+              : "bg-term-muted";
+
+            return (
               <div
-                className={`absolute -left-5.75 top-1.5 w-3 h-3 ${dotColor} rounded-full border-2 border-term-bg ring-1 ring-term-border/50`}
-              />
+                key={idx}
+                className={`relative ${
+                  job.description || job.achievements ? "" : "opacity-80"
+                }`}
+              >
+                {/* Dot */}
+                <div
+                  className={`absolute -left-5.75 top-1.5 w-3 h-3 ${dotColor} rounded-full border-2 border-term-bg ring-1 ring-term-border/50`}
+                />
 
-              <div className="flex justify-between items-baseline flex-wrap">
-                <span className="text-term-user font-bold text-base">
-                  {job.company}
-                </span>
-                <span className="text-term-muted text-xs">{job.period}</span>
-              </div>
-              <div className="text-term-host text-sm mb-2 font-semibold">
-                {job.role}
-              </div>
-
-              {job.achievements && (
-                <ul className="list-disc list-outside text-muted-foreground text-xs space-y-1 ml-4">
-                  {job.achievements.map((ach, i) => (
-                    <li key={i}>{ach}</li>
-                  ))}
-                </ul>
-              )}
-
-              {job.description && (
-                <div className="text-muted-foreground text-xs ml-1 leading-relaxed">
-                  {job.description}
+                <div className="flex justify-between items-baseline flex-wrap">
+                  <span className="text-term-user font-bold text-base">
+                    {job.company}
+                  </span>
+                  <span className="text-term-muted text-xs">{job.period}</span>
                 </div>
-              )}
+                <div className="text-term-host text-sm mb-2 font-semibold">
+                  {job.role}
+                </div>
+
+                {job.achievements && (
+                  <ul className="list-disc list-outside text-muted-foreground text-xs space-y-1 ml-4">
+                    {job.achievements.map((ach, i) => (
+                      <li key={i}>{ach}</li>
+                    ))}
+                  </ul>
+                )}
+
+                {job.description && (
+                  <div className="text-muted-foreground text-xs ml-1 leading-relaxed">
+                    {job.description}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+
+          {/* Compact Section for older internships */}
+          {compactExp.length > 0 && (
+            <div className="relative opacity-80">
+              <div className="text-muted-foreground text-xs space-y-3">
+                {compactExp.map((job, idx) => (
+                  <div
+                    key={idx}
+                    className="relative"
+                  >
+                    {/* Small Dot for each compact item */}
+                    <div className="absolute -left-5.75 top-1.5 w-3 h-3 bg-term-muted rounded-full border-2 border-term-bg ring-1 ring-term-border/50" />
+
+                    <div>
+                      <span className="font-bold text-term-user">
+                        {job.company}
+                      </span>{" "}
+                      <span className="text-term-muted">({job.period})</span>
+                      <div className="ml-2 mt-0.5">{job.description}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          );
-        })}
-      </div>
-    ),
-    status: "success",
-  }),
+          )}
+        </div>
+      ),
+      status: "success",
+    };
+  },
 };
 
 const projects: CommandDef = {

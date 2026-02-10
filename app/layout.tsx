@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -10,7 +11,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "jeetsh4h",
   description:
-    "Jeet Shah's personal website. Software developer. Co-founder of TriCatch. Mobile App Developer. Web App Developer. AI / ML Researcher. Full-stack Developer. Proponent and builder of Generative AI tools.",
+    "Jeet Shah's personal website. Software developer. Co-founder of TriCatch.",
 };
 
 export default function RootLayout({
@@ -19,7 +20,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      suppressHydrationWarning
+    >
       <head>
         <link
           rel="apple-touch-icon"
@@ -43,8 +47,17 @@ export default function RootLayout({
           href="/site.webmanifest"
         />
       </head>
-      <body className={`${jetbrainsMono.variable} antialiased`}>
-        {children}
+      <body
+        className={`${jetbrainsMono.variable} antialiased bg-term-bg text-foreground transition-colors duration-300`}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

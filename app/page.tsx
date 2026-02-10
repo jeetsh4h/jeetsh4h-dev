@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { IconTerminal2 } from "@tabler/icons-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 import {
   PROFILE,
   EXPERIENCE,
@@ -24,13 +25,19 @@ export default function Page() {
             </div>
 
             {/* Desktop CTA with CLI Logo */}
-            <Link
-              href="/terminal"
-              className="hidden md:flex items-center gap-2 text-xs border border-term-border px-3 py-1.5 rounded-full hover:bg-term-border hover:text-term-user transition-colors group"
-            >
-              <IconTerminal2 className="w-4 h-4 text-term-muted group-hover:text-term-user transition-colors" />
-              <span>Open in Terminal</span>
-            </Link>
+            <div className="flex items-center gap-3">
+              {/* Theme Toggle */}
+              <ThemeToggle />
+
+              {/* Desktop CTA with CLI Logo */}
+              <Link
+                href="/terminal"
+                className="hidden md:flex items-center gap-2 text-xs border border-term-border px-3 py-1.5 rounded-full hover:bg-term-border hover:text-term-user transition-colors group h-9"
+              >
+                <IconTerminal2 className="w-4 h-4 text-term-muted group-hover:text-term-user transition-colors" />
+                <span>Open in Terminal</span>
+              </Link>
+            </div>
           </div>
 
           <div className="relative">

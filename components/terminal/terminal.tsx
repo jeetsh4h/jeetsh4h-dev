@@ -67,56 +67,73 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
   return (
     <div
       ref={containerRef}
-      className="w-full max-w-3xl mx-auto h-[85vh] min-h-100 bg-term-bg border-2 border-term-border rounded-2xl shadow-xl overflow-hidden flex flex-col font-mono text-sm p-6 relative ring-offset-2 transition-colors duration-300"
+      className="w-full max-w-3xl mx-auto h-[85vh] min-h-100 bg-term-bg border border-term-border rounded-xl shadow-2xl overflow-hidden flex flex-col font-mono text-sm relative transition-colors duration-300 ring-4 ring-term-border/20"
       onClick={handleFocus}
     >
-      <ScrollArea className="flex-1 h-full pr-4">
-        {history.map((item) => (
-          <div
-            key={item.id}
-            className="mb-4"
-          >
-            {item.type === "command" ?
-              <TransientPrompt
-                command={item.content as string}
-                status={item.status}
+      {/* Window Decorations / Header */}
+      <div className="flex items-center justify-between px-4 py-3 bg-term-border/10 border-b border-term-border/50 select-none sticky top-0 z-10">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e] hover:bg-[#ff5f56]/80 transition-colors shadow-sm" />
+          <div className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123] hover:bg-[#ffbd2e]/80 transition-colors shadow-sm" />
+          <div className="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29] hover:bg-[#27c93f]/80 transition-colors shadow-sm" />
+        </div>
+        <div className="text-xs text-term-muted font-bold opacity-60 flex items-center gap-2">
+          <span className="hidden sm:inline">visitor@jeetsh4h-dev: ~</span>
+          <span className="sm:hidden">terminal</span>
+        </div>
+        <div className="w-12" /> {/* Spacer to balance flex layout */}
+      </div>
+
+      <ScrollArea className="flex-1 h-full">
+        {/* Inner container for padding */}
+        <div className="p-6 pb-4">
+          {history.map((item) => (
+            <div
+              key={item.id}
+              className="mb-4"
+            >
+              {item.type === "command" ?
+                <TransientPrompt
+                  command={item.content as string}
+                  status={item.status}
+                />
+              : <div className="pl-4 border-l-2 border-term-border/50 ml-1 animate-in slide-in-from-left-2 duration-200 text-term-muted">
+                  {item.content}
+                </div>
+              }
+            </div>
+          ))}
+
+          <ActivePrompt>
+            <div className="relative flex-1">
+              <span className="whitespace-pre-wrap break-all text-foreground font-medium">
+                {input}
+              </span>
+
+              <span className="inline-block w-0.5 h-5 bg-term-caret align-middle -mt-1 animate-caret-blink opacity-80" />
+
+              <span className="text-muted-foreground opacity-50 select-none">
+                {suggestion}
+              </span>
+
+              <input
+                ref={inputRef}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-default"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                autoFocus
+                autoComplete="off"
+                spellCheck={false}
               />
-            : <div className="pl-4 border-l-2 border-term-border/50 ml-1 animate-in slide-in-from-left-2 duration-200 text-term-muted">
-                {item.content}
-              </div>
-            }
-          </div>
-        ))}
+            </div>
+          </ActivePrompt>
 
-        <ActivePrompt>
-          <div className="relative flex-1">
-            <span className="whitespace-pre-wrap break-all text-foreground font-medium">
-              {input}
-            </span>
-
-            <span className="inline-block w-0.5 h-5 bg-term-caret align-middle -mt-1 animate-caret-blink opacity-80" />
-
-            <span className="text-muted-foreground opacity-50 select-none">
-              {suggestion}
-            </span>
-
-            <input
-              ref={inputRef}
-              className="absolute inset-0 w-full h-full opacity-0 cursor-default"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              autoFocus
-              autoComplete="off"
-              spellCheck={false}
-            />
-          </div>
-        </ActivePrompt>
-
-        <div
-          ref={bottomRef}
-          className="h-12"
-        />
+          <div
+            ref={bottomRef}
+            className="h-4"
+          />
+        </div>
       </ScrollArea>
     </div>
   );

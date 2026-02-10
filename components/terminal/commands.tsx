@@ -1,5 +1,13 @@
 import React from "react";
 import { type CommandDef } from "./types";
+import {
+  PROFILE,
+  EXPERIENCE,
+  PROJECTS,
+  RESEARCH,
+  EDUCATION,
+  SKILLS,
+} from "@/lib/data";
 
 const LINK_STYLES =
   "text-term-path underline decoration-term-path/30 hover:decoration-term-path transition-all";
@@ -40,131 +48,50 @@ const experience: CommandDef = {
   action: () => ({
     result: (
       <div className="flex flex-col gap-8 mt-2">
-        {/* TriCatch */}
-        <div className="relative">
-          {/* Dot: Positioned to hit the parent border exactly (-23px accounts for pl-4 + border width) */}
-          <div className="absolute -left-5.75 top-1.5 w-3 h-3 bg-term-user rounded-full border-2 border-term-bg ring-1 ring-term-border/50" />
+        {EXPERIENCE.map((job, idx) => {
+          // Color logic based on index or type
+          const dotColor =
+            idx === 0 ? "bg-term-user"
+            : idx === 1 ? "bg-term-host"
+            : idx === 2 ? "bg-term-path"
+            : "bg-term-muted";
 
-          <div className="flex justify-between items-baseline flex-wrap">
-            <span className="text-term-user font-bold text-base">TriCatch</span>
-            <span className="text-term-muted text-xs">Dec 2025 - Present</span>
-          </div>
-          <div className="text-term-host text-sm mb-2 font-semibold">
-            Co-founder & Lead Engineer
-          </div>
-          <ul className="list-disc list-outside text-muted-foreground text-xs space-y-1 ml-4">
-            <li>
-              Architecting <span className="text-term-path">Movynn</span> (React
-              Native & Supabase).
-            </li>
-            <li>
-              Engineered an offline-first synchronization engine for
-              low-connectivity environments.
-            </li>
-            <li>
-              Managing full-cycle development and secure user data handling.
-            </li>
-          </ul>
-        </div>
+          return (
+            <div
+              key={idx}
+              className={`relative ${job.description || job.achievements ? "" : "opacity-80"}`}
+            >
+              {/* Dot */}
+              <div
+                className={`absolute -left-5.75 top-1.5 w-3 h-3 ${dotColor} rounded-full border-2 border-term-bg ring-1 ring-term-border/50`}
+              />
 
-        {/* Voltek AI */}
-        <div className="relative">
-          <div className="absolute -left-5.75 top-1.5 w-3 h-3 bg-term-host rounded-full border-2 border-term-bg ring-1 ring-term-border/50" />
-
-          <div className="flex justify-between items-baseline flex-wrap">
-            <span className="text-term-user font-bold text-base">
-              Voltek AI
-            </span>
-            <span className="text-term-muted text-xs">Oct 2024 - Present</span>
-          </div>
-          <div className="text-term-host text-sm mb-2 font-semibold">
-            Software Developer
-          </div>
-          <ul className="list-disc list-outside text-muted-foreground text-xs space-y-1 ml-4">
-            <li>
-              Designed NANOLOY data pipeline (PostgreSQL, Azure), reducing query
-              latency by 200%.
-            </li>
-            <li>
-              Built Multi-LLM RAG system for internal knowledge retrieval.
-            </li>
-            <li>
-              Deployed full-stack logging visualization (NextJS, FastAPI).
-            </li>
-          </ul>
-        </div>
-
-        {/* ISRO */}
-        <div className="relative">
-          <div className="absolute -left-5.75 top-1.5 w-3 h-3 bg-term-path rounded-full border-2 border-term-bg ring-1 ring-term-border/50" />
-
-          <div className="flex justify-between items-baseline flex-wrap">
-            <span className="text-term-user font-bold text-base">
-              ISRO (Space Apps Centre)
-            </span>
-            <span className="text-term-muted text-xs">May 2023 - Aug 2023</span>
-          </div>
-          <div className="text-term-host text-sm mb-2 font-semibold">
-            Research Intern (SRTD)
-          </div>
-          <div className="text-muted-foreground text-xs ml-1 leading-relaxed">
-            Developed ConvLSTM model for precipitation nowcasting in a
-            high-security air-gapped HPC environment. Outperformed baselines by
-            30.7%.
-          </div>
-        </div>
-
-        {/* NFB */}
-        <div className="relative">
-          <div className="absolute -left-5.75 top-1.5 w-3 h-3 bg-term-host rounded-full border-2 border-term-bg ring-1 ring-term-border/50" />
-
-          <div className="flex justify-between items-baseline flex-wrap">
-            <span className="text-term-user font-bold text-base">
-              National Federation of the Blind
-            </span>
-            <span className="text-term-muted text-xs">May 2024 - Sep 2024</span>
-          </div>
-          <div className="text-term-host text-sm mb-2 font-semibold">
-            Project Solutions Intern
-          </div>
-          <div className="text-muted-foreground text-xs ml-1">
-            Developed assistive navigation tools using Raspberry Pi and CV.
-          </div>
-        </div>
-
-        {/* Previous Internships (Compact) */}
-        <div className="relative opacity-80">
-          <div className="absolute -left-5.75 top-2 w-3 h-3 bg-term-muted rounded-full border-2 border-term-bg ring-1 ring-term-border/50" />
-          <div className="text-muted-foreground text-xs space-y-3">
-            <div>
-              <span className="font-bold text-term-user">Sportskeeda</span>{" "}
-              <span className="text-term-muted">
-                (Aug &apos;23 - Oct &apos;23)
-              </span>
-              <div className="ml-2">Golf Content Writer.</div>
-            </div>
-            <div className="absolute -left-5.75 w-3 h-3 bg-term-muted rounded-full border-2 border-term-bg ring-1 ring-term-border/50" />
-            <div>
-              <span className="font-bold text-term-user">Analyse India</span>{" "}
-              <span className="text-term-muted">
-                (May &apos;22 - Aug &apos;22)
-              </span>
-              <div className="ml-2">
-                Automated technical analysis processes.
+              <div className="flex justify-between items-baseline flex-wrap">
+                <span className="text-term-user font-bold text-base">
+                  {job.company}
+                </span>
+                <span className="text-term-muted text-xs">{job.period}</span>
               </div>
-            </div>
-            <div className="absolute -left-5.75 w-3 h-3 bg-term-muted rounded-full border-2 border-term-bg ring-1 ring-term-border/50" />
-            <div>
-              <span className="font-bold text-term-user">SNEHA</span>{" "}
-              <span className="text-term-muted">
-                (Apr &apos;22 - Jun &apos;22)
-              </span>
-              <div className="ml-2">
-                IT/IM Intern, audited network diagrams.
+              <div className="text-term-host text-sm mb-2 font-semibold">
+                {job.role}
               </div>
+
+              {job.achievements && (
+                <ul className="list-disc list-outside text-muted-foreground text-xs space-y-1 ml-4">
+                  {job.achievements.map((ach, i) => (
+                    <li key={i}>{ach}</li>
+                  ))}
+                </ul>
+              )}
+
+              {job.description && (
+                <div className="text-muted-foreground text-xs ml-1 leading-relaxed">
+                  {job.description}
+                </div>
+              )}
             </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     ),
     status: "success",
@@ -177,89 +104,29 @@ const projects: CommandDef = {
   action: () => ({
     result: (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-        {/* Jyeshthanubandh */}
-        <div className="border border-term-border p-4 rounded-lg bg-term-bg hover:border-term-user transition-colors group">
-          <div className="flex justify-between items-start mb-2">
-            <div className="text-term-path font-bold text-sm group-hover:text-term-user transition-colors">
-              Jyeshthanubandh
+        {PROJECTS.map((proj, idx) => (
+          <div
+            key={idx}
+            className="border border-term-border p-4 rounded-lg bg-term-bg hover:border-term-user transition-colors group"
+          >
+            <div className="flex justify-between items-start mb-2">
+              <div className="text-term-path font-bold text-sm group-hover:text-term-user transition-colors">
+                {proj.title}
+              </div>
+              <a
+                href={proj.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[10px] border border-term-border px-2 py-0.5 rounded hover:bg-term-user hover:text-term-bg transition-colors"
+              >
+                {proj.linkText} ↗
+              </a>
             </div>
-            <a
-              href="https://play.google.com/store/apps/details?id=com.Jyeshthanubandh.pcmc_app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[10px] border border-term-border px-2 py-0.5 rounded hover:bg-term-user hover:text-term-bg transition-colors"
-            >
-              Play Store ↗
-            </a>
-          </div>
-          <div className="text-xs text-muted-foreground">
-            Official safety app for Pimpri-Chinchwad Police. Features real-time
-            police integration and medical data tracking.
-          </div>
-        </div>
-
-        {/* Paudha Yodha */}
-        <div className="border border-term-border p-4 rounded-lg bg-term-bg hover:border-term-user transition-colors group">
-          <div className="flex justify-between items-start mb-2">
-            <div className="text-term-path font-bold text-sm group-hover:text-term-user transition-colors">
-              Paudha Yodha
+            <div className="text-xs text-muted-foreground">
+              {proj.description}
             </div>
-            <a
-              href="https://github.com/jeetsh4h/paudhayodha"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[10px] border border-term-border px-2 py-0.5 rounded hover:bg-term-user hover:text-term-bg transition-colors"
-            >
-              GitHub ↗
-            </a>
           </div>
-          <div className="text-xs text-muted-foreground">
-            Plant disease detection app (92% accuracy). Fine-tuned ResNet-50 on
-            leaf imagery. Bit N Build Finalist.
-          </div>
-        </div>
-
-        {/* Spicetify Extensions */}
-        <div className="border border-term-border p-4 rounded-lg bg-term-bg hover:border-term-user transition-colors group">
-          <div className="flex justify-between items-start mb-2">
-            <div className="text-term-path font-bold text-sm group-hover:text-term-user transition-colors">
-              Spicetify Extensions
-            </div>
-            <a
-              href="https://github.com/CharlieS1103/spicetify-extensions/pull/110"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[10px] border border-term-border px-2 py-0.5 rounded hover:bg-term-user hover:text-term-bg transition-colors"
-            >
-              PR Link ↗
-            </a>
-          </div>
-          <div className="text-xs text-muted-foreground">
-            Open Source contribution to the popular Spotify customization tool.
-            Implemented &quot;Wikify&quot; feature for track metadata.
-          </div>
-        </div>
-
-        {/* DISS384 (Research Code) */}
-        <div className="border border-term-border p-4 rounded-lg bg-term-bg hover:border-term-user transition-colors group">
-          <div className="flex justify-between items-start mb-2">
-            <div className="text-term-path font-bold text-sm group-hover:text-term-user transition-colors">
-              Precipitation Nowcasting
-            </div>
-            <a
-              href="https://github.com/jeetsh4h/DISS384"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[10px] border border-term-border px-2 py-0.5 rounded hover:bg-term-user hover:text-term-bg transition-colors"
-            >
-              GitHub ↗
-            </a>
-          </div>
-          <div className="text-xs text-muted-foreground">
-            Codebase for my dissertation (DISS384). Research resources and
-            implementation for high-resolution rainfall prediction.
-          </div>
-        </div>
+        ))}
       </div>
     ),
     status: "success",
@@ -272,37 +139,25 @@ const research: CommandDef = {
   action: () => ({
     result: (
       <div className="flex flex-col gap-4 mt-2">
-        <div className="border-l-2 border-term-host pl-3">
-          <a
-            href="https://arxiv.org/abs/2511.11197"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`font-bold block mb-1 ${LINK_STYLES}`}
+        {RESEARCH.map((paper, idx) => (
+          <div
+            key={idx}
+            className="border-l-2 border-term-host pl-3"
           >
-            Computationally-efficient deep learning models for nowcasting of
-            precipitation (2025)
-          </a>
-          <div className="text-xs text-muted-foreground">
-            Bhuskute, Anushree, et al. •{" "}
-            <span className="text-term-muted">arXiv:2511.11197 [cs.CV]</span>
+            <a
+              href={paper.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`font-bold block mb-1 ${LINK_STYLES}`}
+            >
+              {paper.title} ({paper.year})
+            </a>
+            <div className="text-xs text-muted-foreground">
+              {paper.authors} •{" "}
+              <span className="text-term-muted">{paper.venue}</span>
+            </div>
           </div>
-        </div>
-
-        <div className="border-l-2 border-term-host pl-3">
-          <a
-            href="https://arxiv.org/abs/2412.00451"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`font-bold block mb-1 ${LINK_STYLES}`}
-          >
-            A conditional Generative Adversarial network model for the
-            Weather4Cast 2024 Challenge
-          </a>
-          <div className="text-xs text-muted-foreground">
-            Deshpande, Atharva, et al. •{" "}
-            <span className="text-term-muted">arXiv:2412.00451 [cs.CV]</span>
-          </div>
-        </div>
+        ))}
       </div>
     ),
     status: "success",
@@ -315,38 +170,32 @@ const education: CommandDef = {
   action: () => ({
     result: (
       <div className="flex flex-col gap-4 mt-2">
-        <div>
-          <div className="flex justify-between items-baseline">
-            <span className="text-term-user font-bold text-base">
-              FLAME University
-            </span>
-            <span className="text-term-muted text-xs">2021 - 2025</span>
-          </div>
-          <div className="text-term-host text-sm mb-1">
-            BSc. (Hons.) in Computer Science
-          </div>
-          <div className="text-xs text-muted-foreground grid grid-cols-2 gap-2 mt-1">
-            <div>
-              <span className="text-term-path">GPA:</span> 8.88/10
+        {EDUCATION.map((edu, idx) => (
+          <div
+            key={idx}
+            className={
+              idx > 0 ? "border-t border-term-border/50 pt-2 opacity-80" : ""
+            }
+          >
+            <div className="flex justify-between items-baseline">
+              <span className="text-term-user font-bold text-base">
+                {edu.institution}
+              </span>
+              <span className="text-term-muted text-xs">{edu.period}</span>
             </div>
-            <div>
-              <span className="text-term-path">Award:</span> Merit Scholarship
-              (25%)
-            </div>
-          </div>
-          <div className="text-term-host text-sm mt-2 mb-1">
-            PG Diploma in Interdisciplinary Studies
-          </div>
-          <div className="text-xs text-muted-foreground grid grid-cols-2 gap-2 mt-1">
-            <div>
-              <span className="text-term-path">GPA:</span> 8.38/10
-            </div>
-            <div>
-              <span className="text-term-path">Award:</span> Merit Scholarship
-              (60%)
+            <div className="text-term-host text-sm mb-1">{edu.degree}</div>
+            <div className="text-xs text-muted-foreground grid grid-cols-2 gap-2 mt-1">
+              {edu.details.map((detail, i) => {
+                const [label, val] = detail.split(": ");
+                return val ?
+                    <div key={i}>
+                      <span className="text-term-path">{label}:</span> {val}
+                    </div>
+                  : <div key={i}>{detail}</div>;
+              })}
             </div>
           </div>
-        </div>
+        ))}
 
         <div className="border-t border-term-border/50 pt-2 opacity-80">
           <div className="text-xs text-muted-foreground">
@@ -372,38 +221,14 @@ const skills: CommandDef = {
   action: () => ({
     result: (
       <div className="flex flex-col gap-2">
-        <div>
-          <span className="text-term-user font-bold w-24 inline-block">
-            Languages:
-          </span>
-          <span className="text-muted-foreground">
-            Python, TypeScript, C++, SQL, Haskell, C#
-          </span>
-        </div>
-        <div>
-          <span className="text-term-user font-bold w-24 inline-block">
-            Frameworks:
-          </span>
-          <span className="text-muted-foreground">
-            React Native, Next.js, NestJS, FastAPI, Flask
-          </span>
-        </div>
-        <div>
-          <span className="text-term-user font-bold w-24 inline-block">
-            AI/ML:
-          </span>
-          <span className="text-muted-foreground">
-            PyTorch, TensorFlow, Computer Vision, RAG, ConvLSTM
-          </span>
-        </div>
-        <div>
-          <span className="text-term-user font-bold w-24 inline-block">
-            Infra:
-          </span>
-          <span className="text-muted-foreground">
-            Docker, Linux (HPC/Air-gapped), Azure, GCP, PostgreSQL
-          </span>
-        </div>
+        {Object.entries(SKILLS).map(([cat, val]) => (
+          <div key={cat}>
+            <span className="text-term-user font-bold w-24 inline-block">
+              {cat}:
+            </span>
+            <span className="text-muted-foreground">{val}</span>
+          </div>
+        ))}
       </div>
     ),
     status: "success",
@@ -417,29 +242,29 @@ const socials: CommandDef = {
     result: (
       <div className="flex flex-col gap-2 mt-2">
         <a
-          href="https://github.com/jeetsh4h"
+          href={`https://${PROFILE.github}`}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 group"
         >
           <span className="text-term-user w-24">GitHub</span>
-          <span className={LINK_STYLES}>github.com/jeetsh4h</span>
+          <span className={LINK_STYLES}>{PROFILE.github}</span>
         </a>
         <a
-          href="https://linkedin.com/in/jeetsh4h"
+          href={`https://${PROFILE.linkedin}`}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 group"
         >
           <span className="text-term-host w-24">LinkedIn</span>
-          <span className={LINK_STYLES}>linkedin.com/in/jeetsh4h</span>
+          <span className={LINK_STYLES}>{PROFILE.linkedin}</span>
         </a>
         <a
-          href="mailto:jeetsh4h@gmail.com"
+          href={`mailto:${PROFILE.email}`}
           className="flex items-center gap-2 group"
         >
           <span className="text-term-path w-24">Email</span>
-          <span className={LINK_STYLES}>jeetsh4h@gmail.com</span>
+          <span className={LINK_STYLES}>{PROFILE.email}</span>
         </a>
       </div>
     ),
@@ -471,8 +296,6 @@ export const COMMAND_REGISTRY: Record<string, CommandDef> = {
   stack: skills,
   socials,
   contact: socials,
-
-  // system commands
   whoami: {
     description: "Current user",
     action: () => ({

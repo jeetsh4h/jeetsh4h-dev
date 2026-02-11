@@ -1,5 +1,6 @@
 import { type ReactNode } from "react";
 
+// CHECK: not tested properly
 export type TerminalDimensions = {
   cols: number; // Width in characters
   rows: number; // Height in lines

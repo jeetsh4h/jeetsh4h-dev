@@ -64,9 +64,7 @@ const experience: CommandDef = {
             return (
               <div
                 key={idx}
-                className={`relative ${
-                  job.description || job.achievements ? "" : "opacity-80"
-                }`}
+                className={`relative ${job.description ? "" : "opacity-80"}`}
               >
                 {/* Dot */}
                 <div
@@ -83,18 +81,12 @@ const experience: CommandDef = {
                   {job.role}
                 </div>
 
-                {job.achievements && (
+                {job.description && (
                   <ul className="list-disc list-outside text-muted-foreground text-xs space-y-1 ml-4">
-                    {job.achievements.map((ach, i) => (
-                      <li key={i}>{ach}</li>
+                    {job.description.map((desc, i) => (
+                      <li key={i}>{desc}</li>
                     ))}
                   </ul>
-                )}
-
-                {job.description && (
-                  <div className="text-muted-foreground text-xs ml-1 leading-relaxed">
-                    {job.description}
-                  </div>
                 )}
               </div>
             );
@@ -183,11 +175,10 @@ const research: CommandDef = {
               rel="noopener noreferrer"
               className={`font-bold block mb-1 ${LINK_STYLES}`}
             >
-              {paper.title} ({paper.year})
+              {paper.title}
             </a>
             <div className="text-xs text-muted-foreground">
-              {paper.authors} •{" "}
-              <span className="text-term-muted">{paper.venue}</span>
+              {paper.authors} ({paper.year})
             </div>
           </div>
         ))}
@@ -270,7 +261,7 @@ const skills: CommandDef = {
 
 const socials: CommandDef = {
   description: "Connect with me",
-  aliases: ["contact"],
+  aliases: ["contact", "social"],
   action: () => ({
     result: (
       <div className="flex flex-col gap-2 mt-2">
@@ -280,7 +271,7 @@ const socials: CommandDef = {
           rel="noopener noreferrer"
           className="flex items-center gap-2 group"
         >
-          <span className="text-term-user w-24">GitHub</span>
+          <span className="text-term-host w-24">GitHub</span>
           <span className={LINK_STYLES}>{PROFILE.github}</span>
         </a>
         <a
@@ -296,7 +287,7 @@ const socials: CommandDef = {
           href={`mailto:${PROFILE.email}`}
           className="flex items-center gap-2 group"
         >
-          <span className="text-term-path w-24">Email</span>
+          <span className="text-term-host w-24">Email</span>
           <span className={LINK_STYLES}>{PROFILE.email}</span>
         </a>
       </div>
@@ -329,6 +320,7 @@ export const COMMAND_REGISTRY: Record<string, CommandDef> = {
   stack: skills,
   socials,
   contact: socials,
+  social: socials,
   whoami: {
     description: "Current user",
     action: () => ({

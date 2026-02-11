@@ -42,7 +42,7 @@ export default function TerminalPage() {
         <Link href="/">
           <Button
             variant="link"
-            className="group flex items-center gap-2 text-xs font-mono text-term-muted opacity-70 transition-colors hover:text-term-user hover:no-underline hover:opacity-100"
+            className="group flex items-center gap-2 text-xs font-mono text-term-muted opacity-70 transition-colors hover:text-term-user hover:no-underline hover:opacity-100 cursor-pointer"
           >
             <span className="transition-transform group-hover:-translate-x-1">
               ←

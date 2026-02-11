@@ -13,7 +13,7 @@ export const EXPERIENCE = [
     role: "Co-founder & Lead Engineer",
     period: "Dec 2025 - Present",
     type: "work",
-    achievements: [
+    description: [
       "Architecting Movynn (React Native & Supabase).",
       "Engineered an offline-first synchronization engine for low-connectivity environments.",
       "Managing full-cycle development and secure user data handling.",
@@ -24,7 +24,7 @@ export const EXPERIENCE = [
     role: "Software Developer",
     period: "Oct 2024 - Present",
     type: "work",
-    achievements: [
+    description: [
       "Designed NANOLOY data pipeline (PostgreSQL, Azure), reducing query latency by 200%.",
       "Built Multi-LLM RAG system for internal knowledge retrieval.",
       "Deployed full-stack logging visualization (NextJS, FastAPI).",
@@ -35,37 +35,40 @@ export const EXPERIENCE = [
     role: "Research Intern (SRTD)",
     period: "May 2023 - Aug 2023",
     type: "research",
-    description:
-      "Developed ConvLSTM model for precipitation nowcasting in a high-security air-gapped HPC environment. Outperformed baselines by 30.7%.",
+    description: [
+      "Developed ConvLSTM model for precipitation nowcasting in a high-security air-gapped HPC environment.",
+      "Outperformed baseline by 30.7%.",
+    ],
   },
   {
     company: "National Federation of the Blind Maharashtra",
     role: "Project Solutions Intern",
     period: "May 2024 - Sep 2024",
     type: "internship",
-    description:
-      "Developed assistive navigation tools using Raspberry Pi and CV.",
+    description: [
+      "Developed assistive navigation tools using Raspberry Pi and OpenCV.",
+    ],
   },
   {
     company: "Sportskeeda",
     role: "Golf Content Writer",
-    period: "Aug '23 - Oct '23",
+    period: "Aug 2023 - Oct 2023",
     type: "internship",
-    description: "Golf Content Writer.",
+    description: ["Golf Content Writer."],
   },
   {
     company: "Analyse India",
     role: "Intern",
-    period: "May '22 - Aug '22",
+    period: "May 2022 - Aug 2022",
     type: "internship",
-    description: "Automated technical analysis processes.",
+    description: ["Automated technical analysis processes."],
   },
   {
     company: "SNEHA",
     role: "IT/IM Intern",
-    period: "Apr '22 - Jun '22",
+    period: "Apr 2022 - Jun 2022",
     type: "internship",
-    description: "Audited network diagrams.",
+    description: ["Audited network diagrams."],
   },
 ];
 
@@ -105,7 +108,6 @@ export const RESEARCH = [
     title:
       "Computationally-efficient deep learning models for nowcasting of precipitation",
     year: "2025",
-    venue: "arXiv:2511.11197 [cs.CV]",
     authors: "Bhuskute, Anushree, et al.",
     link: "https://arxiv.org/abs/2511.11197",
   },
@@ -113,7 +115,6 @@ export const RESEARCH = [
     title:
       "A conditional Generative Adversarial network model for the Weather4Cast 2024 Challenge",
     year: "2024",
-    venue: "arXiv:2412.00451 [cs.CV]",
     authors: "Deshpande, Atharva, et al.",
     link: "https://arxiv.org/abs/2412.00451",
   },
@@ -124,13 +125,13 @@ export const EDUCATION = [
     institution: "FLAME University",
     period: "2021 - 2025",
     degree: "BSc. (Hons.) in Computer Science",
-    details: ["GPA: 8.88/10", "Award: Merit Scholarship (25%)"],
+    details: ["CGPA: 8.88/10", "Award: Merit Scholarship (25%)"],
   },
   {
     institution: "FLAME University",
     period: "2025",
     degree: "PG Diploma in Interdisciplinary Studies",
-    details: ["GPA: 8.38/10", "Award: Merit Scholarship (60%)"],
+    details: ["CGPA: 8.38/10", "Award: Merit Scholarship (60%)"],
   },
 ];
 

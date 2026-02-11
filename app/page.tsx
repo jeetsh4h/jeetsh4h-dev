@@ -41,9 +41,8 @@ export default function Page() {
           </div>
 
           <div className="relative">
-            {/* Optional 'about' command hint for the bio section */}
             <div className="absolute -left-3 top-1 opacity-0 md:opacity-100 -translate-x-full pr-4 flex items-center justify-end">
-              <div className="flex items-center gap-1.5 text-[10px] font-mono text-term-muted/50 select-none">
+              <div className="flex items-center gap-1.5 text-[10px] font-mono text-term-muted/50 border border-term-border/30 px-2 py-1 rounded bg-term-border/5 select-none">
                 <IconTerminal2 className="w-3 h-3" />
                 <span>about</span>
               </div>
@@ -100,40 +99,35 @@ export default function Page() {
 
           {/* TODO: demarcate between the comapct and the full ones */}
           <div className="border-l-2 border-term-border/50 ml-2 space-y-10 pl-8 relative">
-            {EXPERIENCE.filter((e) => e.description || e.achievements).map(
-              (job, i) => (
-                <div
-                  key={i}
-                  className="relative"
-                >
-                  {/* Timeline Dot */}
-                  <div className="absolute -left-9.75 top-1.5 w-3 h-3 rounded-full bg-term-bg border-2 border-term-user ring-2 ring-term-bg" />
+            {EXPERIENCE.filter((e) => e.description).map((job, i) => (
+              <div
+                key={i}
+                className="relative"
+              >
+                {/* Timeline Dot */}
+                <div className="absolute -left-9.75 top-1.5 w-3 h-3 rounded-full bg-term-bg border-2 border-term-user ring-2 ring-term-bg" />
 
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-                    <h3 className="text-lg font-bold text-foreground">
-                      {job.company}
-                    </h3>
-                    <span className="text-xs text-term-muted font-mono bg-term-border/20 px-2 py-0.5 rounded">
-                      {job.period}
-                    </span>
-                  </div>
-                  <div className="text-sm text-term-host font-medium mb-3">
-                    {job.role}
-                  </div>
-
-                  {job.achievements ?
-                    <ul className="list-disc list-outside ml-4 space-y-1.5 text-muted-foreground text-sm leading-relaxed">
-                      {job.achievements.map((ach, j) => (
-                        <li key={j}>{ach}</li>
-                      ))}
-                    </ul>
-                  : <p className="text-muted-foreground text-sm leading-relaxed">
-                      {job.description}
-                    </p>
-                  }
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                  <h3 className="text-lg font-bold text-foreground">
+                    {job.company}
+                  </h3>
+                  <span className="text-xs text-term-muted font-mono bg-term-border/20 px-2 py-0.5 rounded">
+                    {job.period}
+                  </span>
                 </div>
-              ),
-            )}
+                <div className="text-sm text-term-host font-medium mb-3">
+                  {job.role}
+                </div>
+
+                {job.description && (
+                  <ul className="list-disc list-outside ml-4 space-y-1.5 text-muted-foreground text-sm leading-relaxed">
+                    {job.description.map((ach, j) => (
+                      <li key={j}>{ach}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
           </div>
         </section>
 
@@ -206,7 +200,6 @@ export default function Page() {
                       {paper.year}
                     </span>
                   </div>
-                  <div className="text-sm text-term-host">{paper.venue}</div>
                   <div className="text-sm text-muted-foreground">
                     {paper.authors}
                   </div>
@@ -300,8 +293,15 @@ export default function Page() {
 
         <footer className="pt-12 pb-8 border-t border-term-border/30 text-center text-xs text-term-muted">
           <p>
-            © {new Date().getFullYear()} {PROFILE.name}. Built with Next.js &
-            Tailwind.
+            © {new Date().getFullYear()} Jeet Chetan Shah.{" "}
+            <Link
+              href="https://github.com/jeetsh4h/jeetsh4h-dev"
+              target="_blank"
+              className="underline hover:text-term-user transition-colors"
+            >
+              Source Code
+            </Link>
+            .
           </p>
         </footer>
       </div>

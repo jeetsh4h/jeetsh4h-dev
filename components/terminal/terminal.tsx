@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Card, CardHeader } from "@/components/ui/card";
 import { useTerminalDimensions } from "./use-dimension";
 import { useTerminal } from "./use-terminal";
 import { cn } from "@/lib/utils";
@@ -72,13 +73,13 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
   const handleFocus = () => inputRef.current?.focus();
 
   return (
-    <div
+    <Card
       ref={containerRef}
-      className="w-full h-full bg-term-bg border border-term-border rounded-xl shadow-2xl overflow-hidden flex flex-col font-mono text-sm relative transition-colors duration-300 ring-4 ring-term-border/20 min-h-0"
+      className="w-full h-full bg-term-bg border-term-border rounded-xl shadow-2xl overflow-hidden font-mono text-sm relative transition-colors duration-300 ring-4 ring-term-border/20 min-h-0 p-0 gap-0"
       onClick={handleFocus}
     >
       {/* Window Decorations / Header */}
-      <div className="flex items-center justify-between px-4 py-3 bg-term-bg border-b border-term-border select-none sticky top-0 z-20">
+      <CardHeader className="absolute top-0 left-0 right-0 z-20 flex flex-row items-center justify-between px-4 py-3 bg-term-bg border-b border-term-border select-none space-y-0">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e] hover:bg-[#ff5f56]/80 transition-colors shadow-sm" />
           <div className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123] hover:bg-[#ffbd2e]/80 transition-colors shadow-sm" />
@@ -88,12 +89,11 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
           <span className="hidden sm:inline">visitor@jeetsh4h-dev: ~</span>
           <span className="sm:hidden">terminal</span>
         </div>
-        <div className="w-12" /> {/* Spacer to balance flex layout */}
-      </div>
+        <div className="w-12" />
+      </CardHeader>
 
-      <ScrollArea className="flex-1 h-full">
-        {/* Inner container for padding */}
-        <div className="p-6 pb-4">
+      <ScrollArea className="h-full w-full">
+        <div className="p-6 pb-4 pt-14">
           {history.map((item) => (
             <div
               key={item.id}
@@ -142,6 +142,6 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
           />
         </div>
       </ScrollArea>
-    </div>
+    </Card>
   );
 }

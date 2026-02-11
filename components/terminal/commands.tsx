@@ -1,12 +1,12 @@
 import React from "react";
-import { type CommandDef } from "./types";
-import About from "@/components/terminal/about";
-import Experience from "@/components/terminal/experience";
-import Projects from "@/components/terminal/projects";
-import Research from "@/components/terminal/research";
-import Education from "@/components/terminal/education";
-import Skills from "@/components/terminal/skills";
-import Socials from "@/components/terminal/socials";
+import type { CommandDef } from "./types";
+import About from "./about";
+import Experience from "./experience";
+import Projects from "./projects";
+import Research from "./research";
+import Education from "./education";
+import Skills from "./skills";
+import Socials from "./socials";
 
 const about: CommandDef = {
   description: "Who is Jeet?",

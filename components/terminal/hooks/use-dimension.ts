@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, RefObject } from "react";
-import { TerminalDimensions } from "./types";
+import type { TerminalDimensions } from "../types";
 
 export function useTerminalDimensions(ref: RefObject<HTMLElement | null>) {
   const [dimensions, setDimensions] = useState<TerminalDimensions>({

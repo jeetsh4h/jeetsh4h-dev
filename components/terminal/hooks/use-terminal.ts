@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useCallback, useMemo } from "react";
-import { HistoryItem, TerminalDimensions } from "./types";
-import { COMMAND_REGISTRY } from "./commands";
+import { COMMAND_REGISTRY } from "../commands";
+import type { HistoryItem, TerminalDimensions } from "../types";
 
 export function useTerminal(
   dimensions: TerminalDimensions,

@@ -3,8 +3,8 @@
 import React, { useRef, useEffect } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Card, CardHeader } from "@/components/ui/card";
-import { useTerminalDimensions } from "./use-dimension";
-import { useTerminal } from "./use-terminal";
+import { useTerminalDimensions } from "./hooks/use-dimension";
+import { useTerminal } from "./hooks/use-terminal";
 import { cn } from "@/lib/utils";
 
 const ActivePrompt = ({ children }: { children: React.ReactNode }) => (

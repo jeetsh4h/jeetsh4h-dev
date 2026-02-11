@@ -46,20 +46,15 @@ const experience: CommandDef = {
   description: "My professional timeline",
   aliases: ["exp", "work"],
   action: () => {
-    // TODO: demarcate this in data.ts itself
-    const featuredExp = EXPERIENCE.slice(0, 4);
-    const compactExp = EXPERIENCE.slice(4);
+    const featuredExp = EXPERIENCE.filter((job) => !job.compact);
+    const compactExp = EXPERIENCE.filter((job) => job.compact);
 
     return {
       result: (
         <div className="flex flex-col gap-8 mt-2">
           {featuredExp.map((job, idx) => {
             // Color logic based on index
-            const dotColor =
-              idx === 0 ? "bg-term-user"
-              : idx === 1 ? "bg-term-host"
-              : idx === 2 ? "bg-term-path"
-              : "bg-term-muted";
+            const dotColor = idx % 2 === 0 ? "bg-term-user" : "bg-term-host";
 
             return (
               <div
@@ -75,7 +70,9 @@ const experience: CommandDef = {
                   <span className="text-term-user font-bold text-base">
                     {job.company}
                   </span>
-                  <span className="text-term-muted text-xs">{job.period}</span>
+                  <span className="text-xs text-term-muted font-mono bg-term-border/20 px-2 py-0.5 rounded w-fit">
+                    {job.period}
+                  </span>
                 </div>
                 <div className="text-term-host text-sm mb-2 font-semibold">
                   {job.role}
@@ -105,10 +102,14 @@ const experience: CommandDef = {
                     <div className="absolute -left-5.75 top-1.5 w-3 h-3 bg-term-muted rounded-full border-2 border-term-bg ring-1 ring-term-border/50" />
 
                     <div>
-                      <span className="font-bold text-term-user">
-                        {job.company}
-                      </span>{" "}
-                      <span className="text-term-muted">({job.period})</span>
+                      <div className="flex justify-between items-baseline">
+                        <span className="font-bold text-term-user">
+                          {job.company}
+                        </span>
+                        <span className="text-term-muted text-xs">
+                          {job.period}
+                        </span>
+                      </div>
                       <div className="ml-2 mt-0.5">{job.description}</div>
                     </div>
                   </div>

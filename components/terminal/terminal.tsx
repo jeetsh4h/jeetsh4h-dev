@@ -93,7 +93,7 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
       </CardHeader>
 
       <ScrollArea className="h-full w-full">
-        <div className="p-6 pb-4 pt-14">
+        <div className="px-4 pb-4 pt-14">
           {history.map((item) => (
             <div
               key={item.id}
@@ -104,7 +104,7 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
                   command={item.content as string}
                   status={item.status}
                 />
-              : <div className="pl-4 border-l-2 border-term-border/50 ml-1 animate-in slide-in-from-left-2 duration-200 text-term-muted">
+              : <div className="pl-4 border-l-2 border-term-border/50 ml-0.5 text-term-muted">
                   {item.content}
                 </div>
               }

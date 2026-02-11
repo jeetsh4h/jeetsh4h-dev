@@ -1,4 +1,13 @@
-export const PROFILE = {
+import type {
+  Profile,
+  ExperienceItem,
+  ProjectItem,
+  ResearchItem,
+  EducationItem,
+  Skills,
+} from "@/lib/data.d";
+
+export const PROFILE: Profile = {
   name: "Jeet Shah",
   role: "Full-Stack Engineer & AI Researcher",
   bio: "I am a Product-minded Full-Stack Engineer and AI Researcher. Currently co-founding TriCatch and building scalable systems. I specialize in spatiotemporal modeling (NeurIPS Winner) and bridging the gap between business requirements and technical architecture.",
@@ -7,7 +16,7 @@ export const PROFILE = {
   linkedin: "linkedin.com/in/jeetsh4h",
 };
 
-export const EXPERIENCE = [
+export const EXPERIENCE: ExperienceItem[] = [
   {
     company: "TriCatch",
     role: "Co-founder & Lead Engineer",
@@ -55,6 +64,7 @@ export const EXPERIENCE = [
     period: "Aug 2023 - Oct 2023",
     type: "internship",
     description: ["Golf Content Writer."],
+    compact: true,
   },
   {
     company: "Analyse India",
@@ -62,6 +72,7 @@ export const EXPERIENCE = [
     period: "May 2022 - Aug 2022",
     type: "internship",
     description: ["Automated technical analysis processes."],
+    compact: true,
   },
   {
     company: "SNEHA",
@@ -69,10 +80,11 @@ export const EXPERIENCE = [
     period: "Apr 2022 - Jun 2022",
     type: "internship",
     description: ["Audited network diagrams."],
+    compact: true,
   },
 ];
 
-export const PROJECTS = [
+export const PROJECTS: ProjectItem[] = [
   {
     title: "Jyeshthanubandh",
     description:
@@ -103,7 +115,7 @@ export const PROJECTS = [
   },
 ];
 
-export const RESEARCH = [
+export const RESEARCH: ResearchItem[] = [
   {
     title:
       "Computationally-efficient deep learning models for nowcasting of precipitation",
@@ -120,7 +132,7 @@ export const RESEARCH = [
   },
 ];
 
-export const EDUCATION = [
+export const EDUCATION: EducationItem[] = [
   {
     institution: "FLAME University",
     period: "2021 - 2025",
@@ -135,7 +147,7 @@ export const EDUCATION = [
   },
 ];
 
-export const SKILLS = {
+export const SKILLS: Skills = {
   Languages: "Python, TypeScript, C++, SQL, Haskell, C#",
   Frameworks: "React Native, Next.js, NestJS, FastAPI, Flask",
   "AI/ML": "PyTorch, TensorFlow, Computer Vision, RAG, ConvLSTM",

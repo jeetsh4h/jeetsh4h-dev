@@ -1,12 +1,12 @@
 import React from "react";
 import { type CommandDef } from "./types";
 import {
-  PROFILE,
   EXPERIENCE,
   PROJECTS,
   RESEARCH,
   EDUCATION,
   SKILLS,
+  SOCIALS,
 } from "@/lib/data";
 
 const LINK_STYLES =
@@ -267,29 +267,29 @@ const socials: CommandDef = {
     result: (
       <div className="flex flex-col gap-2 mt-2">
         <a
-          href={`https://${PROFILE.github}`}
+          href={`https://${SOCIALS.github}`}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 group"
         >
           <span className="text-term-host w-24">GitHub</span>
-          <span className={LINK_STYLES}>{PROFILE.github}</span>
+          <span className={LINK_STYLES}>{SOCIALS.github}</span>
         </a>
         <a
-          href={`https://${PROFILE.linkedin}`}
+          href={`https://${SOCIALS.linkedin}`}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 group"
         >
           <span className="text-term-host w-24">LinkedIn</span>
-          <span className={LINK_STYLES}>{PROFILE.linkedin}</span>
+          <span className={LINK_STYLES}>{SOCIALS.linkedin}</span>
         </a>
         <a
-          href={`mailto:${PROFILE.email}`}
+          href={`mailto:${SOCIALS.email}`}
           className="flex items-center gap-2 group"
         >
           <span className="text-term-host w-24">Email</span>
-          <span className={LINK_STYLES}>{PROFILE.email}</span>
+          <span className={LINK_STYLES}>{SOCIALS.email}</span>
         </a>
       </div>
     ),

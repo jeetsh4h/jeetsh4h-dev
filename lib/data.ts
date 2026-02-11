@@ -1,19 +1,59 @@
-import type {
-  Profile,
-  ExperienceItem,
-  ProjectItem,
-  ResearchItem,
-  EducationItem,
-  Skills,
-} from "@/lib/data.d";
+export interface About {
+  name: string;
+  role: string;
+  bio: string;
+}
 
-export const PROFILE: Profile = {
+export interface Socials {
+  github: string;
+  linkedin: string;
+  email: string;
+}
+
+export interface ExperienceItem {
+  company: string;
+  role: string;
+  period: string;
+  type: "work" | "research" | "internship";
+  description: string[];
+  compact?: boolean;
+}
+
+export interface ProjectItem {
+  title: string;
+  description: string;
+  link: string;
+  linkText: string;
+}
+
+export interface ResearchItem {
+  title: string;
+  year: string;
+  authors: string;
+  link: string;
+}
+
+export interface EducationItem {
+  institution: string;
+  period: string;
+  degree: string;
+  details: string[];
+}
+
+export interface Skills {
+  [category: string]: string;
+}
+
+export const ABOUT: About = {
   name: "Jeet Shah",
   role: "Full-Stack Engineer & AI Researcher",
-  bio: "I am a Product-minded Full-Stack Engineer and AI Researcher. Currently co-founding TriCatch and building scalable systems. I specialize in spatiotemporal modeling (NeurIPS Winner) and bridging the gap between business requirements and technical architecture.",
-  email: "jeetsh4h@gmail.com",
+  bio: "I am a product-minded Full-Stack Engineer and AI Researcher. Currently co-founding TriCatch and building scalable systems. I specialize in spatiotemporal modeling (NeurIPS Winner) and bridging the gap between business requirements and technical architecture.",
+};
+
+export const SOCIALS: Socials = {
   github: "github.com/jeetsh4h",
   linkedin: "linkedin.com/in/jeetsh4h",
+  email: "jeetsh4h@gmail.com",
 };
 
 export const EXPERIENCE: ExperienceItem[] = [
@@ -135,15 +175,15 @@ export const RESEARCH: ResearchItem[] = [
 export const EDUCATION: EducationItem[] = [
   {
     institution: "FLAME University",
-    period: "2021 - 2025",
-    degree: "BSc. (Hons.) in Computer Science",
-    details: ["CGPA: 8.88/10", "Award: Merit Scholarship (25%)"],
+    period: "2024 - 2025",
+    degree: "PG Diploma in Interdisciplinary Studies",
+    details: ["CGPA: 8.38/10", "Award: Merit Scholarship (60%)"],
   },
   {
     institution: "FLAME University",
-    period: "2025",
-    degree: "PG Diploma in Interdisciplinary Studies",
-    details: ["CGPA: 8.38/10", "Award: Merit Scholarship (60%)"],
+    period: "2021 - 2024",
+    degree: "BSc. (Hons.) in Computer Science",
+    details: ["CGPA: 8.88/10", "Award: Merit Scholarship (25%)"],
   },
 ];
 

@@ -1,0 +1,47 @@
+name: Build Latex to PDF, then Deploy to Vercel
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+
+      - name: Cache PDF
+        id: cache-pdf
+        uses: actions/cache@v4
+        with:
+          path: public/cv.pdf
+          key: ${{ runner.os }}-pdf-${{ hashFiles('cv/*.tex', 'cv/*.bib') }}
+
+      - name: Compile LaTeX
+        if: steps.cache-pdf.outputs.cache-hit != 'true'
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: cv/cv.tex
+
+      - name: Copy PDF to Public
+        if: steps.cache-pdf.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p public
+          cp cv/cv.pdf public/
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Deploy to Vercel
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}

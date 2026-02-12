@@ -1,0 +1,245 @@
+%-------------------------------------------------------------------------------%
+%	The MIT License (MIT)
+%
+%	Copyright (c) 2021 Jitin Nair
+%
+%	Permission is hereby granted, free of charge, to any person obtaining a copy
+%	of this software and associated documentation files (the "Software"), to deal
+%	in the Software without restriction, including without limitation the rights
+%	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+%	copies of the Software, and to permit persons to whom the Software is
+%	furnished to do so, subject to the following conditions:
+%
+%	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+%	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+%	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+%	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+%	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+%	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+%	THE SOFTWARE.
+%
+%
+%-------------------------------------------------------------------------------%
+
+\documentclass[a4paper,11pt]{article}
+
+% % fontspec allows you to use TTF/OTF fonts directly
+% \usepackage{fontspec}
+% \defaultfontfeatures{Ligatures=TeX}
+
+% % modified for ShareLaTeX use
+% \setmainfont[
+% SmallCapsFont = Fontin-SmallCaps.otf,
+% BoldFont = Fontin-Bold.otf,
+% ItalicFont = Fontin-Italic.otf
+% ]
+% {Fontin.otf}
+
+\usepackage{url}
+\usepackage{parskip}
+
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+
+\usepackage{tabularx}
+\usepackage{enumitem}
+
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage{multirow}
+
+%CV Sections inspired by:
+%http://stefano.italians.nl/archives/26
+\titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+
+\usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
+
+\usepackage[unicode, draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{1em}
+
+\usepackage{fontawesome5}
+\begin{document}
+
+\pagestyle{empty}
+
+
+\begin{tabularx}{\linewidth}{@{} C @{}}
+
+\vspace{-28pt}
+
+\Huge{Jeet Shah} \\[7.5pt]
+
+\vspace{-22pt}
+
+\href{https://github.com/jeetsh4h}{\raisebox{-0.05\height}\faGithub\ jeetsh4h} \ $|$ \
+\href{https://jeetsh4h.dev}{\raisebox{-0.05\height}\faGlobe \ jeetsh4h.dev} \ $|$ \
+\href{mailto:jeetsh4h@gmail.com}{\raisebox{-0.05\height}\faEnvelope \ jeetsh4h@gmail.com} \ $|$ \
+\href{https://linkedin.com/in/jeetsh4h}{\raisebox{-0.05\height}\faLinkedin\ jeetsh4h} \\
+\end{tabularx}
+
+\vspace{-12pt}
+
+\section{Summary}
+Product-minded Full-Stack Engineer and AI Researcher with a dual focus on building scalable systems and advancing spatiotemporal modeling. Currently applying engineering discipline as a co-founder of a technical solutions firm. Proven track record of deploying reliable software in high-stakes environments and architecting cloud-native solutions for early-stage ventures.
+
+
+\section{Education}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textit{2021 - 2025} & BSc. (Hons.) in Computer Science, \textbf{FLAME University} \hfill \textbf{US GPA: 3.77/4.0} \\
+& Postgraduate Diploma in Interdisciplinary Studies \hfill \textbf{US GPA: 3.61/4.0}\\
+\end{tabularx}
+
+
+\section{Skills}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Languages} & \normalsize{Python, JavaScript, TypeScript, C++, C, SQL, Haskell}\\
+\textbf{Frameworks} & \normalsize{React Native, Next.js, NestJS, FastAPI, Supabase, Tailwind CSS}\\
+\textbf{AI/ML} & \normalsize{PyTorch, TensorFlow, Computer Vision, ConvLSTM, RAG Architectures}\\
+\textbf{Infrastructure} & \normalsize{Docker, Linux (HPC/Air-gapped), Azure, GCP, PostgreSQL, Git}\\
+\end{tabularx}
+
+
+\section{Work Experience}
+\begin{tabularx}{\linewidth}{ @{}l r@{} }
+\textbf{Co-founder \& Lead Engineer, TriCatch} & \hfill \textit{December 2025 - Present} \\[3.75pt]
+\multicolumn{2}{@{}X@{}}{
+\begin{minipage}[t]{\linewidth}
+    \begin{itemize}[nosep, after=\strut, leftmargin=1em, itemsep=3pt]
+        \item[--] Co-founded a technical solutions firm to build scalable digital products; bridging the gap between business requirements and technical architecture for early-stage ventures.
+        \item[--] Currently architecting a mobile fitness application for \href{https://www.instagram.com/movynn_in/}{Movynn} using \textbf{React Native} and \textbf{Supabase}.
+        \item[--] Leading full-cycle development while managing pre-release confidentiality; responsible for core infrastructure decisions and secure user data handling.
+        \item[--] Engineered an offline-first synchronization engine to ensure application functionality in low-connectivity environments.
+    \end{itemize}
+\end{minipage}
+}
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{ @{}l r@{} }
+\textbf{Software Developer, \href{https://voltek.ai/}{Voltek AI}} & \hfill \textit{October 2024 - Present} \\[3.75pt]
+\multicolumn{2}{@{}X@{}}{
+\begin{minipage}[t]{\linewidth}
+    \begin{itemize}[nosep, after=\strut, leftmargin=1em, itemsep=3pt]
+        \item[--] Architected a knowledge ingestion pipeline for \href{https://www.nanoloy.com/}{NANOLOY} (Battery Research), consolidating terabytes of experimental data from SharePoint and Azure Blob Storage into PostgreSQL.
+        \item[--] Reduced query latency by 67\% by optimizing database indexing and implementing a FastAPI middleware layer.
+        \item[--] Developed a Multi-LLM RAG system to allow researchers to query technical documentation using natural language, improving information retrieval efficiency.
+    \end{itemize}
+\end{minipage}
+}
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{ @{}l r@{} }
+\textbf{Research Intern (SRTD), Space Applications Centre, ISRO} & \hfill \textit{May 2023 - August 2023} \\[3.75pt]
+\multicolumn{2}{@{}X@{}}{
+    \begin{minipage}[t]{\linewidth}
+    \begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt]
+        \item[--] Developed a ConvLSTM deep learning model for precipitation nowcasting using INSAT-3D satellite data, outperforming optical flow baselines by 30.7\%.
+        \item[--] Operated in a high-security air-gapped environment; manually configured Linux environments and dependency trees for High-Performance Computing (HPC) clusters without internet access.
+        \item[--] Processed large-scale spatiotemporal datasets to train models for 6-hour rainfall prediction.
+    \end{itemize}
+    \end{minipage}
+}
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{ @{}l r@{} }
+\textbf{Student Research Assistant, \href{https://www.flame.edu.in/research/centres/the-centre-for-inter-disciplinary-artificial-intelligence-cai}{CAI, FLAME University}} & \hfill \textit{March 2023 - March 2025} \\[3.75pt]
+\multicolumn{2}{@{}X@{}}{
+    \begin{minipage}[t]{\linewidth}
+    \begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt]
+        \item[--] Managed the university's AI server infrastructure, implementing IAM policies for secure multi-user ML training workflows.
+        \item[--] Collaborated with ISRO to extend precipitation nowcasting research, leading to a thesis under review by Springer.
+    \end{itemize}
+    \end{minipage}
+}
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{ @{}l r@{} }
+\textbf{Project Solutions Intern, \href{https://www.nfbm.org/index.html}{National Federation of the Blind}} & \hfill \textit{May 2024 - September 2024} \\[3.75pt]
+\multicolumn{2}{@{}X@{}}{
+    \begin{minipage}[t]{\linewidth}
+    \begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt]
+        \item[--] Developed assistive navigation tools using Raspberry Pi and Computer Vision to aid visually impaired users.
+        \item[--] Conducted technical tutoring sessions at the \textbf{Jagriti School for Blind Girls} to improve digital literacy.
+        \item[--] Conducted field testing and user feedback sessions to refine hardware interaction designs.
+    \end{itemize}
+    \end{minipage}
+}
+\end{tabularx}
+
+\section{Awards \& Honors}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Global Rank 1} & \textbf{NeurIPS Weather4Cast Competition 2024} -- Developed winning model for rainfall prediction.\\
+\textbf{Global Rank 2} & \textbf{NeurIPS Weather4Cast Competition 2025} -- Optimized architectures for sparse weather data.\\
+\textbf{Scholarships} & \textbf{60\% Merit Scholarship} (2024-25) \& \textbf{25\% Merit Scholarship} (2021-24) for academic excellence.\\
+\textbf{Finalist} & \textbf{Bit N Build 2024} -- Google Developer Student Clubs Hackathon.\\
+\end{tabularx}
+
+
+\section{Projects}
+\begin{tabularx}{\linewidth}{ @{}l r@{} }\label{proj:jyesth}
+\textbf{Jyeshthanubandh} & \hfill \href{https://play.google.com/store/apps/details?id=com.Jyeshthanubandh.pcmc_app}{\textit{Play Store Link}} \\[3.75pt]
+\multicolumn{2}{@{}X@{}}{
+    End-to-end safety application deployed with the \textbf{Pimpri-Chinchwad Police} for senior citizens. Features real-time GPS tracking, automated medical context retrieval, and a dedicated Command \& Control dashboard for police operators.
+}  \\
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{ @{}l r@{} }
+\textbf{PaudhaYodha} & \hfill \href{https://github.com/jeetsh4h/2_JANkari_BnB24}{\textit{GitHub Repo}} \\[3.75pt]
+\multicolumn{2}{@{}X@{}}{
+    Plant disease detection application built for the \textbf{Google Bit N Build Hackathon} (Finalist). Fine-tuned a ResNet-50 model on leaf imagery to identify crop diseases with 92\% accuracy.
+}  \\
+\end{tabularx}
+
+
+\section{Leadership \& Activities}
+\begin{tabularx}{\linewidth}{ @{}l r@{} }
+\textbf{President, \href{https://www.instagram.com/p/Cya_sh_NWbK/}{DotSlash FLAME}} & \hfill \textit{2023 - 2024} \\[3.75pt]
+\multicolumn{2}{@{}X@{}}{
+    Led a team of student developers to build internal tools for the university IT department. Organized technical workshops and hackathons for 200+ students.
+}
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{ @{}l r@{} }
+\textbf{Technical Outreach, \href{https://www.linkedin.com/company/project-impact-flameuniversity}{Project Impact}} & \hfill \textit{2024 - 2025} \\[3.75pt]
+\multicolumn{2}{@{}X@{}}{
+    Spearheaded digital literacy programs at \textbf{Z.P. School, Lavale}. Established a computer lab and developed curriculum for first-time computer users in a public school setting.
+}
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{ @{}l r@{} }
+\textbf{Technology Head, \href{https://www.tedxflameuniversity.com/}{TEDxFLAMEUniversity}} & \hfill \textit{2024 - 2025} \\[3.75pt]
+\multicolumn{2}{@{}X@{}}{
+    Managed technical logistics for the conference; oversaw audiovisual delivery and website management for the university's licensed TEDx event.
+}
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{ @{}l r@{} }
+\textbf{Executive Committee Member, Student Clubs} & \hfill \textit{2022 - 2025} \\[3.75pt]
+\multicolumn{2}{@{}X@{}}{
+    Served as Treasurer for the \textbf{FLAME Music Club}, \textbf{E-Sports Club}, and \textbf{The Reading Initiative}. Managed annual budgets and organized campus-wide cultural events for 1000+ students.
+}
+\end{tabularx}
+
+
+\section{Publications}
+\begin{refsection}[citations.bib]
+\nocite{*}
+\printbibliography[heading=none]
+\end{refsection}
+
+\vfill
+\center{\footnotesize Last updated: \today}
+
+\end{document}

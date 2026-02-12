@@ -1,9 +1,9 @@
 import { ABOUT } from "@/lib/data";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "./ui/button";
+import { ThemeToggle } from "./theme-toggle";
 import { IconTerminal2 } from "@tabler/icons-react";
-import About from "@/components/about";
+import About from "./about";
 import Socials from "./socials";
 
 export default function Profile() {

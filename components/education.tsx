@@ -1,20 +1,14 @@
 import { EDUCATION } from "@/lib/data";
-import { IconTerminal2 } from "@tabler/icons-react";
+import TerminalCommandLink from "./terminal-command-link";
 
 export default function Education() {
   return (
     <>
-      <div className="flex items-center gap-4">
-        <h2 className="text-xl font-bold text-term-path flex items-center gap-2">
-          <span className="text-term-muted">::</span> Education
-        </h2>
-        <div className="hidden sm:flex items-center gap-1.5 text-[10px] font-mono text-term-muted/60 border border-term-border/30 px-2 py-1 rounded bg-term-border/5 select-none">
-          <IconTerminal2 className="w-3 h-3" />
-          <span>education</span>
-        </div>
+      <div className="flex items-center">
+        <TerminalCommandLink command="education" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 -mt-2">
         {EDUCATION.map((edu, i) => (
           <div
             key={i}

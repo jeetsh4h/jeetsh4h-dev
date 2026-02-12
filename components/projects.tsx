@@ -1,20 +1,14 @@
 import { PROJECTS } from "@/lib/data";
-import { IconTerminal2 } from "@tabler/icons-react";
+import TerminalCommandLink from "./terminal-command-link";
 
 export default function Projects() {
   return (
     <>
-      <div className="flex items-center gap-4">
-        <h2 className="text-xl font-bold text-term-path flex items-center gap-2">
-          <span className="text-term-muted">::</span> Projects
-        </h2>
-        <div className="hidden sm:flex items-center gap-1.5 text-[10px] font-mono text-term-muted/60 border border-term-border/30 px-2 py-1 rounded bg-term-border/5 select-none">
-          <IconTerminal2 className="w-3 h-3" />
-          <span>projects</span>
-        </div>
+      <div className="flex items-center">
+        <TerminalCommandLink command="projects" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 -mt-2">
         {PROJECTS.map((project, i) => (
           <a
             key={i}

@@ -1,20 +1,14 @@
 import { EXPERIENCE } from "@/lib/data";
-import { IconTerminal2 } from "@tabler/icons-react";
+import TerminalCommandLink from "./terminal-command-link";
 
 export default function Experience() {
   return (
     <>
-      <div className="flex items-center gap-4">
-        <h2 className="text-xl font-bold text-term-path flex items-center gap-2">
-          <span className="text-term-muted">::</span> Experience
-        </h2>
-        <div className="hidden sm:flex items-center gap-1.5 text-[10px] font-mono text-term-muted/60 border border-term-border/30 px-2 py-1 rounded bg-term-border/5 select-none">
-          <IconTerminal2 className="w-3 h-3" />
-          <span>experience</span>
-        </div>
+      <div className="flex items-center">
+        <TerminalCommandLink command="experience" />
       </div>
 
-      <div className="border-l-2 border-term-border/50 ml-2 space-y-10 pl-8 relative">
+      <div className="border-l-2 border-term-border/50 ml-2 space-y-10 pl-8 relative -mt-2">
         {EXPERIENCE.filter((e) => !e.compact).map((job, i) => (
           <div
             key={i}

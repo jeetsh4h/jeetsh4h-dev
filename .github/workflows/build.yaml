@@ -27,7 +27,7 @@ jobs:
         uses: dante-ev/latex-action@latest
         with:
           root_file: cv.tex
-        working-directory: cv
+          working_directory: cv
 
       - name: Copy PDF to /public
         if: steps.cache-pdf.outputs.cache-hit != 'true'

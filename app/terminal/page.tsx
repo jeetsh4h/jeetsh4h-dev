@@ -4,6 +4,7 @@ import { Terminal } from "@/components/terminal/terminal";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import Footer from "@/components/footer";
 
 export default function TerminalPage() {
   const [viewportHeight, setViewportHeight] = useState("100dvh");
@@ -33,29 +34,31 @@ export default function TerminalPage() {
   }, []);
 
   return (
-    <div
-      className="flex w-full flex-col overflow-hidden relative"
-      style={{ height: viewportHeight }}
-    >
-      {/* Fixed Header */}
-      <div className="flex-none p-4 pb-2">
-        <Link href="/">
-          <Button
-            variant="link"
-            className="group flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-secondary hover:decoration-secondary transition-colors hover:no-underline cursor-pointer"
-          >
-            <span className="transition-transform group-hover:-translate-x-0.5">
-              ←
-            </span>
-            <span className="underline">../home</span>
-          </Button>
-        </Link>
-      </div>
+    <>
+      <div
+        className="flex w-full flex-col relative"
+        style={{ height: viewportHeight }}
+      >
+        <div className="flex-none p-4 pb-2">
+          <Link href="/">
+            <Button
+              variant="link"
+              className="group flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-secondary hover:decoration-secondary transition-colors hover:no-underline cursor-pointer"
+            >
+              <span className="transition-transform group-hover:-translate-x-0.5">
+                ←
+              </span>
+              <span className="underline">../home</span>
+            </Button>
+          </Link>
+        </div>
 
-      {/* Terminal fills remaining space */}
-      <div className="w-full flex-1 min-h-0 max-w-3xl mx-auto px-4 pb-4">
-        <Terminal />
+        {/* Terminal fills remaining space */}
+        <div className="w-full flex-1 min-h-0 max-w-3xl mx-auto px-4 pb-4">
+          <Terminal />
+        </div>
       </div>
-    </div>
+      <Footer className="mt-12" />
+    </>
   );
 }

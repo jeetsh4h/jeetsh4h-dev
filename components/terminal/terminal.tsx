@@ -60,12 +60,24 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
   );
 
   useEffect(() => {
+    const scrollAreaViewport = containerRef.current?.querySelector(
+      '[data-slot="scroll-area-viewport"]',
+    ) as HTMLElement;
+
+    if (!scrollAreaViewport) return;
+
+    const scrollToBottom = (behavior: ScrollBehavior = "auto") => {
+      scrollAreaViewport.scrollTo({
+        top: scrollAreaViewport.scrollHeight,
+        behavior: behavior,
+      });
+    };
     // Immediate scroll
-    bottomRef.current?.scrollIntoView({ behavior: "auto" });
+    scrollToBottom("auto");
 
     // Double-check scroll after 250ms (fixes iOS keyboard animation timing issues)
     const timeout = setTimeout(() => {
-      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+      scrollToBottom("auto");
     }, 250);
 
     return () => clearTimeout(timeout);

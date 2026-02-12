@@ -26,13 +26,21 @@ jobs:
         if: steps.cache-pdf.outputs.cache-hit != 'true'
         uses: dante-ev/latex-action@latest
         with:
-          root_file: cv/cv.tex
+          root_file: cv.tex
+        working-directory: cv
 
-      - name: Copy PDF to Public
+      - name: Copy PDF to /public
         if: steps.cache-pdf.outputs.cache-hit != 'true'
         run: |
           mkdir -p public
-          cp cv/cv.pdf public/
+          if [ -f cv/cv.pdf ]; then
+            cp cv/cv.pdf public/
+          else
+            echo "ERROR: cv/cv.pdf not found after compilation"
+            echo "Contents of cv/:"
+            ls -la cv || true
+            exit 1
+          fi
 
       - name: Install Vercel CLI
         run: npm install -g vercel@latest

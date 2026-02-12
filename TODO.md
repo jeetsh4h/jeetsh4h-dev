@@ -10,10 +10,10 @@
 
 ## Website
 
-- [ ] Get design systems and styles to be more uniform
-- [ ] Add a page to show the PDF cv
+- [x] Get design systems and styles to be more uniform
+- [ ] Add a page to show the PDF cv **(wip)**
 - [ ] Redo the terminal header to be more personal
-- [ ] Replace the index page section headers to using the CLI card thingy
+- [x] Replace the index page section headers to using the CLI card thingy
 - [ ] Clicking on the CLI card allows you to navigate to the terminal with that command being run
 
 ## Terminal

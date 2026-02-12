@@ -1,5 +1,6 @@
 import { SKILLS } from "@/lib/data";
 import TerminalCommandLink from "./terminal-command-link";
+import { Card, CardHeader } from "./ui/card";
 
 export default function Skills() {
   return (
@@ -10,12 +11,14 @@ export default function Skills() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
         {Object.entries(SKILLS).map(([category, items]) => (
-          <div
+          <Card
             key={category}
-            className="p-4 rounded-lg border border-term-border/50"
+            className="p-4 rounded-md border-term-border/50"
           >
-            <div className="text-term-host font-bold mb-2">{category}</div>
-            <div className="text-muted-foreground leading-relaxed">
+            <CardHeader className="text-primary font-bold text-lg -mx-4">
+              {category}
+            </CardHeader>
+            <div className="text-foreground leading-relaxed">
               {items.split(", ").map((skill) => (
                 <span
                   key={skill}
@@ -25,7 +28,7 @@ export default function Skills() {
                 </span>
               ))}
             </div>
-          </div>
+          </Card>
         ))}
       </div>
     </>

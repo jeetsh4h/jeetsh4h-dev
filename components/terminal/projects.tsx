@@ -6,24 +6,14 @@ export default function Projects() {
       {PROJECTS.map((proj, idx) => (
         <div
           key={idx}
-          className="border border-term-border p-4 rounded-lg bg-term-bg hover:border-term-user transition-colors group"
+          className="border border-border p-4 rounded-lg bg-card group cursor-pointer hover:border-accent"
         >
           <div className="flex justify-between items-start mb-2">
-            <div className="text-term-path font-bold text-sm group-hover:text-term-user transition-colors">
+            <div className="text-primary text-md underline decoration-primary/50 group-hover:decoration-primary transition-all">
               {proj.title}
             </div>
-            <a
-              href={proj.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[10px] border border-term-border px-2 py-0.5 rounded hover:bg-term-user hover:text-term-bg transition-colors"
-            >
-              {proj.linkText} ↗
-            </a>
           </div>
-          <div className="text-xs text-muted-foreground">
-            {proj.description}
-          </div>
+          <div className="text-xs text-foreground">{proj.description}</div>
         </div>
       ))}
     </div>

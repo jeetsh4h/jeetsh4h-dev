@@ -16,7 +16,7 @@ export default function Research() {
           >
             <div className="flex-1 space-y-2">
               <div className="flex items-start justify-between gap-4">
-                <h3 className="font-bold text-foreground leading-tight group-hover:text-term-user transition-colors">
+                <h3 className="font-bold leading-tight text-primary underline decoration-primary/20 group-hover:decoration-primary transition-all">
                   <a
                     href={paper.link}
                     target="_blank"
@@ -25,13 +25,11 @@ export default function Research() {
                     {paper.title}
                   </a>
                 </h3>
-                <span className="text-xs font-mono text-term-muted whitespace-nowrap border border-term-border px-2 py-0.5 rounded">
+                <span className="text-xs text-foreground font-mono bg-term-border/20 px-2 py-0.5 rounded">
                   {paper.year}
                 </span>
               </div>
-              <div className="text-sm text-muted-foreground">
-                {paper.authors}
-              </div>
+              <div className="text-sm text-foreground">{paper.authors}</div>
             </div>
           </div>
         ))}

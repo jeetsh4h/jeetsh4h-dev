@@ -9,14 +9,8 @@
   --color-foreground: var(--foreground);
   --font-mono: var(--font-mono);
 
-  --color-term-bg: var(--term-bg);
   --color-term-border: var(--term-border);
-  --color-term-user: var(--term-user); /* Purple */
-  --color-term-host: var(--term-host); /* Pink */
-  --color-term-path: var(--term-path); /* Lavender */
-  --color-term-caret: var(--term-caret);
   --color-term-success: var(--term-success);
-  --color-term-error: var(--term-error);
   --color-term-muted: var(--term-muted);
 
   --color-card: var(--card);
@@ -82,14 +76,8 @@
 
   --radius: 0.75rem;
 
-  --term-bg: #e6e9ef; /* Mantle */
   --term-border: #bcc0cc; /* Surface1 */
-  --term-user: #8839ef; /* Mauve (Purple) */
-  --term-host: #ea76cb; /* Pink */
-  --term-path: #7287fd; /* Lavender */
-  --term-caret: #8839ef; /* Mauve */
   --term-success: #40a02b; /* Green */
-  --term-error: #d20f39; /* Red */
   --term-muted: #9ca0b0; /* Overlay0 */
 }
 
@@ -106,11 +94,11 @@
   --popover: #1e2030;
   --popover-foreground: #cad3f5;
 
-  /* Primary - Mauve (Purple) */
+  /* Primary - Mauve */
   --primary: #c6a0f6;
   --primary-foreground: #1e2030;
 
-  /* Secondary - Pink (Pink) */
+  /* Secondary - Pink */
   --secondary: #f5bde6;
   --secondary-foreground: #1e2030;
 
@@ -119,7 +107,7 @@
   --muted-foreground: #a5adcb;
 
   /* Accent - Lavender */
-  --accent: #b7bdf8;
+  --accent: #8aadf4;
   --accent-foreground: #1e2030;
 
   --destructive: #ed8796;
@@ -129,14 +117,8 @@
   --input: #363a4f;
   --ring: #c6a0f6;
 
-  --term-bg: #1e2030; /* Mantle */
   --term-border: #363a4f; /* Surface0 */
-  --term-user: #c6a0f6; /* Mauve (Purple) */
-  --term-host: #f5bde6; /* Pink (Pink) */
-  --term-path: #b7bdf8; /* Lavender */
-  --term-caret: #f5bde6; /* Pink */
   --term-success: #a6da95; /* Green */
-  --term-error: #ed8796; /* Red */
   --term-muted: #5b6078; /* Surface2 */
 }
 

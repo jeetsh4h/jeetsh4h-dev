@@ -1,5 +1,6 @@
 import { EDUCATION } from "@/lib/data";
 import TerminalCommandLink from "./terminal-command-link";
+import { Card, CardHeader } from "./ui/card";
 
 export default function Education() {
   return (
@@ -8,36 +9,35 @@ export default function Education() {
         <TerminalCommandLink command="education" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 -mt-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 -mt-2">
         {EDUCATION.map((edu, i) => (
-          <div
+          <Card
+            className="p-5 rounded-md border-term-border/50"
             key={i}
-            className="p-5 rounded-xl border border-term-border bg-card/30 flex flex-col justify-between"
           >
-            <div>
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="font-bold text-foreground">{edu.institution}</h3>
-                <span className="text-xs text-term-muted font-mono bg-term-border/20 px-2 py-0.5 rounded">
-                  {edu.period}
-                </span>
-              </div>
-              <div className="text-sm text-term-host font-medium mb-4">
-                {edu.degree}
-              </div>
+            <CardHeader className="flex justify-between items-center -mx-4">
+              <span className="text-primary font-bold text-lg">
+                {edu.institution}
+              </span>
+              <span className="inline-block bg-term-border/20 px-2 py-0.5 rounded mt-0.5 text-xs">
+                {edu.period}
+              </span>
+            </CardHeader>
+            <div className="-mt-2.5 text-sm text-secondary mb-4 leading-6 min-h-12 overflow-hidden">
+              {edu.degree}
             </div>
-
-            <div className="space-y-1.5 pt-4 border-t border-term-border/50">
+            <div className="-mt-6 space-y-1.5 pt-4 border-t border-term-border/50">
               {edu.details.map((detail, j) => (
                 <div
                   key={j}
-                  className="text-xs text-muted-foreground flex items-center gap-2"
+                  className="text-xs text-foreground flex items-center gap-2"
                 >
-                  <span className="w-1 h-1 rounded-full bg-term-path" />
+                  <span className="size-1 rounded-full bg-accent" />
                   {detail}
                 </div>
               ))}
             </div>
-          </div>
+          </Card>
         ))}
       </div>
     </>

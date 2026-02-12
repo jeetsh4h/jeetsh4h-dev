@@ -5,10 +5,12 @@ export default function Skills() {
     <div className="flex flex-col gap-2">
       {Object.entries(SKILLS).map(([cat, val]) => (
         <div key={cat}>
-          <span className="text-term-user font-bold w-24 inline-block">
-            {cat}:
+          <span className="text-primary font-bold w-24 inline-block">
+            {cat}
+            {/* TODO: make the colons all in the same column */}
+            <span className="text-accent">:</span>
           </span>
-          <span className="text-muted-foreground">{val}</span>
+          <span className="text-foreground">{val}</span>
         </div>
       ))}
     </div>

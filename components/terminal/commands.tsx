@@ -113,10 +113,8 @@ export const COMMAND_REGISTRY: Record<string, CommandDef> = {
               if (cmd.aliases?.includes(key)) return null;
               return (
                 <React.Fragment key={key}>
-                  <span className="text-term-path font-mono">{key}</span>
-                  <span className="text-muted-foreground">
-                    {cmd.description}
-                  </span>
+                  <span className="text-secondary">{key}</span>
+                  <span className="text-foreground">{cmd.description}</span>
                 </React.Fragment>
               );
             })}

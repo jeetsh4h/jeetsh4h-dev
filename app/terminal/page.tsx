@@ -34,7 +34,7 @@ export default function TerminalPage() {
 
   return (
     <div
-      className="flex w-full flex-col overflow-hidden bg-term-bg relative"
+      className="flex w-full flex-col overflow-hidden relative"
       style={{ height: viewportHeight }}
     >
       {/* Fixed Header */}
@@ -42,9 +42,9 @@ export default function TerminalPage() {
         <Link href="/">
           <Button
             variant="link"
-            className="group flex items-center gap-2 text-xs font-mono text-term-muted opacity-70 transition-colors hover:text-term-user hover:no-underline hover:opacity-100 cursor-pointer"
+            className="group flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-secondary hover:decoration-secondary transition-colors hover:no-underline cursor-pointer"
           >
-            <span className="transition-transform group-hover:-translate-x-1">
+            <span className="transition-transform group-hover:-translate-x-0.5">
               ←
             </span>
             <span className="underline">../home</span>
@@ -53,7 +53,7 @@ export default function TerminalPage() {
       </div>
 
       {/* Terminal fills remaining space */}
-      <div className="w-full flex-1 min-h-0 max-w-3xl mx-auto px-4 pb-4 animate-in fade-in zoom-in-95 duration-500">
+      <div className="w-full flex-1 min-h-0 max-w-3xl mx-auto px-4 pb-4">
         <Terminal />
       </div>
     </div>

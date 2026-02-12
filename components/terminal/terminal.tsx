@@ -9,13 +9,14 @@ import { cn } from "@/lib/utils";
 
 const ActivePrompt = ({ children }: { children: React.ReactNode }) => (
   <div className="mt-2 flex flex-col gap-1 animate-in fade-in duration-300">
-    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-60 select-none">
-      <span className="text-term-user">visitor</span>
-      <span className="text-term-muted">::</span>
-      <span className="text-term-host">~</span>
+    {/* TODO: change this */}
+    <div className="flex items-center tracking-widest text-xs font-bold uppercase select-none gap-1">
+      <span className="text-primary">visitor</span>
+      <span className="text-accent/80">::</span>
+      <span className="text-secondary">~</span>
     </div>
     <div className="flex items-center gap-2">
-      <span className="text-term-path text-lg leading-none">❯</span>
+      <span className="text-accent text-lg leading-none">❯</span>
       {children}
     </div>
   </div>
@@ -32,12 +33,12 @@ const TransientPrompt = ({
     <span
       className={cn(
         "text-lg leading-none select-none",
-        status === "error" ? "text-term-error" : "text-term-success",
+        status === "error" ? "text-destructive" : "text-term-success",
       )}
     >
       ❯
     </span>
-    <span className="font-mono text-sm text-foreground whitespace-pre-wrap">
+    <span className="text-sm text-foreground whitespace-pre-wrap">
       {command}
     </span>
   </div>
@@ -75,24 +76,24 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
   return (
     <Card
       ref={containerRef}
-      className="w-full h-full bg-term-bg border-term-border rounded-xl shadow-2xl overflow-hidden font-mono text-sm relative transition-colors duration-300 ring-4 ring-term-border/20 min-h-0 p-0 gap-0"
+      className="w-full h-full overflow-hidden font-mono text-sm min-h-0 p-0 gap-0 relative rounded-sm shadow-md"
       onClick={handleFocus}
     >
       {/* Window Decorations / Header */}
-      <CardHeader className="absolute top-0 left-0 right-0 z-20 flex flex-row items-center justify-between px-4 py-3 bg-term-bg border-b border-term-border select-none space-y-0">
+      <CardHeader className="absolute top-0 left-0 right-0 z-20 flex flex-row items-center justify-between px-4 py-3 border-b select-none space-y-0 bg-card">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e] hover:bg-[#ff5f56]/80 transition-colors shadow-sm" />
-          <div className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123] hover:bg-[#ffbd2e]/80 transition-colors shadow-sm" />
-          <div className="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29] hover:bg-[#27c93f]/80 transition-colors shadow-sm" />
+          <div className="size-3 rounded-full bg-[#ff5f56] border border-[#e0443e] hover:bg-[#ff5f56]/80 shadow-sm" />
+          <div className="size-3 rounded-full bg-[#ffbd2e] border border-[#dea123] hover:bg-[#ffbd2e]/80 shadow-sm" />
+          <div className="size-3 rounded-full bg-[#27c93f] border border-[#1aab29] hover:bg-[#27c93f]/80 shadow-sm" />
         </div>
-        <div className="text-xs text-term-muted font-bold opacity-60 flex items-center gap-2">
-          <span className="hidden sm:inline">visitor@jeetsh4h-dev: ~</span>
-          <span className="sm:hidden">terminal</span>
+        <div className="text-xs text-muted-foreground font-bold opacity-80 flex items-center gap-2">
+          <span className="inline">visitor@jeetsh4h-dev: ~</span>
         </div>
         <div className="w-12" />
       </CardHeader>
 
-      <ScrollArea className="h-full w-full">
+      {/* TODO: change how the scrollbar looks like */}
+      <ScrollArea className="size-full">
         <div className="px-4 pb-4 pt-14">
           {history.map((item) => (
             <div
@@ -117,7 +118,7 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
                 {input}
               </span>
 
-              <span className="inline-block w-0.5 h-5 bg-term-caret align-middle -mt-1 animate-caret-blink opacity-80" />
+              <span className="inline-block w-0.5 h-5 bg-secondary align-middle -mt-1 animate-caret-blink opacity-80" />
 
               <span className="text-muted-foreground opacity-50 select-none">
                 {suggestion}
@@ -125,7 +126,7 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
 
               <input
                 ref={inputRef}
-                className="absolute inset-0 w-full h-full opacity-0 cursor-default"
+                className="absolute inset-0 size-full opacity-0 cursor-default"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}

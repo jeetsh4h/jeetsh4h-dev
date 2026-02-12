@@ -8,7 +8,7 @@ import Projects from "@/components/projects";
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-term-bg font-mono selection:bg-term-user selection:text-term-bg">
+    <main className="min-h-screen font-mono">
       <div className="max-w-3xl mx-auto px-6 py-12 md:py-20 space-y-16">
         <section className="space-y-6">
           <Profile />
@@ -34,13 +34,13 @@ export default function Page() {
           <Education />
         </section>
 
-        <footer className="pt-12 pb-8 border-t border-term-border/30 text-center text-xs text-term-muted">
+        <footer className="pt-12 pb-8 border-t border-muted/30 text-center text-xs text-muted-foreground">
           <p>
             © {new Date().getFullYear()} Jeet Chetan Shah.{" "}
             <Link
               href="https://github.com/jeetsh4h/jeetsh4h-dev"
               target="_blank"
-              className="underline hover:text-term-user transition-colors"
+              className="underline decoration-muted-foreground/40 hover:text-secondary hover:decoration-secondary transition-colors"
             >
               Source Code
             </Link>

@@ -1,25 +1,14 @@
+import { ABOUT } from "@/lib/data";
+
 export default function About() {
   return (
-    <div className="text-muted-foreground leading-relaxed max-w-xl">
+    <div className="text-foreground leading-relaxed">
       <p>
-        I am a{" "}
-        <span className="text-term-user">
-          Product-minded Full-Stack Engineer
-        </span>{" "}
-        and <span className="text-term-host">AI Researcher</span>.
+        My name is <span className="text-primary">{ABOUT.name}</span> and I am a{" "}
+        <span className="text-secondary">{ABOUT.role}</span>.
       </p>
       <br />
-      <p>
-        Currently co-founding <span className="text-term-path">TriCatch</span>{" "}
-        and building scalable systems. I specialize in spatiotemporal modeling
-        (NeurIPS Winner) and bridging the gap between business requirements and
-        technical architecture.
-      </p>
-      <br />
-      <p>
-        I have a dual focus: building robust products (React Native, Supabase)
-        and advancing Computer Vision research (ConvLSTM, RAG).
-      </p>
+      <p>{ABOUT.bio}</p>
     </div>
   );
 }

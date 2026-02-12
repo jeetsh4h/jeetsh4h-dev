@@ -1,5 +1,7 @@
 import { PROJECTS } from "@/lib/data";
 import TerminalCommandLink from "./terminal-command-link";
+import { Card, CardHeader } from "./ui/card";
+import Link from "next/link";
 
 export default function Projects() {
   return (
@@ -10,24 +12,23 @@ export default function Projects() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 -mt-2">
         {PROJECTS.map((project, i) => (
-          <a
+          <Card
+            className="p-5 rounded-md border-term-border/50 group hover:ring-accent transition-colors cursor-pointer"
             key={i}
-            href={project.link}
-            target="_blank"
-            className="block p-5 rounded-xl border border-term-border bg-card/30 hover:bg-card/80 hover:border-term-user transition-all group"
           >
-            <div className="flex justify-between items-start mb-3">
-              <h3 className="font-bold text-foreground group-hover:text-term-user transition-colors">
-                {project.title}
-              </h3>
-              <span className="text-[10px] text-term-muted border border-term-border px-1.5 py-0.5 rounded">
-                {project.linkText} ↗
-              </span>
-            </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <CardHeader className="flex justify-between items-start p-0">
+              <Link
+                className="text-primary underline decoration-primary/30 group-hover:decoration-primary transition-all"
+                href={project.link}
+                target="_blank"
+              >
+                <h3 className="font-bold text-lg ">{project.title}</h3>
+              </Link>
+            </CardHeader>
+            <p className="text-sm text-foreground leading-relaxed">
               {project.description}
             </p>
-          </a>
+          </Card>
         ))}
       </div>
     </>

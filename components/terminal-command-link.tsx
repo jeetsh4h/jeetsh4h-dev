@@ -19,10 +19,12 @@ export default function TerminalCommandLink({
   return (
     <Link href={`/terminal?cmd=${command}`}>
       <Button
-        variant="outline"
-        className={cn("rounded cursor-pointer py-4.5", buttonStyles)}
+        className={cn(
+          "rounded py-4.5 bg-card text-accent hover:text-accent-foreground hover:bg-accent border-border cursor-pointer",
+          buttonStyles,
+        )}
       >
-        <IconTerminal2 className={cn("w-3 h-3", iconStyles)} />
+        <IconTerminal2 className={cn("size-3", iconStyles)} />
         <span className={cn("text-xl", textStyles)}>{command}</span>
       </Button>
     </Link>

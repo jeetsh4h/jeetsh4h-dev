@@ -92,7 +92,7 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
       onClick={handleFocus}
     >
       {/* Window Decorations / Header */}
-      <CardHeader className="absolute top-0 left-0 right-0 z-20 flex flex-row items-center justify-between px-4 py-3 border-b select-none space-y-0 bg-card">
+      <CardHeader className="flex-none border-b py-3 bg-card z-20 flex flex-row items-center justify-between space-y-0">
         <div className="flex items-center gap-2">
           <div className="size-3 rounded-full bg-[#ff5f56] border border-[#e0443e] hover:bg-[#ff5f56]/80 shadow-sm" />
           <div className="size-3 rounded-full bg-[#ffbd2e] border border-[#dea123] hover:bg-[#ffbd2e]/80 shadow-sm" />
@@ -105,8 +105,11 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
       </CardHeader>
 
       {/* TODO: change how the scrollbar looks like */}
-      <ScrollArea className="size-full">
-        <div className="px-4 pb-4 pt-14">
+      <ScrollArea
+        className="flex-1 w-full min-h-0"
+        scrollThumbClassName="rounded-b-md"
+      >
+        <div className="px-4 pb-4">
           {history.map((item) => (
             <div
               key={item.id}

@@ -7,8 +7,13 @@ import { cn } from "@/lib/utils";
 function ScrollArea({
   className,
   children,
+  scrollBarClassName,
+  scrollThumbClassName,
   ...props
-}: ScrollAreaPrimitive.Root.Props) {
+}: ScrollAreaPrimitive.Root.Props & {
+  scrollBarClassName?: string;
+  scrollThumbClassName?: string;
+}) {
   return (
     <ScrollAreaPrimitive.Root
       data-slot="scroll-area"
@@ -21,7 +26,10 @@ function ScrollArea({
       >
         {children}
       </ScrollAreaPrimitive.Viewport>
-      <ScrollBar />
+      <ScrollBar
+        className={scrollBarClassName}
+        thumbClassName={scrollThumbClassName}
+      />
       <ScrollAreaPrimitive.Corner />
     </ScrollAreaPrimitive.Root>
   );
@@ -29,9 +37,10 @@ function ScrollArea({
 
 function ScrollBar({
   className,
+  thumbClassName,
   orientation = "vertical",
   ...props
-}: ScrollAreaPrimitive.Scrollbar.Props) {
+}: ScrollAreaPrimitive.Scrollbar.Props & { thumbClassName?: string }) {
   return (
     <ScrollAreaPrimitive.Scrollbar
       data-slot="scroll-area-scrollbar"
@@ -45,7 +54,7 @@ function ScrollBar({
     >
       <ScrollAreaPrimitive.Thumb
         data-slot="scroll-area-thumb"
-        className="rounded-none bg-border relative flex-1"
+        className={cn("rounded-none bg-border relative flex-1", thumbClassName)}
       />
     </ScrollAreaPrimitive.Scrollbar>
   );

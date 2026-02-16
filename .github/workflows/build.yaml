@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: production-deployment
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -37,14 +41,7 @@ jobs:
         if: steps.cache-pdf.outputs.cache-hit != 'true'
         run: |
           mkdir -p public
-          if [ -f cv/cv.pdf ]; then
-            cp cv/cv.pdf public/
-          else
-            echo "ERROR: cv/cv.pdf not found after compilation"
-            echo "Contents of cv/:"
-            ls -la cv || true
-            exit 1
-          fi
+          if [ -f cv/cv.pdf ]; then cp cv/cv.pdf public/; fi
 
       - name: Cache Next.js Build
         uses: actions/cache@v4

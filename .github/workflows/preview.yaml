@@ -7,6 +7,10 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+permissions:
+  contents: read
+  pull-requests: write
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -20,7 +24,7 @@ jobs:
 
     steps:
       - name: Set up Git repository
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Cache PDF
         id: cache-pdf
@@ -33,10 +37,12 @@ jobs:
 
       - name: Compile LaTeX
         if: steps.cache-pdf.outputs.cache-hit != 'true'
-        uses: dante-ev/latex-action@latest
-        with:
-          root_file: cv.tex
-          working_directory: cv
+        run: |
+          docker run --rm \
+          -v ${{ github.workspace }}/cv:/workdir \
+          -w /workdir \
+          danteev/texlive:latest \
+          latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode cv.tex
 
       - name: Copy PDF to /public
         if: steps.cache-pdf.outputs.cache-hit != 'true'
@@ -83,7 +89,3 @@ jobs:
               repo: context.repo.repo,
               body: `🚀 **Preview Deployment Ready!**\n\nVisit your preview here: ${url}`
             })
-
-      - name: Output URL for Environment
-        id: get_url
-        run: echo "url=${{ steps.vercel-deploy.outputs.url }}" >> $GITHUB_OUTPUT

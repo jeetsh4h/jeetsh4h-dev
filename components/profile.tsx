@@ -25,7 +25,7 @@ export default function Profile() {
             </Button>
           </Link>
 
-          <Link href="/cv.pdf">
+          <Link href="/pdf">
             <Button className="hidden md:flex h-9 rounded cursor-pointer mr-2 hover:bg-secondary hover:text-secondary-foreground bg-secondary-foreground text-secondary border-secondary transition-all">
               <IconFileCv className="size-4" />
               <span>Open as PDF</span>

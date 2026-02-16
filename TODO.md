@@ -1,8 +1,8 @@
 ## CI/CD
 
-- [ ] Set up preview deployments using github actions
+- [x] Set up preview deployments using github actions
 - [x] Update deployments tab within github repository
-- [ ] Cache vercel build artifacts to avoid rebuilding when possible
+- [x] Cache vercel build artifacts to avoid rebuilding when possible
 - [x] Allow for concurrent pushes, for faster up-to-date builds
 
 ## Documentation

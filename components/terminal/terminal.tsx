@@ -8,7 +8,7 @@ import { useTerminal } from "./hooks/use-terminal";
 import { cn } from "@/lib/utils";
 
 const ActivePrompt = ({ children }: { children: React.ReactNode }) => (
-  <div className="mt-2 flex flex-col gap-1 animate-in fade-in duration-300">
+  <div className="mt-2 flex flex-col gap-1">
     {/* TODO: change this */}
     <div className="flex items-center tracking-widest text-xs font-bold uppercase select-none gap-1">
       <span className="text-primary">visitor</span>
@@ -109,7 +109,7 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
         className="flex-1 w-full min-h-0"
         scrollThumbClassName="rounded-b-md"
       >
-        <div className="px-4 pb-4">
+        <div className="px-4 pb-4 pt-1">
           {history.map((item) => (
             <div
               key={item.id}

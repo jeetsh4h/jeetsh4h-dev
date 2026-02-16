@@ -30,12 +30,14 @@ jobs:
           path: public/cv.pdf
           key: ${{ runner.os }}-pdf-${{ hashFiles('cv/*.tex', 'cv/*.bib') }}
 
-      - name: Compile LaTeX
+      - name: Compile LaTeX (Lazy Loaded)
         if: steps.cache-pdf.outputs.cache-hit != 'true'
-        uses: dante-ev/latex-action@latest
-        with:
-          root_file: cv.tex
-          working_directory: cv
+        run: |
+          docker run --rm \
+          -v ${{ github.workspace }}/cv:/workdir \
+          -w /workdir \
+          danteev/texlive:latest \
+          latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode cv.tex
 
       - name: Copy PDF to /public
         if: steps.cache-pdf.outputs.cache-hit != 'true'

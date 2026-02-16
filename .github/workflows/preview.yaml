@@ -83,7 +83,3 @@ jobs:
               repo: context.repo.repo,
               body: `🚀 **Preview Deployment Ready!**\n\nVisit your preview here: ${url}`
             })
-
-      - name: Output URL for Environment
-        id: get_url
-        run: echo "url=${{ steps.vercel-deploy.outputs.url }}" >> $GITHUB_OUTPUT

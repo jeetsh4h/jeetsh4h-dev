@@ -19,7 +19,7 @@ jobs:
   deploy-preview:
     runs-on: ubuntu-latest
     environment:
-      name: preview
+      name: Preview
       url: ${{ steps.get_url.outputs.url }}
 
     steps:

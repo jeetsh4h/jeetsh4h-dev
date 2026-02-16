@@ -30,7 +30,7 @@ jobs:
           path: public/cv.pdf
           key: ${{ runner.os }}-pdf-${{ hashFiles('cv/*.tex', 'cv/*.bib') }}
 
-      - name: Compile LaTeX (Lazy Loaded)
+      - name: Compile LaTeX
         if: steps.cache-pdf.outputs.cache-hit != 'true'
         run: |
           docker run --rm \

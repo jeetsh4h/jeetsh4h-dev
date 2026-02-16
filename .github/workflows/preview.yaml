@@ -35,7 +35,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pdf-
 
-      - name: Compile LaTeX (Lazy Loaded)
+      - name: Compile LaTeX
         if: steps.cache-pdf.outputs.cache-hit != 'true'
         run: |
           docker run --rm \

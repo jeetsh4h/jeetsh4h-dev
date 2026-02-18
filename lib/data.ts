@@ -47,7 +47,7 @@ export interface Skills {
 export const ABOUT: About = {
   name: "Jeet Shah",
   role: "Full-Stack Engineer & AI Researcher",
-  bio: "I am a product-minded Full-Stack Engineer and AI Researcher. Currently co-founding TriCatch and building scalable systems. I specialize in spatiotemporal modeling (NeurIPS Winner) and bridging the gap between business requirements and technical architecture.",
+  bio: "I am a product-minded Full-Stack Engineer and an AI Researcher. Currently co-founding TriCatch and building scalable systems. I specialize in spatiotemporal deep-learning problems. Bridging the gap between business requirements and technical architecture from Mumbai, India.",
 };
 
 export const SOCIALS: Socials = {
@@ -139,13 +139,13 @@ export const PROJECTS: ProjectItem[] = [
     link: "https://github.com/jeetsh4h/paudhayodha",
     linkText: "GitHub",
   },
-  {
-    title: "Spicetify Extensions",
-    description:
-      "Open Source contribution to Spotify customization tool. Implemented 'Wikify' feature for track metadata.",
-    link: "https://github.com/CharlieS1103/spicetify-extensions/pull/110",
-    linkText: "PR Link",
-  },
+  // {
+  //   title: "Spicetify Extensions",
+  //   description:
+  //     "Open Source contribution to Spotify customization tool. Implemented 'Wikify' feature for track metadata.",
+  //   link: "https://github.com/CharlieS1103/spicetify-extensions/pull/110",
+  //   linkText: "PR Link",
+  // },
   {
     title: "Precipitation Nowcasting",
     description:

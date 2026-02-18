@@ -167,13 +167,12 @@ export function useTerminal(
         setHistoryIndex(-1);
         setInput("");
       }
-    } else if (e.key === "Tab") {
+    } else if (e.key === "Tab" || e.key === "ArrowRight") {
       e.preventDefault();
       if (suggestion) {
         setInput(input + suggestion);
       }
     }
-    // TODO: allow right arrow to autocomplete as well
   };
 
   return {

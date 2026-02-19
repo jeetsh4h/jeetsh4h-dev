@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -66,7 +67,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <TooltipProvider>{children}</TooltipProvider>
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

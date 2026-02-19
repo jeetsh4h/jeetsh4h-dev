@@ -8,6 +8,7 @@ import Education from "./education";
 import Skills from "./skills";
 import Socials from "./socials";
 import { Theme, isThemeArg } from "./theme";
+import Link from "next/link";
 
 const about: CommandDef = {
   description: "Who is Jeet?",
@@ -102,6 +103,25 @@ const theme: CommandDef = {
   },
 };
 
+const pdf: CommandDef = {
+  description: "Download my CV as a PDF",
+  aliases: ["cv", "resume"],
+  action: () => ({
+    result: (
+      <div className="flex flex-col gap-2 mt-2 text-primary font-semibold underline decoration-primary/30">
+        <Link
+          href="/cv.pdf"
+          download="Jeet_Shah_CV.pdf"
+          className="w-fit hover:decoration-primary transition-all"
+        >
+          Download
+        </Link>
+      </div>
+    ),
+    status: "success",
+  }),
+};
+
 const clear: CommandDef = {
   description: "Clear terminal",
   aliases: ["cls"],
@@ -128,6 +148,9 @@ export const COMMAND_REGISTRY: Record<string, CommandDef> = {
   contact: socials,
   social: socials,
   theme,
+  pdf,
+  cv: pdf,
+  resume: pdf,
   whoami: {
     description: "Current user",
     action: () => ({

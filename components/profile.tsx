@@ -5,6 +5,7 @@ import { ThemeToggle } from "./theme-toggle";
 import { IconTerminal2, IconFileCv } from "@tabler/icons-react";
 import About from "./about";
 import Socials from "./socials";
+import { TooltipTrigger, Tooltip, TooltipContent } from "./ui/tooltip";
 
 export default function Profile() {
   return (
@@ -25,12 +26,25 @@ export default function Profile() {
             </Button>
           </Link>
 
-          <Link href="/pdf">
-            <Button className="hidden md:flex h-9 rounded cursor-pointer mr-2 hover:bg-secondary hover:text-secondary-foreground bg-secondary-foreground text-secondary border-secondary transition-all">
-              <IconFileCv className="size-4" />
-              <span>Open as PDF</span>
-            </Button>
-          </Link>
+          <Tooltip>
+            <TooltipTrigger
+              render={
+                <Link href="/pdf">
+                  <Button className="hidden md:flex h-9 rounded cursor-pointer mr-2 hover:bg-secondary hover:text-secondary-foreground bg-secondary-foreground text-secondary border-secondary transition-all">
+                    <IconFileCv className="size-4" />
+                    <span>Open as PDF</span>
+                  </Button>
+                </Link>
+              }
+            />
+            <TooltipContent
+              className="font-mono rounded bg-card text-muted-foreground border-border border"
+              side="bottom"
+              alignOffset={2}
+            >
+              pdf
+            </TooltipContent>
+          </Tooltip>
 
           <ThemeToggle />
         </div>
@@ -53,12 +67,25 @@ export default function Profile() {
           </Button>
         </Link>
 
-        <Link href="/cv.pdf">
-          <Button className="flex h-9 rounded cursor-pointer mr-2 hover:bg-secondary hover:text-secondary-foreground bg-secondary-foreground text-secondary border-secondary transition-all">
-            <IconFileCv className="size-4" />
-            <span>Open as PDF</span>
-          </Button>
-        </Link>
+        <Tooltip>
+          <TooltipTrigger
+            render={
+              <Link href="/cv.pdf">
+                <Button className="flex h-9 rounded cursor-pointer mr-2 hover:bg-secondary hover:text-secondary-foreground bg-secondary-foreground text-secondary border-secondary transition-all">
+                  <IconFileCv className="size-4" />
+                  <span>Open as PDF</span>
+                </Button>
+              </Link>
+            }
+          />
+          <TooltipContent
+            className="font-mono rounded bg-card text-muted-foreground border-border border"
+            side="bottom"
+            alignOffset={2}
+          >
+            pdf
+          </TooltipContent>
+        </Tooltip>
       </div>
     </>
   );

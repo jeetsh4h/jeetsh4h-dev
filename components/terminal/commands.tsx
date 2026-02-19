@@ -7,6 +7,7 @@ import Research from "./research";
 import Education from "./education";
 import Skills from "./skills";
 import Socials from "./socials";
+import { Theme, isThemeArg } from "./theme";
 
 const about: CommandDef = {
   description: "Who is Jeet?",
@@ -70,6 +71,37 @@ const socials: CommandDef = {
   }),
 };
 
+const theme: CommandDef = {
+  description: "Switch theme (usage: theme [--toggle | --system])",
+  action: ({ args }: { args: string[] }) => {
+    if (args.length > 1) {
+      return {
+        result: `Too many arguments. Usage: theme [--toggle | --system]`,
+        status: "error",
+      };
+    }
+    if (args.length === 1) {
+      const arg = args[0];
+      if (!isThemeArg(arg)) {
+        return {
+          result: `Invalid argument: ${arg}. Usage: theme [--toggle | --system]`,
+          status: "error",
+        };
+      }
+
+      return {
+        result: <Theme args={[arg]} />,
+        status: "success",
+      };
+    }
+
+    return {
+      result: <Theme args={[]} />,
+      status: "success",
+    };
+  },
+};
+
 const clear: CommandDef = {
   description: "Clear terminal",
   aliases: ["cls"],
@@ -95,6 +127,7 @@ export const COMMAND_REGISTRY: Record<string, CommandDef> = {
   socials,
   contact: socials,
   social: socials,
+  theme,
   whoami: {
     description: "Current user",
     action: () => ({

@@ -76,7 +76,6 @@ export const EXPERIENCE: ExperienceItem[] = [
     description: [
       "Designed NANOLOY data pipeline (PostgreSQL, Azure), reducing query latency by 200%.",
       "Built Multi-LLM RAG system for internal knowledge retrieval.",
-      "Deployed full-stack logging visualization (NextJS, FastAPI).",
     ],
   },
   {

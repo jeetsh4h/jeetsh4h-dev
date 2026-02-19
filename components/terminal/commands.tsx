@@ -27,7 +27,7 @@ const experience: CommandDef = {
 };
 
 const projects: CommandDef = {
-  description: "View my work & code",
+  description: "View some of my work",
   aliases: ["proj"],
   action: () => ({
     result: <Projects />,

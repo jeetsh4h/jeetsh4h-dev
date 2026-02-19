@@ -38,10 +38,11 @@ export default function Profile() {
               }
             />
             <TooltipContent
-              className="font-mono rounded bg-card text-muted-foreground border-border border"
+              className="font-mono rounded bg-card text-muted-foreground border-border border inline-flex items-center justify-center whitespace-nowrap gap-1.5 px-1.5"
               side="bottom"
               alignOffset={2}
             >
+              <IconTerminal2 className="size-3" />
               pdf
             </TooltipContent>
           </Tooltip>
@@ -79,10 +80,11 @@ export default function Profile() {
             }
           />
           <TooltipContent
-            className="font-mono rounded bg-card text-muted-foreground border-border border"
+            className="font-mono rounded bg-card text-muted-foreground border-border border inline-flex items-center justify-center whitespace-nowrap gap-1.5 px-1.5"
             side="bottom"
             alignOffset={2}
           >
+            <IconTerminal2 className="size-3" />
             pdf
           </TooltipContent>
         </Tooltip>

@@ -56,6 +56,7 @@ export function Theme({ args }: { args: [] | [ThemeArgs] }) {
       return;
     }
 
+    // Ideally never reaches here due to prior validation, but just in case
     setOutput(<p className="text-destructive">Invalid argument</p>);
 
     /* eslint-disable-next-line react-hooks/exhaustive-deps */

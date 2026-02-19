@@ -120,8 +120,9 @@ export const COMMAND_REGISTRY: Record<string, CommandDef> = {
             })}
           </div>
           <div className="text-xs text-muted-foreground mt-2">
-            Tip: Use <kbd className="bg-muted px-1 rounded">Tab</kbd> to
-            autocomplete. Use <kbd className="bg-muted px-1 rounded">↑</kbd>{" "}
+            Tip: Use <kbd className="bg-muted px-1 rounded">Tab</kbd> or{" "}
+            <kbd className="bg-muted px-1 rounded">→</kbd> to autocomplete. Use{" "}
+            <kbd className="bg-muted px-1 rounded">↑</kbd>{" "}
             <kbd className="bg-muted px-1 rounded">↓</kbd> for navigating
             history.
           </div>

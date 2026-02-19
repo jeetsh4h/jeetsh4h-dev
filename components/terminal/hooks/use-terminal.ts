@@ -7,44 +7,102 @@ import type { HistoryItem, TerminalDimensions } from "../types";
 export function useTerminal(
   dimensions: TerminalDimensions,
   initialCommand?: string,
+  autoRunCommand?: string,
 ) {
   const [history, setHistory] = useState<HistoryItem[]>(() => {
-    if (!initialCommand) return [];
+    const items: HistoryItem[] = [];
 
-    const cmdKey = initialCommand.toLowerCase();
-    const commandDef = COMMAND_REGISTRY[cmdKey];
+    if (initialCommand) {
+      const cmdKey = initialCommand.toLowerCase();
+      const commandDef = COMMAND_REGISTRY[cmdKey];
 
-    if (commandDef) {
-      try {
-        // Mock the context for the initial render
-        const { result, status } = commandDef.action({
-          args: [],
-          dimensions,
-          pushToHistory: () => {},
-          clearHistory: () => {},
-        });
+      if (commandDef) {
+        try {
+          // Mock the context for the initial render
+          const { result, status } = commandDef.action({
+            args: [],
+            dimensions,
+            pushToHistory: () => {},
+            clearHistory: () => {},
+          });
 
-        if (result) {
-          return [
-            {
+          if (result) {
+            items.push({
               id: "welcome",
               type: "output",
               content: result,
               timestamp: 0,
               status: status,
-            },
-          ];
+            });
+          }
+        } catch (error) {
+          console.error("Failed to execute initial command:", error);
         }
-      } catch (error) {
-        console.error("Failed to execute initial command:", error);
       }
     }
-    return [];
+
+    if (autoRunCommand) {
+      const trimmed = autoRunCommand.trim();
+      const [cmdKey, ...args] = trimmed.split(/\s+/);
+      const commandDef = COMMAND_REGISTRY[cmdKey.toLowerCase()];
+
+      const userEntry: HistoryItem = {
+        id: "autorun-cmd",
+        type: "command",
+        content: trimmed,
+        commandName: cmdKey,
+        timestamp: Date.now(),
+        status: commandDef ? "success" : "error",
+      };
+      items.push(userEntry);
+
+      if (commandDef) {
+        try {
+          const { result, status } = commandDef.action({
+            args,
+            dimensions,
+            pushToHistory: () => {},
+            clearHistory: () => {},
+          });
+
+          if (result) {
+            items.push({
+              id: "autorun-output",
+              type: "output",
+              content: result,
+              timestamp: Date.now(),
+              status,
+            });
+          }
+        } catch (error) {
+          items.push({
+            id: "autorun-error",
+            type: "error",
+            content: `Error: ${error}`,
+            timestamp: Date.now(),
+            status: "error",
+          });
+        }
+      } else {
+        items.push({
+          id: "autorun-not-found",
+          type: "error",
+          content: `Command not found: "${cmdKey}"`,
+          timestamp: Date.now(),
+          status: "error",
+        });
+      }
+    }
+    return items;
   });
 
   const [input, setInput] = useState("");
-  const [cmdHistory, setCmdHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+  const [cmdHistory, setCmdHistory] = useState<string[]>(() => {
+    if (!autoRunCommand) return [];
+    const trimmed = autoRunCommand.trim();
+    return trimmed ? [trimmed] : [];
+  });
 
   const suggestion = useMemo(() => {
     if (!input.trim()) return "";

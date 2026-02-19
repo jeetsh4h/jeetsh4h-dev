@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import Footer from "@/components/footer";
+import { useSearchParams } from "next/navigation";
 
 export default function TerminalPage() {
   const [viewportHeight, setViewportHeight] = useState("100dvh");
@@ -33,6 +34,9 @@ export default function TerminalPage() {
     };
   }, []);
 
+  const searchParams = useSearchParams();
+  const autoRunCommand = searchParams.get("cmd") || undefined;
+
   return (
     <>
       <div
@@ -55,7 +59,7 @@ export default function TerminalPage() {
 
         {/* Terminal fills remaining space */}
         <div className="w-full flex-1 min-h-0 max-w-3xl mx-auto px-4 pb-4">
-          <Terminal />
+          <Terminal autoRunCommand={autoRunCommand} />
         </div>
       </div>
       <Footer className="mt-12" />

@@ -46,9 +46,13 @@ const TransientPrompt = ({
 
 interface TerminalProps {
   initialCommand?: string;
+  autoRunCommand?: string;
 }
 
-export function Terminal({ initialCommand = "help" }: TerminalProps) {
+export function Terminal({
+  initialCommand = "help",
+  autoRunCommand,
+}: TerminalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -57,6 +61,7 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
   const { history, input, setInput, handleKeyDown, suggestion } = useTerminal(
     dimensions,
     initialCommand,
+    autoRunCommand,
   );
 
   useEffect(() => {

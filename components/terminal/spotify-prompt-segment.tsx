@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import useSWR, { useSWRConfig } from "swr";
 import { IconBrandSpotify } from "@tabler/icons-react";
 import Link from "next/link";
-import { cn, fetcher } from "@/lib/utils";
+import { fetcher } from "@/lib/utils";
 import type { SpotifyResponse } from "./types";
 
 export function SpotifyPromptSegment({
@@ -27,7 +27,7 @@ export function SpotifyPromptSegment({
     /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, [refreshTrigger]);
 
-  if (isLoading || !data) {
+  if (isLoading || !data || isValidating) {
     return (
       <div className="flex items-center text-xs font-bold select-none">
         <span className="text-muted-foreground/70">[</span>
@@ -55,7 +55,7 @@ export function SpotifyPromptSegment({
       <div className="flex items-center text-term-success">
         <IconBrandSpotify
           size={13}
-          className={cn("-ml-px mr-0.5", isValidating && "animate-spin")}
+          className="-ml-px mr-0.5"
         />
         <Link
           href={data.url}

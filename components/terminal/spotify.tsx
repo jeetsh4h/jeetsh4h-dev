@@ -6,8 +6,6 @@ import Link from "next/link";
 import Image from "next/image";
 import type { SpotifyResponse } from "@/components/terminal/types";
 
-// --- HELPER FUNCTIONS ---
-
 function getFormattedTimeAgo(dateString: string) {
   const diffMs = Date.now() - new Date(dateString).getTime();
   const diffMins = diffMs / (1000 * 60);

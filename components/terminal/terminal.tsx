@@ -17,7 +17,7 @@ const ActivePrompt = ({
   refreshTrigger: number;
   children: React.ReactNode;
 }) => {
-  const commitHash = process.env.NEXT_PUBLIC_COMMIT_SHA?.slice(0, 7);
+  const commitHash = process.env.NEXT_PUBLIC_COMMIT_SHA?.slice(0, 7) ?? "local";
 
   return (
     <div className="mt-2 flex flex-col gap-1 w-full">

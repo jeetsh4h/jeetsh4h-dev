@@ -4,9 +4,8 @@ import { useEffect } from "react";
 import useSWR, { useSWRConfig } from "swr";
 import { IconBrandSpotify } from "@tabler/icons-react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import { cn, fetcher } from "@/lib/utils";
+import type { SpotifyResponse } from "./types";
 
 export function SpotifyPromptSegment({
   refreshTrigger,
@@ -15,9 +14,13 @@ export function SpotifyPromptSegment({
 }) {
   const { mutate } = useSWRConfig();
 
-  const { data, isLoading, isValidating } = useSWR(`/api/spotify`, fetcher, {
-    revalidateOnFocus: false,
-  });
+  const { data, isLoading, isValidating } = useSWR<SpotifyResponse>(
+    `/api/spotify`,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+    },
+  );
 
   useEffect(() => {
     mutate(`/api/spotify`);

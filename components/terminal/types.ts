@@ -15,7 +15,7 @@ type CommandContext = {
   clearHistory: () => void;
 };
 
-export type CommandResult = {
+type CommandResult = {
   result: ReactNode | void;
   status: "success" | "error";
 };

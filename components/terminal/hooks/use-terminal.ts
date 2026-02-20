@@ -240,5 +240,6 @@ export function useTerminal(
     setInput,
     handleKeyDown,
     suggestion,
+    execute,
   };
 }

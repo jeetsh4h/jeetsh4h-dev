@@ -105,11 +105,23 @@ function TerminalBase({
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const dimensions = useTerminalDimensions(containerRef);
-  const { history, input, setInput, handleKeyDown, suggestion } = useTerminal(
-    dimensions,
-    initialCommand,
-    autoRunCommand,
-  );
+  const { history, input, setInput, handleKeyDown, suggestion, execute } =
+    useTerminal(dimensions, initialCommand, autoRunCommand);
+
+  useEffect(() => {
+    const handleExternalCommand = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      if (customEvent.detail) {
+        execute(customEvent.detail);
+        inputRef.current?.focus();
+      }
+    };
+
+    window.addEventListener("run-terminal-command", handleExternalCommand);
+    return () => {
+      window.removeEventListener("run-terminal-command", handleExternalCommand);
+    };
+  }, [execute]);
 
   useEffect(() => {
     const scrollAreaViewport = containerRef.current?.querySelector(

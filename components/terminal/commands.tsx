@@ -10,6 +10,7 @@ import Socials from "./socials";
 import { Theme, isThemeArg } from "./theme";
 import Link from "next/link";
 import SpotifyCommand from "./spotify";
+import Whoami from "./whoami";
 
 const about: CommandDef = {
   description: "Who is Jeet?",
@@ -70,6 +71,14 @@ const socials: CommandDef = {
   aliases: ["contact", "social"],
   action: () => ({
     result: <Socials />,
+    status: "success",
+  }),
+};
+
+const whoami: CommandDef = {
+  description: "Who are YOU?",
+  action: () => ({
+    result: <Whoami />,
     status: "success",
   }),
 };
@@ -167,14 +176,7 @@ export const COMMAND_REGISTRY: Record<string, CommandDef> = {
   spotify,
   music: spotify,
   nowplaying: spotify,
-  whoami: {
-    description: "Information about YOU",
-    // TODO: figure out current IP, location, device, etc.
-    action: () => ({
-      result: <div className="text-term-muted">guest@jeetsh4h-dev</div>,
-      status: "success",
-    }),
-  },
+  whoami,
   help: {
     description: "List available commands",
     action: () => ({

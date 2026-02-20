@@ -6,10 +6,10 @@ export default function Experience() {
 
   return (
     <div className="flex flex-col gap-8 mt-2">
-      {featuredExp.map((job, idx) => {
+      {featuredExp.map((job) => {
         return (
           <div
-            key={idx}
+            key={`${job.company}-${job.role}-${job.period}`}
             className={`relative ${job.description ? "" : "opacity-80"}`}
           >
             <div
@@ -30,8 +30,8 @@ export default function Experience() {
 
             {job.description && (
               <ul className="list-disc list-outside marker:text-accent text-foreground text-xs space-y-1 ml-4">
-                {job.description.map((desc, i) => (
-                  <li key={i}>{desc}</li>
+                {job.description.map((desc) => (
+                  <li key={`${job.company}-${desc}`}>{desc}</li>
                 ))}
               </ul>
             )}
@@ -42,9 +42,9 @@ export default function Experience() {
       {compactExp.length > 0 && (
         <div className="relative">
           <div className="text-muted-foreground text-xs space-y-3">
-            {compactExp.map((job, idx) => (
+            {compactExp.map((job) => (
               <div
-                key={idx}
+                key={`${job.company}-${job.role}-${job.period}`}
                 className="relative"
               >
                 <div className="absolute -left-5.75 top-0.75 size-3 bg-accent rounded-full border-2 border-card ring-1 ring-term-border/50" />

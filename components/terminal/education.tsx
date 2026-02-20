@@ -5,7 +5,7 @@ export default function Education() {
     <div className="flex flex-col gap-4 mt-2">
       {EDUCATION.map((edu, idx) => (
         <div
-          key={idx}
+          key={`${edu.institution}-${edu.period}`}
           className={idx > 0 ? "border-t border-term-border/50 pt-2" : ""}
         >
           <div className="flex justify-between items-baseline">
@@ -18,13 +18,13 @@ export default function Education() {
           </div>
           <div className="text-secondary text-sm mb-1">{edu.degree}</div>
           <div className="text-xs text-foreground grid grid-cols-2 gap-2 mt-1">
-            {edu.details.map((detail, i) => {
+            {edu.details.map((detail) => {
               const [label, val] = detail.split(": ");
               return val ?
-                  <div key={i}>
+                  <div key={`${edu.institution}-${detail}`}>
                     <span className="text-accent">{label}:</span> {val}
                   </div>
-                : <div key={i}>{detail}</div>;
+                : <div key={`${edu.institution}-${detail}`}>{detail}</div>;
             })}
           </div>
         </div>

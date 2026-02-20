@@ -11,10 +11,10 @@ export default function Projects() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 -mt-2">
-        {PROJECTS.map((project, i) => (
+        {PROJECTS.map((project) => (
           <Card
             className="p-5 rounded-md border-term-border/50 group hover:ring-accent transition-colors cursor-pointer"
-            key={i}
+            key={project.link}
           >
             <CardHeader className="flex justify-between items-start p-0">
               <Link

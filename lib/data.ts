@@ -1,31 +1,3 @@
-export interface About {
-  name: string;
-  role: string;
-  bio: string;
-}
-
-export interface Socials {
-  github: string;
-  linkedin: string;
-  email: string;
-}
-
-export interface ExperienceItem {
-  company: string;
-  role: string;
-  period: string;
-  type: "work" | "research" | "internship";
-  description: string[];
-  compact?: boolean;
-}
-
-export interface ProjectItem {
-  title: string;
-  description: string;
-  link: string;
-  linkText: string;
-}
-
 export interface ResearchItem {
   title: string;
   year: string;
@@ -44,19 +16,19 @@ export interface Skills {
   [category: string]: string;
 }
 
-export const ABOUT: About = {
+export const ABOUT = {
   name: "Jeet Shah",
   role: "Full-Stack Engineer & AI Researcher",
   bio: "I am a product-minded Full-Stack Engineer and an AI Researcher. Currently co-founding TriCatch and building scalable systems. I specialize in spatiotemporal deep-learning problems. Bridging the gap between business requirements and technical architecture from Mumbai, India.",
 };
 
-export const SOCIALS: Socials = {
+export const SOCIALS = {
   github: "github.com/jeetsh4h",
   linkedin: "linkedin.com/in/jeetsh4h",
   email: "jeetsh4h@gmail.com",
 };
 
-export const EXPERIENCE: ExperienceItem[] = [
+export const EXPERIENCE = [
   {
     company: "TriCatch",
     role: "Co-founder & Lead Engineer",
@@ -123,7 +95,7 @@ export const EXPERIENCE: ExperienceItem[] = [
   },
 ];
 
-export const PROJECTS: ProjectItem[] = [
+export const PROJECTS = [
   {
     title: "Jyeshthanubandh",
     description:

@@ -10,10 +10,10 @@ export default function Education() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 -mt-2">
-        {EDUCATION.map((edu, i) => (
+        {EDUCATION.map((edu) => (
           <Card
             className="p-5 rounded-md border-term-border/50"
-            key={i}
+            key={`${edu.institution}-${edu.period}`}
           >
             <CardHeader className="flex justify-between items-center -mx-4">
               <span className="text-primary font-bold text-lg">
@@ -27,9 +27,9 @@ export default function Education() {
               {edu.degree}
             </div>
             <div className="-mt-6 space-y-1.5 pt-4 border-t border-term-border/50">
-              {edu.details.map((detail, j) => (
+              {edu.details.map((detail) => (
                 <div
-                  key={j}
+                  key={`${edu.institution}-${detail}`}
                   className="text-xs text-foreground flex items-center gap-2"
                 >
                   <span className="size-1 rounded-full bg-accent" />

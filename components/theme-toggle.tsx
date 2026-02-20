@@ -8,17 +8,12 @@ import {
   IconTerminal2,
 } from "@tabler/icons-react";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 export function ThemeToggle() {
   const { setTheme, resolvedTheme, theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    /* eslint-disable-next-line react-hooks/set-state-in-effect */
-    setMounted(true);
-  }, []);
+  const effectiveTheme = resolvedTheme ?? theme;
+  const isDark = effectiveTheme === "dark";
 
   return (
     <div className="relative flex group">
@@ -28,15 +23,16 @@ export function ThemeToggle() {
             <Button
               className="size-9 rounded bg-card text-accent border-accent cursor-pointer group-hover:rounded-r-none"
               onClick={() => {
-                if (!mounted) return;
-                setTheme(resolvedTheme === "dark" ? "light" : "dark");
+                setTheme(isDark ? "light" : "dark");
               }}
             >
               <IconMoon
-                className={`size-4 ${resolvedTheme === "dark" && mounted ? "" : "hidden"}`}
+                suppressHydrationWarning
+                className={`size-4 ${isDark ? "" : "hidden"}`}
               />
               <IconSun
-                className={`size-4 ${resolvedTheme === "light" && mounted ? "" : "hidden"}`}
+                suppressHydrationWarning
+                className={`size-4 ${!isDark ? "" : "hidden"}`}
               />
             </Button>
           }
@@ -57,7 +53,7 @@ export function ThemeToggle() {
               className="absolute left-9 group-[:not(:hover)]:opacity-0 group-[:not(:hover)]:pointer-events-none transition-opacity duration-300 ease-in-out size-9 rounded-r border-l-0 bg-card border-border hover:border-accent cursor-pointer"
               onClick={() => {
                 if (theme !== "system") setTheme("system");
-                else setTheme(resolvedTheme!);
+                else setTheme(effectiveTheme === "dark" ? "dark" : "light");
               }}
             >
               <IconDeviceDesktop

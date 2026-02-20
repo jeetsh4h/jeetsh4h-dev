@@ -9,9 +9,9 @@ export default function Experience() {
       </div>
 
       <div className="border-l-2 border-term-border/50 ml-2 space-y-10 pl-8 relative -mt-2">
-        {EXPERIENCE.filter((e) => !e.compact).map((job, i) => (
+        {EXPERIENCE.filter((e) => !e.compact).map((job) => (
           <div
-            key={i}
+            key={`${job.company}-${job.role}-${job.period}`}
             className="relative"
           >
             <div className="absolute -left-9.75 top-1.5 size-3 rounded-full bg-card border-2 border-accent ring-2 ring-card" />
@@ -28,8 +28,8 @@ export default function Experience() {
 
             {job.description && (
               <ul className="list-disc list-outside marker:text-accent ml-4 space-y-1.5 text-foreground text-sm leading-relaxed">
-                {job.description.map((ach, j) => (
-                  <li key={j}>{ach}</li>
+                {job.description.map((ach) => (
+                  <li key={`${job.company}-${ach}`}>{ach}</li>
                 ))}
               </ul>
             )}
@@ -37,9 +37,9 @@ export default function Experience() {
         ))}
 
         <div className="-mt-2 space-y-4">
-          {EXPERIENCE.filter((e) => e.compact).map((job, i) => (
+          {EXPERIENCE.filter((e) => e.compact).map((job) => (
             <div
-              key={i}
+              key={`${job.company}-${job.role}-${job.period}`}
               className="relative group"
             >
               <div className="absolute -left-9.75 top-1.5 size-3 rounded-full bg-card border-2 border-accent ring-2 ring-card" />

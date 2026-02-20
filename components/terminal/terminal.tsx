@@ -6,6 +6,7 @@ import { Card, CardHeader } from "@/components/ui/card";
 import { useTerminalDimensions } from "./hooks/use-dimension";
 import { useTerminal } from "./hooks/use-terminal";
 import { cn } from "@/lib/utils";
+import { useSearchParams } from "next/navigation";
 
 const ActivePrompt = ({ children }: { children: React.ReactNode }) => (
   <div className="mt-2 flex flex-col gap-1">
@@ -46,13 +47,25 @@ const TransientPrompt = ({
 
 interface TerminalProps {
   initialCommand?: string;
-  autoRunCommand?: string;
 }
 
-export function Terminal({
-  initialCommand = "help",
+export function Terminal({ initialCommand = "help" }: TerminalProps) {
+  const searchParams = useSearchParams();
+  const autoRunCommand = searchParams.get("cmd") || undefined;
+
+  return (
+    <TerminalBase
+      initialCommand={initialCommand}
+      autoRunCommand={autoRunCommand}
+      key={autoRunCommand}
+    />
+  );
+}
+
+function TerminalBase({
+  initialCommand,
   autoRunCommand,
-}: TerminalProps) {
+}: TerminalProps & { autoRunCommand?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -150,7 +163,6 @@ export function Terminal({
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                autoFocus
                 autoComplete="off"
                 spellCheck={false}
               />

@@ -4,9 +4,9 @@ import Link from "next/dist/client/link";
 export default function Research() {
   return (
     <div className="flex flex-col gap-4 mt-2">
-      {RESEARCH.map((paper, idx) => (
+      {RESEARCH.map((paper) => (
         <div
-          key={idx}
+          key={paper.link}
           className="border-l-2 border-accent pl-3 group cursor-pointer"
         >
           <Link

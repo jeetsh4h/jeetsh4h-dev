@@ -10,22 +10,22 @@ export default function Research() {
       </div>
 
       <div className="space-y-6 -mt-2">
-        {RESEARCH.map((paper, i) => (
+        {RESEARCH.map((paper) => (
           <div
-            key={i}
-            className="flex flex-col sm:flex-row gap-4 sm:items-start group"
+            key={paper.link}
+            className="flex flex-col sm:flex-row gap-4 sm:items-start"
           >
             <div className="flex-1 space-y-2">
               <div className="flex items-start justify-between gap-4">
-                <h3 className="font-bold leading-tight text-primary underline decoration-primary/20 group-hover:decoration-primary transition-all">
-                  <Link
-                    href={paper.link}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                <Link
+                  href={paper.link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <h3 className="font-bold leading-tight text-primary underline decoration-primary/20 hover:decoration-primary transition-all">
                     {paper.title}
-                  </Link>
-                </h3>
+                  </h3>
+                </Link>
                 <span className="text-xs text-foreground font-mono bg-term-border/20 px-2 py-0.5 rounded">
                   {paper.year}
                 </span>

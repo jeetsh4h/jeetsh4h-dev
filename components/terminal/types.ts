@@ -8,7 +8,7 @@ export type TerminalDimensions = {
   height: number; // Height in pixels
 };
 
-export type CommandContext = {
+type CommandContext = {
   args: string[];
   dimensions: TerminalDimensions;
   pushToHistory: (item: HistoryItem) => void;

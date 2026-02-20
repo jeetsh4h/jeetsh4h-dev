@@ -35,14 +35,24 @@ type SpotifyFetchState =
   | { status: "error" }
   | { status: "success"; data: SpotifyResponse };
 
+// if user spams the command, we only fetch once per second
+const BUCKET_TIME_MS = 1000;
+let globalFetchPromise: Promise<SpotifyResponse> | null = null;
+let lastFetchTime = 0;
+
 export default function SpotifyCommand() {
   const [state, setState] = useState<SpotifyFetchState>({ status: "loading" });
 
   useEffect(() => {
     let isMounted = true;
+    const now = Date.now();
 
-    fetch("/api/spotify")
-      .then((res) => res.json())
+    if (!globalFetchPromise || now - lastFetchTime >= BUCKET_TIME_MS) {
+      lastFetchTime = now;
+      globalFetchPromise = fetch("/api/spotify").then((res) => res.json());
+    }
+
+    globalFetchPromise
       .then((fetchedData) => {
         if (isMounted) setState({ status: "success", data: fetchedData });
       })

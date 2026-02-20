@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import useSWR, { useSWRConfig } from "swr";
 import { IconBrandSpotify } from "@tabler/icons-react";
 import Link from "next/link";
@@ -13,6 +13,7 @@ export function SpotifyPromptSegment({
   refreshTrigger: number;
 }) {
   const { mutate } = useSWRConfig();
+  const lastMutateRef = useRef<number>(0);
 
   const { data, isLoading, isValidating } = useSWR<SpotifyResponse>(
     `/api/spotify`,
@@ -23,7 +24,12 @@ export function SpotifyPromptSegment({
   );
 
   useEffect(() => {
-    mutate(`/api/spotify`);
+    // do not mutate more than once per second
+    const now = Date.now();
+    if (now - lastMutateRef.current >= 1000) {
+      lastMutateRef.current = now;
+      mutate(`/api/spotify`);
+    }
     /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, [refreshTrigger]);
 

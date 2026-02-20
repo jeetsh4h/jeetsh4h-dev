@@ -135,7 +135,11 @@ function TerminalBase({
     return () => clearTimeout(timeout);
   }, [history, dimensions]);
 
-  const handleFocus = () => inputRef.current?.focus();
+  const handleFocus = () => {
+    const selection = window.getSelection();
+    if (selection && selection.toString().length > 0) return;
+    inputRef.current?.focus();
+  };
 
   return (
     <Card

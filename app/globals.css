@@ -11,6 +11,7 @@
 
   --color-term-border: var(--term-border);
   --color-term-success: var(--term-success);
+  --color-term-warning: var(--term-warning);
   --color-term-muted: var(--term-muted);
 
   --color-card: var(--card);
@@ -78,6 +79,7 @@
 
   --term-border: #bcc0cc; /* Surface1 */
   --term-success: #40a02b; /* Green */
+  --term-warning: #df8e1d; /* Yellow */
   --term-muted: #9ca0b0; /* Overlay0 */
 }
 
@@ -119,6 +121,7 @@
 
   --term-border: #363a4f; /* Surface0 */
   --term-success: #a6da95; /* Green */
+  --term-warning: #eed49f; /* Yellow */
   --term-muted: #5b6078; /* Surface2 */
 }
 

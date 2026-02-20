@@ -7,21 +7,55 @@ import { useTerminalDimensions } from "./hooks/use-dimension";
 import { useTerminal } from "./hooks/use-terminal";
 import { cn } from "@/lib/utils";
 import { useSearchParams } from "next/navigation";
+import { IconGitCommit } from "@tabler/icons-react";
+import { SpotifyPromptSegment } from "./spotify-prompt-segment";
 
-const ActivePrompt = ({ children }: { children: React.ReactNode }) => (
-  <div className="mt-2 flex flex-col gap-1">
-    {/* TODO: change this */}
-    <div className="flex items-center tracking-widest text-xs font-bold uppercase select-none gap-1">
-      <span className="text-primary">visitor</span>
-      <span className="text-accent/80">::</span>
-      <span className="text-secondary">~</span>
+const ActivePrompt = ({
+  refreshTrigger,
+  children,
+}: {
+  refreshTrigger: number;
+  children: React.ReactNode;
+}) => {
+  const commitHash = process.env.NEXT_PUBLIC_COMMIT_SHA?.slice(0, 7);
+
+  return (
+    <div className="mt-2 flex flex-col gap-1 w-full">
+      <div className="flex items-center justify-between w-full pr-4 flex-wrap">
+        <div className="flex items-center text-xs font-bold select-none">
+          <div className="flex items-center">
+            <span className="text-muted-foreground/70">[</span>
+            <span className="text-primary">guest</span>
+            <span className="text-accent/80">@</span>
+            <span className="text-primary">jeetsh4h-dev</span>
+            <span className="text-accent/80">:</span>
+            <span className="text-secondary">~</span>
+            <span className="text-muted-foreground/70">]</span>
+          </div>
+
+          <div className="flex items-center text-accent">
+            <span className="text-muted-foreground/70">[</span>
+            <IconGitCommit
+              size={14}
+              className="-ml-0.5"
+            />
+            <span>{commitHash}</span>
+            <span className="text-muted-foreground/70">]</span>
+          </div>
+        </div>
+
+        <div className="shrink-0">
+          <SpotifyPromptSegment refreshTrigger={refreshTrigger} />
+        </div>
+      </div>
+
+      <div className="flex items-center gap-2">
+        <span className="text-accent text-lg leading-none select-none">❯</span>
+        {children}
+      </div>
     </div>
-    <div className="flex items-center gap-2">
-      <span className="text-accent text-lg leading-none">❯</span>
-      {children}
-    </div>
-  </div>
-);
+  );
+};
 
 const TransientPrompt = ({
   command,
@@ -111,14 +145,14 @@ function TerminalBase({
     >
       {/* Window Decorations / Header */}
       <CardHeader className="flex-none border-b py-3 bg-card z-20 flex flex-row items-center justify-between space-y-0">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 mt-1">
           <div className="size-3 rounded-full bg-[#ff5f56] border border-[#e0443e] hover:bg-[#ff5f56]/80 shadow-sm" />
           <div className="size-3 rounded-full bg-[#ffbd2e] border border-[#dea123] hover:bg-[#ffbd2e]/80 shadow-sm" />
           <div className="size-3 rounded-full bg-[#27c93f] border border-[#1aab29] hover:bg-[#27c93f]/80 shadow-sm" />
         </div>
-        <div className="text-xs text-muted-foreground font-bold opacity-80 flex items-center gap-2">
-          <span className="inline">visitor@jeetsh4h-dev: ~</span>
-        </div>
+        {/* <div className="text-xs text-muted-foreground font-bold opacity-80 flex items-center gap-2">
+          <span className="inline">guest@jeetsh4h-dev: ~</span>
+        </div> */}
         <div className="w-12" />
       </CardHeader>
 
@@ -145,7 +179,11 @@ function TerminalBase({
             </div>
           ))}
 
-          <ActivePrompt>
+          {/* whenever something gets added or removed in the history,
+           * we can trigger a GET request for the spotify song.
+           * The prompt will only reload if the user interacts.
+           */}
+          <ActivePrompt refreshTrigger={history.length}>
             <div className="relative flex-1">
               <span className="whitespace-pre-wrap break-all text-foreground font-medium">
                 {input}

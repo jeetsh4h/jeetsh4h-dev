@@ -181,6 +181,7 @@ export function useTerminal(
       };
 
       setHistory((prev) => {
+        // TODO: refactor so that the clear commands don't have to live here as a special case
         if (cmdKey === "clear" || cmdKey === "cls") {
           return [];
         }
@@ -189,7 +190,7 @@ export function useTerminal(
       });
 
       setCmdHistory((prev) => {
-        // TODO: Don't add duplicates if it's the same as the very last command?
+        if (prev[prev.length - 1] === trimmed) return prev;
         return [...prev, trimmed];
       });
 

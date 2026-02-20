@@ -1,38 +1,15 @@
 import { NextResponse } from "next/server";
+import type {
+  SpotifyTokenResponse,
+  SpotifyNowPlayingResponse,
+  SpotifyRecentlyPlayedResponse,
+} from "@/components/terminal/types";
 
-// Vercel specific confiuration
+/* Vercel specific confiuration */
 export const runtime = "edge";
+
+// CHECK: does this work for the edge runtime
 export const revalidate = 15; // seconds
-
-interface SpotifyArtist {
-  name: string;
-}
-
-interface SpotifyTrack {
-  name: string;
-  artists: SpotifyArtist[];
-  external_urls: {
-    spotify: string;
-  };
-}
-
-interface SpotifyTokenResponse {
-  access_token: string;
-  token_type: string;
-  expires_in: number;
-  scope: string;
-}
-
-interface SpotifyNowPlayingResponse {
-  is_playing: boolean;
-  item: SpotifyTrack | null;
-}
-
-interface SpotifyRecentlyPlayedResponse {
-  items: {
-    track: SpotifyTrack;
-  }[];
-}
 
 const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
@@ -80,12 +57,15 @@ export async function GET() {
     if (nowPlayingRes.status === 200) {
       const song = (await nowPlayingRes.json()) as SpotifyNowPlayingResponse;
 
-      if (song.item) {
+      if (song.item && song.item.name) {
         return NextResponse.json({
           isPlaying: song.is_playing,
           title: song.item.name,
           artist: song.item.artists.map((a) => a.name).join(", "),
           url: song.item.external_urls.spotify,
+          albumImageUrl: song.item.album?.images?.[0]?.url || "",
+          progressMs: song.progress_ms,
+          durationMs: song.item.duration_ms,
         });
       }
     }
@@ -101,11 +81,15 @@ export async function GET() {
 
       if (recentData.items && recentData.items.length > 0) {
         const lastSong = recentData.items[0].track;
+        const playedAt = recentData.items[0].played_at;
         return NextResponse.json({
           isPlaying: false,
           title: lastSong.name,
           artist: lastSong.artists.map((a) => a.name).join(", "),
           url: lastSong.external_urls.spotify,
+          albumImageUrl: lastSong.album?.images?.[0]?.url || "",
+          playedAt: playedAt,
+          durationMs: lastSong.duration_ms,
         });
       }
     }

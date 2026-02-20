@@ -9,9 +9,11 @@ import Skills from "./skills";
 import Socials from "./socials";
 import { Theme, isThemeArg } from "./theme";
 import Link from "next/link";
+import SpotifyCommand from "./spotify";
 
 const about: CommandDef = {
   description: "Who is Jeet?",
+  aliases: ["bio"],
   action: () => ({
     result: <About />,
     status: "success",
@@ -29,7 +31,7 @@ const experience: CommandDef = {
 
 const projects: CommandDef = {
   description: "View some of my work",
-  aliases: ["proj"],
+  aliases: ["proj", "project"],
   action: () => ({
     result: <Projects />,
     status: "success",
@@ -122,6 +124,15 @@ const pdf: CommandDef = {
   }),
 };
 
+const spotify: CommandDef = {
+  description: "View my Spotify activity",
+  aliases: ["music", "nowplaying"],
+  action: () => ({
+    result: <SpotifyCommand />,
+    status: "success",
+  }),
+};
+
 const clear: CommandDef = {
   description: "Clear terminal",
   aliases: ["cls"],
@@ -133,10 +144,12 @@ const clear: CommandDef = {
 
 export const COMMAND_REGISTRY: Record<string, CommandDef> = {
   about,
+  bio: about,
   experience,
   exp: experience,
   work: experience,
   projects,
+  project: projects,
   proj: projects,
   research,
   papers: research,
@@ -151,10 +164,14 @@ export const COMMAND_REGISTRY: Record<string, CommandDef> = {
   pdf,
   cv: pdf,
   resume: pdf,
+  spotify,
+  music: spotify,
+  nowplaying: spotify,
   whoami: {
-    description: "Current user",
+    description: "Information about YOU",
+    // TODO: figure out current IP, location, device, etc.
     action: () => ({
-      result: <div className="text-term-muted">visitor@system</div>,
+      result: <div className="text-term-muted">guest@jeetsh4h-dev</div>,
       status: "success",
     }),
   },

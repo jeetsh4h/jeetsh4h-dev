@@ -203,6 +203,7 @@ function TerminalBase({
                 onKeyDown={handleKeyDown}
                 autoComplete="off"
                 spellCheck={false}
+                autoFocus
               />
             </div>
           </ActivePrompt>

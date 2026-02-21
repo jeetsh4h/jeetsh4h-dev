@@ -11,6 +11,7 @@ import { Theme, isThemeArg } from "./theme";
 import Link from "next/link";
 import SpotifyCommand from "./spotify";
 import Whoami from "./whoami";
+import CatArt from "./cat";
 
 const about: CommandDef = {
   description: "Who is Jeet?",
@@ -114,6 +115,34 @@ const theme: CommandDef = {
   },
 };
 
+const cat: CommandDef = {
+  description: "Output a... meow?",
+  aliases: ["meow"],
+  action: ({ args }: { args: string[] }) => {
+    if (args.includes("--download")) {
+      return {
+        result: (
+          <div className="flex flex-col gap-2 mt-2 text-primary font-semibold underline decoration-primary/30">
+            <Link
+              href="/cat.txt"
+              download="cat.txt"
+              className="w-fit hover:decoration-primary transition-all"
+            >
+              cat.txt
+            </Link>
+          </div>
+        ),
+        status: "success",
+      };
+    }
+
+    return {
+      result: <CatArt />,
+      status: "success",
+    };
+  },
+};
+
 const pdf: CommandDef = {
   description: "Download my CV as a PDF",
   aliases: ["cv", "resume"],
@@ -125,7 +154,7 @@ const pdf: CommandDef = {
           download="Jeet_Shah_CV.pdf"
           className="w-fit hover:decoration-primary transition-all"
         >
-          Download
+          Jeet_Shah_CV.pdf
         </Link>
       </div>
     ),
@@ -177,6 +206,8 @@ export const COMMAND_REGISTRY: Record<string, CommandDef> = {
   music: spotify,
   nowplaying: spotify,
   whoami,
+  cat,
+  meow: cat,
   help: {
     description: "List available commands",
     action: () => ({

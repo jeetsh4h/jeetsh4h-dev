@@ -10,6 +10,11 @@ import { useSearchParams } from "next/navigation";
 import { IconGitCommit } from "@tabler/icons-react";
 import { SpotifyPromptSegment } from "./spotify-prompt-segment";
 
+import dynamic from "next/dynamic";
+const WalkingCat = dynamic(() => import("./walking-cat"), {
+  ssr: false,
+});
+
 const ActivePrompt = ({
   refreshTrigger,
   children,
@@ -160,7 +165,9 @@ function TerminalBase({
       onClick={handleFocus}
     >
       {/* Window Decorations / Header */}
-      <CardHeader className="flex-none border-b py-3 bg-card z-20 flex flex-row items-center justify-between space-y-0">
+      <CardHeader className="relative flex-none border-b py-3 bg-card z-20 flex flex-row items-center justify-between space-y-0">
+        <WalkingCat />
+
         <div className="flex items-center gap-2 mt-1">
           <div className="size-3 rounded-full bg-[#ff5f56] border border-[#e0443e] hover:bg-[#ff5f56]/80 shadow-sm" />
           <div className="size-3 rounded-full bg-[#ffbd2e] border border-[#dea123] hover:bg-[#ffbd2e]/80 shadow-sm" />

@@ -9,6 +9,8 @@ export default function CatArt() {
   const [catArt, setCatArt] = useState<string>("");
 
   useEffect(() => {
+    window.dispatchEvent(new CustomEvent("cat-summoned"));
+
     fetch("/cat.txt")
       .then((res) => res.text())
       .then((text) => {

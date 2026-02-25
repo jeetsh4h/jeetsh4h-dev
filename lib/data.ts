@@ -12,6 +12,12 @@ export interface EducationItem {
   details: string[];
 }
 
+export interface PriorEducationItem {
+  institution: string;
+  period: string;
+  degree: string;
+}
+
 export interface Skills {
   [category: string]: string;
 }
@@ -20,6 +26,22 @@ export const ABOUT = {
   name: "Jeet Shah",
   role: "Full-Stack Engineer & AI Researcher",
   bio: "I am a product-minded Full-Stack Engineer and an AI Researcher. Currently co-founding TriCatch and building scalable systems. I specialize in spatiotemporal deep-learning problems. Bridging the gap between business requirements and technical architecture from Mumbai, India.",
+};
+
+export const SEO = {
+  title: "Jeet Shah | Software Engineer & AI Researcher",
+  description: ABOUT.bio,
+  url: "https://jeetsh4h.dev",
+  keywords: [
+    "Jeet Shah",
+    "Software Engineer",
+    "AI Researcher",
+    "Full-Stack Developer",
+    "React",
+    "Next.js",
+    "Machine Learning",
+    "TriCatch",
+  ],
 };
 
 export const SOCIALS = {
@@ -155,6 +177,19 @@ export const EDUCATION: EducationItem[] = [
     period: "2021 - 2024",
     degree: "BSc. (Hons.) in Computer Science",
     details: ["CGPA: 8.88/10", "Award: Merit Scholarship (25%)"],
+  },
+];
+
+export const PRIOR_EDUCATION: PriorEducationItem[] = [
+  {
+    institution: "PACE Jr. Sci. College (HSC)",
+    period: "2019 - 2021",
+    degree: "94.00% (Merit Scholarship)",
+  },
+  {
+    institution: "CP Goenka Int'l School (IGCSE)",
+    period: "2019",
+    degree: "92.25% (Cambridge Certificate)",
   },
 ];
 

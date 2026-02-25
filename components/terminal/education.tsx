@@ -1,4 +1,4 @@
-import { EDUCATION } from "@/lib/data";
+import { EDUCATION, PRIOR_EDUCATION } from "@/lib/data";
 
 export default function Education() {
   return (
@@ -30,16 +30,18 @@ export default function Education() {
         </div>
       ))}
 
-      {/* TODO: add this to data.ts and define a type */}
-      <div className="border-t border-term-border/50 pt-2">
-        <span className="text-primary font-bold">Prior Education:</span>
-        <ul className="text-xs text-foreground marker:text-accent list-disc list-inside mt-1 ml-1 space-y-1">
-          <li>PACE Jr. Sci. College (HSC): 94.00% (Merit Scholarship)</li>
-          <li>
-            CP Goenka Int&apos;l School (IGCSE): 92.25% (Cambridge Certificate)
-          </li>
-        </ul>
-      </div>
+      {PRIOR_EDUCATION && PRIOR_EDUCATION.length > 0 && (
+        <div className="border-t border-term-border/50 pt-2">
+          <span className="text-primary font-bold">Prior Education:</span>
+          <ul className="text-xs text-foreground marker:text-accent list-disc list-inside mt-1 ml-1 space-y-1">
+            {PRIOR_EDUCATION.map((edu) => (
+              <li key={`${edu.institution}-${edu.period}`}>
+                {edu.institution}: {edu.degree}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

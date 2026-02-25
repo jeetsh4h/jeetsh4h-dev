@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import CrtOverlay from "@/components/ui/crt-overlay";
+import { SEO } from "@/lib/data";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -13,9 +14,26 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "jeetsh4h",
-  description:
-    "Jeet Shah's personal website. Software developer. Co-founder of TriCatch.",
+  title: {
+    default: SEO.title,
+    template: `%s | ${SEO.title}`,
+  },
+  description: SEO.description,
+  keywords: SEO.keywords,
+  authors: [{ name: "Jeet Shah", url: "https://jeetsh4h.dev" }],
+  openGraph: {
+    title: SEO.title,
+    description: SEO.description,
+    url: SEO.url,
+    siteName: "Jeet Shah",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SEO.title,
+    description: SEO.description,
+  },
 };
 
 export const viewport: Viewport = {

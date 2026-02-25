@@ -226,9 +226,14 @@ export function useTerminal(
         setHistoryIndex(-1);
         setInput("");
       }
-    } else if (e.key === "Tab" || e.key === "ArrowRight") {
+    } else if (e.key === "Tab") {
       e.preventDefault();
       if (suggestion) {
+        setInput(input + suggestion);
+      }
+    } else if (e.key === "ArrowRight") {
+      if (suggestion && e.currentTarget.selectionStart === input.length) {
+        e.preventDefault();
         setInput(input + suggestion);
       }
     }

@@ -211,19 +211,17 @@ function TerminalBase({
            */}
           <ActivePrompt refreshTrigger={history.length}>
             <div className="relative flex-1">
-              <span className="whitespace-pre-wrap break-all text-foreground font-medium">
-                {input}
-              </span>
-
-              <span className="inline-block w-0.5 h-5 bg-secondary align-middle -mt-1 animate-caret-blink opacity-80" />
-
-              <span className="text-muted-foreground opacity-50 select-none">
-                {suggestion}
+              <span className="text-muted-foreground opacity-50 select-none absolute left-0 top-0 pointer-events-none whitespace-pre-wrap break-all inline-block">
+                <span className="opacity-0">{input}</span>
+                <span>{suggestion}</span>
               </span>
 
               <input
                 ref={inputRef}
-                className="absolute inset-0 size-full opacity-0 cursor-default"
+                className={cn(
+                  "relative w-full bg-transparent text-foreground font-medium outline-none border-none caret-secondary ring-0 p-0 m-0",
+                  "focus:ring-0 focus:outline-none",
+                )}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}

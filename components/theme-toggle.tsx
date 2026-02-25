@@ -10,10 +10,9 @@ import {
 import { useTheme } from "next-themes";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
-export function ThemeToggle() {
+export default function ThemeToggle() {
   const { setTheme, resolvedTheme, theme } = useTheme();
-  const effectiveTheme = resolvedTheme ?? theme;
-  const isDark = effectiveTheme === "dark";
+  const isDark = resolvedTheme === "dark";
 
   return (
     <div className="relative flex group">
@@ -25,15 +24,11 @@ export function ThemeToggle() {
               onClick={() => {
                 setTheme(isDark ? "light" : "dark");
               }}
+              aria-label="Toggle Theme"
             >
-              <IconMoon
-                suppressHydrationWarning
-                className={`size-4 ${isDark ? "" : "hidden"}`}
-              />
-              <IconSun
-                suppressHydrationWarning
-                className={`size-4 ${!isDark ? "" : "hidden"}`}
-              />
+              {isDark ?
+                <IconMoon className="size-4" />
+              : <IconSun className="size-4" />}
             </Button>
           }
         />
@@ -53,11 +48,11 @@ export function ThemeToggle() {
               className="absolute left-9 group-[:not(:hover)]:opacity-0 group-[:not(:hover)]:pointer-events-none transition-opacity duration-300 ease-in-out size-9 rounded-r border-l-0 bg-card border-border hover:border-accent cursor-pointer"
               onClick={() => {
                 if (theme !== "system") setTheme("system");
-                else setTheme(effectiveTheme === "dark" ? "dark" : "light");
+                else setTheme(resolvedTheme === "dark" ? "dark" : "light");
               }}
+              aria-label="System Theme"
             >
               <IconDeviceDesktop
-                suppressHydrationWarning
                 className={`size-4 ${theme === "system" ? "text-accent" : "text-muted-foreground"}`}
               />
             </Button>

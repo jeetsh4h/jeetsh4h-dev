@@ -1,13 +1,9 @@
 import { ABOUT } from "@/lib/data";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import dynamic from "next/dynamic";
 import { IconTerminal2, IconFileCv } from "@tabler/icons-react";
 import About from "./about";
-
-const ThemeToggle = dynamic(() => import("./theme-toggle"), {
-  ssr: false,
-});
+import ThemeToggle from "./theme-toggle-wrapper";
 import Socials from "./socials";
 import { TooltipTrigger, Tooltip, TooltipContent } from "./ui/tooltip";
 

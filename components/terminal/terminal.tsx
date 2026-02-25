@@ -225,6 +225,12 @@ function TerminalBase({
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
+                onTouchEnd={(e) => {
+                  if (suggestion) {
+                    e.preventDefault();
+                    setInput((prev) => prev + suggestion);
+                  }
+                }}
                 autoComplete="off"
                 spellCheck={false}
                 autoFocus

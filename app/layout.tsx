@@ -5,6 +5,7 @@ import { JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import CrtOverlay from "@/components/ui/crt-overlay";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -68,6 +69,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <TooltipProvider>{children}</TooltipProvider>
+          <CrtOverlay />
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

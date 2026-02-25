@@ -14,6 +14,7 @@ import dynamic from "next/dynamic";
 const WalkingCat = dynamic(() => import("./walking-cat"), {
   ssr: false,
 });
+import TerminalCrtOverlay from "@/components/ui/terminal-crt-overlay";
 
 const ActivePrompt = ({
   refreshTrigger,
@@ -164,6 +165,8 @@ function TerminalBase({
       className="w-full h-full overflow-hidden font-mono text-sm min-h-0 p-0 gap-0 relative rounded-sm shadow-md"
       onClick={handleFocus}
     >
+      <TerminalCrtOverlay />
+
       {/* Window Decorations / Header */}
       <CardHeader className="relative flex-none border-b py-3 bg-card z-20 flex flex-row items-center justify-between space-y-0">
         <WalkingCat />

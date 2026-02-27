@@ -40,6 +40,10 @@ export const SEO = {
     "React",
     "Next.js",
     "Machine Learning",
+    "Precipitation Nowcasting",
+    "ConvLSTM",
+    "Deep Learning",
+    "Software Developer",
     "TriCatch",
   ],
 };

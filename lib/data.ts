@@ -18,6 +18,21 @@ export interface PriorEducationItem {
   degree: string;
 }
 
+export interface ExperienceTextLink {
+  label: string;
+  href: string;
+}
+
+export interface ExperienceItem {
+  company: string;
+  role: string;
+  period: string;
+  type: string;
+  description: string[];
+  compact?: boolean;
+  textLinks?: ExperienceTextLink[];
+}
+
 export interface Skills {
   [category: string]: string;
 }
@@ -54,7 +69,7 @@ export const SOCIALS = {
   email: "jeetsh4h@gmail.com",
 };
 
-export const EXPERIENCE = [
+export const EXPERIENCE: ExperienceItem[] = [
   {
     company: "TriCatch",
     role: "Co-founder & Lead Engineer",
@@ -65,6 +80,12 @@ export const EXPERIENCE = [
       "Engineered an offline-first synchronization engine for low-connectivity environments.",
       "Managing full-cycle development and secure user data handling.",
     ],
+    textLinks: [
+      {
+        label: "Movynn",
+        href: "https://www.instagram.com/movynn_in/",
+      },
+    ],
   },
   {
     company: "Voltek AI",
@@ -72,8 +93,14 @@ export const EXPERIENCE = [
     period: "Oct 2024 - Present",
     type: "work",
     description: [
-      "Designed NANOLOY data pipeline (PostgreSQL, Azure), reducing query latency by 200%.",
+      "Designed Nanoloy data pipeline (PostgreSQL, Azure), reducing query latency by 200%.",
       "Built Multi-LLM RAG system for internal knowledge retrieval.",
+    ],
+    textLinks: [
+      {
+        label: "Nanoloy",
+        href: "https://www.nanoloy.com/",
+      },
     ],
   },
   {

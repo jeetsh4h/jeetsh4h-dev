@@ -1,4 +1,6 @@
 import { EXPERIENCE } from "@/lib/data";
+
+import ExperienceDescription from "./experience-description";
 import TerminalCommandLink from "./terminal-command-link";
 
 export default function Experience() {
@@ -29,7 +31,12 @@ export default function Experience() {
             {job.description && (
               <ul className="list-disc list-outside marker:text-accent ml-4 space-y-1.5 text-foreground text-sm leading-relaxed">
                 {job.description.map((ach) => (
-                  <li key={`${job.company}-${ach}`}>{ach}</li>
+                  <li key={`${job.company}-${ach}`}>
+                    <ExperienceDescription
+                      text={ach}
+                      links={job.textLinks}
+                    />
+                  </li>
                 ))}
               </ul>
             )}
@@ -52,7 +59,12 @@ export default function Experience() {
                   </span>
                 </div>
                 <div className="text-foreground text-xs mt-1 ml-2">
-                  {job.description && job.description[0]}
+                  {job.description && (
+                    <ExperienceDescription
+                      text={job.description[0]}
+                      links={job.textLinks}
+                    />
+                  )}
                 </div>
               </div>
             </div>

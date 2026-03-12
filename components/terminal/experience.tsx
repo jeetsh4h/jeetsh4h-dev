@@ -1,5 +1,7 @@
 import { EXPERIENCE } from "@/lib/data";
 
+import ExperienceDescription from "../experience-description";
+
 export default function Experience() {
   const featuredExp = EXPERIENCE.filter((job) => !job.compact);
   const compactExp = EXPERIENCE.filter((job) => job.compact);
@@ -31,7 +33,13 @@ export default function Experience() {
             {job.description && (
               <ul className="list-disc list-outside marker:text-accent text-foreground text-xs space-y-1 ml-4">
                 {job.description.map((desc) => (
-                  <li key={`${job.company}-${desc}`}>{desc}</li>
+                  <li key={`${job.company}-${desc}`}>
+                    <ExperienceDescription
+                      text={desc}
+                      links={job.textLinks}
+                      linkClassName="decoration-primary/50"
+                    />
+                  </li>
                 ))}
               </ul>
             )}
@@ -59,7 +67,13 @@ export default function Experience() {
                     </span>
                   </div>
                   <div className="ml-2 mt-0.5 text-sx text-foreground">
-                    {job.description}
+                    {job.description?.[0] && (
+                      <ExperienceDescription
+                        text={job.description[0]}
+                        links={job.textLinks}
+                        linkClassName="decoration-primary/50"
+                      />
+                    )}
                   </div>
                 </div>
               </div>

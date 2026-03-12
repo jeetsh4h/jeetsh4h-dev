@@ -13,24 +13,48 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import dynamic from "next/dynamic";
 
 const ThemeToggle = dynamic(() => Promise.resolve(ThemeToggleBase), {
+  loading: () => <ThemeToggleSkeleton />,
   ssr: false,
 });
 export default ThemeToggle;
+
+function ThemeToggleSkeleton() {
+  return (
+    <div
+      className="flex"
+      aria-hidden="true"
+    >
+      <div className="size-9 rounded-r-none rounded bg-card border border-accent" />
+      <div className="size-9 rounded-l-none rounded bg-card border border-l-0 border-border" />
+    </div>
+  );
+}
 
 function ThemeToggleBase() {
   const { setTheme, resolvedTheme, theme } = useTheme();
   const isDark = resolvedTheme === "dark";
 
+  const toggleTheme = () => {
+    setTheme(isDark ? "light" : "dark");
+  };
+
+  const toggleSystemTheme = () => {
+    if (theme !== "system") {
+      setTheme("system");
+      return;
+    }
+
+    setTheme(isDark ? "dark" : "light");
+  };
+
   return (
-    <div className="relative flex group">
+    <div className="flex">
       <Tooltip>
         <TooltipTrigger
           render={
             <Button
-              className="size-9 rounded bg-card text-accent border-accent cursor-pointer group-hover:rounded-r-none"
-              onClick={() => {
-                setTheme(isDark ? "light" : "dark");
-              }}
+              className="size-9 rounded rounded-r-none bg-card text-accent border-accent cursor-pointer"
+              onClick={toggleTheme}
               aria-label="Toggle Theme"
             >
               {isDark ?
@@ -52,11 +76,8 @@ function ThemeToggleBase() {
         <TooltipTrigger
           render={
             <Button
-              className="absolute left-0 top-9 md:left-9 md:top-0 md:group-[:not(:hover)]:opacity-0 md:group-[:not(:hover)]:pointer-events-none transition-opacity duration-300 ease-in-out size-9 rounded-b md:rounded-r border-t-0 md:border-t md:border-l-0 bg-card border-border hover:border-accent cursor-pointer"
-              onClick={() => {
-                if (theme !== "system") setTheme("system");
-                else setTheme(resolvedTheme === "dark" ? "dark" : "light");
-              }}
+              className="size-9 rounded rounded-l-none border-l-0 bg-card border-border hover:border-accent cursor-pointer"
+              onClick={toggleSystemTheme}
               aria-label="System Theme"
             >
               <IconDeviceDesktop

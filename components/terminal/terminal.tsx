@@ -9,12 +9,12 @@ import { cn } from "@/lib/utils";
 import { useSearchParams } from "next/navigation";
 import { IconGitCommit } from "@tabler/icons-react";
 import { SpotifyPromptSegment } from "./spotify-prompt-segment";
+import TerminalCrtOverlay from "@/components/ui/terminal-crt-overlay";
 
 import dynamic from "next/dynamic";
 const WalkingCat = dynamic(() => import("./walking-cat"), {
   ssr: false,
 });
-import TerminalCrtOverlay from "@/components/ui/terminal-crt-overlay";
 
 const ActivePrompt = ({
   refreshTrigger,

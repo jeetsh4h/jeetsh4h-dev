@@ -10,7 +10,14 @@ import {
 import { useTheme } from "next-themes";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
-export default function ThemeToggle() {
+import dynamic from "next/dynamic";
+
+const ThemeToggle = dynamic(() => Promise.resolve(ThemeToggleBase), {
+  ssr: false,
+});
+export default ThemeToggle;
+
+function ThemeToggleBase() {
   const { setTheme, resolvedTheme, theme } = useTheme();
   const isDark = resolvedTheme === "dark";
 
@@ -45,7 +52,7 @@ export default function ThemeToggle() {
         <TooltipTrigger
           render={
             <Button
-              className="absolute left-9 group-[:not(:hover)]:opacity-0 group-[:not(:hover)]:pointer-events-none transition-opacity duration-300 ease-in-out size-9 rounded-r border-l-0 bg-card border-border hover:border-accent cursor-pointer"
+              className="absolute left-0 top-9 md:left-9 md:top-0 md:group-[:not(:hover)]:opacity-0 md:group-[:not(:hover)]:pointer-events-none transition-opacity duration-300 ease-in-out size-9 rounded-b md:rounded-r border-t-0 md:border-t md:border-l-0 bg-card border-border hover:border-accent cursor-pointer"
               onClick={() => {
                 if (theme !== "system") setTheme("system");
                 else setTheme(resolvedTheme === "dark" ? "dark" : "light");

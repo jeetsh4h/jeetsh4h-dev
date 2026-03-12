@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { IconTerminal2, IconFileCv } from "@tabler/icons-react";
 import About from "./about";
-import ThemeToggle from "./theme-toggle-wrapper";
+import ThemeToggle from "./theme-toggle";
 import Socials from "./socials";
 import { TooltipTrigger, Tooltip, TooltipContent } from "./ui/tooltip";
 

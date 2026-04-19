@@ -199,8 +199,6 @@ export default function ShaderOverlay({
     };
   }, [shaders, sizeMode]);
 
-  if (!shaders) return null;
-
   return (
     <canvas
       ref={canvasRef}

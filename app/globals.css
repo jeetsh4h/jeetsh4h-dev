@@ -41,6 +41,50 @@
 }
 
 :root {
+  /* Base - Purple Gray */
+  --background: #24273a;
+  /* Text - White/Lavender */
+  --foreground: #cad3f5;
+
+  /* Card - Mantle */
+  --card: #1e2030;
+  --card-foreground: #cad3f5;
+
+  --popover: #1e2030;
+  --popover-foreground: #cad3f5;
+
+  /* Primary - Mauve */
+  --primary: #c6a0f6;
+  --primary-foreground: #1e2030;
+
+  /* Secondary - Pink */
+  --secondary: #f5bde6;
+  --secondary-foreground: #1e2030;
+
+  /* Muted - Surface */
+  --muted: #363a4f;
+  --muted-foreground: #a5adcb;
+
+  /* Accent - Lavender */
+  --accent: #8aadf4;
+  --accent-foreground: #1e2030;
+
+  --destructive: #ed8796;
+  --destructive-foreground: #1e2030;
+
+  --border: #363a4f;
+  --input: #363a4f;
+  --ring: #c6a0f6;
+
+  --radius: 0.75rem;
+
+  --term-border: #363a4f; /* Surface0 */
+  --term-success: #a6da95; /* Green */
+  --term-warning: #eed49f; /* Yellow */
+  --term-muted: #5b6078; /* Surface2 */
+}
+
+.light {
   /* Base - Warm soft white */
   --background: #eff1f5;
   /* Text - Deep gray-purple */
@@ -84,52 +128,43 @@
 }
 
 .dark {
-  /* Base - Purple Gray */
   --background: #24273a;
-  /* Text - White/Lavender */
   --foreground: #cad3f5;
-
-  /* Card - Mantle */
   --card: #1e2030;
   --card-foreground: #cad3f5;
-
   --popover: #1e2030;
   --popover-foreground: #cad3f5;
-
-  /* Primary - Mauve */
   --primary: #c6a0f6;
   --primary-foreground: #1e2030;
-
-  /* Secondary - Pink */
   --secondary: #f5bde6;
   --secondary-foreground: #1e2030;
-
-  /* Muted - Surface */
   --muted: #363a4f;
   --muted-foreground: #a5adcb;
-
-  /* Accent - Lavender */
   --accent: #8aadf4;
   --accent-foreground: #1e2030;
-
   --destructive: #ed8796;
   --destructive-foreground: #1e2030;
-
   --border: #363a4f;
   --input: #363a4f;
   --ring: #c6a0f6;
-
-  --term-border: #363a4f; /* Surface0 */
-  --term-success: #a6da95; /* Green */
-  --term-warning: #eed49f; /* Yellow */
-  --term-muted: #5b6078; /* Surface2 */
+  --term-border: #363a4f;
+  --term-success: #a6da95;
+  --term-warning: #eed49f;
+  --term-muted: #5b6078;
 }
 
 @layer base {
+  html {
+    background-color: var(--background);
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
   }
 }

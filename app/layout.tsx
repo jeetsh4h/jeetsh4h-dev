@@ -78,7 +78,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${jetbrainsMono.variable} antialiased bg-background text-foreground selection:bg-accent selection:text-accent-foreground transition-all duration-300`}
+        className={`${jetbrainsMono.variable} antialiased bg-background text-foreground selection:bg-accent selection:text-accent-foreground`}
       >
         <ThemeProvider
           attribute="class"

@@ -53,7 +53,7 @@ function ThemeToggleBase() {
         <TooltipTrigger
           render={
             <Button
-              className="size-9 rounded rounded-r-none bg-card text-accent border-accent cursor-pointer"
+              className="size-9 rounded rounded-r-none bg-card text-accent border-border hover:border-accent cursor-pointer"
               onClick={toggleTheme}
               aria-label="Toggle Theme"
             >
@@ -76,7 +76,7 @@ function ThemeToggleBase() {
         <TooltipTrigger
           render={
             <Button
-              className="size-9 rounded rounded-l-none border-l-0 bg-card border-border hover:border-accent cursor-pointer"
+              className="size-9 rounded rounded-l-none border-l-0 bg-card border-border hover:border-accent hover:border-l cursor-pointer"
               onClick={toggleSystemTheme}
               aria-label="System Theme"
             >

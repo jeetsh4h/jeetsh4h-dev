@@ -9,20 +9,21 @@ float random(vec2 st) {
 
 void main() {
     vec2 uv = gl_FragCoord.xy / u_resolution.xy;
-
-    // Vignette
     vec2 coord = uv - 0.5;
     float dist = length(coord);
-    float vignette = smoothstep(0.4, 1.2, dist);
+    float vignette = smoothstep(0.12, 0.72, dist);
 
-    // Scanlines
-    float scanline = sin(gl_FragCoord.y * 1.5) * 0.04;
+    float scanline = (sin(gl_FragCoord.y * 1.65 + u_time * 4.0) * 0.5 + 0.5)
+        * mix(0.02, 0.045, u_isDark);
 
-    // Noise
-    float noise = (random(uv + mod(u_time, 10.0)) - 0.5) * 0.06;
+    float noise = (random(gl_FragCoord.xy + vec2(u_time * 53.0, -u_time * 29.0)) - 0.5)
+        * mix(0.025, 0.05, u_isDark);
 
-    // Constant dark mode math
-    float alpha = vignette * 0.4 + noise;
-    vec3 color = vec3(0.05, 0.05, 0.08); // faint blue/purple tint
-    gl_FragColor = vec4(color, alpha + scanline);
+    float baseAlpha = mix(0.08, 0.18, u_isDark);
+    float alpha = clamp(baseAlpha * vignette + scanline + noise, 0.0, 1.0);
+    vec3 lightColor = vec3(0.08, 0.08, 0.10);
+    vec3 darkColor = vec3(0.05, 0.05, 0.08);
+    vec3 color = mix(lightColor, darkColor, u_isDark);
+
+    gl_FragColor = vec4(color, alpha);
 }

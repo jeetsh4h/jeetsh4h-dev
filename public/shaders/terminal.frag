@@ -9,20 +9,21 @@ float random(vec2 st) {
 
 void main() {
     vec2 uv = gl_FragCoord.xy / u_resolution.xy;
-
-    // Vignette (stronger for terminal)
     vec2 coord = uv - 0.5;
     float dist = length(coord);
-    float vignette = smoothstep(0.2, 1.0, dist);
+    float vignette = smoothstep(0.08, 0.72, dist);
 
-    // Scanlines (stronger, denser)
-    float scanline = sin(gl_FragCoord.y * 3.0) * 0.08;
+    float scanline = (sin(gl_FragCoord.y * 3.0 + u_time * 5.5) * 0.5 + 0.5)
+        * mix(0.04, 0.08, u_isDark);
 
-    // Noise (stronger)
-    float noise = (random(uv + mod(u_time, 10.0)) - 0.5) * 0.12;
+    float noise = (random(gl_FragCoord.xy + vec2(u_time * 71.0, -u_time * 37.0)) - 0.5)
+        * mix(0.04, 0.09, u_isDark);
 
-    // Constant dark mode math
-    float alpha = vignette * 0.6 + noise;
-    vec3 color = vec3(0.1, 0.15, 0.1);
-    gl_FragColor = vec4(color, alpha + scanline);
+    float baseAlpha = mix(0.14, 0.28, u_isDark);
+    float alpha = clamp(baseAlpha * vignette + scanline + noise, 0.0, 1.0);
+    vec3 lightColor = vec3(0.10, 0.12, 0.10);
+    vec3 darkColor = vec3(0.10, 0.15, 0.10);
+    vec3 color = mix(lightColor, darkColor, u_isDark);
+
+    gl_FragColor = vec4(color, alpha);
 }

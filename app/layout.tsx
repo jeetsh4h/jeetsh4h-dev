@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import CrtOverlay from "@/components/ui/crt-overlay";
-import { SEO } from "@/lib/data";
+import { SEO } from "@/lib/content/seo";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],

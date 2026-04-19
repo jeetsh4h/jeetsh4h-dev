@@ -1,9 +1,10 @@
-import { EXPERIENCE } from "@/lib/data";
-
 import ExperienceDescription from "./experience-description";
 import TerminalCommandLink from "./terminal-command-link";
+import { buildExperienceSection } from "@/lib/site-content";
 
 export default function Experience() {
+  const experience = buildExperienceSection();
+
   return (
     <>
       <div className="flex items-center">
@@ -11,7 +12,7 @@ export default function Experience() {
       </div>
 
       <div className="border-l-2 border-term-border/50 ml-2 space-y-10 pl-8 relative -mt-2">
-        {EXPERIENCE.filter((e) => !e.compact).map((job) => (
+        {experience.featuredEntries.map((job) => (
           <div
             key={`${job.company}-${job.role}-${job.period}`}
             className="relative"
@@ -44,7 +45,7 @@ export default function Experience() {
         ))}
 
         <div className="-mt-2 space-y-4">
-          {EXPERIENCE.filter((e) => e.compact).map((job) => (
+          {experience.compactEntries.map((job) => (
             <div
               key={`${job.company}-${job.role}-${job.period}`}
               className="relative group"

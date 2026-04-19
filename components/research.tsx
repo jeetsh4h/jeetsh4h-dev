@@ -1,8 +1,10 @@
-import { RESEARCH } from "@/lib/data";
 import TerminalCommandLink from "./terminal-command-link";
 import Link from "next/link";
+import { buildResearchSection } from "@/lib/site-content";
 
 export default function Research() {
+  const research = buildResearchSection();
+
   return (
     <>
       <div className="flex items-center">
@@ -10,7 +12,7 @@ export default function Research() {
       </div>
 
       <div className="space-y-6 -mt-2">
-        {RESEARCH.map((paper) => (
+        {research.entries.map((paper) => (
           <div
             key={paper.link}
             className="flex flex-col sm:flex-row gap-4 sm:items-start"

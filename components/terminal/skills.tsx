@@ -1,16 +1,18 @@
-import { SKILLS } from "@/lib/data";
+import { buildSkillsSection } from "@/lib/site-content";
 
 export default function Skills() {
+  const skills = buildSkillsSection();
+
   return (
     <div className="flex flex-col gap-2">
-      {Object.entries(SKILLS).map(([cat, val]) => (
-        <div key={cat}>
+      {skills.categories.map((category) => (
+        <div key={category.name}>
           <span className="text-primary font-bold w-24 inline-block">
-            {cat}
+            {category.name}
             {/* TODO: make the colons all in the same column */}
             <span className="text-accent">:</span>
           </span>
-          <span className="text-foreground">{val}</span>
+          <span className="text-foreground">{category.items.join(", ")}</span>
         </div>
       ))}
     </div>

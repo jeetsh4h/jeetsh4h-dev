@@ -1,9 +1,11 @@
-import { PROJECTS } from "@/lib/data";
 import TerminalCommandLink from "./terminal-command-link";
 import { Card, CardHeader } from "./ui/card";
 import Link from "next/link";
+import { buildProjectsSection } from "@/lib/site-content";
 
 export default function Projects() {
+  const projects = buildProjectsSection();
+
   return (
     <>
       <div className="flex items-center">
@@ -11,7 +13,7 @@ export default function Projects() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 -mt-2">
-        {PROJECTS.map((project) => (
+        {projects.entries.map((project) => (
           <Link
             href={project.link}
             target="_blank"
@@ -19,7 +21,7 @@ export default function Projects() {
           >
             <Card className="p-5 rounded-md border-term-border/50 group hover:ring-accent transition-colors cursor-pointer">
               <CardHeader className="flex justify-between items-start p-0">
-                <h3 className="text-primary underline decoration-primary/30 group-hover:decoration-primary transition-allfont-bold text-lg">
+                <h3 className="text-lg font-bold text-primary underline decoration-primary/30 transition-all group-hover:decoration-primary">
                   {project.title}
                 </h3>
               </CardHeader>

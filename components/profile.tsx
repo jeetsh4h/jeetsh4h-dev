@@ -1,4 +1,3 @@
-import { ABOUT } from "@/lib/data";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { IconTerminal2, IconFileCv } from "@tabler/icons-react";
@@ -6,16 +5,19 @@ import About from "./about";
 import ThemeToggle from "./theme-toggle";
 import Socials from "./socials";
 import { TooltipTrigger, Tooltip, TooltipContent } from "./ui/tooltip";
+import { buildIntroSection } from "@/lib/site-content";
 
 export default function Profile() {
+  const intro = buildIntroSection();
+
   return (
     <>
       <div className="flex justify-between items-start">
         <div className="space-y-2">
           <h1 className="text-4xl md:text-5xl font-bold text-primary tracking-tight">
-            {ABOUT.name}
+            {intro.name}
           </h1>
-          <p className="text-xl font-semibold text-secondary">{ABOUT.role}</p>
+          <p className="text-xl font-semibold text-secondary">{intro.role}</p>
         </div>
 
         <div className="flex items-center">

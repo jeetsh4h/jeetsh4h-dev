@@ -1,10 +1,12 @@
-import { RESEARCH } from "@/lib/data";
-import Link from "next/dist/client/link";
+import Link from "next/link";
+import { buildResearchSection } from "@/lib/site-content";
 
 export default function Research() {
+  const research = buildResearchSection();
+
   return (
     <div className="flex flex-col gap-4 mt-2">
-      {RESEARCH.map((paper) => (
+      {research.entries.map((paper) => (
         <div
           key={paper.link}
           className="border-l-2 border-accent pl-3 group cursor-pointer"

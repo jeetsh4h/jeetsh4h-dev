@@ -1,9 +1,11 @@
-import { EDUCATION, PRIOR_EDUCATION } from "@/lib/data";
+import { buildEducationSection } from "@/lib/site-content";
 
 export default function Education() {
+  const education = buildEducationSection();
+
   return (
     <div className="flex flex-col gap-4 mt-2">
-      {EDUCATION.map((edu, idx) => (
+      {education.higherEducation.map((edu, idx) => (
         <div
           key={`${edu.institution}-${edu.period}`}
           className={idx > 0 ? "border-t border-term-border/50 pt-2" : ""}
@@ -30,13 +32,14 @@ export default function Education() {
         </div>
       ))}
 
-      {PRIOR_EDUCATION && PRIOR_EDUCATION.length > 0 && (
+      {education.priorEducation.length > 0 && (
         <div className="border-t border-term-border/50 pt-2">
-          <span className="text-primary font-bold">Prior Education:</span>
+          <span className="text-accent font-bold">Prior Education:</span>
           <ul className="text-xs text-foreground marker:text-accent list-disc list-inside mt-1 ml-1 space-y-1">
-            {PRIOR_EDUCATION.map((edu) => (
+            {education.priorEducation.map((edu) => (
               <li key={`${edu.institution}-${edu.period}`}>
-                {edu.institution}: {edu.degree}
+                <span className="text-primary">{edu.institution}</span>{" "}
+                <span className="text-secondary">({edu.degree})</span>
               </li>
             ))}
           </ul>

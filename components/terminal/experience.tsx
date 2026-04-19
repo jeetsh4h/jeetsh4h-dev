@@ -1,14 +1,12 @@
-import { EXPERIENCE } from "@/lib/data";
-
 import ExperienceDescription from "../experience-description";
+import { buildExperienceSection } from "@/lib/site-content";
 
 export default function Experience() {
-  const featuredExp = EXPERIENCE.filter((job) => !job.compact);
-  const compactExp = EXPERIENCE.filter((job) => job.compact);
+  const experience = buildExperienceSection();
 
   return (
     <div className="flex flex-col gap-8 mt-2">
-      {featuredExp.map((job) => {
+      {experience.featuredEntries.map((job) => {
         return (
           <div
             key={`${job.company}-${job.role}-${job.period}`}
@@ -47,10 +45,10 @@ export default function Experience() {
         );
       })}
 
-      {compactExp.length > 0 && (
+      {experience.compactEntries.length > 0 && (
         <div className="relative">
           <div className="text-muted-foreground text-xs space-y-3">
-            {compactExp.map((job) => (
+            {experience.compactEntries.map((job) => (
               <div
                 key={`${job.company}-${job.role}-${job.period}`}
                 className="relative"

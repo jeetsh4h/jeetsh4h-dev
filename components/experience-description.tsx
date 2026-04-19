@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import type { ExperienceTextLink } from "@/lib/data";
+import type { ExperienceTextLink } from "@/lib/content/types";
 import { cn } from "@/lib/utils";
 
 type ExperienceDescriptionProps = {

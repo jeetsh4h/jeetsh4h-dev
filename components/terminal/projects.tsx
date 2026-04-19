@@ -1,9 +1,11 @@
-import { PROJECTS } from "@/lib/data";
+import { buildProjectsSection } from "@/lib/site-content";
 
 export default function Projects() {
+  const projects = buildProjectsSection();
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-      {PROJECTS.map((proj) => (
+      {projects.entries.map((proj) => (
         <div
           key={proj.link}
           className="border border-border p-4 rounded-lg bg-card group cursor-pointer hover:border-accent"

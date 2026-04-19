@@ -14,6 +14,19 @@ import { Theme, isThemeArg } from "./theme";
 import Whoami from "./whoami";
 import type { TerminalCommand } from "./command-types";
 
+function createCommand(
+  definition: Omit<TerminalCommand, "execute">,
+  execute: TerminalCommand["execute"],
+): TerminalCommand {
+  return {
+    name: definition.name,
+    description: definition.description,
+    usage: definition.usage,
+    aliases: definition.aliases,
+    execute,
+  };
+}
+
 function HelpContent() {
   return (
     <div className="flex flex-col gap-2 mt-2">
@@ -37,80 +50,97 @@ function HelpContent() {
 }
 
 const TERMINAL_COMMANDS: TerminalCommand[] = [
-  {
-    name: "about",
-    description: "Who is Jeet?",
-    aliases: ["bio"],
-    execute: () => ({
+  createCommand(
+    {
+      name: "about",
+      description: "Who is Jeet?",
+      aliases: ["bio", "intro"],
+    },
+    () => ({
       kind: "render",
       node: <About />,
       status: "success",
     }),
-  },
-  {
-    name: "experience",
-    description: "My professional timeline",
-    aliases: ["exp", "work"],
-    execute: () => ({
+  ),
+  createCommand(
+    {
+      name: "experience",
+      description: "My professional timeline",
+      aliases: ["exp", "work"],
+    },
+    () => ({
       kind: "render",
       node: <Experience />,
       status: "success",
     }),
-  },
-  {
-    name: "projects",
-    description: "View some of my work",
-    aliases: ["proj", "project"],
-    execute: () => ({
+  ),
+  createCommand(
+    {
+      name: "projects",
+      description: "View some of my work",
+      aliases: ["proj", "project"],
+    },
+    () => ({
       kind: "render",
       node: <Projects />,
       status: "success",
     }),
-  },
-  {
-    name: "research",
-    description: "Academic Publications",
-    aliases: ["papers"],
-    execute: () => ({
+  ),
+  createCommand(
+    {
+      name: "research",
+      description: "Academic Publications",
+      aliases: ["papers", "paper", "pubs", "publications"],
+    },
+    () => ({
       kind: "render",
       node: <Research />,
       status: "success",
     }),
-  },
-  {
-    name: "education",
-    description: "Academic Background",
-    aliases: ["edu"],
-    execute: () => ({
+  ),
+  createCommand(
+    {
+      name: "education",
+      description: "Academic Background",
+      aliases: ["edu", "school", "university", "uni", "college"],
+    },
+    () => ({
       kind: "render",
       node: <Education />,
       status: "success",
     }),
-  },
-  {
-    name: "skills",
-    description: "Languages & Frameworks",
-    aliases: ["stack"],
-    execute: () => ({
+  ),
+  createCommand(
+    {
+      name: "skills",
+      description: "Languages & Frameworks",
+      aliases: ["stack", "tech", "skill"],
+    },
+    () => ({
       kind: "render",
       node: <Skills />,
       status: "success",
     }),
-  },
-  {
-    name: "socials",
-    description: "Connect with me",
-    aliases: ["contact", "social"],
-    execute: () => ({
+  ),
+  createCommand(
+    {
+      name: "socials",
+      description: "Connect with me",
+      aliases: ["contact", "social", "email"],
+    },
+    () => ({
       kind: "render",
       node: <Socials />,
       status: "success",
     }),
-  },
-  {
-    name: "theme",
-    description: "Switch theme (usage: theme [--toggle | --system])",
-    execute: ({ args }) => {
+  ),
+  createCommand(
+    {
+      name: "theme",
+      description: "Switch theme (usage: theme [--toggle | --system])",
+      usage: "theme [--toggle | --system]",
+    },
+    ({ args }) => {
       if (args.length > 1) {
         return {
           kind: "error",
@@ -140,12 +170,14 @@ const TERMINAL_COMMANDS: TerminalCommand[] = [
         status: "success",
       };
     },
-  },
-  {
-    name: "pdf",
-    description: "Download my CV as a PDF",
-    aliases: ["cv", "resume"],
-    execute: () => ({
+  ),
+  createCommand(
+    {
+      name: "pdf",
+      description: "Download my CV as a PDF",
+      aliases: ["cv", "resume"],
+    },
+    () => ({
       kind: "render",
       node: (
         <div className="flex flex-col gap-2 mt-2 text-primary font-semibold underline decoration-primary/30">
@@ -160,31 +192,37 @@ const TERMINAL_COMMANDS: TerminalCommand[] = [
       ),
       status: "success",
     }),
-  },
-  {
-    name: "spotify",
-    description: "View my Spotify activity",
-    aliases: ["music", "nowplaying"],
-    execute: () => ({
+  ),
+  createCommand(
+    {
+      name: "spotify",
+      description: "View my Spotify activity",
+      aliases: ["music", "nowplaying"],
+    },
+    () => ({
       kind: "render",
       node: <SpotifyCommand />,
       status: "success",
     }),
-  },
-  {
-    name: "whoami",
-    description: "Who are YOU?",
-    execute: () => ({
+  ),
+  createCommand(
+    {
+      name: "whoami",
+      description: "Who are YOU?",
+    },
+    () => ({
       kind: "render",
       node: <Whoami />,
       status: "success",
     }),
-  },
-  {
-    name: "cat",
-    description: "Output a... meow?",
-    aliases: ["meow"],
-    execute: ({ args }) => {
+  ),
+  createCommand(
+    {
+      name: "cat",
+      description: "Output a... meow?",
+      aliases: ["meow"],
+    },
+    ({ args }) => {
       if (args.includes("--download")) {
         return {
           kind: "render",
@@ -209,24 +247,28 @@ const TERMINAL_COMMANDS: TerminalCommand[] = [
         status: "success",
       };
     },
-  },
-  {
-    name: "help",
-    description: "List available commands",
-    execute: () => ({
+  ),
+  createCommand(
+    {
+      name: "help",
+      description: "List available commands",
+    },
+    () => ({
       kind: "render",
       node: <HelpContent />,
       status: "success",
     }),
-  },
-  {
-    name: "clear",
-    description: "Clear terminal",
-    aliases: ["cls"],
-    execute: () => ({
+  ),
+  createCommand(
+    {
+      name: "clear",
+      description: "Clear terminal",
+      aliases: ["cls"],
+    },
+    () => ({
       kind: "clear",
     }),
-  },
+  ),
 ];
 
 const TERMINAL_COMMAND_MAP = Object.fromEntries(

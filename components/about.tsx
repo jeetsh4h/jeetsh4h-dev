@@ -1,7 +1,9 @@
-import { ABOUT } from "@/lib/data";
 import TerminalCommandLink from "./terminal-command-link";
+import { buildIntroSection } from "@/lib/site-content";
 
 export default function About() {
+  const intro = buildIntroSection();
+
   return (
     <>
       <TerminalCommandLink
@@ -10,7 +12,7 @@ export default function About() {
         buttonStyles="px-2 py-1.5"
       />
       <p className="text-foreground leading-relaxed max-w-3xl text-lg pt-2">
-        {ABOUT.bio}
+        {intro.bio}
       </p>
     </>
   );

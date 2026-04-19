@@ -1,0 +1,95 @@
+"use client";
+
+import { useEffect, useRef, useState, Suspense } from "react";
+import { IconTerminal2 } from "@tabler/icons-react";
+import Link from "next/link";
+import Footer from "@/components/footer";
+import { Terminal } from "@/components/terminal/terminal";
+import { Button } from "@/components/ui/button";
+
+export default function TerminalPageClient() {
+  const [viewportHeight, setViewportHeight] = useState("100dvh");
+  const [externalCommand, setExternalCommand] = useState<string | null>(null);
+  const helpTriggerTimeoutRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (!window.visualViewport) return;
+
+    const handleResize = () => {
+      setViewportHeight(`${window.visualViewport!.height}px`);
+      window.scrollTo(0, 0);
+    };
+
+    window.visualViewport.addEventListener("resize", handleResize, {
+      passive: true,
+    });
+    window.visualViewport.addEventListener("scroll", handleResize, {
+      passive: true,
+    });
+
+    handleResize();
+
+    return () => {
+      window.visualViewport?.removeEventListener("resize", handleResize);
+      window.visualViewport?.removeEventListener("scroll", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (helpTriggerTimeoutRef.current !== null) {
+        window.clearTimeout(helpTriggerTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const triggerHelp = () => {
+    if (helpTriggerTimeoutRef.current !== null) {
+      window.clearTimeout(helpTriggerTimeoutRef.current);
+    }
+
+    setExternalCommand(null);
+    helpTriggerTimeoutRef.current = window.setTimeout(() => {
+      setExternalCommand("help");
+      helpTriggerTimeoutRef.current = null;
+    }, 0);
+  };
+
+  return (
+    <>
+      <div
+        className="relative flex w-full flex-col"
+        style={{ height: viewportHeight }}
+      >
+        <div className="mx-auto flex w-full flex-none items-center justify-between p-4 pb-2">
+          <Link href="/">
+            <Button
+              variant="link"
+              className="group flex cursor-pointer items-center gap-2 px-0 text-xs font-mono text-muted-foreground transition-colors hover:text-secondary hover:no-underline hover:decoration-secondary"
+            >
+              <span className="transition-transform group-hover:-translate-x-0.5">
+                ←
+              </span>
+              <span className="underline">../home</span>
+            </Button>
+          </Link>
+
+          <Button
+            onClick={triggerHelp}
+            className="cursor-pointer rounded border border-border bg-card text-accent shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground"
+          >
+            <IconTerminal2 className="size-4" />
+            <span className="text-xs font-mono">help</span>
+          </Button>
+        </div>
+
+        <div className="mx-auto min-h-0 w-full max-w-3xl flex-1 px-4 pb-4">
+          <Suspense fallback={<div className="size-full" />}>
+            <Terminal externalCommand={externalCommand} />
+          </Suspense>
+        </div>
+      </div>
+      <Footer className="mt-12" />
+    </>
+  );
+}

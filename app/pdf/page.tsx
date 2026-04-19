@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import PDFViewer from "@/components/pdf-viewer";
+
+export const metadata: Metadata = {
+  title: "Jeet Shah | CV",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function PDFPage() {
   return (

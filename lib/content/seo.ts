@@ -1,9 +1,9 @@
-import { ABOUT } from "./about";
 import type { SeoContent } from "./types";
 
 export const SEO: SeoContent = {
-  title: "Jeet Shah | Software Engineer & AI Researcher",
-  description: ABOUT.bio,
+  title: "Jeet Shah | Full-Stack Engineer & AI Researcher",
+  description:
+    "Jeet Shah is a full-stack engineer and AI researcher in Mumbai, India, building product systems at TriCatch and researching spatiotemporal deep learning.",
   url: "https://jeetsh4h.dev",
   keywords: [
     "Jeet Shah",

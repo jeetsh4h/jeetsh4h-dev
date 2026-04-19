@@ -16,15 +16,18 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: {
     default: SEO.title,
-    template: `%s | ${SEO.title}`,
+    template: "%s | Jeet Shah",
   },
   description: SEO.description,
   keywords: SEO.keywords,
+  metadataBase: new URL(SEO.url),
   authors: [{ name: "Jeet Shah", url: "https://jeetsh4h.dev" }],
+  creator: "Jeet Shah",
+  publisher: "Jeet Shah",
   openGraph: {
     title: SEO.title,
     description: SEO.description,
-    url: SEO.url,
+    url: "/",
     siteName: "Jeet Shah",
     locale: "en_US",
     type: "website",

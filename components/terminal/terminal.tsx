@@ -1,20 +1,32 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Card, CardHeader } from "@/components/ui/card";
-import { useTerminalDimensions } from "./hooks/use-dimension";
-import { useTerminal } from "./hooks/use-terminal";
-import { cn } from "@/lib/utils";
+import React, { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { IconGitCommit } from "@tabler/icons-react";
-import { SpotifyPromptSegment } from "./spotify-prompt-segment";
-import TerminalCrtOverlay from "@/components/ui/terminal-crt-overlay";
 
-import dynamic from "next/dynamic";
+import { Card, CardHeader } from "@/components/ui/card";
+import TerminalCrtOverlay from "@/components/ui/terminal-crt-overlay";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { cn } from "@/lib/utils";
+
+import { useTerminalDimensions } from "./hooks/use-dimension";
+import { useTerminal } from "./hooks/use-terminal";
+import { SpotifyPromptSegment } from "./spotify-prompt-segment";
+
 const WalkingCat = dynamic(() => import("./walking-cat"), {
   ssr: false,
 });
+
+function getCommitHash() {
+  const commitSha = process.env.NEXT_PUBLIC_COMMIT_SHA ?? "HEAD";
+
+  if (commitSha === "HEAD") {
+    return commitSha;
+  }
+
+  return commitSha.slice(0, 7);
+}
 
 const ActivePrompt = ({
   refreshTrigger,
@@ -23,7 +35,7 @@ const ActivePrompt = ({
   refreshTrigger: number;
   children: React.ReactNode;
 }) => {
-  const commitHash = process.env.NEXT_PUBLIC_COMMIT_SHA!.slice(0, 7);
+  const commitHash = getCommitHash();
 
   return (
     <div className="mt-2 flex flex-col gap-1 w-full">
@@ -87,9 +99,13 @@ const TransientPrompt = ({
 
 interface TerminalProps {
   initialCommand?: string;
+  externalCommand?: string | null;
 }
 
-export function Terminal({ initialCommand = "help" }: TerminalProps) {
+export function Terminal({
+  initialCommand = "help",
+  externalCommand = null,
+}: TerminalProps) {
   const searchParams = useSearchParams();
   const autoRunCommand = searchParams.get("cmd") || undefined;
 
@@ -97,6 +113,7 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
     <TerminalBase
       initialCommand={initialCommand}
       autoRunCommand={autoRunCommand}
+      externalCommand={externalCommand}
       key={autoRunCommand}
     />
   );
@@ -105,29 +122,30 @@ export function Terminal({ initialCommand = "help" }: TerminalProps) {
 function TerminalBase({
   initialCommand,
   autoRunCommand,
+  externalCommand,
 }: TerminalProps & { autoRunCommand?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const lastExternalCommandRef = useRef<string | null>(null);
 
   const dimensions = useTerminalDimensions(containerRef);
   const { history, input, setInput, handleKeyDown, suggestion, execute } =
     useTerminal(dimensions, initialCommand, autoRunCommand);
 
   useEffect(() => {
-    const handleExternalCommand = (e: Event) => {
-      const customEvent = e as CustomEvent<string>;
-      if (customEvent.detail) {
-        execute(customEvent.detail);
-        inputRef.current?.focus();
-      }
-    };
+    if (!externalCommand) {
+      lastExternalCommandRef.current = null;
+      return;
+    }
 
-    window.addEventListener("run-terminal-command", handleExternalCommand);
-    return () => {
-      window.removeEventListener("run-terminal-command", handleExternalCommand);
-    };
-  }, [execute]);
+    if (externalCommand === lastExternalCommandRef.current) {
+      return;
+    }
+
+    lastExternalCommandRef.current = externalCommand;
+    execute(externalCommand);
+    inputRef.current?.focus();
+  }, [execute, externalCommand]);
 
   useEffect(() => {
     const scrollAreaViewport = containerRef.current?.querySelector(
@@ -139,13 +157,12 @@ function TerminalBase({
     const scrollToBottom = (behavior: ScrollBehavior = "auto") => {
       scrollAreaViewport.scrollTo({
         top: scrollAreaViewport.scrollHeight,
-        behavior: behavior,
+        behavior,
       });
     };
-    // Immediate scroll
+
     scrollToBottom("auto");
 
-    // Double-check scroll after 250ms (fixes iOS keyboard animation timing issues)
     const timeout = setTimeout(() => {
       scrollToBottom("auto");
     }, 250);
@@ -167,7 +184,6 @@ function TerminalBase({
     >
       <TerminalCrtOverlay />
 
-      {/* Window Decorations / Header */}
       <CardHeader className="relative flex-none border-b py-3 bg-card z-20 flex flex-row items-center justify-between space-y-0">
         <WalkingCat />
 
@@ -176,13 +192,9 @@ function TerminalBase({
           <div className="size-3 rounded-full bg-[#ffbd2e] border border-[#dea123] hover:bg-[#ffbd2e]/80 shadow-sm" />
           <div className="size-3 rounded-full bg-[#27c93f] border border-[#1aab29] hover:bg-[#27c93f]/80 shadow-sm" />
         </div>
-        {/* <div className="text-xs text-muted-foreground font-bold opacity-80 flex items-center gap-2">
-          <span className="inline">guest@jeetsh4h-dev: ~</span>
-        </div> */}
         <div className="w-12" />
       </CardHeader>
 
-      {/* TODO: change how the scrollbar looks like */}
       <ScrollArea
         className="flex-1 w-full min-h-0"
         scrollThumbClassName="rounded-b-md"
@@ -205,10 +217,6 @@ function TerminalBase({
             </div>
           ))}
 
-          {/* whenever something gets added or removed in the history,
-           * we can trigger a GET request for the spotify song.
-           * The prompt will only reload if the user interacts.
-           */}
           <ActivePrompt refreshTrigger={history.length}>
             <div className="relative flex-1">
               <span className="text-muted-foreground opacity-50 select-none absolute left-0 top-0 pointer-events-none whitespace-pre-wrap break-all inline-block">
@@ -238,10 +246,7 @@ function TerminalBase({
             </div>
           </ActivePrompt>
 
-          <div
-            ref={bottomRef}
-            className="h-4"
-          />
+          <div className="h-4" />
         </div>
       </ScrollArea>
     </Card>

@@ -8,26 +8,6 @@ export type TerminalDimensions = {
   height: number; // Height in pixels
 };
 
-type CommandContext = {
-  args: string[];
-  dimensions: TerminalDimensions;
-  pushToHistory: (item: HistoryItem) => void;
-  clearHistory: () => void;
-};
-
-type CommandResult = {
-  result: ReactNode | void;
-  status: "success" | "error";
-};
-export type CommandAction = (context: CommandContext) => CommandResult;
-
-export type CommandDef = {
-  description: string;
-  usage?: string;
-  aliases?: string[];
-  action: CommandAction;
-};
-
 type BaseHistoryItem = {
   id: string;
   content: ReactNode;

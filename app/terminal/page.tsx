@@ -1,24 +1,23 @@
 "use client";
 
-import { Terminal } from "@/components/terminal/terminal";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { useEffect, useState, Suspense } from "react";
-import Footer from "@/components/footer";
+import { useEffect, useRef, useState, Suspense } from "react";
 import { IconTerminal2 } from "@tabler/icons-react";
+import Link from "next/link";
+
+import Footer from "@/components/footer";
+import { Terminal } from "@/components/terminal/terminal";
+import { Button } from "@/components/ui/button";
 
 export default function TerminalPage() {
   const [viewportHeight, setViewportHeight] = useState("100dvh");
+  const [externalCommand, setExternalCommand] = useState<string | null>(null);
+  const helpTriggerTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
-    // Only run on client-side and if API is supported
     if (!window.visualViewport) return;
 
     const handleResize = () => {
-      // Force the height to match the actual visible area (minus keyboard)
       setViewportHeight(`${window.visualViewport!.height}px`);
-
-      // Prevent the document from scrolling out of view
       window.scrollTo(0, 0);
     };
 
@@ -29,7 +28,6 @@ export default function TerminalPage() {
       passive: true,
     });
 
-    // Set initial height
     handleResize();
 
     return () => {
@@ -38,10 +36,24 @@ export default function TerminalPage() {
     };
   }, []);
 
+  useEffect(() => {
+    return () => {
+      if (helpTriggerTimeoutRef.current !== null) {
+        window.clearTimeout(helpTriggerTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const triggerHelp = () => {
-    window.dispatchEvent(
-      new CustomEvent("run-terminal-command", { detail: "help" }),
-    );
+    if (helpTriggerTimeoutRef.current !== null) {
+      window.clearTimeout(helpTriggerTimeoutRef.current);
+    }
+
+    setExternalCommand(null);
+    helpTriggerTimeoutRef.current = window.setTimeout(() => {
+      setExternalCommand("help");
+      helpTriggerTimeoutRef.current = null;
+    }, 0);
   };
 
   return (
@@ -74,7 +86,7 @@ export default function TerminalPage() {
 
         <div className="w-full flex-1 min-h-0 max-w-3xl mx-auto px-4 pb-4">
           <Suspense fallback={<div className="size-full" />}>
-            <Terminal />
+            <Terminal externalCommand={externalCommand} />
           </Suspense>
         </div>
       </div>

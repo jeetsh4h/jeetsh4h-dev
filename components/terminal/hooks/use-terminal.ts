@@ -1,8 +1,92 @@
 "use client";
 
-import { useState, useCallback, useMemo } from "react";
-import { COMMAND_REGISTRY } from "../commands";
+import { useCallback, useMemo, useState } from "react";
+
+import { executeParsedCommand } from "../command-executor";
+import { parseCommandInput } from "../command-parser";
+import { TERMINAL_COMMAND_NAMES } from "../command-registry";
+import type { TerminalCommandResult } from "../command-types";
 import type { HistoryItem, TerminalDimensions } from "../types";
+
+function createHistoryItemId() {
+  return crypto.randomUUID();
+}
+
+function createOutputEntry(
+  result: Extract<TerminalCommandResult, { kind: "render" }>,
+): HistoryItem {
+  return {
+    id: createHistoryItemId(),
+    type: "output",
+    content: result.node,
+    timestamp: Date.now(),
+    status: result.status,
+  };
+}
+
+function createErrorEntry(message: string): HistoryItem {
+  return {
+    id: createHistoryItemId(),
+    type: "error",
+    content: message,
+    timestamp: Date.now(),
+    status: "error",
+  };
+}
+
+function applyCommandToHistory({
+  history,
+  commandStr,
+  dimensions,
+  includeCommandEntry,
+}: {
+  history: HistoryItem[];
+  commandStr: string;
+  dimensions: TerminalDimensions;
+  includeCommandEntry: boolean;
+}) {
+  const parsedCommand = parseCommandInput(commandStr);
+
+  if (!parsedCommand) {
+    return { history, executedCommand: null as string | null };
+  }
+
+  const result = executeParsedCommand(parsedCommand, {
+    args: parsedCommand.args,
+    dimensions,
+  });
+
+  if (result.kind === "clear") {
+    return {
+      history: [],
+      executedCommand: parsedCommand.rawInput,
+    };
+  }
+
+  const nextEntries: HistoryItem[] = [];
+
+  if (includeCommandEntry) {
+    nextEntries.push({
+      id: createHistoryItemId(),
+      type: "command",
+      content: parsedCommand.rawInput,
+      commandName: parsedCommand.rawName,
+      timestamp: Date.now(),
+      status: result.kind === "error" ? "error" : result.status,
+    });
+  }
+
+  if (result.kind === "render") {
+    nextEntries.push(createOutputEntry(result));
+  } else {
+    nextEntries.push(createErrorEntry(result.message));
+  }
+
+  return {
+    history: [...history, ...nextEntries],
+    executedCommand: parsedCommand.rawInput,
+  };
+}
 
 export function useTerminal(
   dimensions: TerminalDimensions,
@@ -10,105 +94,41 @@ export function useTerminal(
   autoRunCommand?: string,
 ) {
   const [history, setHistory] = useState<HistoryItem[]>(() => {
-    const items: HistoryItem[] = [];
+    let nextHistory: HistoryItem[] = [];
 
     if (initialCommand) {
-      const cmdKey = initialCommand.toLowerCase();
-      const commandDef = COMMAND_REGISTRY[cmdKey];
-
-      if (commandDef) {
-        try {
-          // Mock the context for the initial render
-          const { result, status } = commandDef.action({
-            args: [],
-            dimensions,
-            pushToHistory: () => {},
-            clearHistory: () => {},
-          });
-
-          if (result) {
-            items.push({
-              id: "welcome",
-              type: "output",
-              content: result,
-              timestamp: 0,
-              status: status,
-            });
-          }
-        } catch (error) {
-          console.error("Failed to execute initial command:", error);
-        }
-      }
+      nextHistory = applyCommandToHistory({
+        history: nextHistory,
+        commandStr: initialCommand,
+        dimensions,
+        includeCommandEntry: false,
+      }).history;
     }
 
     if (autoRunCommand) {
-      const trimmed = autoRunCommand.trim();
-      const [cmdKey, ...args] = trimmed.split(/\s+/);
-      const commandDef = COMMAND_REGISTRY[cmdKey.toLowerCase()];
-
-      const userEntry: HistoryItem = {
-        id: "autorun-cmd",
-        type: "command",
-        content: trimmed,
-        commandName: cmdKey,
-        timestamp: Date.now(),
-        status: commandDef ? "success" : "error",
-      };
-      items.push(userEntry);
-
-      if (commandDef) {
-        try {
-          const { result, status } = commandDef.action({
-            args,
-            dimensions,
-            pushToHistory: () => {},
-            clearHistory: () => {},
-          });
-
-          if (result) {
-            items.push({
-              id: "autorun-output",
-              type: "output",
-              content: result,
-              timestamp: Date.now(),
-              status,
-            });
-          }
-        } catch (error) {
-          items.push({
-            id: "autorun-error",
-            type: "error",
-            content: `Error: ${error}`,
-            timestamp: Date.now(),
-            status: "error",
-          });
-        }
-      } else {
-        items.push({
-          id: "autorun-not-found",
-          type: "error",
-          content: `Command not found: "${cmdKey}"`,
-          timestamp: Date.now(),
-          status: "error",
-        });
-      }
+      nextHistory = applyCommandToHistory({
+        history: nextHistory,
+        commandStr: autoRunCommand,
+        dimensions,
+        includeCommandEntry: true,
+      }).history;
     }
-    return items;
+
+    return nextHistory;
   });
 
   const [input, setInput] = useState("");
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [cmdHistory, setCmdHistory] = useState<string[]>(() => {
-    if (!autoRunCommand) return [];
-    const trimmed = autoRunCommand.trim();
+    const trimmed = autoRunCommand?.trim();
     return trimmed ? [trimmed] : [];
   });
 
   const suggestion = useMemo(() => {
     if (!input.trim()) return "";
 
-    const match = Object.keys(COMMAND_REGISTRY).find((cmd) =>
-      cmd.startsWith(input.toLowerCase()),
+    const match = TERMINAL_COMMAND_NAMES.find((commandName) =>
+      commandName.startsWith(input.toLowerCase()),
     );
 
     if (match && match !== input.toLowerCase()) {
@@ -123,77 +143,21 @@ export function useTerminal(
       const trimmed = commandStr.trim();
       if (!trimmed) return;
 
-      const [cmdKey, ...args] = trimmed.split(/\s+/);
-      const commandDef = COMMAND_REGISTRY[cmdKey.toLowerCase()];
+      const executedCommand = parseCommandInput(trimmed)?.rawInput ?? null;
 
-      let outputEntry: HistoryItem | null = null;
-      let commandStatus: "success" | "error";
-
-      if (commandDef) {
-        try {
-          const { result, status } = commandDef.action({
-            args,
-            dimensions,
-            pushToHistory: (item: HistoryItem) =>
-              setHistory((prev) => [...prev, item]),
-            clearHistory: () => setHistory([]),
-          });
-
-          commandStatus = status;
-
-          if (result) {
-            outputEntry = {
-              id: crypto.randomUUID(),
-              type: "output",
-              content: result,
-              timestamp: Date.now(),
-              status: status,
-            };
-          }
-        } catch (error) {
-          commandStatus = "error";
-          outputEntry = {
-            id: crypto.randomUUID(),
-            type: "error",
-            content: `Execution Error: ${error instanceof Error ? error.message : String(error)}`,
-            timestamp: Date.now(),
-            status: commandStatus,
-          };
-        }
-      } else {
-        commandStatus = "error";
-        outputEntry = {
-          id: crypto.randomUUID(),
-          type: "error",
-          content: `Command not found: "${cmdKey}"`,
-          timestamp: Date.now(),
-          status: commandStatus,
-        };
-      }
-
-      const userEntry: HistoryItem = {
-        id: crypto.randomUUID(),
-        type: "command",
-        content: trimmed,
-        commandName: trimmed.split(" ")[0],
-        timestamp: Date.now(),
-        status: commandStatus,
-      };
-
-      setHistory((prev) => {
-        // TODO: refactor so that the clear commands don't have to live here as a special case
-        if (cmdKey === "clear" || cmdKey === "cls") {
-          return [];
-        }
-        const newItems = outputEntry ? [userEntry, outputEntry] : [userEntry];
-        return [...prev, ...newItems];
-      });
-
+      setHistory((prev) => applyCommandToHistory({
+        history: prev,
+        commandStr: trimmed,
+        dimensions,
+        includeCommandEntry: true,
+      }).history);
       setCmdHistory((prev) => {
-        if (prev[prev.length - 1] === trimmed) return prev;
-        return [...prev, trimmed];
-      });
+        if (!executedCommand || prev[prev.length - 1] === executedCommand) {
+          return prev;
+        }
 
+        return [...prev, executedCommand];
+      });
       setHistoryIndex(-1);
       setInput("");
     },

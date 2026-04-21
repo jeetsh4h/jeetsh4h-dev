@@ -1,5 +1,6 @@
 import type { Skills } from "./types";
 
+// TODO: update this
 export const SKILLS: Skills = {
   Languages: ["Python", "TypeScript", "C++", "SQL", "Haskell", "C#"],
   Frameworks: ["React Native", "Next.js", "NestJS", "FastAPI", "Flask"],

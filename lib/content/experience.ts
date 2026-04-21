@@ -2,12 +2,12 @@ import type { ExperienceItem } from "./types";
 
 export const EXPERIENCE: ExperienceItem[] = [
   {
-    company: "TriCatch",
-    role: "Co-founder & Lead Engineer",
+    company: "Elevate Fitness",
+    role: "Software Developer",
     period: "Dec 2025 - Present",
     type: "work",
     description: [
-      "Architecting Movynn (React Native & Supabase).",
+      "Building the Movynn mobile application.",
       "Engineered an offline-first synchronization engine for low-connectivity environments.",
       "Managing full-cycle development and secure user data handling.",
     ],

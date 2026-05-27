@@ -58,11 +58,17 @@ jobs:
         with:
           version: 10
 
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
       - name: Install Vercel CLI
         run: pnpm install -g vercel@latest
 
       - name: Deploy to Vercel
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Verify
+        run: pnpm verify
 
       - name: Build Project Artifacts
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}

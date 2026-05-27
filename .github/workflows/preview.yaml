@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: Preview
-      url: ${{ steps.get_url.outputs.url }}
+      url: ${{ steps.vercel-deploy.outputs.url }}
 
     steps:
       - name: Set up Git repository
@@ -63,11 +63,17 @@ jobs:
         with:
           version: 10
 
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
       - name: Install Vercel CLI
         run: pnpm install -g vercel@latest
 
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Verify
+        run: pnpm verify
 
       - name: Build Project Artifacts
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}

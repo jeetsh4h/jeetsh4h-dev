@@ -26,13 +26,28 @@ pnpm dev
 
 ## CV Build
 
-Requires a local LaTeX installation with `latexmk`.
+Requires a local TeX Live installation with `latexmk` and the LaTeX packages
+used by `cv/cv.tex`.
 
 ```bash
+pnpm cv:check-deps
 pnpm cv:build
 ```
 
 The generated PDF is copied to `public/cv.pdf` for local preview.
+
+On CachyOS/Arch with `fish` and `paru`, install the required TeX Live packages
+with:
+
+```fish
+pnpm cv:install-deps:cachyos
+```
+
+The installer wraps:
+
+```fish
+paru -S --needed texlive-bin texlive-binextra texlive-basic texlive-latex texlive-latexrecommended texlive-latexextra texlive-fontsrecommended
+```
 
 ## Checks
 

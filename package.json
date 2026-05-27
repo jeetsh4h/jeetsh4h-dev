@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
+    "cv:check-deps": "bash scripts/check-cv-deps.sh",
+    "cv:install-deps:cachyos": "fish scripts/install-cv-deps.fish",
     "cv:build": "bash scripts/build-cv.sh",
     "cv:clean": "bash scripts/clean-cv.sh",
     "verify": "pnpm lint && pnpm test && pnpm build"

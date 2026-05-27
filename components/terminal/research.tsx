@@ -24,22 +24,21 @@ export default function Research() {
               >
                 {paper.title}
               </Link>
-            : <div className="font-bold mb-1 text-primary">{paper.title}</div>
-            }
+            : <div className="font-bold mb-1 text-primary">{paper.title}</div>}
             <div className="text-xs text-foreground">
               {paper.citationAuthors && <span>{paper.citationAuthors} </span>}
               <span className="text-secondary">{paper.year}</span>
             </div>
             <p className="mt-1 text-xs text-foreground">{paper.summary}</p>
             {secondaryLinks.length > 0 && (
-              <div className="mt-2 flex flex-wrap gap-3 text-xs text-primary underline decoration-primary/40">
+              <div className="mt-2 flex flex-wrap gap-3 text-xs text-accent underline decoration-accent/40">
                 {secondaryLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:decoration-primary transition-all"
+                    className="hover:decoration-accent transition-all"
                   >
                     {link.label}
                   </Link>

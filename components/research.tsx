@@ -39,14 +39,14 @@ function ResearchEntry({ paper }: { paper: ResearchEntryModel }) {
         </p>
 
         {secondaryLinks.length > 0 && (
-          <div className="flex flex-wrap gap-3 text-xs font-semibold text-primary underline decoration-primary/30">
+          <div className="flex flex-wrap gap-3 text-xs font-semibold text-accent underline decoration-accent/30">
             {secondaryLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:decoration-primary transition-all"
+                className="hover:decoration-accent transition-all"
               >
                 {link.label}
               </Link>

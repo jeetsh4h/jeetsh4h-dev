@@ -1,5 +1,5 @@
 import { IconTerminal2 } from "@tabler/icons-react";
-import { Button } from "./ui/button";
+import { buttonVariants } from "./ui/button-variants";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -17,16 +17,18 @@ export default function TerminalCommandLink({
   iconStyles?: string;
 }) {
   return (
-    <Link href={`/terminal?cmd=${command}`}>
-      <Button
-        className={cn(
+    <Link
+      href={`/terminal?cmd=${command}`}
+      className={cn(
+        buttonVariants({
+          className:
           "rounded py-4.5 bg-card text-accent hover:text-accent-foreground hover:bg-accent border-border cursor-pointer",
-          buttonStyles,
-        )}
-      >
-        <IconTerminal2 className={cn("size-3", iconStyles)} />
-        <span className={cn("text-xl", textStyles)}>{command}</span>
-      </Button>
+        }),
+        buttonStyles,
+      )}
+    >
+      <IconTerminal2 className={cn("size-3", iconStyles)} />
+      <span className={cn("text-xl", textStyles)}>{command}</span>
     </Link>
   );
 }

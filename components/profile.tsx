@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { buttonVariants } from "./ui/button-variants";
 import { IconTerminal2, IconFileCv } from "@tabler/icons-react";
 import About from "./about";
 import ThemeToggle from "./theme-toggle";
@@ -18,24 +18,33 @@ export default function Profile() {
             {intro.name}
           </h1>
           <p className="text-xl font-semibold text-secondary">{intro.role}</p>
+          <p className="text-sm text-muted-foreground">{intro.location}</p>
         </div>
 
         <div className="flex items-center">
-          <Link href="/terminal">
-            <Button className="hidden md:flex h-9 rounded cursor-pointer mr-2 hover:bg-primary-foreground hover:text-primary hover:border-primary transition-all">
-              <IconTerminal2 className="size-4" />
-              <span>Open in Terminal</span>
-            </Button>
+          <Link
+            href="/terminal"
+            className={buttonVariants({
+              className:
+                "hidden md:flex h-9 rounded cursor-pointer mr-2 hover:bg-primary-foreground hover:text-primary hover:border-primary transition-all",
+            })}
+          >
+            <IconTerminal2 className="size-4" />
+            <span>Open in Terminal</span>
           </Link>
 
           <Tooltip>
             <TooltipTrigger
               render={
-                <Link href="/pdf">
-                  <Button className="hidden md:flex h-9 rounded cursor-pointer mr-2 hover:bg-secondary hover:text-secondary-foreground bg-secondary-foreground text-secondary border-secondary transition-all">
-                    <IconFileCv className="size-4" />
-                    <span>Open as PDF</span>
-                  </Button>
+                <Link
+                  href="/pdf"
+                  className={buttonVariants({
+                    className:
+                      "hidden md:flex h-9 rounded cursor-pointer mr-2 hover:bg-secondary hover:text-secondary-foreground bg-secondary-foreground text-secondary border-secondary transition-all",
+                  })}
+                >
+                  <IconFileCv className="size-4" />
+                  <span>Open as PDF</span>
                 </Link>
               }
             />
@@ -63,21 +72,29 @@ export default function Profile() {
 
       {/* Mobile CTA */}
       <div className="md:hidden flex gap-1">
-        <Link href="/terminal">
-          <Button className="flex h-9 rounded cursor-pointer mr-2 hover:bg-primary-foreground hover:text-primary hover:border-primary transition-all">
-            <IconTerminal2 className="size-4" />
-            <span>Open in Terminal</span>
-          </Button>
+        <Link
+          href="/terminal"
+          className={buttonVariants({
+            className:
+              "flex h-9 rounded cursor-pointer mr-2 hover:bg-primary-foreground hover:text-primary hover:border-primary transition-all",
+          })}
+        >
+          <IconTerminal2 className="size-4" />
+          <span>Open in Terminal</span>
         </Link>
 
         <Tooltip>
           <TooltipTrigger
             render={
-              <Link href="/cv.pdf">
-                <Button className="flex h-9 rounded cursor-pointer mr-2 hover:bg-secondary hover:text-secondary-foreground bg-secondary-foreground text-secondary border-secondary transition-all">
-                  <IconFileCv className="size-4" />
-                  <span>Open as PDF</span>
-                </Button>
+              <Link
+                href="/cv.pdf"
+                className={buttonVariants({
+                  className:
+                    "flex h-9 rounded cursor-pointer mr-2 hover:bg-secondary hover:text-secondary-foreground bg-secondary-foreground text-secondary border-secondary transition-all",
+                })}
+              >
+                <IconFileCv className="size-4" />
+                <span>Open as PDF</span>
               </Link>
             }
           />

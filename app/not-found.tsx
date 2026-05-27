@@ -1,6 +1,6 @@
 import Footer from "@/components/footer";
 import NotFoundPath from "@/components/not-found-path";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
 import Link from "next/link";
 import { IconTerminal2, IconFileCv } from "@tabler/icons-react";
 
@@ -9,15 +9,18 @@ export default async function NotFound() {
     <div className="min-h-screen flex flex-col font-mono">
       <div className="flex-none p-4 pb-2 z-10">
         <Link href="/">
-          <Button
-            variant="link"
-            className="group flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-secondary hover:decoration-secondary transition-colors hover:no-underline cursor-pointer"
+          <span
+            className={buttonVariants({
+              variant: "link",
+              className:
+                "group flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-secondary hover:decoration-secondary transition-colors hover:no-underline cursor-pointer",
+            })}
           >
             <span className="transition-transform group-hover:-translate-x-0.5">
               ←
             </span>
             <span className="underline">../home</span>
-          </Button>
+          </span>
         </Link>
       </div>
 
@@ -38,17 +41,27 @@ export default async function NotFound() {
 
         <div className="flex items-center gap-4 pt-4">
           <Link href="/terminal">
-            <Button className="flex h-9 rounded cursor-pointer font-mono hover:bg-primary-foreground hover:text-primary hover:border-primary transition-all">
+            <span
+              className={buttonVariants({
+                className:
+                  "flex h-9 rounded cursor-pointer font-mono hover:bg-primary-foreground hover:text-primary hover:border-primary transition-all",
+              })}
+            >
               <IconTerminal2 className="size-4" />
               <span>./terminal</span>
-            </Button>
+            </span>
           </Link>
 
           <Link href="/pdf">
-            <Button className="flex h-9 rounded cursor-pointer font-mono hover:bg-secondary hover:text-secondary-foreground bg-secondary-foreground text-secondary border-secondary transition-all">
+            <span
+              className={buttonVariants({
+                className:
+                  "flex h-9 rounded cursor-pointer font-mono hover:bg-secondary hover:text-secondary-foreground bg-secondary-foreground text-secondary border-secondary transition-all",
+              })}
+            >
               <IconFileCv className="size-4" />
               <span>./cv.pdf</span>
-            </Button>
+            </span>
           </Link>
         </div>
       </main>

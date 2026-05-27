@@ -9,6 +9,7 @@ import Footer from "@/components/footer";
 import { ABOUT } from "@/lib/content/about";
 import { EDUCATION } from "@/lib/content/education";
 import { SEO } from "@/lib/content/seo";
+import { SKILLS } from "@/lib/content/skills";
 import { SOCIALS } from "@/lib/content/socials";
 
 export const metadata: Metadata = {
@@ -34,12 +35,35 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+  const [currentEducation, ...completedEducation] = EDUCATION;
+  const jobTitle = ABOUT.role.split("|")[0]?.trim() || ABOUT.role;
+  const affiliation =
+    currentEducation ?
+      {
+        "@type": "CollegeOrUniversity",
+        name: currentEducation.institution,
+      }
+    : undefined;
+  const alumniOf = [
+    ...new Set(completedEducation.map((entry) => entry.institution)),
+  ].map((institution) => ({
+    "@type": "CollegeOrUniversity",
+    name: institution,
+  }));
+  const knowsAbout = [
+    ...new Set([
+      "Software engineering",
+      ...SEO.keywords.filter((keyword) => keyword !== ABOUT.name),
+      ...Object.values(SKILLS).flat(),
+    ]),
+  ];
+
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: ABOUT.name,
     url: SEO.url,
-    jobTitle: "Software Engineer",
+    jobTitle,
     description: SEO.description,
     sameAs: SOCIALS.filter((link) => link.kind !== "email").map(
       (link) => link.href,
@@ -48,31 +72,9 @@ export default function Page() {
       "@type": "Place",
       name: ABOUT.location,
     },
-    affiliation: {
-      "@type": "CollegeOrUniversity",
-      name: "Columbia University",
-    },
-    alumniOf: [
-      ...new Set(
-        EDUCATION.map((entry) => entry.institution).filter(
-          (institution) => institution !== "Columbia University",
-        ),
-      ),
-    ].map((institution) => ({
-      "@type": "CollegeOrUniversity",
-      name: institution,
-    })),
-    knowsAbout: [
-      "Software engineering",
-      "Networked systems",
-      "Programming languages",
-      "AI-assisted software engineering",
-      "React Native",
-      "Convex",
-      "FastAPI",
-      "Supabase",
-      "Spatiotemporal forecasting",
-    ],
+    ...(affiliation ? { affiliation } : {}),
+    alumniOf,
+    knowsAbout,
   };
 
   const websiteSchema = {

@@ -6,7 +6,6 @@ import Link from "next/link";
 import Footer from "@/components/footer";
 import { Terminal } from "@/components/terminal/terminal";
 import { Button } from "@/components/ui/button";
-import { buttonVariants } from "@/components/ui/button-variants";
 
 export default function TerminalPageClient() {
   const [viewportHeight, setViewportHeight] = useState("100dvh");
@@ -63,19 +62,17 @@ export default function TerminalPageClient() {
         style={{ height: viewportHeight }}
       >
         <div className="mx-auto flex w-full flex-none items-center justify-between p-4 pb-2">
-          <Link
-            href="/"
-            className={buttonVariants({
-              variant: "link",
-              className:
-                "group flex cursor-pointer items-center gap-2 px-0 text-xs font-mono text-muted-foreground transition-colors hover:text-secondary hover:no-underline hover:decoration-secondary",
-            })}
+          <Button
+            nativeButton={false}
+            render={<Link href="/" />}
+            variant="link"
+            className="group flex cursor-pointer items-center gap-2 px-0 text-xs font-mono text-muted-foreground transition-colors hover:text-secondary hover:no-underline hover:decoration-secondary"
           >
             <span className="transition-transform group-hover:-translate-x-0.5">
               ←
             </span>
             <span className="underline">../home</span>
-          </Link>
+          </Button>
 
           <Button
             onClick={triggerHelp}

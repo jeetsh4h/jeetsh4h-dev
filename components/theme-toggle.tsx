@@ -48,12 +48,12 @@ function ThemeToggleBase() {
   };
 
   return (
-    <div className="flex">
+    <div className="theme-toggle-controls flex">
       <Tooltip>
         <TooltipTrigger
           render={
             <Button
-              className="size-9 rounded rounded-r-none bg-card text-accent border-border hover:border-accent cursor-pointer"
+              className="size-9 rounded rounded-r-none bg-card text-accent border-border hover:border-accent cursor-pointer [.theme-toggle-controls:has(.theme-system:hover)_&]:border-r-accent [.theme-toggle-controls:has(.theme-system:focus-visible)_&]:border-r-accent"
               onClick={toggleTheme}
               aria-label="Toggle Theme"
             >
@@ -76,7 +76,7 @@ function ThemeToggleBase() {
         <TooltipTrigger
           render={
             <Button
-              className="size-9 rounded rounded-l-none border-l-0 bg-card border-border hover:border-accent hover:border-l cursor-pointer"
+              className="theme-system size-9 rounded rounded-l-none border-l-0 bg-card border-border hover:border-accent hover:border-l-0 focus-visible:border-l-0 cursor-pointer"
               onClick={toggleSystemTheme}
               aria-label="System Theme"
             >

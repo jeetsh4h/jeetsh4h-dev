@@ -6,12 +6,13 @@ import CatArt from "./cat";
 import Education from "./education";
 import Experience from "./experience";
 import Projects from "./projects";
+import Proof from "./proof";
 import Research from "./research";
 import Skills from "./skills";
 import Socials from "./socials";
 import SpotifyCommand from "./spotify";
 import { Theme, isThemeArg } from "./theme";
-import Whoami from "./whoami";
+import Now from "./now";
 import type { TerminalCommand } from "./command-types";
 
 function createCommand(
@@ -207,12 +208,24 @@ const TERMINAL_COMMANDS: TerminalCommand[] = [
   ),
   createCommand(
     {
-      name: "whoami",
-      description: "Who are YOU?",
+      name: "now",
+      description: "What I am working on now",
     },
     () => ({
       kind: "render",
-      node: <Whoami />,
+      node: <Now />,
+      status: "success",
+    }),
+  ),
+  createCommand(
+    {
+      name: "proof",
+      description: "External proof and public links",
+      aliases: ["links", "receipts"],
+    },
+    () => ({
+      kind: "render",
+      node: <Proof />,
       status: "success",
     }),
   ),

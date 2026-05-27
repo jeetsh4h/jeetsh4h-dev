@@ -12,7 +12,11 @@
     "cv:install-deps:cachyos": "fish scripts/install-cv-deps.fish",
     "cv:build": "bash scripts/build-cv.sh",
     "cv:clean": "bash scripts/clean-cv.sh",
-    "verify": "pnpm lint && pnpm test && pnpm build"
+    "verify": "pnpm lint && pnpm test && pnpm build",
+    "audit:a11y:home": "pa11y https://jeetsh4h.dev --standard WCAG2AA --runner axe",
+    "audit:a11y:terminal": "pa11y https://jeetsh4h.dev/terminal --standard WCAG2AA --runner axe",
+    "audit:a11y:pdf": "pa11y https://jeetsh4h.dev/pdf --standard WCAG2AA --runner axe",
+    "audit:a11y": "pnpm audit:a11y:home && pnpm audit:a11y:terminal && pnpm audit:a11y:pdf"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
@@ -41,6 +45,7 @@
     "eslint": "^9.39.2",
     "eslint-config-next": "16.1.6",
     "jsdom": "^29.0.2",
+    "pa11y": "^9.1.1",
     "tailwindcss": "^4.2.0",
     "typescript": "^5.9.3",
     "vitest": "^4.1.4"

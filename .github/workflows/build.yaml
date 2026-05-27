@@ -4,6 +4,7 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   NEXT_TELEMETRY_DISABLED: 1
   VERCEL_TELEMETRY_DISABLED: 1
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
   LATEX_IMAGE: ghcr.io/${{ github.repository }}/latex-cv:latest
 
 on:
@@ -28,18 +29,18 @@ jobs:
 
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Cache PDF
         id: cache-pdf
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: public/cv.pdf
           key: ${{ runner.os }}-pdf-${{ hashFiles('cv/*.tex', 'cv/*.bib') }}
 
       - name: Log in to GHCR
         if: steps.cache-pdf.outputs.cache-hit != 'true'
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -64,7 +65,7 @@ jobs:
           if [ -f cv/cv.pdf ]; then cp cv/cv.pdf public/; fi
 
       - name: Cache Next.js Build
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .next/cache
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
@@ -72,12 +73,12 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
         with:
           version: 10
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: pnpm

@@ -3,15 +3,22 @@ import { buttonVariants } from "./ui/button-variants";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-// TODO: allow for command to be typed strictly to
-// the commands registered in the COMMAND_REGISTRY
+export type TerminalCommandLinkCommand =
+  | "about"
+  | "socials"
+  | "experience"
+  | "research"
+  | "skills"
+  | "projects"
+  | "education";
+
 export default function TerminalCommandLink({
   command,
   buttonStyles,
   textStyles,
   iconStyles,
 }: {
-  command: string;
+  command: TerminalCommandLinkCommand;
   buttonStyles?: string;
   textStyles?: string;
   iconStyles?: string;

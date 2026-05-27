@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-const CURRENT_YEAR = "2026";
-
 export default function Footer({ className }: { className?: string }) {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer
       className={cn(
@@ -12,7 +12,7 @@ export default function Footer({ className }: { className?: string }) {
       )}
     >
       <p>
-        © {CURRENT_YEAR} Jeet Chetan Shah.{" "}
+        © {currentYear} Jeet Chetan Shah.{" "}
         <Link
           href="https://github.com/jeetsh4h/jeetsh4h-dev"
           target="_blank"

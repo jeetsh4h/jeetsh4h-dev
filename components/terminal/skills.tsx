@@ -6,12 +6,12 @@ export default function Skills() {
   return (
     <div className="flex flex-col gap-2">
       {skills.categories.map((category) => (
-        <div key={category.name}>
-          <span className="text-primary font-bold w-24 inline-block">
-            {category.name}
-            {/* TODO: make the colons all in the same column */}
-            <span className="text-accent">:</span>
-          </span>
+        <div
+          key={category.name}
+          className="grid grid-cols-[6.5rem_auto_1fr] gap-x-1"
+        >
+          <span className="text-primary font-bold">{category.name}</span>
+          <span className="text-accent">:</span>
           <span className="text-foreground">{category.items.join(", ")}</span>
         </div>
       ))}

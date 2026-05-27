@@ -3,6 +3,9 @@
 import { useState, useEffect, RefObject } from "react";
 import type { TerminalDimensions } from "../types";
 
+const FALLBACK_LINE_HEIGHT_RATIO = 1.5;
+const TERMINAL_CONTENT_PADDING_PX = 32;
+
 export function useTerminalDimensions(ref: RefObject<HTMLElement | null>) {
   const [dimensions, setDimensions] = useState<TerminalDimensions>({
     cols: 0,
@@ -24,17 +27,12 @@ export function useTerminalDimensions(ref: RefObject<HTMLElement | null>) {
       if (ctx) {
         ctx.font = `${styles.fontSize} ${styles.fontFamily}`;
         const charWidth = ctx.measureText("0").width;
-        // TODO: make this not a magic number
         const lineHeight =
-          parseFloat(styles.lineHeight) || parseFloat(styles.fontSize) * 1.5;
+          parseFloat(styles.lineHeight) ||
+          parseFloat(styles.fontSize) * FALLBACK_LINE_HEIGHT_RATIO;
 
-        // TODO: make this not a magic number.
-        // We assume p-4 (1rem = 16px) on both sides -> 32px total padding
-        const paddingX = 32;
-        const paddingY = 32;
-
-        const width = ref.current.clientWidth - paddingX;
-        const height = ref.current.clientHeight - paddingY;
+        const width = ref.current.clientWidth - TERMINAL_CONTENT_PADDING_PX;
+        const height = ref.current.clientHeight - TERMINAL_CONTENT_PADDING_PX;
 
         setDimensions({
           width,

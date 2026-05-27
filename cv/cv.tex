@@ -34,7 +34,7 @@
   \begin{tabularx}{\linewidth}{@{}X r@{}}
     \textbf{#1} & \textit{#2}\\
     #3 & #4
-  \end{tabularx}
+  \end{tabularx}\par
   \vspace{5pt}
 }
 
@@ -44,11 +44,11 @@
   \end{tabularx}
   \vspace{-10pt}
   #3
-  \vspace{2pt}
+  \vspace{8pt}
 }
 
 \newcommand{\skillrow}[2]{%
-  \textbf{#1} & #2\\[3pt]
+  \textbf{#1} & #2\\[6pt]
 }
 
 \newcommand{\publication}[5]{%
@@ -61,6 +61,12 @@
 
 \newcommand{\researchnote}[1]{%
   \hspace*{1.2em}\textit{Note.} #1\par
+}
+
+\newcommand{\researchdirection}[1]{%
+  \vspace{3pt}
+  \textbf{Current research direction}\\[-1pt]
+  #1\par
 }
 
 \begin{document}
@@ -119,7 +125,7 @@ Software developer and Columbia University M.S. Computer Science student in New 
 \publication{Deshpande, A., Gopalan, K., Shah, J., \& Simu, H.}{2024}{A conditional Generative Adversarial Network model for the Weather4Cast 2024 Challenge}{arXiv}{\href{https://arxiv.org/abs/2412.00451}{Paper} \ $|$ \ \href{https://weather4cast.net/neurips2024/competitions/w4c24-cum1/?leaderboard=}{Leaderboard}}
 \researchnote{Co-author. Team kaubega placed 1st on the Weather4Cast 2024 core/cumulative-rainfall challenge at the competition deadline.}
 
-\textbf{Current research interests.} Programming-language design and AI-assisted software engineering workflows. Details withheld pending peer review or public release.
+\researchdirection{Programming-language design and AI-assisted software engineering workflows. Details withheld pending peer review or public release.}
 
 \newpage
 \section{Selected Projects}

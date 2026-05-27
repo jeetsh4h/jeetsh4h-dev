@@ -12,7 +12,33 @@ type ShaderOverlayProps = {
   fragmentPath: string;
   sizeMode: "viewport" | "element";
   className: string;
+  deferUntilIdle?: boolean;
+  respectReducedMotion?: boolean;
 };
+
+type IdleSchedulerWindow = Window & {
+  requestIdleCallback?: (
+    callback: () => void,
+    options?: { timeout: number },
+  ) => number;
+  cancelIdleCallback?: (handle: number) => void;
+};
+
+function prefersReducedMotionQuery() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)");
+}
+
+function scheduleIdleWork(callback: () => void) {
+  const idleWindow = window as IdleSchedulerWindow;
+
+  if (idleWindow.requestIdleCallback && idleWindow.cancelIdleCallback) {
+    const handle = idleWindow.requestIdleCallback(callback, { timeout: 2000 });
+    return () => idleWindow.cancelIdleCallback?.(handle);
+  }
+
+  const timeout = window.setTimeout(callback, 1200);
+  return () => window.clearTimeout(timeout);
+}
 
 async function fetchShaderSource(path: string) {
   const response = await fetch(path);
@@ -81,18 +107,38 @@ export default function ShaderOverlay({
   fragmentPath,
   sizeMode,
   className,
+  deferUntilIdle = true,
+  respectReducedMotion = true,
 }: ShaderOverlayProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { resolvedTheme } = useTheme();
   const themeValueRef = useRef(0);
   const [shaders, setShaders] = useState<ShaderSource | null>(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     themeValueRef.current = resolvedTheme === "dark" ? 1 : 0;
   }, [resolvedTheme]);
 
   useEffect(() => {
+    if (!respectReducedMotion) return;
+
+    const mediaQuery = prefersReducedMotionQuery();
+    const handleChange = () => setPrefersReducedMotion(mediaQuery.matches);
+
+    handleChange();
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, [respectReducedMotion]);
+
+  useEffect(() => {
     let cancelled = false;
+
+    if (respectReducedMotion && prefersReducedMotion) {
+      setShaders(null);
+      return;
+    }
 
     async function loadShaders() {
       try {
@@ -109,15 +155,30 @@ export default function ShaderOverlay({
       }
     }
 
-    loadShaders();
+    let cancelScheduledLoad = () => {};
+
+    if (deferUntilIdle) {
+      cancelScheduledLoad = scheduleIdleWork(() => {
+        void loadShaders();
+      });
+    } else {
+      void loadShaders();
+    }
 
     return () => {
       cancelled = true;
+      cancelScheduledLoad();
     };
-  }, [fragmentPath]);
+  }, [
+    deferUntilIdle,
+    fragmentPath,
+    prefersReducedMotion,
+    respectReducedMotion,
+  ]);
 
   useEffect(() => {
     if (!shaders) return;
+    if (respectReducedMotion && prefersReducedMotion) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -160,9 +221,13 @@ export default function ShaderOverlay({
     const render = (time: number) => {
       const dpr = window.devicePixelRatio || 1;
       const cssWidth =
-        sizeMode === "viewport" ? window.innerWidth : canvas.getBoundingClientRect().width;
+        sizeMode === "viewport" ?
+          window.innerWidth
+        : canvas.getBoundingClientRect().width;
       const cssHeight =
-        sizeMode === "viewport" ? window.innerHeight : canvas.getBoundingClientRect().height;
+        sizeMode === "viewport" ?
+          window.innerHeight
+        : canvas.getBoundingClientRect().height;
       const displayWidth = Math.max(1, Math.round(cssWidth * dpr));
       const displayHeight = Math.max(1, Math.round(cssHeight * dpr));
 
@@ -197,7 +262,11 @@ export default function ShaderOverlay({
         gl.deleteBuffer(positionBuffer);
       }
     };
-  }, [shaders, sizeMode]);
+  }, [prefersReducedMotion, respectReducedMotion, shaders, sizeMode]);
+
+  if (respectReducedMotion && prefersReducedMotion) {
+    return null;
+  }
 
   return (
     <canvas

@@ -168,3 +168,32 @@
     color: var(--foreground);
   }
 }
+
+@layer components {
+  .crt-overlay-static {
+    background-image:
+      linear-gradient(
+        rgba(255, 255, 255, 0.03),
+        rgba(255, 255, 255, 0.01)
+      ),
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.055) 0,
+        rgba(255, 255, 255, 0.055) 1px,
+        transparent 1px,
+        transparent 4px
+      );
+  }
+
+  .dark .crt-overlay-static {
+    background-image:
+      linear-gradient(rgba(138, 173, 244, 0.02), rgba(198, 160, 246, 0.02)),
+      repeating-linear-gradient(
+        to bottom,
+        rgba(202, 211, 245, 0.08) 0,
+        rgba(202, 211, 245, 0.08) 1px,
+        transparent 1px,
+        transparent 4px
+      );
+  }
+}

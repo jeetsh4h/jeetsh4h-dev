@@ -61,7 +61,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Jeet Shah | Software Developer, Columbia University MS CS",
+        alt: "Jeet Shah | Software Engineer, Columbia MSCS",
       },
     ],
   },

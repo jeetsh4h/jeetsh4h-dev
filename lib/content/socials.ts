@@ -8,7 +8,7 @@ export const SOCIALS: SocialLink[] = [
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/in/jeetsh4h",
+    href: "https://www.linkedin.com/in/jeetsh4h",
     kind: "linkedin",
   },
   {

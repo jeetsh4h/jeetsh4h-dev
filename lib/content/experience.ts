@@ -3,7 +3,7 @@ import type { ExperienceItem } from "./types";
 export const EXPERIENCE: ExperienceItem[] = [
   {
     company: "Elevate Fitness",
-    role: "Software Developer",
+    role: "Software Engineer",
     period: "Dec 2025 - Present",
     type: "contract",
     description: [
@@ -20,7 +20,7 @@ export const EXPERIENCE: ExperienceItem[] = [
   },
   {
     company: "Voltek AI / Nanoloy",
-    role: "Software Developer",
+    role: "Software Engineer",
     period: "Oct 2024 - Present",
     type: "contract",
     description: [

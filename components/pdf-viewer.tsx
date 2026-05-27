@@ -4,9 +4,9 @@ export default function PDFViewer() {
   return (
     <Card className="size-full overflow-hidden min-h-0 p-0 gap-0 relative rounded-sm shadow-md">
       <iframe
-        src="/cv.pdf#view=FitH"
+        src="/cv.pdf#zoom=100,29,0"
         title="CV"
-        className="size-full"
+        className="size-full border-0"
       />
     </Card>
   );

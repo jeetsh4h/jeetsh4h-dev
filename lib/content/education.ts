@@ -11,7 +11,7 @@ export const EDUCATION: EducationItem[] = [
     institution: "FLAME University",
     period: "2021 - 2025",
     degree:
-      "B.Sc. (Hons.) Computer Science; PG Diploma in Interdisciplinary Studies",
+      "B.Sc. (Hons.) Computer Science | PG Diploma in Interdisciplinary Studies",
     details: ["Merit Scholarship"],
   },
 ];

@@ -88,7 +88,7 @@ export default function Profile() {
             render={
               <Button
                 nativeButton={false}
-                render={<Link href="/cv.pdf" />}
+                render={<Link href="/pdf" />}
                 variant={null}
                 className="flex h-9 rounded cursor-pointer mr-2 bg-secondary-foreground text-secondary border-secondary hover:bg-secondary hover:text-secondary-foreground hover:border-secondary transition-all"
               >

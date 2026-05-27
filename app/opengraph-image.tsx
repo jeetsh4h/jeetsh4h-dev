@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Jeet Shah | Software Engineer, Columbia MSCS";
+export const alt = "Jeet Shah | Software Developer, Columbia MSCS";
 export const size = {
   width: 1200,
   height: 630,
@@ -47,7 +47,7 @@ export default function OpenGraphImage() {
             letterSpacing: 0,
           }}
         >
-          Software Engineer - Columbia MSCS
+          Software Developer | Student @ Columbia University
         </div>
         <div
           style={{

@@ -1,9 +1,9 @@
 import type { Skills } from "./types";
 
 export const SKILLS: Skills = {
-  Languages: ["TypeScript", "Python", "SQL", "C++", "C", "Haskell"],
-  "Frontend/Mobile": ["React Native", "Expo", "Next.js", "Tailwind CSS"],
-  "Backend/Data": ["FastAPI", "Supabase/Postgres", "Convex", "Docker"],
+  Languages: ["TypeScript", "Python", "C++", "Zig"],
+  Frontend: ["React Native", "Expo", "Next.js", "Tailwind CSS"],
+  Backend: ["FastAPI", "Supabase/Postgres", "Convex", "Docker", "SQL"],
   "Research/ML": [
     "PyTorch",
     "TensorFlow",
@@ -11,5 +11,5 @@ export const SKILLS: Skills = {
     "ConvLSTM",
     "RAG",
   ],
-  Systems: ["Linux", "HPC environments", "Git", "Browser APIs"],
+  Systems: ["Linux", "HPC environments", "Git", "Browser Engineering"],
 };

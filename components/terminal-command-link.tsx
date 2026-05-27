@@ -21,8 +21,9 @@ export default function TerminalCommandLink({
       href={`/terminal?cmd=${command}`}
       className={cn(
         buttonVariants({
+          variant: null,
           className:
-          "rounded py-4.5 bg-card text-accent hover:text-accent-foreground hover:bg-accent border-border cursor-pointer",
+            "rounded py-4.5 border border-border bg-card text-accent shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground cursor-pointer",
         }),
         buttonStyles,
       )}

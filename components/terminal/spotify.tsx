@@ -35,6 +35,13 @@ type SpotifyFetchState =
   | { status: "error" }
   | { status: "success"; data: SpotifyResponse };
 
+const SPOTIFY_FALLBACK: SpotifyResponse = {
+  isPlaying: false,
+  title: "Not playing",
+  artist: "",
+  url: "",
+};
+
 // if user spams the command, we only fetch once per second
 const BUCKET_TIME_MS = 1000;
 let globalFetchPromise: Promise<SpotifyResponse> | null = null;
@@ -49,7 +56,13 @@ export default function SpotifyCommand() {
 
     if (!globalFetchPromise || now - lastFetchTime >= BUCKET_TIME_MS) {
       lastFetchTime = now;
-      globalFetchPromise = fetch("/api/spotify").then((res) => res.json());
+      globalFetchPromise = fetch("/api/spotify").then((res) => {
+        if (!res.ok) {
+          throw new Error(`Spotify request failed: ${res.status}`);
+        }
+
+        return res.json() as Promise<SpotifyResponse>;
+      });
     }
 
     globalFetchPromise
@@ -65,11 +78,11 @@ export default function SpotifyCommand() {
     };
   }, []);
 
-  if (state.status === "loading" || state.status === "error") {
+  if (state.status === "loading") {
     return <SpotifySkeleton />;
   }
 
-  const { data } = state;
+  const data = state.status === "error" ? SPOTIFY_FALLBACK : state.data;
 
   const progressMs = data.progressMs ?? 0;
   const durationMs = data.durationMs ?? 1;
@@ -122,16 +135,23 @@ export default function SpotifyCommand() {
               : "flex flex-col justify-center h-full min-h-0"
             }
           >
-            <Link
-              href={data.url || "#"}
-              target="_blank"
-              rel="noreferrer"
-              className="group relative flex overflow-hidden whitespace-nowrap text-sm font-semibold hover:underline leading-tight"
-            >
-              <span className="inline-block transition-transform duration-3000 ease-linear group-hover:-translate-x-[max(0px,calc(100%-100cqw))]">
-                {data.title}
-              </span>
-            </Link>
+            {data.url ?
+              <Link
+                href={data.url}
+                target="_blank"
+                rel="noreferrer"
+                className="group relative flex overflow-hidden whitespace-nowrap text-sm font-semibold hover:underline leading-tight"
+              >
+                <span className="inline-block transition-transform duration-3000 ease-linear group-hover:-translate-x-[max(0px,calc(100%-100cqw))]">
+                  {data.title}
+                </span>
+              </Link>
+            : <div className="group relative flex overflow-hidden whitespace-nowrap text-sm font-semibold leading-tight">
+                <span className="inline-block transition-transform duration-3000 ease-linear group-hover:-translate-x-[max(0px,calc(100%-100cqw))]">
+                  {data.title}
+                </span>
+              </div>
+            }
             <div className="group relative flex overflow-hidden whitespace-nowrap text-xs text-muted-foreground mt-0.5 leading-tight">
               <span className="inline-block transition-transform duration-3000 ease-linear group-hover:-translate-x-[max(0px,calc(100%-100cqw))]">
                 {data.artist}

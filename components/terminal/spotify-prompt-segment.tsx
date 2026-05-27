@@ -15,7 +15,7 @@ export function SpotifyPromptSegment({
   const { mutate } = useSWRConfig();
   const lastMutateRef = useRef<number>(0);
 
-  const { data, isLoading, isValidating } = useSWR<SpotifyResponse>(
+  const { data, error, isLoading, isValidating } = useSWR<SpotifyResponse>(
     `/api/spotify`,
     fetcher,
     {
@@ -33,7 +33,7 @@ export function SpotifyPromptSegment({
     /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, [refreshTrigger]);
 
-  if (isLoading || !data || isValidating) {
+  if ((isLoading || isValidating) && !data && !error) {
     return (
       <div className="flex items-center text-xs font-bold select-none">
         <span className="text-muted-foreground/70">[</span>
@@ -51,8 +51,15 @@ export function SpotifyPromptSegment({
     );
   }
 
+  const fallbackData: SpotifyResponse = {
+    isPlaying: false,
+    title: "Not playing",
+    artist: "",
+    url: "",
+  };
+  const spotifyData = data ?? fallbackData;
   const bracketColor =
-    data.isPlaying ? "text-term-success" : "text-term-warning";
+    spotifyData.isPlaying ? "text-term-success" : "text-term-warning";
 
   return (
     <div className="flex items-center text-xs font-bold select-none">
@@ -63,16 +70,22 @@ export function SpotifyPromptSegment({
           size={13}
           className="-ml-px mr-0.5"
         />
-        <Link
-          href={data.url}
-          target="_blank"
-          rel="noreferrer"
-          className="truncate max-w-75 hover:underline cursor-pointer"
-        >
-          <span>
-            {data.title} ~ {data.artist}
+        {spotifyData.url ?
+          <Link
+            href={spotifyData.url}
+            target="_blank"
+            rel="noreferrer"
+            className="truncate max-w-75 hover:underline cursor-pointer"
+          >
+            <span>
+              {spotifyData.title} ~ {spotifyData.artist}
+            </span>
+          </Link>
+        : <span className="truncate max-w-75">
+            {spotifyData.title}
+            {spotifyData.artist ? ` ~ ${spotifyData.artist}` : ""}
           </span>
-        </Link>
+        }
       </div>
 
       <span className={bracketColor}>]</span>

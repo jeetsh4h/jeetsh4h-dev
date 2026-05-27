@@ -7,6 +7,8 @@ import Link from "next/link";
 import { fetcher } from "@/lib/utils";
 import type { SpotifyResponse } from "./types";
 
+const SPOTIFY_DEDUPING_INTERVAL_MS = 15_000;
+
 export function SpotifyPromptSegment({
   refreshTrigger,
 }: {
@@ -19,14 +21,15 @@ export function SpotifyPromptSegment({
     `/api/spotify`,
     fetcher,
     {
+      dedupingInterval: SPOTIFY_DEDUPING_INTERVAL_MS,
+      errorRetryCount: 0,
       revalidateOnFocus: false,
     },
   );
 
   useEffect(() => {
-    // do not mutate more than once per second
     const now = Date.now();
-    if (now - lastMutateRef.current >= 1000) {
+    if (now - lastMutateRef.current >= SPOTIFY_DEDUPING_INTERVAL_MS) {
       lastMutateRef.current = now;
       mutate(`/api/spotify`);
     }
@@ -74,7 +77,7 @@ export function SpotifyPromptSegment({
           <Link
             href={spotifyData.url}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="truncate max-w-75 hover:underline cursor-pointer"
           >
             <span>

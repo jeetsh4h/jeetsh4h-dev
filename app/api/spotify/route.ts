@@ -7,12 +7,15 @@ import type {
   SpotifyTrack,
 } from "@/components/terminal/types";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
 const RECENTLY_PLAYED_ENDPOINT = `https://api.spotify.com/v1/me/player/recently-played`;
-const SPOTIFY_CACHE_CONTROL = "public, max-age=15, stale-while-revalidate=60";
+const SPOTIFY_BROWSER_CACHE_CONTROL = "public, max-age=0, must-revalidate";
+const SPOTIFY_CDN_CACHE_CONTROL =
+  "public, s-maxage=15, stale-while-revalidate=60, stale-if-error=300";
+const DEFAULT_RATE_LIMIT_RETRY_AFTER_SECONDS = 60;
 const NOT_PLAYING_RESPONSE: SpotifyResponse = {
   isPlaying: false,
   title: "Not playing",
@@ -24,6 +27,11 @@ type SpotifyConfig = {
   basic: string;
   refreshToken: string;
 };
+
+type AccessTokenResult =
+  | { status: "success"; accessToken: string }
+  | { status: "rate-limited"; retryAfterSeconds: number | null }
+  | { status: "error" };
 
 function encodeBasicAuth(clientId: string, clientSecret: string) {
   const credentials = `${clientId}:${clientSecret}`;
@@ -50,9 +58,44 @@ function getSpotifyConfig(): SpotifyConfig | null {
   };
 }
 
-function spotifyJson(data: SpotifyResponse, init?: ResponseInit) {
+function getRetryAfterSeconds(response: Response) {
+  const retryAfter = response.headers.get("Retry-After");
+
+  if (!retryAfter) {
+    return null;
+  }
+
+  const seconds = Number(retryAfter);
+  if (Number.isFinite(seconds) && seconds >= 0) {
+    return Math.ceil(seconds);
+  }
+
+  const retryAfterDate = Date.parse(retryAfter);
+  if (!Number.isNaN(retryAfterDate)) {
+    return Math.max(0, Math.ceil((retryAfterDate - Date.now()) / 1000));
+  }
+
+  return null;
+}
+
+function getRateLimitCacheControl(retryAfterSeconds: number | null) {
+  const sMaxage = Math.max(
+    1,
+    retryAfterSeconds ?? DEFAULT_RATE_LIMIT_RETRY_AFTER_SECONDS,
+  );
+
+  return `public, s-maxage=${sMaxage}, stale-while-revalidate=300, stale-if-error=300`;
+}
+
+function spotifyJson(
+  data: SpotifyResponse,
+  init?: ResponseInit,
+  cdnCacheControl = SPOTIFY_CDN_CACHE_CONTROL,
+) {
   const headers = new Headers(init?.headers);
-  headers.set("Cache-Control", SPOTIFY_CACHE_CONTROL);
+  headers.set("Cache-Control", SPOTIFY_BROWSER_CACHE_CONTROL);
+  headers.set("CDN-Cache-Control", cdnCacheControl);
+  headers.set("Vercel-CDN-Cache-Control", cdnCacheControl);
 
   return NextResponse.json(data, {
     ...init,
@@ -85,7 +128,7 @@ function spotifyTrackToResponse({
 
 const getAccessToken = async (
   config: SpotifyConfig,
-): Promise<string | null> => {
+): Promise<AccessTokenResult> => {
   const response = await fetch(TOKEN_ENDPOINT, {
     method: "POST",
     headers: {
@@ -99,14 +142,39 @@ const getAccessToken = async (
     cache: "no-store",
   });
 
+  if (response.status === 429) {
+    return {
+      status: "rate-limited",
+      retryAfterSeconds: getRetryAfterSeconds(response),
+    };
+  }
+
   if (!response.ok) {
-    return null;
+    return { status: "error" };
   }
 
   const token = (await response.json()) as Partial<SpotifyTokenResponse>;
 
-  return typeof token.access_token === "string" ? token.access_token : null;
+  if (typeof token.access_token !== "string") {
+    return { status: "error" };
+  }
+
+  return { status: "success", accessToken: token.access_token };
 };
+
+function spotifyRateLimitedJson(retryAfterSeconds: number | null) {
+  const headers = new Headers();
+
+  if (retryAfterSeconds !== null) {
+    headers.set("Retry-After", String(retryAfterSeconds));
+  }
+
+  return spotifyJson(
+    NOT_PLAYING_RESPONSE,
+    { headers },
+    getRateLimitCacheControl(retryAfterSeconds),
+  );
+}
 
 export async function GET() {
   try {
@@ -116,16 +184,24 @@ export async function GET() {
       return spotifyJson(NOT_PLAYING_RESPONSE);
     }
 
-    const accessToken = await getAccessToken(config);
+    const tokenResult = await getAccessToken(config);
 
-    if (!accessToken) {
+    if (tokenResult.status === "rate-limited") {
+      return spotifyRateLimitedJson(tokenResult.retryAfterSeconds);
+    }
+
+    if (tokenResult.status !== "success") {
       return spotifyJson(NOT_PLAYING_RESPONSE);
     }
 
     const nowPlayingRes = await fetch(NOW_PLAYING_ENDPOINT, {
-      headers: { Authorization: `Bearer ${accessToken}` },
+      headers: { Authorization: `Bearer ${tokenResult.accessToken}` },
       cache: "no-store",
     });
+
+    if (nowPlayingRes.status === 429) {
+      return spotifyRateLimitedJson(getRetryAfterSeconds(nowPlayingRes));
+    }
 
     if (nowPlayingRes.status === 200) {
       const song = (await nowPlayingRes.json()) as SpotifyNowPlayingResponse;
@@ -142,9 +218,13 @@ export async function GET() {
     }
 
     const recentRes = await fetch(RECENTLY_PLAYED_ENDPOINT, {
-      headers: { Authorization: `Bearer ${accessToken}` },
+      headers: { Authorization: `Bearer ${tokenResult.accessToken}` },
       cache: "no-store",
     });
+
+    if (recentRes.status === 429) {
+      return spotifyRateLimitedJson(getRetryAfterSeconds(recentRes));
+    }
 
     if (recentRes.status === 200) {
       const recentData =

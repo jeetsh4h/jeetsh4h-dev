@@ -42,8 +42,8 @@ const SPOTIFY_FALLBACK: SpotifyResponse = {
   url: "",
 };
 
-// if user spams the command, we only fetch once per second
-const BUCKET_TIME_MS = 1000;
+// Match the server/CDN freshness window so repeated command runs share a fetch.
+const BUCKET_TIME_MS = 15_000;
 let globalFetchPromise: Promise<SpotifyResponse> | null = null;
 let lastFetchTime = 0;
 
@@ -139,7 +139,7 @@ export default function SpotifyCommand() {
               <Link
                 href={data.url}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="group relative flex overflow-hidden whitespace-nowrap text-sm font-semibold hover:underline leading-tight"
               >
                 <span className="inline-block transition-transform duration-3000 ease-linear group-hover:-translate-x-[max(0px,calc(100%-100cqw))]">

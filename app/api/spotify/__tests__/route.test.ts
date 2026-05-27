@@ -43,6 +43,18 @@ function jsonResponse(data: unknown, init?: ResponseInit) {
   });
 }
 
+function expectDefaultCacheHeaders(response: Response) {
+  expect(response.headers.get("Cache-Control")).toBe(
+    "public, max-age=0, must-revalidate",
+  );
+  expect(response.headers.get("CDN-Cache-Control")).toBe(
+    "public, s-maxage=15, stale-while-revalidate=60, stale-if-error=300",
+  );
+  expect(response.headers.get("Vercel-CDN-Cache-Control")).toBe(
+    "public, s-maxage=15, stale-while-revalidate=60, stale-if-error=300",
+  );
+}
+
 const spotifyTrack = {
   name: "Keep Falling in Love",
   artists: [{ name: "Sports" }],
@@ -69,6 +81,7 @@ describe("spotify route", () => {
     const response = await GET();
 
     expect(response.status).toBe(200);
+    expectDefaultCacheHeaders(response);
     expect(await response.json()).toEqual({
       isPlaying: false,
       title: "Not playing",
@@ -88,6 +101,7 @@ describe("spotify route", () => {
     const response = await GET();
 
     expect(response.status).toBe(200);
+    expectDefaultCacheHeaders(response);
     expect(await response.json()).toEqual({
       isPlaying: false,
       title: "Not playing",
@@ -117,6 +131,7 @@ describe("spotify route", () => {
     const response = await GET();
 
     expect(response.status).toBe(200);
+    expectDefaultCacheHeaders(response);
     expect(await response.json()).toMatchObject({
       isPlaying: false,
       title: "Keep Falling in Love",
@@ -138,6 +153,45 @@ describe("spotify route", () => {
     const response = await GET();
 
     expect(response.status).toBe(200);
+    expectDefaultCacheHeaders(response);
+    expect(await response.json()).toEqual({
+      isPlaying: false,
+      title: "Not playing",
+      artist: "",
+      url: "",
+    });
+  });
+
+  it("uses Spotify Retry-After to shield the upstream API when rate limited", async () => {
+    setSpotifyEnv();
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue(
+        jsonResponse(
+          {},
+          {
+            status: 429,
+            headers: {
+              "Retry-After": "42",
+            },
+          },
+        ),
+      ),
+    );
+
+    const response = await GET();
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("Retry-After")).toBe("42");
+    expect(response.headers.get("Cache-Control")).toBe(
+      "public, max-age=0, must-revalidate",
+    );
+    expect(response.headers.get("CDN-Cache-Control")).toBe(
+      "public, s-maxage=42, stale-while-revalidate=300, stale-if-error=300",
+    );
+    expect(response.headers.get("Vercel-CDN-Cache-Control")).toBe(
+      "public, s-maxage=42, stale-while-revalidate=300, stale-if-error=300",
+    );
     expect(await response.json()).toEqual({
       isPlaying: false,
       title: "Not playing",

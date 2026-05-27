@@ -1,8 +1,8 @@
-\documentclass[a4paper,10.5pt]{article}
+\documentclass[a4paper,10pt]{article}
 
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage[scale=0.9]{geometry}
+\usepackage[margin=0.62in]{geometry}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{enumitem}
 \usepackage{hyperref}
@@ -18,45 +18,66 @@
   pdftitle={Jeet Shah CV},
   pdfauthor={Jeet Shah},
   pdfsubject={Software engineering, systems, programming languages, and applied research},
-  pdfkeywords={Jeet Shah, Software Engineer, Columbia University, Computer Science, Network Systems, React Native, Convex, FastAPI, Supabase, Weather4Cast}
+  pdfkeywords={Jeet Shah, Software Developer, Columbia University, Computer Science, Network Systems, React Native, Convex, FastAPI, Supabase, Weather4Cast}
 }
 
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{3pt}
-\setlist[itemize]{leftmargin=1.1em, itemsep=2pt, topsep=2pt}
+\setlength{\parskip}{2pt}
+\setlist[itemize]{leftmargin=1.15em, itemsep=1pt, topsep=2pt, parsep=0pt}
 \titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
-\titlespacing{\section}{0pt}{8pt}{5pt}
+\titlespacing{\section}{0pt}{8pt}{4pt}
 
-\newcommand{\entry}[4]{
-  \textbf{#1} \hfill \textit{#2}\\
-  \textit{#3}\\[-2pt]
-  #4
+\newcommand{\headerlink}[2]{\href{#1}{#2}}
+
+\newcommand{\educationentry}[4]{%
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+    \textbf{#1} & \textit{#2}\\
+    #3 & #4
+  \end{tabularx}
+  \vspace{2pt}
+}
+
+\newcommand{\experienceentry}[3]{%
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+    \textbf{#1} & \textit{#2}
+  \end{tabularx}
+  \vspace{-7pt}
+  #3
+  \vspace{2pt}
+}
+
+\newcommand{\publication}[5]{%
+  \begingroup
+  \hangindent=1.2em
+  \hangafter=1
+  #1 (#2). #3. \textit{#4}. #5\par
+  \endgroup
+}
+
+\newcommand{\researchnote}[1]{%
+  \hspace*{1.2em}\textit{Note.} #1\par
 }
 
 \begin{document}
 
 \begin{center}
   {\Huge Jeet Shah}\\[4pt]
-  New York City \ $|$ \
-  \href{https://jeetsh4h.dev}{jeetsh4h.dev} \ $|$ \
-  \href{https://github.com/jeetsh4h}{github.com/jeetsh4h} \ $|$ \
-  \href{https://linkedin.com/in/jeetsh4h}{linkedin.com/in/jeetsh4h} \ $|$ \
-  \href{mailto:jeetsh4h@gmail.com}{jeetsh4h@gmail.com}
+  \headerlink{https://jeetsh4h.dev}{Website} \ $|$ \
+  \headerlink{https://github.com/jeetsh4h}{GitHub} \ $|$ \
+  \headerlink{https://linkedin.com/in/jeetsh4h}{LinkedIn} \ $|$ \
+  \headerlink{mailto:jeetsh4h@gmail.com}{Email}
 \end{center}
 
 \section{Summary}
-Software engineer and Columbia University M.S. Computer Science student in New York City. I build production software for startups across mobile apps, data platforms, and internal tools, with prior published research in Weather4Cast precipitation forecasting. Current research interests include networked systems, programming-language design, and AI-assisted software engineering workflows.
+Software developer and Columbia University M.S. Computer Science student in New York City. I build production software for startups across mobile apps, data platforms, and internal tools. Current interests include networked systems, programming-language design, and AI-assisted software engineering workflows; prior published research includes Weather4Cast precipitation forecasting.
 
 \section{Education}
-\textbf{Columbia University} \hfill \textit{2026 -- 2028}\\
-M.S. Computer Science; Network Systems pathway
-
-\textbf{FLAME University} \hfill \textit{2021 -- 2025}\\
-B.Sc. (Hons.) Computer Science; PG Diploma in Interdisciplinary Studies \hfill Merit Scholarship
+\educationentry{Columbia University}{2026 -- 2028}{M.S. Computer Science}{Network Systems pathway}
+\educationentry{FLAME University}{2021 -- 2025}{B.Sc. (Hons.) Computer Science; PG Diploma in Interdisciplinary Studies}{Merit Scholarship}
 
 \section{Experience}
-\entry{Software Developer (Contract), Elevate Fitness}{Dec 2025 -- Present}{React Native, Expo, Convex}{
+\experienceentry{Software Developer, Elevate Fitness}{Dec 2025 -- Present}{
 \begin{itemize}
   \item Building Movynn, a React Native/Convex fitness platform entering closed beta.
   \item Own auth/session flows and turf-booking workflows across a two-person engineering team.
@@ -64,7 +85,7 @@ B.Sc. (Hons.) Computer Science; PG Diploma in Interdisciplinary Studies \hfill M
 \end{itemize}
 }
 
-\entry{Software Developer (Contract), Voltek AI / Nanoloy}{Oct 2024 -- Present}{Next.js, FastAPI, Supabase/Postgres, Python}{
+\experienceentry{Software Developer, Voltek AI / Nanoloy}{Oct 2024 -- Present}{
 \begin{itemize}
   \item Led frontend development for an internal dashboard supporting battery manufacturing research workflows.
   \item Co-designed Supabase/Postgres data models and FastAPI services for experimental data ingestion and retrieval.
@@ -73,7 +94,7 @@ B.Sc. (Hons.) Computer Science; PG Diploma in Interdisciplinary Studies \hfill M
 \end{itemize}
 }
 
-\entry{Research Intern (SRTD), ISRO, Space Applications Centre}{May 2023 -- Aug 2023}{ConvLSTM, satellite data, Linux/HPC}{
+\experienceentry{Research Intern (SRTD), ISRO, Space Applications Centre}{May 2023 -- Aug 2023}{
 \begin{itemize}
   \item Developed ConvLSTM models for precipitation nowcasting using INSAT-3D satellite data.
   \item Outperformed optical-flow baselines by 30.7\%.
@@ -81,29 +102,27 @@ B.Sc. (Hons.) Computer Science; PG Diploma in Interdisciplinary Studies \hfill M
 \end{itemize}
 }
 
-\entry{Project Solutions Intern, National Federation of the Blind Maharashtra}{May 2024 -- Sep 2024}{Raspberry Pi, OpenCV}{
+\experienceentry{Project Solutions Intern, National Federation of the Blind Maharashtra}{May 2024 -- Sep 2024}{
 \begin{itemize}
   \item Built Raspberry Pi/OpenCV assistive-navigation prototypes and conducted user-facing technical support sessions.
 \end{itemize}
 }
 
 \section{Research}
-\textbf{Bhuskute, Anushree, et al.} ``Computationally-efficient deep learning models for nowcasting of precipitation.'' arXiv, 2025.\\
-Co-author; team kaubega placed 2nd in the official Weather4Cast 2025 cumulative rainfall challenge.\\
-\href{https://arxiv.org/abs/2511.11197}{arXiv:2511.11197} \ $|$ \
-\href{https://weather4cast.net/neurips2025/}{Weather4Cast 2025 result}
+\publication{Bhuskute, A., Gopalan, K., \& Shah, J.}{2025}{Computationally-efficient deep learning models for nowcasting of precipitation}{arXiv}{\href{https://arxiv.org/abs/2511.11197}{Paper} \ $|$ \ \href{https://weather4cast.net/neurips2025/}{Result}}
+\researchnote{Co-author. Team kaubega placed 2nd in the official Weather4Cast 2025 cumulative rainfall challenge.}
 
-\textbf{Deshpande, Atharva, et al.} ``A conditional Generative Adversarial Network model for the Weather4Cast 2024 Challenge.'' arXiv, 2024.\\
-Co-author; verified Weather4Cast 2024 core leaderboard result, with the paper reporting 1st place on the core challenge leaderboard. Contributed to optical-flow forecasting and model architecture experiments.\\
-\href{https://arxiv.org/abs/2412.00451}{arXiv:2412.00451}
+\publication{Deshpande, A., Gopalan, K., Shah, J., \& Simu, H.}{2024}{A conditional Generative Adversarial Network model for the Weather4Cast 2024 Challenge}{arXiv}{\href{https://arxiv.org/abs/2412.00451}{Paper} \ $|$ \ \href{https://weather4cast.net/neurips2024/competitions/w4c24-cum1/?leaderboard=}{Leaderboard}}
+\researchnote{Co-author. Team kaubega placed 1st on the Weather4Cast 2024 core/cumulative-rainfall challenge at the competition deadline.}
 
-\textbf{Current research interests:} programming-language design and AI-assisted software engineering workflows. Details withheld pending peer review or public release.
+\textbf{Current research interests.} Programming-language design and AI-assisted software engineering workflows. Details withheld pending peer review or public release.
 
+\newpage
 \section{Selected Projects}
-\textbf{Nanoloy Internal Platform} \hfill \textit{Private client work}\\
+\textbf{Nanoloy Internal Platform} \hfill \textit{Private}\\
 Internal dashboard and data platform for battery manufacturing research workflows. Led frontend development, co-designed experimental manufacturing data models, and improved query latency by 67\%. Public details limited by client confidentiality.
 
-\textbf{Movynn} \hfill \textit{Pre-beta client work}\\
+\textbf{Movynn} \hfill \textit{Pre-beta}\\
 React Native/Convex fitness platform for turf booking and member-facing workflows. Own auth/session flows and turf-booking workflows; co-own app architecture and release readiness.
 
 \textbf{Jyeshthanubandh} \hfill \href{https://play.google.com/store/apps/details?id=com.Jyeshthanubandh.pcmc_app}{Play Store}\\
@@ -114,11 +133,11 @@ Plant disease detection app using fine-tuned ResNet-50; Bit N Build finalist.
 
 \section{Skills}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Languages} & TypeScript, Python, SQL, C++, C, Haskell\\
-\textbf{Frontend/Mobile} & React Native, Expo, Next.js, Tailwind CSS\\
-\textbf{Backend/Data} & FastAPI, Supabase/Postgres, Convex, Docker\\
-\textbf{Research/ML} & PyTorch, TensorFlow, Computer Vision, ConvLSTM, RAG\\
-\textbf{Systems} & Linux, HPC environments, Git, browser APIs\\
+\textbf{Languages} & TypeScript, Python, C++, Zig\\
+\textbf{Frontend} & React Native, Expo, Next.js, Tailwind CSS\\
+\textbf{Backend} & FastAPI, Supabase/Postgres, Convex, Docker, SQL\\
+\textbf{ML} & PyTorch, TensorFlow, Computer Vision, ConvLSTM, RAG\\
+\textbf{Systems} & Linux, HPC environments, Git, Browser Engineering\\
 \end{tabularx}
 
 \vfill

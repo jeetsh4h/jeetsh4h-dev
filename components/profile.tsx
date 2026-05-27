@@ -12,21 +12,24 @@ export default function Profile() {
 
   return (
     <>
-      <div className="flex justify-between items-start">
-        <div className="space-y-2">
+      <div className="relative space-y-2">
+        <div>
           <h1 className="text-4xl md:text-5xl font-bold text-primary tracking-tight">
             {intro.name}
           </h1>
-          <p className="text-xl font-semibold text-secondary">{intro.role}</p>
-          <p className="text-sm text-muted-foreground">{intro.location}</p>
         </div>
 
-        <div className="flex items-center">
+        <p className="text-xl font-semibold text-secondary max-w-2xl">
+          {intro.role}
+        </p>
+        <p className="text-sm text-muted-foreground">{intro.location}</p>
+
+        <div className="absolute right-0 top-0 hidden items-center md:flex">
           <Button
             nativeButton={false}
             render={<Link href="/terminal" />}
             variant={null}
-            className="hidden md:flex h-9 rounded cursor-pointer mr-2 bg-primary text-primary-foreground border-transparent hover:bg-primary-foreground hover:text-primary hover:border-primary transition-all"
+            className="h-9 rounded cursor-pointer mr-2 bg-primary text-primary-foreground border-transparent hover:bg-primary-foreground hover:text-primary hover:border-primary transition-all"
           >
             <IconTerminal2 className="size-4" />
             <span>Open in Terminal</span>
@@ -39,7 +42,7 @@ export default function Profile() {
                   nativeButton={false}
                   render={<Link href="/pdf" />}
                   variant={null}
-                  className="hidden md:flex h-9 rounded cursor-pointer mr-2 bg-secondary-foreground text-secondary border-secondary hover:bg-secondary hover:text-secondary-foreground hover:border-secondary transition-all"
+                  className="h-9 rounded cursor-pointer mr-2 bg-secondary-foreground text-secondary border-secondary hover:bg-secondary hover:text-secondary-foreground hover:border-secondary transition-all"
                 >
                   <IconFileCv className="size-4" />
                   <span>Open as PDF</span>

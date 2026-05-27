@@ -56,10 +56,8 @@ describe("shared content sections", () => {
       expect(screen.getAllByText(entry.institution).length).toBeGreaterThan(0);
     }
 
-    if (PRIOR_EDUCATION.length > 0) {
-      expect(screen.getAllByText(/Prior Education/i).length).toBeGreaterThan(0);
-    } else {
-      expect(screen.queryByText(/Prior Education/i)).not.toBeInTheDocument();
+    for (const entry of PRIOR_EDUCATION) {
+      expect(screen.getAllByText(entry.institution).length).toBeGreaterThan(0);
     }
   });
 

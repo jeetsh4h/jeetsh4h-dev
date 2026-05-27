@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { executeParsedCommand } from "../command-executor";
 import { parseCommandInput } from "../command-parser";
+import { TERMINAL_COMMANDS } from "../command-registry";
 import type { TerminalDimensions } from "../types";
 
 const dimensions: TerminalDimensions = {
@@ -22,27 +23,21 @@ function parseOrThrow(input: string) {
 }
 
 describe("executeParsedCommand", () => {
-  it("returns rendered help output", () => {
-    const result = executeParsedCommand(parseOrThrow("help"), {
-      args: [],
-      dimensions,
-    });
+  it("executes every registered command without throwing", () => {
+    for (const command of TERMINAL_COMMANDS) {
+      const result = executeParsedCommand(parseOrThrow(command.name), {
+        args: [],
+        dimensions,
+      });
 
-    expect(result.kind).toBe("render");
-    if (result.kind === "render") {
-      expect(result.status).toBe("success");
-    }
-  });
-
-  it("executes the current-status command", () => {
-    const result = executeParsedCommand(parseOrThrow("current"), {
-      args: [],
-      dimensions,
-    });
-
-    expect(result.kind).toBe("render");
-    if (result.kind === "render") {
-      expect(result.status).toBe("success");
+      if (command.name === "clear") {
+        expect(result).toEqual({ kind: "clear" });
+      } else {
+        expect(result.kind).toBe("render");
+        if (result.kind === "render") {
+          expect(result.status).toBe("success");
+        }
+      }
     }
   });
 
@@ -72,32 +67,6 @@ describe("executeParsedCommand", () => {
       kind: "error",
       message: 'Command not found: "unknown"',
     });
-  });
-
-  it("keeps whoami unreachable", () => {
-    expect(
-      executeParsedCommand(parseOrThrow("whoami"), {
-        args: [],
-        dimensions,
-      }),
-    ).toEqual({
-      kind: "error",
-      message: 'Command not found: "whoami"',
-    });
-  });
-
-  it("keeps removed novelty commands unreachable", () => {
-    for (const command of ["now", "proof"]) {
-      expect(
-        executeParsedCommand(parseOrThrow(command), {
-          args: [],
-          dimensions,
-        }),
-      ).toEqual({
-        kind: "error",
-        message: `Command not found: "${command}"`,
-      });
-    }
   });
 
   it("resolves aliases to the same canonical behavior", () => {

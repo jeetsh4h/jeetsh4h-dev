@@ -3,13 +3,13 @@ import type { ExperienceItem } from "./types";
 export const EXPERIENCE: ExperienceItem[] = [
   {
     company: "Elevate Fitness",
-    role: "Software Developer",
+    role: "Software Developer (Contract)",
     period: "Dec 2025 - Present",
-    type: "work",
+    type: "contract",
     description: [
-      "Building the Movynn mobile application.",
-      "Engineered an offline-first synchronization engine for low-connectivity environments.",
-      "Managing full-cycle development and secure user data handling.",
+      "Building Movynn, a React Native/Convex fitness platform entering closed beta.",
+      "Own auth/session flows and turf-booking workflows across a two-person engineering team.",
+      "Co-own app architecture, code quality, and release readiness for the pre-beta mobile app.",
     ],
     textLinks: [
       {
@@ -19,13 +19,15 @@ export const EXPERIENCE: ExperienceItem[] = [
     ],
   },
   {
-    company: "Voltek AI",
-    role: "Software Developer",
+    company: "Voltek AI / Nanoloy",
+    role: "Software Developer (Contract)",
     period: "Oct 2024 - Present",
-    type: "work",
+    type: "contract",
     description: [
-      "Designed Nanoloy data pipeline (PostgreSQL, Azure), reducing query latency by 200%.",
-      "Built Multi-LLM RAG system for internal knowledge retrieval.",
+      "Led frontend development for an internal dashboard supporting battery manufacturing research workflows.",
+      "Co-designed Supabase/Postgres data models and FastAPI services for experimental data ingestion and retrieval.",
+      "Improved query latency by 67% through database indexing and API-layer optimization.",
+      "Co-maintain NDAX/Neware ingestion handlers for unreliable client environments, file reconciliation, and edge-case parsing.",
     ],
     textLinks: [
       {
@@ -35,13 +37,14 @@ export const EXPERIENCE: ExperienceItem[] = [
     ],
   },
   {
-    company: "ISRO (Space Applications Centre)",
+    company: "ISRO, Space Applications Centre",
     role: "Research Intern (SRTD)",
     period: "May 2023 - Aug 2023",
     type: "research",
     description: [
-      "Developed ConvLSTM model for precipitation nowcasting in a high-security air-gapped HPC environment.",
-      "Outperformed baseline by 30.7%.",
+      "Developed ConvLSTM models for precipitation nowcasting using INSAT-3D satellite data.",
+      "Outperformed optical-flow baselines by 30.7%.",
+      "Worked in an air-gapped Linux/HPC environment with large spatiotemporal satellite datasets.",
     ],
   },
   {
@@ -50,31 +53,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     period: "May 2024 - Sep 2024",
     type: "internship",
     description: [
-      "Developed assistive navigation tools using Raspberry Pi and OpenCV.",
+      "Built Raspberry Pi/OpenCV assistive-navigation prototypes and conducted user-facing technical support sessions.",
     ],
-  },
-  {
-    company: "Sportskeeda",
-    role: "Golf Content Writer",
-    period: "Aug 2023 - Oct 2023",
-    type: "internship",
-    description: ["Golf Content Writer."],
-    compact: true,
-  },
-  {
-    company: "Analyse India",
-    role: "Intern",
-    period: "May 2022 - Aug 2022",
-    type: "internship",
-    description: ["Automated technical analysis processes."],
-    compact: true,
-  },
-  {
-    company: "SNEHA",
-    role: "IT/IM Intern",
-    period: "Apr 2022 - Jun 2022",
-    type: "internship",
-    description: ["Audited network diagrams."],
-    compact: true,
   },
 ];

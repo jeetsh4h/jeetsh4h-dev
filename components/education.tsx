@@ -7,9 +7,12 @@ export default function Education() {
 
   return (
     <>
-      <div className="flex items-center">
+      <h2
+        id="education-heading"
+        className="flex items-center"
+      >
         <TerminalCommandLink command="education" />
-      </div>
+      </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 -mt-2">
         {education.higherEducation.map((edu) => (

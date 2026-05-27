@@ -1,6 +1,7 @@
 export interface AboutContent {
   name: string;
   role: string;
+  location: string;
   bio: string;
 }
 
@@ -19,11 +20,21 @@ export interface SocialLink {
   kind: SocialKind;
 }
 
+export interface LinkItem {
+  label: string;
+  href: string;
+}
+
 export interface ResearchItem {
   title: string;
   year: string;
-  authors: string;
-  link: string;
+  citationAuthors?: string;
+  kind: "publication" | "interest";
+  status?: "published" | "in-progress";
+  summary: string;
+  contribution?: string;
+  result?: string;
+  links?: LinkItem[];
 }
 
 export interface EducationItem {
@@ -49,7 +60,7 @@ export interface ExperienceItem {
   company: string;
   role: string;
   period: string;
-  type: string;
+  type: "work" | "research" | "internship" | "contract";
   description: string[];
   compact?: boolean;
   textLinks?: ExperienceTextLink[];
@@ -58,8 +69,12 @@ export interface ExperienceItem {
 export interface ProjectItem {
   title: string;
   description: string;
-  link: string;
-  linkText: string;
+  status?: "public" | "private" | "pre-beta" | "research";
+  stack?: string[];
+  highlights?: string[];
+  link?: string;
+  linkText?: string;
+  confidentialityNote?: string;
 }
 
 export type Skills = Record<string, string[]>;

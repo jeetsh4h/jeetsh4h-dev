@@ -39,34 +39,39 @@ export default function Page() {
     "@type": "Person",
     name: ABOUT.name,
     url: SEO.url,
-    jobTitle: ABOUT.role,
+    jobTitle: "Software Engineer",
     description: SEO.description,
     sameAs: SOCIALS.filter((link) => link.kind !== "email").map(
       (link) => link.href,
     ),
     homeLocation: {
       "@type": "Place",
-      name: "Mumbai, India",
+      name: ABOUT.location,
     },
-    alumniOf: [...new Set(EDUCATION.map((entry) => entry.institution))].map(
-      (institution) => ({
-        "@type": "CollegeOrUniversity",
-        name: institution,
-      }),
-    ),
+    affiliation: {
+      "@type": "CollegeOrUniversity",
+      name: "Columbia University",
+    },
+    alumniOf: [
+      ...new Set(
+        EDUCATION.map((entry) => entry.institution).filter(
+          (institution) => institution !== "Columbia University",
+        ),
+      ),
+    ].map((institution) => ({
+      "@type": "CollegeOrUniversity",
+      name: institution,
+    })),
     knowsAbout: [
-      "Full-stack engineering",
+      "Software engineering",
+      "Networked systems",
+      "Programming languages",
+      "AI-assisted software engineering",
       "React Native",
-      "Next.js",
+      "Convex",
+      "FastAPI",
       "Supabase",
-      "RAG systems",
-      "Computer vision",
-      "ConvLSTM",
-      "Precipitation nowcasting",
-      "Spatiotemporal deep learning",
-      "PostgreSQL",
-      "Azure",
-      "Google Cloud",
+      "Spatiotemporal forecasting",
     ],
   };
 
@@ -97,12 +102,6 @@ export default function Page() {
           className="space-y-8"
           aria-labelledby="experience-heading"
         >
-          <h2
-            id="experience-heading"
-            className="sr-only"
-          >
-            Experience
-          </h2>
           <Experience />
         </section>
 
@@ -110,12 +109,6 @@ export default function Page() {
           className="space-y-8"
           aria-labelledby="research-heading"
         >
-          <h2
-            id="research-heading"
-            className="sr-only"
-          >
-            Research
-          </h2>
           <Research />
         </section>
 
@@ -123,12 +116,6 @@ export default function Page() {
           className="space-y-6"
           aria-labelledby="skills-heading"
         >
-          <h2
-            id="skills-heading"
-            className="sr-only"
-          >
-            Skills
-          </h2>
           <Skills />
         </section>
 
@@ -136,12 +123,6 @@ export default function Page() {
           className="space-y-8"
           aria-labelledby="projects-heading"
         >
-          <h2
-            id="projects-heading"
-            className="sr-only"
-          >
-            Projects
-          </h2>
           <Projects />
         </section>
 
@@ -149,12 +130,6 @@ export default function Page() {
           className="space-y-8"
           aria-labelledby="education-heading"
         >
-          <h2
-            id="education-heading"
-            className="sr-only"
-          >
-            Education
-          </h2>
           <Education />
         </section>
       </div>

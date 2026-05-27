@@ -1,9 +1,15 @@
 import type { Skills } from "./types";
 
-// TODO: update this
 export const SKILLS: Skills = {
-  Languages: ["Python", "TypeScript", "C++", "SQL", "Haskell", "C#"],
-  Frameworks: ["React Native", "Next.js", "NestJS", "FastAPI", "Flask"],
-  "AI/ML": ["PyTorch", "TensorFlow", "Computer Vision", "RAG", "ConvLSTM"],
-  Infra: ["Docker", "Linux (HPC/Air-gapped)", "Azure", "GCP", "PostgreSQL"],
+  Languages: ["TypeScript", "Python", "SQL", "C++", "C", "Haskell"],
+  "Frontend/Mobile": ["React Native", "Expo", "Next.js", "Tailwind CSS"],
+  "Backend/Data": ["FastAPI", "Supabase/Postgres", "Convex", "Docker"],
+  "Research/ML": [
+    "PyTorch",
+    "TensorFlow",
+    "Computer Vision",
+    "ConvLSTM",
+    "RAG",
+  ],
+  Systems: ["Linux", "HPC environments", "Git", "Browser APIs"],
 };

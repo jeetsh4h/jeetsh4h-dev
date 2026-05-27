@@ -9,6 +9,7 @@ export default function About() {
         My name is <span className="text-primary">{intro.name}</span> and I am a{" "}
         <span className="text-secondary">{intro.role}</span>.
       </p>
+      <p className="mt-2 text-muted-foreground">{intro.location}</p>
       <br />
       <p>{intro.bio}</p>
     </div>

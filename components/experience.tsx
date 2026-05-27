@@ -7,9 +7,12 @@ export default function Experience() {
 
   return (
     <>
-      <div className="flex items-center">
+      <h2
+        id="experience-heading"
+        className="flex items-center"
+      >
         <TerminalCommandLink command="experience" />
-      </div>
+      </h2>
 
       <div className="border-l-2 border-term-border/50 ml-2 space-y-10 pl-8 relative -mt-2">
         {experience.featuredEntries.map((job) => (

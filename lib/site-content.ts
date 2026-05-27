@@ -44,6 +44,7 @@ export interface IntroSectionModel {
   id: "intro";
   name: string;
   role: string;
+  location: string;
   bio: string;
   socialLinks: SocialLinkModel[];
 }
@@ -97,6 +98,7 @@ export function buildIntroSection(): IntroSectionModel {
     id: "intro",
     name: ABOUT.name,
     role: ABOUT.role,
+    location: ABOUT.location,
     bio: ABOUT.bio,
     socialLinks: SOCIALS,
   };

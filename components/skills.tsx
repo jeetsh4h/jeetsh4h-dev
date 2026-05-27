@@ -7,9 +7,12 @@ export default function Skills() {
 
   return (
     <>
-      <div className="flex items-center gap-4">
+      <h2
+        id="skills-heading"
+        className="flex items-center gap-4"
+      >
         <TerminalCommandLink command="skills" />
-      </div>
+      </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
         {skills.categories.map((category) => (

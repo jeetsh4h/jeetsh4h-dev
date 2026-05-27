@@ -1,22 +1,22 @@
 import type { SeoContent } from "./types";
 
 export const SEO: SeoContent = {
-  title: "Jeet Shah | Full-Stack Engineer & AI Researcher",
+  title: "Jeet Shah | Software Engineer & Columbia MSCS",
   description:
-    "Jeet Shah is a full-stack engineer and AI researcher in Mumbai, India, building product systems at Elevate Fitness and researching spatiotemporal deep learning.",
+    "Jeet Shah is a New York City software engineer and Columbia MSCS student building startup software across mobile apps, data platforms, systems, and research.",
   url: "https://jeetsh4h.dev",
   keywords: [
     "Jeet Shah",
     "Software Engineer",
-    "AI Researcher",
-    "Full-Stack Developer",
-    "React",
-    "Next.js",
-    "Machine Learning",
-    "Precipitation Nowcasting",
-    "ConvLSTM",
-    "Deep Learning",
-    "Software Developer",
-    "Elevate Fitness",
+    "Columbia University",
+    "Computer Science",
+    "Network Systems",
+    "Programming Languages",
+    "AI-Assisted Software Engineering",
+    "React Native",
+    "Convex",
+    "FastAPI",
+    "Supabase",
+    "Weather4Cast",
   ],
 };

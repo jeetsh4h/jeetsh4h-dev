@@ -40,5 +40,17 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# PDF gets generated via GitHub Actions
+# CV PDF gets generated locally with latexmk and in CI with Docker LaTeX
 public/cv.pdf
+cv/*.aux
+cv/*.bbl
+cv/*.bcf
+cv/*.blg
+cv/*.fdb_latexmk
+cv/*.fls
+cv/*.log
+cv/*.out
+cv/*.run.xml
+cv/*.synctex.gz
+cv/*.toc
+cv/cv.pdf

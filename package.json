@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest run"
+    "test": "vitest run",
+    "cv:build": "bash scripts/build-cv.sh",
+    "cv:clean": "bash scripts/clean-cv.sh",
+    "verify": "pnpm lint && pnpm test && pnpm build"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",

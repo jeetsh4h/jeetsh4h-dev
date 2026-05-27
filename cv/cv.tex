@@ -1,7 +1,14 @@
 \documentclass[a4paper,10pt]{article}
 
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
+\usepackage{fontspec}
+\setmainfont{texgyrepagella}[
+  Extension=.otf,
+  UprightFont=*-regular,
+  BoldFont=*-bold,
+  ItalicFont=*-italic,
+  BoldItalicFont=*-bolditalic,
+  Ligatures=TeX
+]
 \usepackage[margin=0.62in]{geometry}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{enumitem}

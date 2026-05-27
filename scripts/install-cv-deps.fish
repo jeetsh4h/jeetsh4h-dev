@@ -4,6 +4,7 @@ set -l packages \
   texlive-bin \
   texlive-binextra \
   texlive-basic \
+  texlive-xetex \
   texlive-latex \
   texlive-latexrecommended \
   texlive-latexextra \

@@ -42,7 +42,7 @@ jobs:
           -v ${{ github.workspace }}/cv:/workdir \
           -w /workdir \
           danteev/texlive:latest \
-          latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode cv.tex
+          latexmk -xelatex -file-line-error -halt-on-error -interaction=nonstopmode cv.tex
 
       - name: Copy PDF to /public
         if: steps.cache-pdf.outputs.cache-hit != 'true'

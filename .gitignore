@@ -53,4 +53,5 @@ cv/*.out
 cv/*.run.xml
 cv/*.synctex.gz
 cv/*.toc
+cv/*.xdv
 cv/cv.pdf

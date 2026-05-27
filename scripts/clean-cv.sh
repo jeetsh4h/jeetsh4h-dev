@@ -16,6 +16,7 @@ rm -f \
   "$CV_DIR"/*.run.xml \
   "$CV_DIR"/*.synctex.gz \
   "$CV_DIR"/*.toc \
+  "$CV_DIR"/*.xdv \
   "$CV_DIR"/cv.pdf
 
 if [[ "${1:-}" == "--all" ]]; then

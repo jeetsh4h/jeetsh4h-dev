@@ -26,8 +26,8 @@ pnpm dev
 
 ## CV Build
 
-Requires a local TeX Live installation with `latexmk` and the LaTeX packages
-used by `cv/cv.tex`.
+Requires a local TeX Live installation with `latexmk`, `xelatex`, and the
+OpenType fonts used by `cv/cv.tex`.
 
 ```bash
 pnpm cv:check-deps
@@ -46,7 +46,7 @@ pnpm cv:install-deps:cachyos
 The installer wraps:
 
 ```fish
-paru -S --needed texlive-bin texlive-binextra texlive-basic texlive-latex texlive-latexrecommended texlive-latexextra texlive-fontsrecommended
+paru -S --needed texlive-bin texlive-binextra texlive-basic texlive-xetex texlive-latex texlive-latexrecommended texlive-latexextra texlive-fontsrecommended
 ```
 
 ## Checks

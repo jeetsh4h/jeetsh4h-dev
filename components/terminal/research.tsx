@@ -31,16 +31,6 @@ export default function Research() {
               <span className="text-secondary">{paper.year}</span>
             </div>
             <p className="mt-1 text-xs text-foreground">{paper.summary}</p>
-            {paper.result && (
-              <p className="mt-1 text-xs text-secondary">
-                Result: {paper.result}
-              </p>
-            )}
-            {paper.contribution && (
-              <p className="mt-1 text-xs text-muted-foreground">
-                {paper.contribution}
-              </p>
-            )}
             {secondaryLinks.length > 0 && (
               <div className="mt-2 flex flex-wrap gap-3 text-xs text-primary underline decoration-primary/40">
                 {secondaryLinks.map((link) => (

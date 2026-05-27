@@ -1,4 +1,4 @@
-export default function Now() {
+export default function Current() {
   const items = [
     "Building Movynn for Elevate Fitness.",
     "Maintaining Nanoloy internal tooling for battery manufacturing research workflows.",

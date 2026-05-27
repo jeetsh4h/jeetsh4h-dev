@@ -44,8 +44,9 @@ describe("Terminal", () => {
     render(<Terminal />);
 
     expect(screen.getByText("Available Commands:")).toBeInTheDocument();
-    expect(screen.getByText("now")).toBeInTheDocument();
-    expect(screen.getByText("proof")).toBeInTheDocument();
+    expect(screen.getByText("current")).toBeInTheDocument();
+    expect(screen.queryByText("now")).not.toBeInTheDocument();
+    expect(screen.queryByText("proof")).not.toBeInTheDocument();
     expect(screen.queryByText("whoami")).not.toBeInTheDocument();
   });
 

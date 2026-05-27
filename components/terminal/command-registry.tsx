@@ -3,16 +3,15 @@ import Link from "next/link";
 
 import About from "./about";
 import CatArt from "./cat";
+import Current from "./current";
 import Education from "./education";
 import Experience from "./experience";
 import Projects from "./projects";
-import Proof from "./proof";
 import Research from "./research";
 import Skills from "./skills";
 import Socials from "./socials";
 import SpotifyCommand from "./spotify";
 import { Theme, isThemeArg } from "./theme";
-import Now from "./now";
 import type { TerminalCommand } from "./command-types";
 
 function createCommand(
@@ -208,24 +207,12 @@ const TERMINAL_COMMANDS: TerminalCommand[] = [
   ),
   createCommand(
     {
-      name: "now",
-      description: "What I am working on now",
+      name: "current",
+      description: "What I am focused on",
     },
     () => ({
       kind: "render",
-      node: <Now />,
-      status: "success",
-    }),
-  ),
-  createCommand(
-    {
-      name: "proof",
-      description: "External proof and public links",
-      aliases: ["links", "receipts"],
-    },
-    () => ({
-      kind: "render",
-      node: <Proof />,
+      node: <Current />,
       status: "success",
     }),
   ),

@@ -34,17 +34,15 @@ describe("executeParsedCommand", () => {
     }
   });
 
-  it("executes current-status and proof commands", () => {
-    for (const command of ["now", "proof"]) {
-      const result = executeParsedCommand(parseOrThrow(command), {
-        args: [],
-        dimensions,
-      });
+  it("executes the current-status command", () => {
+    const result = executeParsedCommand(parseOrThrow("current"), {
+      args: [],
+      dimensions,
+    });
 
-      expect(result.kind).toBe("render");
-      if (result.kind === "render") {
-        expect(result.status).toBe("success");
-      }
+    expect(result.kind).toBe("render");
+    if (result.kind === "render") {
+      expect(result.status).toBe("success");
     }
   });
 
@@ -86,6 +84,20 @@ describe("executeParsedCommand", () => {
       kind: "error",
       message: 'Command not found: "whoami"',
     });
+  });
+
+  it("keeps removed novelty commands unreachable", () => {
+    for (const command of ["now", "proof"]) {
+      expect(
+        executeParsedCommand(parseOrThrow(command), {
+          args: [],
+          dimensions,
+        }),
+      ).toEqual({
+        kind: "error",
+        message: `Command not found: "${command}"`,
+      });
+    }
   });
 
   it("resolves aliases to the same canonical behavior", () => {

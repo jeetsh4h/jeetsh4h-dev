@@ -44,7 +44,7 @@ export const RESEARCH: ResearchItem[] = [
   {
     title:
       "Programming languages and AI-assisted software engineering workflows",
-    year: "Now",
+    year: "Active",
     kind: "interest",
     status: "in-progress",
     summary:

@@ -36,7 +36,7 @@ jobs:
         uses: actions/cache@v5
         with:
           path: public/cv.pdf
-          key: ${{ runner.os }}-pdf-${{ hashFiles('cv/*.tex', 'cv/*.bib') }}
+          key: ${{ runner.os }}-pdf-${{ hashFiles('cv/**/*.tex', 'cv/**/*.bib', '.github/docker/latex-cv/Dockerfile') }}
 
       - name: Log in to GHCR
         if: steps.cache-pdf.outputs.cache-hit != 'true'
@@ -68,9 +68,9 @@ jobs:
         uses: actions/cache@v5
         with:
           path: .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('app/**/*', 'components/**/*', 'lib/**/*', 'next.config.*', 'postcss.config.*', 'tailwind.config.*', 'tsconfig.json', 'package.json') }}
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
+            ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
 
       - name: Install pnpm
         uses: pnpm/action-setup@v6
@@ -82,6 +82,7 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

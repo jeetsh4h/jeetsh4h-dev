@@ -34,20 +34,37 @@ vi.mock("@/components/ui/terminal-crt-overlay", () => ({
 }));
 
 import { Terminal } from "../terminal";
+import { TERMINAL_COMMANDS } from "../command-registry";
+import { ABOUT } from "@/lib/content/about";
 
 describe("Terminal", () => {
   beforeEach(() => {
     searchParamsState.cmd = null;
   });
 
-  it("renders initial help output", () => {
+  it("renders help output from the registered command set", () => {
     render(<Terminal />);
 
     expect(screen.getByText("Available Commands:")).toBeInTheDocument();
-    expect(screen.getByText("current")).toBeInTheDocument();
-    expect(screen.queryByText("now")).not.toBeInTheDocument();
-    expect(screen.queryByText("proof")).not.toBeInTheDocument();
-    expect(screen.queryByText("whoami")).not.toBeInTheDocument();
+    for (const command of TERMINAL_COMMANDS) {
+      expect(screen.getByText(command.name)).toBeInTheDocument();
+      expect(screen.getByText(command.description)).toBeInTheDocument();
+    }
+  });
+
+  it("labels terminal controls for assistive technology", () => {
+    const { container } = render(<Terminal />);
+
+    expect(
+      screen.getByLabelText("Terminal command input"),
+    ).toBeInTheDocument();
+    expect(screen.getByLabelText("Interactive terminal")).toBeInTheDocument();
+    expect(
+      container.querySelector("[aria-live='polite']"),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector("[aria-hidden='true'] .opacity-0"),
+    ).toBeInTheDocument();
   });
 
   it("executes external commands when the prop changes", () => {
@@ -65,6 +82,6 @@ describe("Terminal", () => {
 
     render(<Terminal />);
 
-    expect(screen.getByText(/My name is/i)).toBeInTheDocument();
+    expect(screen.getByText(ABOUT.name)).toBeInTheDocument();
   });
 });

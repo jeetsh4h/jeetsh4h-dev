@@ -21,6 +21,7 @@ export default function Socials() {
             key={link.kind}
             href={link.href}
             target={link.kind === "email" ? undefined : "_blank"}
+            rel={link.kind === "email" ? undefined : "noopener noreferrer"}
             className="hover:decoration-primary transition-all"
           >
             {link.label}

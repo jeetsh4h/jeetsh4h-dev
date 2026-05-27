@@ -88,7 +88,10 @@ export default function Page() {
   );
 
   return (
-    <main className="min-h-screen font-mono">
+    <main
+      id="main-content"
+      className="min-h-screen font-mono"
+    >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: structuredData }}

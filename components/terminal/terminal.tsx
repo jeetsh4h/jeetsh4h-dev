@@ -179,6 +179,8 @@ function TerminalBase({
   return (
     <Card
       ref={containerRef}
+      role="region"
+      aria-label="Interactive terminal"
       className="w-full h-full overflow-hidden font-mono text-sm min-h-0 p-0 gap-0 relative rounded-sm shadow-md"
       onClick={handleFocus}
     >
@@ -187,7 +189,10 @@ function TerminalBase({
       <CardHeader className="relative flex-none border-b py-3 bg-card z-20 flex flex-row items-center justify-between space-y-0">
         <WalkingCat />
 
-        <div className="flex items-center gap-2 mt-1">
+        <div
+          className="flex items-center gap-2 mt-1"
+          aria-hidden="true"
+        >
           <div className="size-3 rounded-full bg-[#ff5f56] border border-[#e0443e] hover:bg-[#ff5f56]/80 shadow-sm" />
           <div className="size-3 rounded-full bg-[#ffbd2e] border border-[#dea123] hover:bg-[#ffbd2e]/80 shadow-sm" />
           <div className="size-3 rounded-full bg-[#27c93f] border border-[#1aab29] hover:bg-[#27c93f]/80 shadow-sm" />
@@ -200,32 +205,41 @@ function TerminalBase({
         scrollThumbClassName="rounded-b-md"
       >
         <div className="px-4 pb-4 pt-1">
-          {history.map((item) => (
-            <div
-              key={item.id}
-              className="mb-4"
-            >
-              {item.type === "command" ?
-                <TransientPrompt
-                  command={item.content as string}
-                  status={item.status}
-                />
-              : <div className="pl-4 border-l-2 border-term-border/50 ml-0.5 text-term-muted">
-                  {item.content}
-                </div>
-              }
-            </div>
-          ))}
+          <div
+            aria-live="polite"
+            aria-relevant="additions text"
+          >
+            {history.map((item) => (
+              <div
+                key={item.id}
+                className="mb-4"
+              >
+                {item.type === "command" ?
+                  <TransientPrompt
+                    command={item.content as string}
+                    status={item.status}
+                  />
+                : <div className="pl-4 border-l-2 border-term-border/50 ml-0.5 text-term-muted">
+                    {item.content}
+                  </div>
+                }
+              </div>
+            ))}
+          </div>
 
           <ActivePrompt refreshTrigger={history.length}>
             <div className="relative flex-1">
-              <span className="text-muted-foreground opacity-50 select-none absolute left-0 top-0 pointer-events-none whitespace-pre-wrap break-all inline-block">
+              <span
+                className="text-muted-foreground opacity-50 select-none absolute left-0 top-0 pointer-events-none whitespace-pre-wrap break-all inline-block"
+                aria-hidden="true"
+              >
                 <span className="opacity-0">{input}</span>
                 <span>{suggestion}</span>
               </span>
 
               <input
                 ref={inputRef}
+                aria-label="Terminal command input"
                 className={cn(
                   "relative w-full bg-transparent text-foreground font-medium outline-none border-none caret-secondary ring-0 p-0 m-0",
                   "focus:ring-0 focus:outline-none",
@@ -240,6 +254,8 @@ function TerminalBase({
                   }
                 }}
                 autoComplete="off"
+                autoCapitalize="off"
+                enterKeyHint="send"
                 spellCheck={false}
                 autoFocus
               />

@@ -16,6 +16,7 @@ export default function Footer({ className }: { className?: string }) {
         <Link
           href="https://github.com/jeetsh4h/jeetsh4h-dev"
           target="_blank"
+          rel="noopener noreferrer"
           className="underline text-primary decoration-primary/40 hover:decoration-primary transition-colors"
         >
           Source Code

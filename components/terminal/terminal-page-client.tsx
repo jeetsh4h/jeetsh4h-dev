@@ -57,7 +57,8 @@ export default function TerminalPageClient() {
 
   return (
     <>
-      <div
+      <main
+        id="main-content"
         className="relative flex w-full flex-col"
         style={{ height: viewportHeight }}
       >
@@ -88,7 +89,7 @@ export default function TerminalPageClient() {
             <Terminal externalCommand={externalCommand} />
           </Suspense>
         </div>
-      </div>
+      </main>
       <Footer className="mt-12" />
     </>
   );

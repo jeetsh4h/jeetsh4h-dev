@@ -15,7 +15,10 @@ export const metadata: Metadata = {
 export default function PDFPage() {
   return (
     <>
-      <div className="h-dvh flex flex-col">
+      <main
+        id="main-content"
+        className="h-dvh flex flex-col"
+      >
         <div className="mx-auto flex w-full flex-none items-center justify-between p-4 pb-2">
           <Button
             nativeButton={false}
@@ -32,7 +35,7 @@ export default function PDFPage() {
         <div className="w-full flex-1 min-h-0 max-w-3xl mx-auto px-4 pb-4">
           <PDFViewer />
         </div>
-      </div>
+      </main>
       <Footer className="mt-12" />
     </>
   );

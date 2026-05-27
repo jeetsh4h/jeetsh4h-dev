@@ -34,6 +34,20 @@ describe("executeParsedCommand", () => {
     }
   });
 
+  it("executes current-status and proof commands", () => {
+    for (const command of ["now", "proof"]) {
+      const result = executeParsedCommand(parseOrThrow(command), {
+        args: [],
+        dimensions,
+      });
+
+      expect(result.kind).toBe("render");
+      if (result.kind === "render") {
+        expect(result.status).toBe("success");
+      }
+    }
+  });
+
   it("returns clear for clear and cls", () => {
     expect(
       executeParsedCommand(parseOrThrow("clear"), {
@@ -59,6 +73,18 @@ describe("executeParsedCommand", () => {
     ).toEqual({
       kind: "error",
       message: 'Command not found: "unknown"',
+    });
+  });
+
+  it("keeps whoami unreachable", () => {
+    expect(
+      executeParsedCommand(parseOrThrow("whoami"), {
+        args: [],
+        dimensions,
+      }),
+    ).toEqual({
+      kind: "error",
+      message: 'Command not found: "whoami"',
     });
   });
 

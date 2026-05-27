@@ -44,6 +44,9 @@ describe("Terminal", () => {
     render(<Terminal />);
 
     expect(screen.getByText("Available Commands:")).toBeInTheDocument();
+    expect(screen.getByText("now")).toBeInTheDocument();
+    expect(screen.getByText("proof")).toBeInTheDocument();
+    expect(screen.queryByText("whoami")).not.toBeInTheDocument();
   });
 
   it("executes external commands when the prop changes", () => {

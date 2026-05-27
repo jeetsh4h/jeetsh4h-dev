@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { SEO } from "@/lib/content/seo";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://jeetsh4h.dev/sitemap.xml",
-    host: "https://jeetsh4h.dev",
+    sitemap: `${SEO.url}/sitemap.xml`,
+    host: SEO.url,
   };
 }

@@ -1,2 +1,0 @@
-- [ ] Add `app/opengraph-image.png`
-- [ ] Add `app/twitter-image.png`

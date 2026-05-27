@@ -21,9 +21,34 @@ export const metadata: Metadata = {
   description: SEO.description,
   keywords: SEO.keywords,
   metadataBase: new URL(SEO.url),
-  authors: [{ name: "Jeet Shah", url: "https://jeetsh4h.dev" }],
+  alternates: {
+    canonical: "/",
+  },
+  authors: [{ name: "Jeet Shah", url: SEO.url }],
   creator: "Jeet Shah",
   publisher: "Jeet Shah",
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: [
+      {
+        url: "/favicon-16x16.png",
+        sizes: "16x16",
+        type: "image/png",
+      },
+      {
+        url: "/favicon-32x32.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
+    ],
+    apple: [
+      {
+        url: "/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+  },
   openGraph: {
     title: SEO.title,
     description: SEO.description,
@@ -31,11 +56,20 @@ export const metadata: Metadata = {
     siteName: "Jeet Shah",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Jeet Shah | Software Engineer, Columbia MSCS",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: SEO.title,
     description: SEO.description,
+    images: ["/twitter-image"],
   },
 };
 
@@ -57,29 +91,6 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
     >
-      <head>
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
-        />
-        <link
-          rel="manifest"
-          href="/site.webmanifest"
-        />
-      </head>
       <body
         className={`${jetbrainsMono.variable} antialiased bg-background text-foreground selection:bg-accent selection:text-accent-foreground`}
       >

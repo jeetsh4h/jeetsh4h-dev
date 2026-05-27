@@ -35,16 +35,20 @@
     \textbf{#1} & \textit{#2}\\
     #3 & #4
   \end{tabularx}
-  \vspace{2pt}
+  \vspace{5pt}
 }
 
 \newcommand{\experienceentry}[3]{%
   \begin{tabularx}{\linewidth}{@{}X r@{}}
     \textbf{#1} & \textit{#2}
   \end{tabularx}
-  \vspace{-7pt}
+  \vspace{-10pt}
   #3
   \vspace{2pt}
+}
+
+\newcommand{\skillrow}[2]{%
+  \textbf{#1} & #2\\[3pt]
 }
 
 \newcommand{\publication}[5]{%
@@ -133,11 +137,11 @@ Plant disease detection app using fine-tuned ResNet-50; Bit N Build finalist.
 
 \section{Skills}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Languages} & TypeScript, Python, C++, Zig\\
-\textbf{Frontend} & React Native, Expo, Next.js, Tailwind CSS\\
-\textbf{Backend} & FastAPI, Supabase/Postgres, Convex, Docker, SQL\\
-\textbf{ML} & PyTorch, TensorFlow, Computer Vision, ConvLSTM, RAG\\
-\textbf{Systems} & Linux, HPC environments, Git, Browser Engineering\\
+\skillrow{Languages}{TypeScript, Python, C++, Zig}
+\skillrow{Frontend}{React Native, Expo, Next.js, Tailwind CSS}
+\skillrow{Backend}{FastAPI, Supabase/Postgres, Convex, Docker, SQL}
+\skillrow{ML}{PyTorch, TensorFlow, Computer Vision, ConvLSTM, RAG}
+\skillrow{Systems}{Linux, HPC environments, Git, Browser Engineering}
 \end{tabularx}
 
 \vfill

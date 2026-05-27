@@ -49,6 +49,15 @@ The installer wraps:
 paru -S --needed texlive-bin texlive-binextra texlive-basic texlive-xetex texlive-latex texlive-latexrecommended texlive-latexextra texlive-fontsrecommended
 ```
 
+## CI LaTeX Image
+
+Deploy workflows build `public/cv.pdf` with a slim GHCR image:
+
+`ghcr.io/jeetsh4h/jeetsh4h-dev/latex-cv:latest`
+
+If the image dependencies change, update `.github/docker/latex-cv/Dockerfile`
+and run the `Build LaTeX CV Image` workflow before relying on deploy workflows.
+
 ## Checks
 
 ```bash

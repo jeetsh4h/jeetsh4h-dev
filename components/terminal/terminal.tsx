@@ -28,6 +28,31 @@ function getCommitHash() {
   return commitSha.slice(0, 7);
 }
 
+const PromptMarker = ({ className }: { className?: string }) => (
+  <span
+    className={cn(
+      "inline-flex h-6 w-4 shrink-0 items-center justify-center select-none",
+      className,
+    )}
+    aria-hidden="true"
+  >
+    <svg
+      viewBox="0 0 16 24"
+      className="block h-5 w-4"
+      focusable="false"
+    >
+      <path
+        d="M4 3L12 12L4 21"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="square"
+        strokeLinejoin="miter"
+        strokeWidth="4"
+      />
+    </svg>
+  </span>
+);
+
 const ActivePrompt = ({
   refreshTrigger,
   children,
@@ -67,8 +92,8 @@ const ActivePrompt = ({
         </div>
       </div>
 
-      <div className="flex items-center gap-2">
-        <span className="text-accent text-lg leading-none select-none">❯</span>
+      <div className="flex min-h-6 items-center gap-2">
+        <PromptMarker className="text-accent" />
         {children}
       </div>
     </div>
@@ -82,16 +107,13 @@ const TransientPrompt = ({
   command: string;
   status?: "success" | "error";
 }) => (
-  <div className="flex items-center gap-2 mb-2">
-    <span
+  <div className="flex min-h-6 items-center gap-2 mb-2">
+    <PromptMarker
       className={cn(
-        "text-lg leading-none select-none",
         status === "error" ? "text-destructive" : "text-term-success",
       )}
-    >
-      ❯
-    </span>
-    <span className="text-sm text-foreground whitespace-pre-wrap">
+    />
+    <span className="text-sm leading-5 text-foreground whitespace-pre-wrap">
       {command}
     </span>
   </div>
@@ -228,9 +250,9 @@ function TerminalBase({
           </div>
 
           <ActivePrompt refreshTrigger={history.length}>
-            <div className="relative flex-1">
+            <div className="relative flex h-6 flex-1 items-center">
               <span
-                className="text-muted-foreground opacity-50 select-none absolute left-0 top-0 pointer-events-none whitespace-pre-wrap break-all inline-block"
+                className="text-muted-foreground opacity-50 select-none absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none whitespace-pre-wrap break-all inline-block h-5 leading-5 text-sm font-medium"
                 aria-hidden="true"
               >
                 <span className="opacity-0">{input}</span>
@@ -241,7 +263,7 @@ function TerminalBase({
                 ref={inputRef}
                 aria-label="Terminal command input"
                 className={cn(
-                  "relative w-full bg-transparent text-foreground font-medium outline-none border-none caret-secondary ring-0 p-0 m-0",
+                  "relative block h-5 w-full appearance-none bg-transparent text-foreground text-sm font-medium leading-5 outline-none border-none caret-secondary ring-0 p-0 m-0",
                   "focus:ring-0 focus:outline-none",
                 )}
                 value={input}

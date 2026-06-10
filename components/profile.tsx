@@ -22,8 +22,8 @@ export default function Profile() {
             <Button
               nativeButton={false}
               render={<Link href="/terminal" />}
-              variant={null}
-              className="h-9 rounded cursor-pointer mr-2 bg-primary text-primary-foreground border-transparent hover:bg-primary-foreground hover:text-primary hover:border-primary transition-all"
+              size="lg"
+              className="mr-2"
             >
               <IconTerminal2 className="size-4" />
               <span>Open in Terminal</span>
@@ -35,8 +35,9 @@ export default function Profile() {
                   <Button
                     nativeButton={false}
                     render={<Link href="/pdf" />}
-                    variant={null}
-                    className="h-9 rounded cursor-pointer mr-2 bg-secondary-foreground text-secondary border-secondary hover:bg-secondary hover:text-secondary-foreground hover:border-secondary transition-all"
+                    variant="secondary"
+                    size="lg"
+                    className="mr-2"
                   >
                     <IconFileCv className="size-4" />
                     <span>Open as PDF</span>
@@ -44,7 +45,6 @@ export default function Profile() {
                 }
               />
               <TooltipContent
-                className="font-mono rounded bg-card text-muted-foreground border-border border inline-flex items-center justify-center whitespace-nowrap gap-1.5 px-1.5"
                 side="bottom"
                 alignOffset={2}
               >
@@ -76,8 +76,8 @@ export default function Profile() {
         <Button
           nativeButton={false}
           render={<Link href="/terminal" />}
-          variant={null}
-          className="flex h-9 rounded cursor-pointer mr-2 bg-primary text-primary-foreground border-transparent hover:bg-primary-foreground hover:text-primary hover:border-primary transition-all"
+          size="lg"
+          className="flex mr-2"
         >
           <IconTerminal2 className="size-4" />
           <span>Open in Terminal</span>
@@ -89,8 +89,9 @@ export default function Profile() {
               <Button
                 nativeButton={false}
                 render={<Link href="/pdf" />}
-                variant={null}
-                className="flex h-9 rounded cursor-pointer mr-2 bg-secondary-foreground text-secondary border-secondary hover:bg-secondary hover:text-secondary-foreground hover:border-secondary transition-all"
+                variant="secondary"
+                size="lg"
+                className="flex mr-2"
               >
                 <IconFileCv className="size-4" />
                 <span>Open as PDF</span>
@@ -98,7 +99,6 @@ export default function Profile() {
             }
           />
           <TooltipContent
-            className="font-mono rounded bg-card text-muted-foreground border-border border inline-flex items-center justify-center whitespace-nowrap gap-1.5 px-1.5"
             side="bottom"
             alignOffset={2}
           >

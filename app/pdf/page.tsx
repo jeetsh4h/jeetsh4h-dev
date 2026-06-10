@@ -24,7 +24,7 @@ export default function PDFPage() {
             nativeButton={false}
             render={<Link href="/" />}
             variant="link"
-            className="group flex cursor-pointer items-center gap-2 px-0 text-xs font-mono text-muted-foreground transition-colors hover:text-secondary hover:no-underline hover:decoration-secondary"
+            className="flex text-xs"
           >
             <span className="transition-transform group-hover:-translate-x-0.5">
               ←

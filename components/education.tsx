@@ -1,5 +1,6 @@
-import TerminalCommandLink from "./terminal-command-link";
-import { Card, CardHeader } from "./ui/card";
+import { Badge } from "./ui/badge";
+import { Card, CardHeader, CardTitle } from "./ui/card";
+import { SectionGrid, SectionHeading } from "./ui/section";
 import { buildEducationSection } from "@/lib/site-content";
 
 export default function Education() {
@@ -7,26 +8,22 @@ export default function Education() {
 
   return (
     <>
-      <h2
+      <SectionHeading
         id="education-heading"
-        className="flex items-center"
-      >
-        <TerminalCommandLink command="education" />
-      </h2>
+        command="education"
+      />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 -mt-2">
+      <SectionGrid>
         {education.higherEducation.map((edu) => (
           <Card
-            className="p-5 rounded-md border-term-border/50"
+            variant="content"
             key={`${edu.institution}-${edu.period}`}
           >
             <CardHeader className="flex justify-between items-center -mx-4">
-              <span className="text-primary font-bold text-lg">
+              <CardTitle className="text-primary font-bold text-lg">
                 {edu.institution}
-              </span>
-              <span className="inline-block bg-term-border/20 px-2 py-0.5 rounded mt-0.5 text-xs">
-                {edu.period}
-              </span>
+              </CardTitle>
+              <Badge className="mt-0.5">{edu.period}</Badge>
             </CardHeader>
             <div className="-mt-2.5 text-sm text-secondary mb-4 leading-6 min-h-12 overflow-hidden">
               {edu.degree}
@@ -46,7 +43,10 @@ export default function Education() {
         ))}
 
         {education.priorEducation.length > 0 && (
-          <Card className="p-5 rounded-md border-term-border/50 md:col-span-2">
+          <Card
+            variant="content"
+            className="md:col-span-2"
+          >
             <div className="space-y-4">
               {education.priorEducation.map((edu, index) => (
                 <div
@@ -56,12 +56,10 @@ export default function Education() {
                   }
                 >
                   <CardHeader className="flex items-center justify-between -mx-4">
-                    <span className="text-lg font-bold text-primary">
+                    <CardTitle className="text-lg font-bold text-primary">
                       {edu.institution}
-                    </span>
-                    <span className="mt-0.5 inline-block rounded bg-term-border/20 px-2 py-0.5 text-xs">
-                      {edu.period}
-                    </span>
+                    </CardTitle>
+                    <Badge className="mt-0.5">{edu.period}</Badge>
                   </CardHeader>
                   <div className="text-sm text-secondary leading-6">
                     {edu.degree}
@@ -84,7 +82,7 @@ export default function Education() {
             </div>
           </Card>
         )}
-      </div>
+      </SectionGrid>
     </>
   );
 }

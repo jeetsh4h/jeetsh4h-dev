@@ -1,4 +1,5 @@
-import TerminalCommandLink from "./terminal-command-link";
+import { Badge } from "./ui/badge";
+import { SectionHeading } from "./ui/section";
 import Link from "next/link";
 import { buildResearchSection } from "@/lib/site-content";
 import type { ResearchEntryModel } from "@/lib/site-content";
@@ -25,9 +26,7 @@ function ResearchEntry({ paper }: { paper: ResearchEntryModel }) {
               {paper.title}
             </h3>
           }
-          <span className="text-xs text-foreground font-mono bg-term-border/20 px-2 py-0.5 rounded">
-            {paper.year}
-          </span>
+          <Badge>{paper.year}</Badge>
         </div>
 
         {paper.citationAuthors && (
@@ -63,12 +62,10 @@ export default function Research() {
 
   return (
     <>
-      <h2
+      <SectionHeading
         id="research-heading"
-        className="flex items-center"
-      >
-        <TerminalCommandLink command="research" />
-      </h2>
+        command="research"
+      />
 
       <div className="space-y-6 -mt-2">
         {research.entries.map((paper) => (

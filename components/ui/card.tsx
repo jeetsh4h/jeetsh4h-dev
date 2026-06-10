@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
@@ -6,14 +5,21 @@ import { cn } from "@/lib/utils";
 function Card({
   className,
   size = "default",
+  variant = "default",
   ...props
-}: React.ComponentProps<"div"> & { size?: "default" | "sm" }) {
+}: React.ComponentProps<"div"> & {
+  size?: "default" | "sm";
+  variant?: "default" | "content" | "interactive";
+}) {
   return (
     <div
       data-slot="card"
       data-size={size}
       className={cn(
         "ring-foreground/10 bg-card text-card-foreground gap-4 overflow-hidden rounded-none py-4 text-xs/relaxed ring-1 has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:gap-2 data-[size=sm]:py-3 data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-none *:[img:last-child]:rounded-none group/card flex flex-col",
+        variant === "content" && "p-5 rounded-md border-term-border/50",
+        variant === "interactive" &&
+          "p-5 rounded-md border-term-border/50 group transition-colors hover:ring-accent cursor-pointer",
         className,
       )}
       {...props}
@@ -96,9 +102,9 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
 export {
   Card,
   CardHeader,
-  // CardFooter,
-  // CardTitle,
-  // CardAction,
-  // CardDescription,
-  // CardContent,
+  CardFooter,
+  CardTitle,
+  CardAction,
+  CardDescription,
+  CardContent,
 };

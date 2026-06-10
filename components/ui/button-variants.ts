@@ -5,16 +5,17 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",
+        default:
+          "rounded cursor-pointer bg-primary text-primary-foreground border-transparent hover:bg-primary-foreground hover:text-primary hover:border-primary",
         outline:
-          "border-border bg-background hover:bg-muted hover:text-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 aria-expanded:bg-muted aria-expanded:text-foreground",
+          "relative z-10 rounded bg-card text-accent border-border hover:z-20 hover:border-accent focus-visible:z-20 cursor-pointer",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
-        ghost:
-          "hover:bg-muted hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground",
+          "rounded cursor-pointer bg-secondary-foreground text-secondary border-secondary hover:bg-secondary hover:text-secondary-foreground hover:border-secondary",
+        tertiary:
+          "rounded border-border bg-card text-accent shadow-sm hover:bg-accent hover:text-accent-foreground cursor-pointer",
         destructive:
-          "bg-destructive/10 hover:bg-destructive/20 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/20 text-destructive focus-visible:border-destructive/40 dark:hover:bg-destructive/30",
-        link: "text-primary underline-offset-4 hover:underline",
+          "rounded cursor-pointer bg-destructive text-destructive-foreground border-transparent hover:bg-destructive/80 focus-visible:border-destructive focus-visible:ring-destructive/30",
+        link: "group cursor-pointer gap-2 px-0 font-mono text-muted-foreground hover:text-secondary hover:no-underline hover:decoration-secondary",
       },
       size: {
         default:
@@ -28,6 +29,12 @@ export const buttonVariants = cva(
         "icon-lg": "size-9",
       },
     },
+    compoundVariants: [
+      {
+        variant: "link",
+        className: "gap-2 px-0",
+      },
+    ],
     defaultVariants: {
       variant: "default",
       size: "default",

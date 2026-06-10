@@ -1,5 +1,6 @@
-import TerminalCommandLink from "./terminal-command-link";
+import { Badge } from "./ui/badge";
 import { Card, CardHeader } from "./ui/card";
+import { SectionGrid, SectionHeading } from "./ui/section";
 import Link from "next/link";
 import { buildProjectsSection } from "@/lib/site-content";
 import type { ProjectEntryModel } from "@/lib/site-content";
@@ -7,9 +8,7 @@ import type { ProjectEntryModel } from "@/lib/site-content";
 function ProjectCard({ project }: { project: ProjectEntryModel }) {
   return (
     <Card
-      className={`p-5 rounded-md border-term-border/50 group transition-colors ${
-        project.link ? "hover:ring-accent cursor-pointer" : ""
-      }`}
+      variant={project.link ? "interactive" : "content"}
     >
       <CardHeader className="flex justify-between items-start p-0 gap-3">
         <h3
@@ -22,9 +21,12 @@ function ProjectCard({ project }: { project: ProjectEntryModel }) {
           {project.title}
         </h3>
         {project.status && (
-          <span className="shrink-0 text-[10px] uppercase tracking-wide text-foreground bg-term-border/20 px-2 py-0.5 rounded">
+          <Badge
+            variant="status"
+            className="text-[10px]"
+          >
             {project.status}
-          </span>
+          </Badge>
         )}
       </CardHeader>
       <p className="text-sm text-foreground leading-relaxed">
@@ -33,12 +35,12 @@ function ProjectCard({ project }: { project: ProjectEntryModel }) {
       {project.stack && project.stack.length > 0 && (
         <div className="flex flex-wrap gap-1.5">
           {project.stack.map((item) => (
-            <span
+            <Badge
               key={`${project.title}-${item}`}
-              className="text-[11px] bg-term-border/20 px-2 py-0.5 rounded"
+              size="xs"
             >
               {item}
-            </span>
+            </Badge>
           ))}
         </div>
       )}
@@ -63,14 +65,12 @@ export default function Projects() {
 
   return (
     <>
-      <h2
+      <SectionHeading
         id="projects-heading"
-        className="flex items-center"
-      >
-        <TerminalCommandLink command="projects" />
-      </h2>
+        command="projects"
+      />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 -mt-2">
+      <SectionGrid>
         {projects.entries.map((project) =>
           project.link ?
             <Link
@@ -86,7 +86,7 @@ export default function Projects() {
               project={project}
             />,
         )}
-      </div>
+      </SectionGrid>
     </>
   );
 }

@@ -1,5 +1,6 @@
 import ExperienceDescription from "./experience-description";
-import TerminalCommandLink from "./terminal-command-link";
+import { Badge } from "./ui/badge";
+import { SectionHeading } from "./ui/section";
 import { buildExperienceSection } from "@/lib/site-content";
 
 export default function Experience() {
@@ -7,12 +8,10 @@ export default function Experience() {
 
   return (
     <>
-      <h2
+      <SectionHeading
         id="experience-heading"
-        className="flex items-center"
-      >
-        <TerminalCommandLink command="experience" />
-      </h2>
+        command="experience"
+      />
 
       <div className="border-l-2 border-term-border/50 ml-2 space-y-10 pl-8 relative -mt-2">
         {experience.featuredEntries.map((job) => (
@@ -24,9 +23,7 @@ export default function Experience() {
 
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
               <h3 className="text-lg font-bold text-primary">{job.company}</h3>
-              <span className="text-xs text-foreground bg-term-border/20 px-2 py-0.5 rounded w-fit">
-                {job.period}
-              </span>
+              <Badge>{job.period}</Badge>
             </div>
             <div className="text-sm text-secondary font-medium mb-3">
               {job.role}
@@ -58,9 +55,7 @@ export default function Experience() {
               <div className="text-sm">
                 <div className="flex justify-between items-baseline">
                   <span className="font-bold text-primary">{job.company}</span>
-                  <span className="text-xs text-foreground font-mono bg-term-border/20 px-2 py-0.5 rounded">
-                    {job.period}
-                  </span>
+                  <Badge>{job.period}</Badge>
                 </div>
                 <div className="text-foreground text-xs mt-1 ml-2">
                   {job.description && (

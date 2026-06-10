@@ -53,7 +53,9 @@ function ThemeToggleBase() {
         <TooltipTrigger
           render={
             <Button
-              className="relative z-10 size-9 rounded rounded-r-none bg-card text-accent border-border hover:z-20 hover:border-accent focus-visible:z-20 cursor-pointer"
+              variant="outline"
+              size="icon-lg"
+              className="rounded-r-none"
               onClick={toggleTheme}
               aria-label="Toggle Theme"
             >
@@ -64,7 +66,6 @@ function ThemeToggleBase() {
           }
         />
         <TooltipContent
-          className="font-mono rounded bg-card text-muted-foreground border-border border inline-flex items-center justify-center whitespace-nowrap gap-1.5 px-1.5"
           side="bottom"
           alignOffset={2}
         >
@@ -76,7 +77,9 @@ function ThemeToggleBase() {
         <TooltipTrigger
           render={
             <Button
-              className="relative z-10 -ml-px size-9 rounded rounded-l-none bg-card border-border hover:z-20 hover:border-accent focus-visible:z-20 cursor-pointer"
+              variant="outline"
+              size="icon-lg"
+              className="-ml-px rounded-l-none"
               onClick={toggleSystemTheme}
               aria-label="System Theme"
             >
@@ -87,7 +90,6 @@ function ThemeToggleBase() {
           }
         />
         <TooltipContent
-          className="font-mono rounded bg-card text-muted-foreground border-border border inline-flex items-center justify-center whitespace-nowrap gap-1.5 px-1.5"
           side="bottom"
         >
           <IconTerminal2 className="size-3" />

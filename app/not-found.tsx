@@ -12,7 +12,7 @@ export default async function NotFound() {
           nativeButton={false}
           render={<Link href="/" />}
           variant="link"
-          className="group flex cursor-pointer items-center gap-2 px-0 text-xs font-mono text-muted-foreground transition-colors hover:text-secondary hover:no-underline hover:decoration-secondary"
+          className="flex text-xs"
         >
           <span className="transition-transform group-hover:-translate-x-0.5">
             ←
@@ -40,8 +40,8 @@ export default async function NotFound() {
           <Button
             nativeButton={false}
             render={<Link href="/terminal" />}
-            variant={null}
-            className="flex h-9 rounded cursor-pointer font-mono bg-primary text-primary-foreground border-transparent hover:bg-primary-foreground hover:text-primary hover:border-primary transition-all"
+            size="lg"
+            className="flex font-mono"
           >
             <IconTerminal2 className="size-4" />
             <span>./terminal</span>
@@ -50,8 +50,9 @@ export default async function NotFound() {
           <Button
             nativeButton={false}
             render={<Link href="/pdf" />}
-            variant={null}
-            className="flex h-9 rounded cursor-pointer font-mono bg-secondary-foreground text-secondary border-secondary hover:bg-secondary hover:text-secondary-foreground hover:border-secondary transition-all"
+            variant="secondary"
+            size="lg"
+            className="flex font-mono"
           >
             <IconFileCv className="size-4" />
             <span>./cv.pdf</span>

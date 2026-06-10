@@ -8,13 +8,13 @@ export default function Education() {
       {education.higherEducation.map((edu, idx) => (
         <div
           key={`${edu.institution}-${edu.period}`}
-          className={idx > 0 ? "border-t border-term-border/50 pt-2" : ""}
+          className={idx > 0 ? "border-t border-input/50 pt-2" : ""}
         >
           <div className="flex justify-between items-baseline">
             <span className="text-primary font-bold text-base">
               {edu.institution}
             </span>
-            <span className="text-xs text-muted-foreground bg-term-border/20 px-2 py-0.5 rounded w-fit">
+            <span className="text-xs text-muted-foreground bg-input/20 px-2 py-0.5 rounded w-fit">
               {edu.period}
             </span>
           </div>
@@ -33,7 +33,7 @@ export default function Education() {
       ))}
 
       {education.priorEducation.length > 0 && (
-        <div className="border-t border-term-border/50 pt-2">
+        <div className="border-t border-input/50 pt-2">
           <span className="text-accent font-bold">Prior Education:</span>
           <ul className="text-xs text-foreground marker:text-accent list-disc list-inside mt-1 ml-1 space-y-1">
             {education.priorEducation.map((edu) => (

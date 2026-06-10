@@ -13,14 +13,14 @@ export default function Experience() {
             className={`relative ${job.description ? "" : "opacity-80"}`}
           >
             <div
-              className={`absolute -left-5.75 top-1.75 size-3 bg-accent rounded-full border-2 border-card ring-1 ring-term-border/50`}
+              className={`absolute -left-5.75 top-1.75 size-3 bg-accent rounded-full border-2 border-card ring-1 ring-input/50`}
             />
 
             <div className="flex justify-between items-baseline flex-wrap">
               <span className="text-primary font-bold text-base">
                 {job.company}
               </span>
-              <span className="text-xs text-muted-foreground bg-term-border/20 px-2 py-0.5 rounded w-fit">
+              <span className="text-xs text-muted-foreground bg-input/20 px-2 py-0.5 rounded w-fit">
                 {job.period}
               </span>
             </div>
@@ -53,14 +53,14 @@ export default function Experience() {
                 key={`${job.company}-${job.role}-${job.period}`}
                 className="relative"
               >
-                <div className="absolute -left-5.75 top-0.75 size-3 bg-accent rounded-full border-2 border-card ring-1 ring-term-border/50" />
+                <div className="absolute -left-5.75 top-0.75 size-3 bg-accent rounded-full border-2 border-card ring-1 ring-input/50" />
 
                 <div>
                   <div className="flex justify-between items-baseline">
                     <span className="font-semi-bold text-primary text-sm">
                       {job.company}
                     </span>
-                    <span className="text-xs text-muted-foreground font-mono bg-term-border/20 px-2 py-0.5 rounded w-fit">
+                    <span className="text-xs text-muted-foreground font-mono bg-input/20 px-2 py-0.5 rounded w-fit">
                       {job.period}
                     </span>
                   </div>

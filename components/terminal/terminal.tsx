@@ -110,7 +110,7 @@ const TransientPrompt = ({
   <div className="flex min-h-6 items-center gap-2 mb-2">
     <PromptMarker
       className={cn(
-        status === "error" ? "text-destructive" : "text-term-success",
+        status === "error" ? "text-destructive" : "text-success",
       )}
     />
     <span className="text-sm leading-5 text-foreground whitespace-pre-wrap">
@@ -241,7 +241,7 @@ function TerminalBase({
                     command={item.content as string}
                     status={item.status}
                   />
-                : <div className="pl-4 border-l-2 border-term-border/50 ml-0.5 text-term-muted">
+                : <div className="pl-4 border-l-2 border-input/50 ml-0.5 text-term-muted">
                     {item.content}
                   </div>
                 }

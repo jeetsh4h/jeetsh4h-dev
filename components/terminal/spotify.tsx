@@ -91,7 +91,7 @@ export default function SpotifyCommand() {
   return (
     <div className="mt-2 flex max-w-sm flex-col gap-3 rounded-lg border border-border bg-card p-3 text-card-foreground shadow-sm">
       <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider">
-        <div className="flex items-center gap-2 text-term-success">
+        <div className="flex items-center gap-2 text-success">
           <IconBrandSpotify size={16} />
           <span>
             {data.isPlaying ?
@@ -164,7 +164,7 @@ export default function SpotifyCommand() {
             <div className="flex flex-col gap-1.5 w-full mt-auto pb-0.5">
               <div className="h-1 w-full overflow-hidden rounded-full bg-muted/80">
                 <div
-                  className="h-full bg-term-success"
+                  className="h-full bg-success"
                   style={{ width: `${progressPercent}%` }}
                 />
               </div>
@@ -184,7 +184,7 @@ function SpotifySkeleton() {
   return (
     <div className="mt-2 flex max-w-sm flex-col gap-3 rounded-lg border border-border bg-card p-3 text-card-foreground shadow-sm">
       <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider">
-        <div className="flex items-center gap-2 text-term-success">
+        <div className="flex items-center gap-2 text-success">
           <IconBrandSpotify size={16} />
           <span>Loading...</span>
         </div>

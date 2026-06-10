@@ -40,7 +40,7 @@ export function SpotifyPromptSegment({
     return (
       <div className="flex items-center text-xs font-bold select-none">
         <span className="text-muted-foreground/70">[</span>
-        <div className="flex items-center text-term-success opacity-70">
+        <div className="flex items-center text-success opacity-70">
           <IconBrandSpotify
             size={13}
             className="-ml-px mr-0.5 animate-spin"
@@ -62,13 +62,13 @@ export function SpotifyPromptSegment({
   };
   const spotifyData = data ?? fallbackData;
   const bracketColor =
-    spotifyData.isPlaying ? "text-term-success" : "text-term-warning";
+    spotifyData.isPlaying ? "text-success" : "text-warning";
 
   return (
     <div className="flex items-center text-xs font-bold select-none">
       <span className={bracketColor}>[</span>
 
-      <div className="flex items-center text-term-success">
+      <div className="flex items-center text-success">
         <IconBrandSpotify
           size={13}
           className="-ml-px mr-0.5"

@@ -9,9 +9,8 @@
   --color-foreground: var(--foreground);
   --font-mono: var(--font-mono);
 
-  --color-term-border: var(--term-border);
-  --color-term-success: var(--term-success);
-  --color-term-warning: var(--term-warning);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
   --color-term-muted: var(--term-muted);
 
   --color-card: var(--card);
@@ -40,7 +39,8 @@
   --radius-4xl: calc(var(--radius) + 16px);
 }
 
-:root {
+:root,
+.dark {
   /* Base - Purple Gray */
   --background: #24273a;
   /* Text - White/Lavender */
@@ -78,9 +78,8 @@
 
   --radius: 0.75rem;
 
-  --term-border: #363a4f; /* Surface0 */
-  --term-success: #a6da95; /* Green */
-  --term-warning: #eed49f; /* Yellow */
+  --success: #a6da95; /* Green */
+  --warning: #eed49f; /* Yellow */
   --term-muted: #5b6078; /* Surface2 */
 }
 
@@ -116,41 +115,14 @@
   --destructive-foreground: #eff1f5;
 
   --border: #ccd0da;
-  --input: #ccd0da;
+  --input: #bcc0cc;
   --ring: #8839ef;
 
   --radius: 0.75rem;
 
-  --term-border: #bcc0cc; /* Surface1 */
-  --term-success: #40a02b; /* Green */
-  --term-warning: #df8e1d; /* Yellow */
+  --success: #40a02b; /* Green */
+  --warning: #df8e1d; /* Yellow */
   --term-muted: #9ca0b0; /* Overlay0 */
-}
-
-.dark {
-  --background: #24273a;
-  --foreground: #cad3f5;
-  --card: #1e2030;
-  --card-foreground: #cad3f5;
-  --popover: #1e2030;
-  --popover-foreground: #cad3f5;
-  --primary: #c6a0f6;
-  --primary-foreground: #1e2030;
-  --secondary: #f5bde6;
-  --secondary-foreground: #1e2030;
-  --muted: #363a4f;
-  --muted-foreground: #a5adcb;
-  --accent: #8aadf4;
-  --accent-foreground: #1e2030;
-  --destructive: #ed8796;
-  --destructive-foreground: #1e2030;
-  --border: #363a4f;
-  --input: #363a4f;
-  --ring: #c6a0f6;
-  --term-border: #363a4f;
-  --term-success: #a6da95;
-  --term-warning: #eed49f;
-  --term-muted: #5b6078;
 }
 
 @layer base {
@@ -172,10 +144,7 @@
 @layer components {
   .crt-overlay-static {
     background-image:
-      linear-gradient(
-        rgba(255, 255, 255, 0.03),
-        rgba(255, 255, 255, 0.01)
-      ),
+      linear-gradient(rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
       repeating-linear-gradient(
         to bottom,
         rgba(255, 255, 255, 0.055) 0,

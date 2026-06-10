@@ -13,7 +13,7 @@ export default function Experience() {
         command="experience"
       />
 
-      <div className="border-l-2 border-term-border/50 ml-2 space-y-10 pl-8 relative -mt-2">
+      <div className="border-l-2 border-input/50 ml-2 space-y-10 pl-8 relative -mt-2">
         {experience.featuredEntries.map((job) => (
           <div
             key={`${job.company}-${job.role}-${job.period}`}

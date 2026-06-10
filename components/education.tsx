@@ -28,7 +28,7 @@ export default function Education() {
             <div className="-mt-2.5 text-sm text-secondary mb-4 leading-6 min-h-12 overflow-hidden">
               {edu.degree}
             </div>
-            <div className="-mt-6 space-y-1.5 pt-4 border-t border-term-border/50">
+            <div className="-mt-6 space-y-1.5 pt-4 border-t border-input/50">
               {edu.details.map((detail) => (
                 <div
                   key={`${edu.institution}-${detail}`}
@@ -52,7 +52,7 @@ export default function Education() {
                 <div
                   key={`${edu.institution}-${edu.period}`}
                   className={
-                    index > 0 ? "border-t border-term-border/50 pt-4" : ""
+                    index > 0 ? "border-t border-input/50 pt-4" : ""
                   }
                 >
                   <CardHeader className="flex items-center justify-between -mx-4">

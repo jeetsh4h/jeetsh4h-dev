@@ -20,7 +20,7 @@ function ProjectCard({ proj }: { proj: ProjectEntryModel }) {
           {proj.title}
         </div>
         {proj.status && (
-          <span className="shrink-0 text-[10px] uppercase tracking-wide text-foreground bg-term-border/20 px-2 py-0.5 rounded">
+          <span className="shrink-0 text-[10px] uppercase tracking-wide text-foreground bg-input/20 px-2 py-0.5 rounded">
             {proj.status}
           </span>
         )}
@@ -31,7 +31,7 @@ function ProjectCard({ proj }: { proj: ProjectEntryModel }) {
           {proj.stack.map((item) => (
             <span
               key={`${proj.title}-${item}`}
-              className="text-[10px] bg-term-border/20 px-1.5 py-0.5 rounded"
+              className="text-[10px] bg-input/20 px-1.5 py-0.5 rounded"
             >
               {item}
             </span>

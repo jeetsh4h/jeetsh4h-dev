@@ -4,9 +4,9 @@
 
 **Cat ASCII art:**
 
-https://user.xmission.com/~emailbox/ascii_cats.htm  
-https://emojicombos.com/cute-cat-ascii-art  
-https://www.asciiart.eu/animals/cats  
+https://user.xmission.com/~emailbox/ascii_cats.htm
+https://emojicombos.com/cute-cat-ascii-art
+https://www.asciiart.eu/animals/cats
 https://asciiart.website/cat.php?category_id=32
 
 **Cat sprites:**

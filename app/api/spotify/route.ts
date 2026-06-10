@@ -7,15 +7,16 @@ import type {
   SpotifyTrack,
 } from "@/components/terminal/types";
 
-export const runtime = "nodejs";
-
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
 const RECENTLY_PLAYED_ENDPOINT = `https://api.spotify.com/v1/me/player/recently-played`;
+
 const SPOTIFY_BROWSER_CACHE_CONTROL = "public, max-age=0, must-revalidate";
 const SPOTIFY_CDN_CACHE_CONTROL =
   "public, s-maxage=15, stale-while-revalidate=60, stale-if-error=300";
+
 const DEFAULT_RATE_LIMIT_RETRY_AFTER_SECONDS = 60;
+
 const NOT_PLAYING_RESPONSE: SpotifyResponse = {
   isPlaying: false,
   title: "Not playing",

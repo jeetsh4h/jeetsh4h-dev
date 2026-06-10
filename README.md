@@ -4,18 +4,18 @@
 
 **Cat ASCII art:**
 
-https://user.xmission.com/~emailbox/ascii_cats.htm
-https://emojicombos.com/cute-cat-ascii-art
-https://www.asciiart.eu/animals/cats
-https://asciiart.website/cat.php?category_id=32
+- https://user.xmission.com/~emailbox/ascii_cats.htm
+- https://emojicombos.com/cute-cat-ascii-art
+- https://www.asciiart.eu/animals/cat
+- https://asciiart.website/cat.php?category_id=32
 
 **Cat sprites:**
 
-https://luizmelo.itch.io/pet-cat-pack
+- https://luizmelo.itch.io/pet-cat-pack
 
 **Color scheme:**
 
-https://catppuccin.com
+- https://catppuccin.com
 
 ## Local Development
 

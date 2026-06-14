@@ -98,7 +98,7 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: structuredData }}
       />
-      <div className="max-w-3xl mx-auto px-6 py-12 md:py-20 space-y-16">
+      <div className="max-w-3xl mx-auto px-6 pt-8 pb-12 md:py-20 space-y-10 md:space-y-16">
         <section className="space-y-6">
           <Profile />
         </section>

@@ -56,7 +56,7 @@ export default async function BlogPage() {
       id="main-content"
       className="min-h-screen font-mono"
     >
-      <div className="mx-auto flex w-full flex-none items-center justify-between p-4 pb-2">
+      <div className="mx-auto flex w-full flex-none items-center justify-between px-4 pt-2 pb-2 md:p-4 md:pb-2">
         <Button
           nativeButton={false}
           render={<Link href="/" />}
@@ -70,7 +70,7 @@ export default async function BlogPage() {
         </Button>
       </div>
 
-      <div className="mx-auto max-w-3xl px-6 pb-12 pt-6 md:pb-16 md:pt-8">
+      <div className="mx-auto max-w-3xl px-6 pb-12 pt-3 md:pb-16 md:pt-8">
         <div className="mb-10 space-y-3 border-l-2 border-accent pl-4">
           <p className="text-xs text-muted-foreground">guest@jeetsh4h-dev:~</p>
           <h1 className="text-3xl font-bold tracking-normal text-primary md:text-4xl">

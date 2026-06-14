@@ -19,7 +19,7 @@ export default function PDFPage() {
         id="main-content"
         className="h-dvh flex flex-col"
       >
-        <div className="mx-auto flex w-full flex-none items-center justify-between p-4 pb-2">
+        <div className="mx-auto flex w-full flex-none items-center justify-between px-4 pt-2 pb-2 md:p-4 md:pb-2">
           <Button
             nativeButton={false}
             render={<Link href="/" />}

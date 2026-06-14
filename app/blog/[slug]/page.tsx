@@ -105,7 +105,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       id="main-content"
       className="min-h-screen font-mono"
     >
-      <div className="mx-auto flex w-full flex-none items-center justify-between p-4 pb-2">
+      <div className="mx-auto flex w-full flex-none items-center justify-between px-4 pt-2 pb-2 md:p-4 md:pb-2">
         <Button
           nativeButton={false}
           render={<Link href="/blog" />}
@@ -119,7 +119,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </Button>
       </div>
 
-      <article className="mx-auto max-w-3xl px-6 pb-12 pt-6 md:pb-16 md:pt-8">
+      <article className="mx-auto max-w-3xl px-6 pb-12 pt-3 md:pb-16 md:pt-8">
         <header className="mb-10 space-y-5 border-l-2 border-accent pl-4">
           <div className="flex flex-wrap items-center gap-2">
             <Badge>{formatPostDate(post.publishedAt)}</Badge>

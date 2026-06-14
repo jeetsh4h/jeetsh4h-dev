@@ -7,7 +7,7 @@ import { IconTerminal2, IconFileCv } from "@tabler/icons-react";
 export default async function NotFound() {
   return (
     <div className="min-h-screen flex flex-col font-mono">
-      <div className="mx-auto flex w-full flex-none items-center justify-between p-4 pb-2 z-10">
+      <div className="mx-auto flex w-full flex-none items-center justify-between px-4 pt-2 pb-2 md:p-4 md:pb-2 z-10">
         <Button
           nativeButton={false}
           render={<Link href="/" />}

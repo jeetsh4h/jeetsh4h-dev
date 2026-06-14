@@ -165,4 +165,52 @@
         transparent 4px
       );
   }
+
+  .shiki {
+    margin: 1.5rem 0;
+    max-width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) - 4px);
+    background-color: #1e2030 !important;
+    color: #cad3f5;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+  }
+
+  .light .shiki {
+    background-color: #e6e9ef !important;
+    color: #4c4f69;
+  }
+
+  .shiki code {
+    display: block;
+    width: max-content;
+    min-width: 100%;
+    padding: 1rem;
+    background: transparent;
+    color: inherit;
+  }
+
+  .shiki span {
+    color: var(--shiki-dark);
+    font-style: var(--shiki-dark-font-style);
+    font-weight: var(--shiki-dark-font-weight);
+    text-decoration: var(--shiki-dark-text-decoration);
+  }
+
+  .dark .shiki span {
+    color: var(--shiki-dark);
+    font-style: var(--shiki-dark-font-style);
+    font-weight: var(--shiki-dark-font-weight);
+    text-decoration: var(--shiki-dark-text-decoration);
+  }
+
+  .light .shiki span {
+    color: var(--shiki-light);
+    font-style: var(--shiki-light-font-style);
+    font-weight: var(--shiki-light-font-weight);
+    text-decoration: var(--shiki-light-text-decoration);
+  }
 }

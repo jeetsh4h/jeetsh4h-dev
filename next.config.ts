@@ -1,8 +1,10 @@
 import { type NextConfig } from "next";
+import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   reactCompiler: true,
+  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   /* the commit used for terminal prompt */
   // VERCEL_GIT_COMMIT_SHA for vercel
   // GITHUB_SHA for github actions
@@ -21,4 +23,23 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: ["remark-frontmatter"],
+    rehypePlugins: [
+      [
+        "@shikijs/rehype",
+        {
+          themes: {
+            light: "catppuccin-latte",
+            dark: "catppuccin-mocha",
+          },
+          defaultColor: false,
+          inline: "tailing-curly-colon",
+        },
+      ],
+    ],
+  },
+});
+
+export default withMDX(nextConfig);

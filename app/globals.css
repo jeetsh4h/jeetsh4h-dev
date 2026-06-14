@@ -81,6 +81,13 @@
   --success: #a6da95; /* Green */
   --warning: #eed49f; /* Yellow */
   --term-muted: #5b6078; /* Surface2 */
+
+  --blog-prose-font-size: 0.9375rem;
+  --blog-prose-line-height: 1.75;
+  --blog-inline-code-radius: 0.25rem;
+  --syntax-background: var(--card);
+  --syntax-foreground: var(--foreground);
+  --syntax-code-line-height: 1.65;
 }
 
 .light {
@@ -166,31 +173,40 @@
       );
   }
 
+  .blog-prose {
+    font-size: var(--blog-prose-font-size);
+    line-height: var(--blog-prose-line-height);
+  }
+
+  .blog-inline-code {
+    border-radius: var(--blog-inline-code-radius);
+  }
+
   .shiki {
+    box-sizing: border-box;
     margin: 1.5rem 0;
     max-width: 100%;
     overflow-x: auto;
     border: 1px solid var(--border);
-    border-radius: calc(var(--radius) - 4px);
-    background-color: #1e2030 !important;
-    color: #cad3f5;
+    border-radius: var(--radius-sm);
+    background-color: var(--syntax-background) !important;
+    color: var(--syntax-foreground);
     font-family: var(--font-mono), monospace;
-    font-size: 0.8125rem;
-    line-height: 1.7;
-  }
-
-  .light .shiki {
-    background-color: #e6e9ef !important;
-    color: #4c4f69;
+    font-size: inherit;
+    line-height: var(--syntax-code-line-height);
+    padding: 1.25rem;
   }
 
   .shiki code {
     display: block;
     width: max-content;
     min-width: 100%;
-    padding: 1rem;
+    padding: 0;
+    border-radius: 0;
     background: transparent;
     color: inherit;
+    font-size: inherit;
+    line-height: inherit;
   }
 
   .shiki span {

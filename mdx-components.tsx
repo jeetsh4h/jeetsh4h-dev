@@ -34,6 +34,36 @@ function MdxLink({ href = "", className, ...props }: ComponentProps<"a">) {
   );
 }
 
+function MdxCode({ className, children, ...props }: ComponentProps<"code">) {
+  // Shiki code blocks render tokenized React element children;
+  // inline MDX code is plain text.
+  const isInlineCode =
+    typeof children === "string" || typeof children === "number";
+
+  if (!isInlineCode) {
+    return (
+      <code
+        className={className}
+        {...props}
+      >
+        {children}
+      </code>
+    );
+  }
+
+  return (
+    <code
+      className={cn(
+        "blog-inline-code bg-input/30 px-1.5 py-0.5 text-secondary",
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </code>
+  );
+}
+
 const headingClassName = "scroll-mt-24 font-bold tracking-normal text-primary";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -69,23 +99,20 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     p: ({ className, ...props }) => (
       <p
-        className={cn("text-sm leading-7 text-foreground", className)}
+        className={cn("text-foreground", className)}
         {...props}
       />
     ),
     ul: ({ className, ...props }) => (
       <ul
-        className={cn(
-          "ml-5 list-disc space-y-2 text-sm leading-7 marker:text-accent",
-          className,
-        )}
+        className={cn("ml-5 list-disc space-y-2 marker:text-accent", className)}
         {...props}
       />
     ),
     ol: ({ className, ...props }) => (
       <ol
         className={cn(
-          "ml-5 list-decimal space-y-2 text-sm leading-7 marker:text-accent",
+          "ml-5 list-decimal space-y-2 marker:text-accent",
           className,
         )}
         {...props}
@@ -100,7 +127,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     blockquote: ({ className, ...props }) => (
       <blockquote
         className={cn(
-          "border-l-2 border-accent bg-card/60 px-4 py-3 text-sm leading-7 text-muted-foreground",
+          "border-l-2 border-accent bg-card/60 px-4 py-3 text-muted-foreground",
           className,
         )}
         {...props}
@@ -109,10 +136,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     table: ({ className, ...props }) => (
       <div className="overflow-x-auto">
         <table
-          className={cn(
-            "w-full border-collapse text-left text-sm leading-6",
-            className,
-          )}
+          className={cn("w-full border-collapse text-left", className)}
           {...props}
         />
       </div>
@@ -138,15 +162,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {...props}
       />
     ),
-    code: ({ className, ...props }) => (
-      <code
-        className={cn(
-          "rounded bg-input/30 px-1.5 py-0.5 text-[0.85em] text-secondary",
-          className,
-        )}
-        {...props}
-      />
-    ),
+    code: MdxCode,
     ...components,
   };
 }

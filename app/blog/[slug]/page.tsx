@@ -105,7 +105,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       id="main-content"
       className="min-h-screen font-mono"
     >
-      <article className="mx-auto max-w-3xl px-6 py-12 md:py-20">
+      <div className="mx-auto flex w-full flex-none items-center justify-between p-4 pb-2">
         <Button
           nativeButton={false}
           render={<Link href="/blog" />}
@@ -117,8 +117,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </span>
           <span className="underline">../blog</span>
         </Button>
+      </div>
 
-        <header className="mb-10 mt-6 space-y-5 border-l-2 border-accent pl-4">
+      <article className="mx-auto max-w-3xl px-6 pb-12 pt-6 md:pb-16 md:pt-8">
+        <header className="mb-10 space-y-5 border-l-2 border-accent pl-4">
           <div className="flex flex-wrap items-center gap-2">
             <Badge>{formatPostDate(post.publishedAt)}</Badge>
             {post.editedAt !== post.publishedAt && (
@@ -146,7 +148,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           )}
         </header>
 
-        <div className="space-y-6">
+        <div className="blog-prose space-y-6">
           <Component />
         </div>
       </article>

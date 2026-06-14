@@ -118,13 +118,6 @@ export default function Page() {
         </section>
 
         <section
-          className="space-y-6"
-          aria-labelledby="skills-heading"
-        >
-          <Skills />
-        </section>
-
-        <section
           className="space-y-8"
           aria-labelledby="projects-heading"
         >
@@ -136,6 +129,13 @@ export default function Page() {
           aria-labelledby="education-heading"
         >
           <Education />
+        </section>
+
+        <section
+          className="space-y-6"
+          aria-labelledby="skills-heading"
+        >
+          <Skills />
         </section>
       </div>
 

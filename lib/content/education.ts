@@ -5,6 +5,7 @@ export const EDUCATION: EducationItem[] = [
     institution: "Columbia University",
     period: "2026 - 2028",
     degree: "M.S. Computer Science",
+    // subject to change, revisit in September 2026
     details: ["Network Systems pathway"],
   },
   {

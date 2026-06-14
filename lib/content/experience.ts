@@ -37,6 +37,15 @@ export const EXPERIENCE: ExperienceItem[] = [
     ],
   },
   {
+    company: "National Federation of the Blind Maharashtra",
+    role: "Project Solutions Intern",
+    period: "May 2024 - Sep 2024",
+    type: "internship",
+    description: [
+      "Built Raspberry Pi/OpenCV assistive-navigation prototypes and conducted user-facing technical support sessions.",
+    ],
+  },
+  {
     company: "ISRO, Space Applications Centre",
     role: "Research Intern (SRTD)",
     period: "May 2023 - Aug 2023",
@@ -44,16 +53,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     description: [
       "Developed ConvLSTM models for precipitation nowcasting using INSAT-3D satellite data.",
       "Outperformed optical-flow baselines by 30.7%.",
-      "Worked in an air-gapped Linux/HPC environment with large spatiotemporal satellite datasets.",
-    ],
-  },
-  {
-    company: "National Federation of the Blind Maharashtra",
-    role: "Project Solutions Intern",
-    period: "May 2024 - Sep 2024",
-    type: "internship",
-    description: [
-      "Built Raspberry Pi/OpenCV assistive-navigation prototypes and conducted user-facing technical support sessions.",
+      "Worked in an air-gapped HPC environment with large spatiotemporal satellite datasets.",
     ],
   },
 ];

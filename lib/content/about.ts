@@ -3,6 +3,6 @@ import type { AboutContent } from "./types";
 export const ABOUT: AboutContent = {
   name: "Jeet Shah",
   role: "Software Engineer | Student @ Columbia University",
-  location: "New York City",
-  bio: "I build production software for startups across mobile apps, data platforms, and internal tools. I am pursuing an M.S. in Computer Science at Columbia University in New York City, with current interests in networked systems, programming-language design, and AI-assisted software engineering workflows. My prior research includes Weather4Cast publications in spatiotemporal weather forecasting.",
+  location: "New York City | Mumbai",
+  bio: "A CS graduate student who has dove deep into ML/AI research, specifically, in the field of weather forecasting. Currently, I work with multiple start-ups, building and maintaining their production software across various domains like mobile applications and data pipelines. This website is an online archive of my work and thoughts (and a design exercise).",
 };

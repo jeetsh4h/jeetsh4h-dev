@@ -2,54 +2,19 @@ import type { ProjectItem } from "./types";
 
 export const PROJECTS: ProjectItem[] = [
   {
-    title: "Nanoloy Internal Platform",
-    description:
-      "Internal dashboard and data platform for battery manufacturing research workflows.",
-    status: "private",
-    stack: ["Next.js", "FastAPI", "Supabase/Postgres", "Python"],
-    highlights: [
-      "Led frontend development.",
-      "Co-designed data models for experimental manufacturing data.",
-      "Improved query latency by 67%.",
-    ],
-    confidentialityNote: "Public details limited by client confidentiality.",
-  },
-  {
-    title: "Movynn",
-    description:
-      "React Native/Convex fitness platform for turf booking and member-facing workflows.",
-    status: "pre-beta",
-    stack: ["React Native", "Expo", "Convex"],
-    highlights: [
-      "Own auth/session flows and turf-booking workflows.",
-      "Co-own app architecture and release readiness.",
-      "Closed beta timeline controlled by Elevate Fitness.",
-    ],
-    link: "https://www.instagram.com/movynn_in/",
-    linkText: "Instagram",
-  },
-  {
     title: "Jyeshthanubandh",
     description:
-      "Safety app deployed with Pimpri-Chinchwad Police for senior-citizen support workflows.",
-    status: "public",
+      "Safety app deployed with Pimpri-Chinchwad Police for senior-citizen support workflows. Built while working with the CAI @ FLAME University.",
     link: "https://play.google.com/store/apps/details?id=com.Jyeshthanubandh.pcmc_app",
     linkText: "Play Store",
-  },
-  {
-    title: "Paudha Yodha",
-    description:
-      "Plant disease detection app using fine-tuned ResNet-50; Bit N Build finalist.",
-    status: "public",
-    link: "https://github.com/jeetsh4h/paudhayodha",
-    linkText: "GitHub",
+    stack: ["React Native", "AWS"],
   },
   {
     title: "Precipitation Nowcasting",
     description:
-      "Prior research codebase and experiments around high-resolution rainfall prediction.",
-    status: "research",
+      "A CLI tool that I developed to train a ConvLSTM model for precipitation nowcasting using INSAT-3D satellite data. This is the repository that functioned as my source of truth while researching and writing my undergraduate honors thesis at FLAME University.",
     link: "https://github.com/jeetsh4h/DISS384",
     linkText: "GitHub",
+    stack: ["TensorFlow", "OpenCV"],
   },
 ];

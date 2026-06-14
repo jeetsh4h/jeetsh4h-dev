@@ -7,9 +7,9 @@ export default function About() {
     <div className="text-foreground leading-relaxed">
       <p>
         My name is <span className="text-primary">{intro.name}</span> and I am a{" "}
-        <span className="text-secondary">{intro.role}</span>.
+        <span className="text-secondary">{intro.role}</span>. I am from{" "}
+        <span className="text-accent">{intro.location}</span>.
       </p>
-      <p className="mt-2 text-muted-foreground">{intro.location}</p>
       <br />
       <p>{intro.bio}</p>
     </div>

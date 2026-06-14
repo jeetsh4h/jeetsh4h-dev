@@ -9,6 +9,7 @@ export const SEO: SeoContent = {
     "Jeet Shah",
     "Software Engineer",
     "Columbia University",
+    "FLAME University",
     "Computer Science",
     "Network Systems",
     "Programming Languages",
@@ -18,5 +19,7 @@ export const SEO: SeoContent = {
     "FastAPI",
     "Supabase",
     "Weather4Cast",
+    "NeurIPS",
+    "Precipitation Nowcasting",
   ],
 };

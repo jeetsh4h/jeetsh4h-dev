@@ -60,7 +60,7 @@ export default function Profile() {
         <p className="text-xl font-semibold text-secondary max-w-2xl">
           {intro.role}
         </p>
-        <p className="text-sm text-muted-foreground">{intro.location}</p>
+        <p className="text-sm text-accent">{intro.location}</p>
       </div>
 
       <div className="relative">

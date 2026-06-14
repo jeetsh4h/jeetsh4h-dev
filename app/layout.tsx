@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
-import { JetBrains_Mono } from "next/font/google";
+import { Crafty_Girls, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,6 +11,13 @@ import { SEO } from "@/lib/content/seo";
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
+});
+
+const craftyGirls = Crafty_Girls({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-hand",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -92,7 +99,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className={`${jetbrainsMono.variable} antialiased bg-background text-foreground selection:bg-accent selection:text-accent-foreground`}
+        className={`${jetbrainsMono.variable} ${craftyGirls.variable} antialiased bg-background text-foreground selection:bg-accent selection:text-accent-foreground`}
       >
         <a
           href="#main-content"

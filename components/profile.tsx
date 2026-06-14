@@ -4,6 +4,7 @@ import { IconTerminal2, IconFileCv } from "@tabler/icons-react";
 import About from "./about";
 import ThemeToggle from "./theme-toggle";
 import Socials from "./socials";
+import ReadmeCta from "./readme-cta";
 import { TooltipTrigger, Tooltip, TooltipContent } from "./ui/tooltip";
 import { buildIntroSection } from "@/lib/site-content";
 
@@ -67,8 +68,9 @@ export default function Profile() {
         <About />
       </div>
 
-      <div className="flex gap-6 text-sm">
+      <div className="relative grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3 text-sm sm:gap-6 md:min-h-24">
         <Socials />
+        <ReadmeCta />
       </div>
 
       {/* Mobile CTA */}

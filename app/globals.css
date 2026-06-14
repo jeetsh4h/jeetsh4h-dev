@@ -8,6 +8,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-mono: var(--font-mono);
+  --font-hand: var(--font-hand);
 
   --color-success: var(--success);
   --color-warning: var(--warning);
@@ -37,6 +38,177 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+}
+
+@keyframes readme-button-wiggle {
+  0%,
+  70%,
+  100% {
+    transform: translateX(-50%) translateY(0)
+      rotate(var(--readme-button-rotate));
+  }
+
+  76% {
+    transform: translateX(-50%) translateY(-1px)
+      rotate(calc(var(--readme-button-rotate) - 2deg));
+  }
+
+  82% {
+    transform: translateX(-50%) translateY(1px)
+      rotate(calc(var(--readme-button-rotate) + 2deg));
+  }
+
+  88% {
+    transform: translateX(-50%) translateY(-1px)
+      rotate(calc(var(--readme-button-rotate) - 1deg));
+  }
+
+  94% {
+    transform: translateX(-50%) translateY(0)
+      rotate(calc(var(--readme-button-rotate) + 1deg));
+  }
+}
+
+@keyframes readme-thoughts-type {
+  0%,
+  7% {
+    content: "";
+  }
+
+  10% {
+    content: "t";
+  }
+
+  13% {
+    content: "th";
+  }
+
+  16% {
+    content: "tho";
+  }
+
+  19% {
+    content: "thou";
+  }
+
+  22% {
+    content: "thoug";
+  }
+
+  25% {
+    content: "though";
+  }
+
+  28% {
+    content: "thought";
+  }
+
+  31% {
+    content: "thoughts";
+  }
+
+  34%,
+  58% {
+    content: "thoughts?";
+  }
+
+  61% {
+    content: "thoughts";
+  }
+
+  64% {
+    content: "thought";
+  }
+
+  67% {
+    content: "though";
+  }
+
+  70% {
+    content: "thoug";
+  }
+
+  73% {
+    content: "thou";
+  }
+
+  76% {
+    content: "tho";
+  }
+
+  79% {
+    content: "th";
+  }
+
+  82% {
+    content: "t";
+  }
+
+  85%,
+  100% {
+    content: "";
+  }
+}
+
+@keyframes readme-thoughts-cursor {
+  0%,
+  3%,
+  7% {
+    opacity: 1;
+  }
+
+  4%,
+  6% {
+    opacity: 0;
+  }
+
+  8%,
+  34% {
+    opacity: 1;
+  }
+
+  38%,
+  46%,
+  54%,
+  58% {
+    opacity: 1;
+  }
+
+  42%,
+  50% {
+    opacity: 0;
+  }
+
+  61%,
+  85% {
+    opacity: 1;
+  }
+
+  89%,
+  97%,
+  100% {
+    opacity: 1;
+  }
+
+  93% {
+    opacity: 0;
+  }
+}
+
+@keyframes readme-light-ray {
+  0%,
+  100% {
+    opacity: 1;
+    stroke-dasharray: 1 0;
+    stroke-dashoffset: 0;
+  }
+
+  45%,
+  55% {
+    opacity: 0.72;
+    stroke-dasharray: 0.001 1;
+    stroke-dashoffset: -0.5;
+  }
 }
 
 :root,

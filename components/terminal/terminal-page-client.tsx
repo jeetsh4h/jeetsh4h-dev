@@ -7,6 +7,17 @@ import Footer from "@/components/footer";
 import { Terminal } from "@/components/terminal/terminal";
 import { Button } from "@/components/ui/button";
 
+const MIN_ZOOMED_TERMINAL_PAGE_HEIGHT_PX = 560;
+
+function getTerminalPageHeight(viewport: VisualViewport) {
+  const height =
+    viewport.scale > 1 ?
+      Math.max(viewport.height, MIN_ZOOMED_TERMINAL_PAGE_HEIGHT_PX)
+    : viewport.height;
+
+  return `${height}px`;
+}
+
 export default function TerminalPageClient() {
   const [viewportHeight, setViewportHeight] = useState("100dvh");
   const [externalCommand, setExternalCommand] = useState<string | null>(null);
@@ -16,7 +27,7 @@ export default function TerminalPageClient() {
     if (!window.visualViewport) return;
 
     const handleResize = () => {
-      setViewportHeight(`${window.visualViewport!.height}px`);
+      setViewportHeight(getTerminalPageHeight(window.visualViewport!));
       window.scrollTo(0, 0);
     };
 

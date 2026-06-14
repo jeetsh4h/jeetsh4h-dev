@@ -1,0 +1,188 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+
+const BLOG_CONTENT_DIR = path.join(process.cwd(), "content", "blog");
+const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const DATE_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
+
+function usage() {
+  return [
+    'Usage: pnpm blog:new -- "Post Title" [--slug custom-slug] [--date YYYY-MM-DD] [--published]',
+    "",
+    "Creates content/blog/{slug}.mdx with a typed metadata export.",
+  ].join("\n");
+}
+
+function parseArgs(argv) {
+  const options = {
+    title: undefined,
+    slug: undefined,
+    date: today(),
+    published: false,
+  };
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+
+    if (arg === "--") {
+      continue;
+    }
+
+    if (arg === "--help" || arg === "-h") {
+      console.log(usage());
+      process.exit(0);
+    }
+
+    if (arg === "--published") {
+      options.published = true;
+      continue;
+    }
+
+    if (arg === "--slug" || arg === "--date") {
+      const value = argv[index + 1];
+
+      if (!value) {
+        throw new Error(`${arg} requires a value.`);
+      }
+
+      options[arg.slice(2)] = value;
+      index += 1;
+      continue;
+    }
+
+    if (arg.startsWith("--slug=")) {
+      options.slug = arg.slice("--slug=".length);
+      continue;
+    }
+
+    if (arg.startsWith("--date=")) {
+      options.date = arg.slice("--date=".length);
+      continue;
+    }
+
+    if (arg.startsWith("--")) {
+      throw new Error(`Unknown option: ${arg}`);
+    }
+
+    if (options.title) {
+      throw new Error("Provide the post title as a single quoted argument.");
+    }
+
+    options.title = arg;
+  }
+
+  if (!options.title) {
+    throw new Error("Post title is required.");
+  }
+
+  const title = options.title.trim();
+
+  if (!title) {
+    throw new Error("Post title is required.");
+  }
+
+  return {
+    ...options,
+    title,
+    slug: options.slug ?? slugify(title),
+  };
+}
+
+function today() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+function slugify(title) {
+  return title
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function assertValidSlug(slug) {
+  if (!SLUG_PATTERN.test(slug)) {
+    throw new Error(
+      "Slug must use lowercase letters, numbers, and single hyphens.",
+    );
+  }
+}
+
+function assertValidDate(value) {
+  const match = DATE_PATTERN.exec(value);
+
+  if (!match) {
+    throw new Error("Date must be a valid YYYY-MM-DD date.");
+  }
+
+  const [, yearPart, monthPart, dayPart] = match;
+  const year = Number(yearPart);
+  const month = Number(monthPart);
+  const day = Number(dayPart);
+  const date = new Date(Date.UTC(year, month - 1, day));
+
+  if (
+    date.getUTCFullYear() !== year ||
+    date.getUTCMonth() !== month - 1 ||
+    date.getUTCDate() !== day
+  ) {
+    throw new Error("Date must be a valid YYYY-MM-DD date.");
+  }
+}
+
+function renderPost({ title, date, published }) {
+  const lines = [
+    'import { defineBlogPost } from "@/lib/blog/metadata";',
+    "",
+    "export const metadata = defineBlogPost({",
+    `  title: ${JSON.stringify(title)},`,
+    '  description: "",',
+    `  publishedAt: ${JSON.stringify(date)},`,
+    "  tags: [],",
+  ];
+
+  if (!published) {
+    lines.push("  draft: true,");
+  }
+
+  lines.push("});", "", `# ${title}`, "");
+
+  return lines.join("\n");
+}
+
+async function main() {
+  const options = parseArgs(process.argv.slice(2));
+
+  assertValidSlug(options.slug);
+  assertValidDate(options.date);
+
+  await fs.mkdir(BLOG_CONTENT_DIR, { recursive: true });
+
+  const filePath = path.join(BLOG_CONTENT_DIR, `${options.slug}.mdx`);
+
+  try {
+    await fs.access(filePath);
+    throw new Error(
+      `Blog post already exists: ${path.relative(process.cwd(), filePath)}`,
+    );
+  } catch (error) {
+    if (error && error.code !== "ENOENT") {
+      throw error;
+    }
+  }
+
+  await fs.writeFile(filePath, renderPost(options), "utf8");
+  console.log(`Created ${path.relative(process.cwd(), filePath)}`);
+}
+
+main().catch((error) => {
+  console.error(error.message);
+  console.error("");
+  console.error(usage());
+  process.exit(1);
+});

@@ -20,7 +20,7 @@ export const PROJECTS: ProjectItem[] = [
   {
     title: "Girlfriend Birthday Gift",
     description:
-      "Built a website for my girlfriend as a birthday card (I also got her a gift). Learnt to use photoshop for her.",
+      "Built a website for my girlfriend as a birthday card (I also got her a gift). “Love someone to the point of creation.”",
     highlights: ["She loved the website and the gift.", "YAYYYYY!!!"],
     link: "https://birthday.sunishqa.my",
     linkText: "Website",

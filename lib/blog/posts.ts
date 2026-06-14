@@ -1,13 +1,12 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import type { ComponentType } from "react";
-import matter from "gray-matter";
 
 import {
-  normalizeBlogPostMetadata,
+  type BlogPostMetadata,
   type BlogPostSummary,
   type PublishedBlogPostSummary,
-} from "@/lib/blog/schema";
+} from "@/lib/blog/metadata";
 
 const BLOG_CONTENT_DIR = path.join(process.cwd(), "content", "blog");
 const MDX_EXTENSION = ".mdx";
@@ -15,6 +14,7 @@ const VALID_SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 type BlogPostModule = {
   default: ComponentType;
+  metadata?: BlogPostMetadata;
 };
 
 export type BlogPost = BlogPostSummary & {
@@ -62,17 +62,15 @@ async function getBlogPostFiles() {
 
 async function readBlogPostMetadata(filename: string): Promise<BlogPostSummary> {
   const slug = getSlugFromFilename(filename);
-  const filePath = path.join(BLOG_CONTENT_DIR, filename);
-  const source = await fs.readFile(filePath, "utf8");
-  const { data } = matter(source);
-  const metadata = normalizeBlogPostMetadata(
-    data,
-    path.relative(process.cwd(), filePath),
-  );
+  const postModule = await importBlogPostModule(slug);
+
+  if (!postModule.metadata) {
+    throw new Error(`${filename} must export metadata.`);
+  }
 
   return {
     slug,
-    ...metadata,
+    ...postModule.metadata,
   };
 }
 
@@ -92,6 +90,10 @@ function sortNewestFirst(posts: BlogPostSummary[]) {
 
     return first.slug.localeCompare(second.slug);
   });
+}
+
+async function importBlogPostModule(slug: string) {
+  return (await import(`@/content/blog/${slug}.mdx`)) as BlogPostModule;
 }
 
 export async function getAllBlogPosts() {
@@ -123,9 +125,7 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
     return null;
   }
 
-  const postModule = (await import(
-    `@/content/blog/${slug}.mdx`
-  )) as BlogPostModule;
+  const postModule = await importBlogPostModule(slug);
 
   return {
     ...post,
@@ -145,9 +145,7 @@ export async function getPublishedBlogPost(
     return null;
   }
 
-  const postModule = (await import(
-    `@/content/blog/${slug}.mdx`
-  )) as BlogPostModule;
+  const postModule = await importBlogPostModule(slug);
 
   return {
     ...post,

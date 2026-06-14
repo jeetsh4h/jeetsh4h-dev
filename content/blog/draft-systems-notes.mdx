@@ -1,10 +1,11 @@
----
-title: "Draft Systems Notes"
-description: "Unpublished notes used to verify that draft blog posts stay out of public static surfaces."
-tags:
-  - drafts
-  - systems
-draft: true
----
+import { defineBlogPost } from "@/lib/blog/metadata";
+
+export const metadata = defineBlogPost({
+  title: "Draft Systems Notes",
+  description:
+    "Unpublished notes used to verify that draft blog posts stay out of public static surfaces.",
+  tags: ["drafts", "systems"],
+  draft: true,
+});
 
 This draft exists so the blog helpers, sitemap, RSS feed, and static params have a real unpublished MDX post to exclude.

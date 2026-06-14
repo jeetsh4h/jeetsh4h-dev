@@ -101,12 +101,16 @@ describe("site-content", () => {
 
   it("builds social links with valid labels and hrefs", () => {
     const socials = buildSocialsSection();
+    const hrefs = new Set<string>();
 
     expect(socials.id).toBe("socials");
     expect(socials.links.length).toBeGreaterThan(0);
     for (const link of socials.links) {
       expectNonEmptyString(link.label);
       expectValidHref(link.href);
+      expect(link.icon).toBeDefined();
+      expect(hrefs.has(link.href)).toBe(false);
+      hrefs.add(link.href);
     }
   });
 

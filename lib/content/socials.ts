@@ -1,19 +1,24 @@
 import type { SocialLink } from "./types";
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconMail,
+} from "@tabler/icons-react";
 
 export const SOCIALS: SocialLink[] = [
   {
     label: "GitHub",
     href: "https://github.com/jeetsh4h",
-    kind: "github",
+    icon: IconBrandGithub,
   },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/jeetsh4h",
-    kind: "linkedin",
+    icon: IconBrandLinkedin,
   },
   {
     label: "Email",
     href: "mailto:jeetsh4h@gmail.com",
-    kind: "email",
+    icon: IconMail,
   },
 ];

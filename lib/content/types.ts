@@ -1,3 +1,5 @@
+import type { TablerIcon } from "@tabler/icons-react";
+
 export interface AboutContent {
   name: string;
   role: string;
@@ -12,12 +14,10 @@ export interface SeoContent {
   keywords: string[];
 }
 
-export type SocialKind = "github" | "linkedin" | "email";
-
 export interface SocialLink {
   label: string;
   href: string;
-  kind: SocialKind;
+  icon: TablerIcon;
 }
 
 export interface LinkItem {

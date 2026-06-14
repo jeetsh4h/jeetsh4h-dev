@@ -65,9 +65,10 @@ export default function Page() {
     url: SEO.url,
     jobTitle,
     description: SEO.description,
-    sameAs: SOCIALS.filter((link) => link.kind !== "email").map(
-      (link) => link.href,
-    ),
+    sameAs: SOCIALS.filter(
+      (link) =>
+        link.href.startsWith("http://") || link.href.startsWith("https://"),
+    ).map((link) => link.href),
     homeLocation: {
       "@type": "Place",
       name: ABOUT.location,

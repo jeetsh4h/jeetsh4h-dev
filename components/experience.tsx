@@ -19,7 +19,7 @@ export default function Experience() {
             key={`${job.company}-${job.role}-${job.period}`}
             className="relative"
           >
-            <div className="absolute -left-9.75 top-1.5 size-3 rounded-full bg-card border-2 border-accent ring-2 ring-card" />
+            <div className="absolute -left-10.75 top-3.5 z-10 size-5 -translate-y-1/2 rounded-full bg-card before:absolute before:inset-1 before:rounded-full before:border-2 before:border-accent before:bg-card before:content-['']" />
 
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
               <h3 className="text-lg font-bold text-primary">{job.company}</h3>
@@ -50,7 +50,7 @@ export default function Experience() {
               key={`${job.company}-${job.role}-${job.period}`}
               className="relative group"
             >
-              <div className="absolute -left-9.75 top-1.5 size-3 rounded-full bg-card border-2 border-accent ring-2 ring-card" />
+              <div className="absolute -left-10.75 top-2.5 z-10 size-5 -translate-y-1/2 rounded-full bg-card before:absolute before:inset-1 before:rounded-full before:border-2 before:border-accent before:bg-card before:content-['']" />
 
               <div className="text-sm">
                 <div className="flex justify-between items-baseline">

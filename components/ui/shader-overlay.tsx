@@ -136,7 +136,6 @@ export default function ShaderOverlay({
     let cancelled = false;
 
     if (respectReducedMotion && prefersReducedMotion) {
-      setShaders(null);
       return;
     }
 

@@ -20,10 +20,12 @@ export default function Education() {
             key={`${edu.institution}-${edu.period}`}
           >
             <CardHeader className="flex justify-between items-center -mx-4">
-              <CardTitle className="text-primary font-bold text-lg">
+              <CardTitle className="min-w-0 text-primary font-bold text-lg">
                 {edu.institution}
               </CardTitle>
-              <Badge className="mt-0.5">{edu.period}</Badge>
+              <Badge className="mt-0.5 shrink-0 whitespace-nowrap">
+                {edu.period}
+              </Badge>
             </CardHeader>
             <div className="-mt-2.5 text-sm text-secondary mb-4 leading-6 min-h-12 overflow-hidden">
               {edu.degree}
@@ -56,10 +58,12 @@ export default function Education() {
                   }
                 >
                   <CardHeader className="flex items-center justify-between -mx-4">
-                    <CardTitle className="text-lg font-bold text-primary">
+                    <CardTitle className="min-w-0 text-lg font-bold text-primary">
                       {edu.institution}
                     </CardTitle>
-                    <Badge className="mt-0.5">{edu.period}</Badge>
+                    <Badge className="mt-0.5 shrink-0 whitespace-nowrap">
+                      {edu.period}
+                    </Badge>
                   </CardHeader>
                   <div className="text-sm text-secondary leading-6">
                     {edu.degree}

@@ -7,12 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit --pretty false --incremental false",
     "test": "vitest run",
     "cv:check-deps": "bash scripts/check-cv-deps.sh",
     "cv:install-deps:cachyos": "fish scripts/install-cv-deps.fish",
     "cv:build": "bash scripts/build-cv.sh",
     "cv:clean": "bash scripts/clean-cv.sh",
-    "verify": "pnpm lint && pnpm test && pnpm build"
+    "verify": "pnpm lint && pnpm typecheck && pnpm test && pnpm build"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
@@ -42,10 +43,10 @@
     "eslint-config-next": "16.1.6",
     "jsdom": "^29.1.1",
     "tailwindcss": "^4.3.0",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.3",
     "vitest": "^4.1.8"
   },
   "browserslist": [
-    "supports es6-module"
+    "baseline widely available"
   ]
 }

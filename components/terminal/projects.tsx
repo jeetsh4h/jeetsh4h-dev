@@ -26,6 +26,13 @@ function ProjectCard({ proj }: { proj: ProjectEntryModel }) {
         )}
       </div>
       <div className="text-xs text-foreground">{proj.description}</div>
+      {proj.highlights && proj.highlights.length > 0 && (
+        <ul className="mt-2 list-disc list-outside marker:text-accent ml-4 space-y-1 text-xs text-foreground">
+          {proj.highlights.map((highlight) => (
+            <li key={`${proj.title}-${highlight}`}>{highlight}</li>
+          ))}
+        </ul>
+      )}
       {proj.stack && proj.stack.length > 0 && (
         <div className="mt-2 flex flex-wrap gap-1.5">
           {proj.stack.map((item) => (
@@ -38,13 +45,6 @@ function ProjectCard({ proj }: { proj: ProjectEntryModel }) {
           ))}
         </div>
       )}
-      {proj.highlights && proj.highlights.length > 0 && (
-        <ul className="mt-2 list-disc list-outside marker:text-accent ml-4 space-y-1 text-xs text-foreground">
-          {proj.highlights.map((highlight) => (
-            <li key={`${proj.title}-${highlight}`}>{highlight}</li>
-          ))}
-        </ul>
-      )}
       {proj.confidentialityNote && (
         <div className="mt-2 text-xs text-muted-foreground">
           {proj.confidentialityNote}
@@ -54,26 +54,55 @@ function ProjectCard({ proj }: { proj: ProjectEntryModel }) {
   );
 }
 
+function ProjectCardItem({
+  proj,
+  order,
+}: {
+  proj: ProjectEntryModel;
+  order: number;
+}) {
+  const card = <ProjectCard proj={proj} />;
+  const itemProps = {
+    className: "block",
+    style: { order },
+  };
+
+  return proj.link ?
+      <Link
+        href={proj.link}
+        target="_blank"
+        rel="noreferrer"
+        {...itemProps}
+      >
+        {card}
+      </Link>
+    : <div {...itemProps}>{card}</div>;
+}
+
 export default function Projects() {
   const projects = buildProjectsSection();
+  const projectColumns = [0, 1].map((columnIndex) =>
+    projects.entries
+      .map((proj, index) => ({ proj, index }))
+      .filter(({ index }) => index % 2 === columnIndex),
+  );
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-      {projects.entries.map((proj) =>
-        proj.link ?
-          <Link
-            key={proj.title}
-            href={proj.link}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <ProjectCard proj={proj} />
-          </Link>
-        : <ProjectCard
-            key={proj.title}
-            proj={proj}
-          />,
-      )}
+    <div className="grid grid-cols-1 gap-4 mt-2 md:grid-cols-2 md:items-start">
+      {projectColumns.map((column, columnIndex) => (
+        <div
+          key={columnIndex}
+          className="contents md:flex md:flex-col md:gap-4"
+        >
+          {column.map(({ proj, index }) => (
+            <ProjectCardItem
+              key={proj.title}
+              proj={proj}
+              order={index}
+            />
+          ))}
+        </div>
+      ))}
     </div>
   );
 }

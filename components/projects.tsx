@@ -1,6 +1,6 @@
 import { Badge } from "./ui/badge";
 import { Card, CardHeader } from "./ui/card";
-import { SectionGrid, SectionHeading } from "./ui/section";
+import { SectionHeading } from "./ui/section";
 import Link from "next/link";
 import { buildProjectsSection } from "@/lib/site-content";
 import type { ProjectEntryModel } from "@/lib/site-content";
@@ -32,6 +32,13 @@ function ProjectCard({ project }: { project: ProjectEntryModel }) {
       <p className="text-sm text-foreground leading-relaxed">
         {project.description}
       </p>
+      {project.highlights && project.highlights.length > 0 && (
+        <ul className="list-disc list-outside marker:text-accent ml-4 space-y-1 text-xs text-foreground leading-relaxed">
+          {project.highlights.map((highlight) => (
+            <li key={`${project.title}-${highlight}`}>{highlight}</li>
+          ))}
+        </ul>
+      )}
       {project.stack && project.stack.length > 0 && (
         <div className="flex flex-wrap gap-1.5">
           {project.stack.map((item) => (
@@ -44,13 +51,6 @@ function ProjectCard({ project }: { project: ProjectEntryModel }) {
           ))}
         </div>
       )}
-      {project.highlights && project.highlights.length > 0 && (
-        <ul className="list-disc list-outside marker:text-accent ml-4 space-y-1 text-xs text-foreground leading-relaxed">
-          {project.highlights.map((highlight) => (
-            <li key={`${project.title}-${highlight}`}>{highlight}</li>
-          ))}
-        </ul>
-      )}
       {project.confidentialityNote && (
         <p className="text-xs text-muted-foreground leading-relaxed">
           {project.confidentialityNote}
@@ -60,8 +60,38 @@ function ProjectCard({ project }: { project: ProjectEntryModel }) {
   );
 }
 
+function ProjectCardItem({
+  project,
+  order,
+}: {
+  project: ProjectEntryModel;
+  order: number;
+}) {
+  const card = <ProjectCard project={project} />;
+  const itemProps = {
+    className: "block",
+    style: { order },
+  };
+
+  return project.link ?
+      <Link
+        href={project.link}
+        target="_blank"
+        rel="noreferrer"
+        {...itemProps}
+      >
+        {card}
+      </Link>
+    : <div {...itemProps}>{card}</div>;
+}
+
 export default function Projects() {
   const projects = buildProjectsSection();
+  const projectColumns = [0, 1].map((columnIndex) =>
+    projects.entries
+      .map((project, index) => ({ project, index }))
+      .filter(({ index }) => index % 2 === columnIndex),
+  );
 
   return (
     <>
@@ -70,23 +100,22 @@ export default function Projects() {
         command="projects"
       />
 
-      <SectionGrid>
-        {projects.entries.map((project) =>
-          project.link ?
-            <Link
-              href={project.link}
-              target="_blank"
-              rel="noreferrer"
-              key={project.title}
-            >
-              <ProjectCard project={project} />
-            </Link>
-          : <ProjectCard
-              key={project.title}
-              project={project}
-            />,
-        )}
-      </SectionGrid>
+      <div className="grid grid-cols-1 gap-4 -mt-2 md:grid-cols-2 md:items-start">
+        {projectColumns.map((column, columnIndex) => (
+          <div
+            key={columnIndex}
+            className="contents md:flex md:flex-col md:gap-4"
+          >
+            {column.map(({ project, index }) => (
+              <ProjectCardItem
+                key={project.title}
+                project={project}
+                order={index}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
     </>
   );
 }

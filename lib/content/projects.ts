@@ -17,4 +17,13 @@ export const PROJECTS: ProjectItem[] = [
     linkText: "GitHub",
     stack: ["TensorFlow", "OpenCV"],
   },
+  {
+    title: "Girlfriend Birthday Gift",
+    description:
+      "Built a website for my girlfriend as a birthday card (I also got her a gift). Learnt to use photoshop for her.",
+    highlights: ["She loved the website and the gift.", "YAYYYYY!!!"],
+    link: "https://birthday.sunishqa.my",
+    linkText: "Website",
+    stack: ["Astro", "Photoshop"],
+  },
 ];

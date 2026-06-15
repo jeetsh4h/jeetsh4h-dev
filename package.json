@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
+    "format": "prettier --write . --ignore-unknown",
+    "format:check": "prettier --check . --ignore-unknown",
+    "lint": "eslint . --max-warnings=0",
+    "lint:fix": "eslint . --fix",
     "typecheck": "next typegen && tsc --noEmit --pretty false --incremental false",
     "test": "vitest run",
     "blog:new": "node scripts/new-blog-post.mjs",
@@ -14,7 +17,7 @@
     "cv:install-deps:cachyos": "fish scripts/install-cv-deps.fish",
     "cv:build": "bash scripts/build-cv.sh",
     "cv:clean": "bash scripts/clean-cv.sh",
-    "verify": "pnpm lint && pnpm typecheck && pnpm test && pnpm build"
+    "verify": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
@@ -48,7 +51,9 @@
     "babel-plugin-react-compiler": "^1.0.0",
     "eslint": "^9.39.4",
     "eslint-config-next": "16.1.6",
+    "eslint-plugin-mdx": "^3.8.1",
     "jsdom": "^29.1.1",
+    "prettier": "^3.8.4",
     "tailwindcss": "^4.3.0",
     "typescript": "^6.0.3",
     "vitest": "^4.1.8"

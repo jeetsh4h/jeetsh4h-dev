@@ -1,20 +1,20 @@
 import { describe, expect, it } from "vitest";
 
-import { defineBlogPost } from "../metadata";
+import { defineDiaryEntry } from "../metadata";
 
 const validPublishedMetadata = {
-  title: "A valid post",
+  title: "A valid entry",
   description: "A short SEO-safe description.",
   publishedAt: "2026-06-13",
 } as const;
 
-function defineUnsafeBlogPost(input: Record<string, unknown>) {
-  return defineBlogPost(input as never);
+function defineUnsafeDiaryEntry(input: Record<string, unknown>) {
+  return defineDiaryEntry(input as never);
 }
 
-describe("defineBlogPost", () => {
-  it("defaults published posts", () => {
-    expect(defineBlogPost(validPublishedMetadata)).toEqual({
+describe("defineDiaryEntry", () => {
+  it("defaults published entries", () => {
+    expect(defineDiaryEntry(validPublishedMetadata)).toEqual({
       ...validPublishedMetadata,
       editedAt: "2026-06-13",
       tags: [],
@@ -24,12 +24,12 @@ describe("defineBlogPost", () => {
 
   it("allows drafts to omit descriptions and dates", () => {
     expect(
-      defineBlogPost({
-        title: "Draft post",
+      defineDiaryEntry({
+        title: "Draft entry",
         draft: true,
       }),
     ).toEqual({
-      title: "Draft post",
+      title: "Draft entry",
       description: "",
       draft: true,
       publishedAt: undefined,
@@ -40,7 +40,7 @@ describe("defineBlogPost", () => {
 
   it("accepts explicit editedAt dates and tags", () => {
     expect(
-      defineBlogPost({
+      defineDiaryEntry({
         ...validPublishedMetadata,
         editedAt: "2026-06-20",
         tags: ["nextjs", "systems"],
@@ -52,32 +52,32 @@ describe("defineBlogPost", () => {
     });
   });
 
-  it("requires published posts to provide descriptions and dates", () => {
+  it("requires published entries to provide descriptions and dates", () => {
     expect(() =>
-      defineUnsafeBlogPost({
+      defineUnsafeDiaryEntry({
         title: "Missing description",
         publishedAt: "2026-06-13",
       }),
-    ).toThrow("description is required for published posts");
+    ).toThrow("description is required for published entries");
 
     expect(() =>
-      defineUnsafeBlogPost({
+      defineUnsafeDiaryEntry({
         title: "Missing date",
         description: "A short SEO-safe description.",
       }),
-    ).toThrow("publishedAt is required for published posts");
+    ).toThrow("publishedAt is required for published entries");
   });
 
   it("rejects invalid date shapes", () => {
     expect(() =>
-      defineUnsafeBlogPost({
+      defineUnsafeDiaryEntry({
         ...validPublishedMetadata,
         publishedAt: "2026/06/13",
       }),
     ).toThrow("publishedAt must be a valid YYYY-MM-DD date");
 
     expect(() =>
-      defineUnsafeBlogPost({
+      defineUnsafeDiaryEntry({
         ...validPublishedMetadata,
         publishedAt: "06-13-2026",
       }),
@@ -86,14 +86,14 @@ describe("defineBlogPost", () => {
 
   it("rejects impossible calendar dates", () => {
     expect(() =>
-      defineUnsafeBlogPost({
+      defineUnsafeDiaryEntry({
         ...validPublishedMetadata,
         publishedAt: "2026-02-30",
       }),
     ).toThrow("publishedAt must be a valid YYYY-MM-DD date");
 
     expect(() =>
-      defineUnsafeBlogPost({
+      defineUnsafeDiaryEntry({
         ...validPublishedMetadata,
         editedAt: "2026-13-01",
       }),
@@ -102,7 +102,7 @@ describe("defineBlogPost", () => {
 
   it("rejects Date object inputs", () => {
     expect(() =>
-      defineUnsafeBlogPost({
+      defineUnsafeDiaryEntry({
         ...validPublishedMetadata,
         publishedAt: new Date("2026-06-13"),
       }),
@@ -111,7 +111,7 @@ describe("defineBlogPost", () => {
 
   it("rejects editedAt dates earlier than publishedAt", () => {
     expect(() =>
-      defineBlogPost({
+      defineDiaryEntry({
         ...validPublishedMetadata,
         editedAt: "2026-06-12",
       }),

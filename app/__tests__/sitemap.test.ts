@@ -1,25 +1,28 @@
 import { describe, expect, it } from "vitest";
 
-import { getAllBlogPosts, getPublishedBlogPosts } from "@/lib/blog/posts";
+import {
+  getAllDiaryEntries,
+  getPublishedDiaryEntries,
+} from "@/lib/diary/entries";
 import { SEO } from "@/lib/content/seo";
 
 import sitemap from "../sitemap";
 
 describe("sitemap", () => {
-  it("includes the blog index and published posts while excluding drafts", async () => {
+  it("includes the diary index and published entries while excluding drafts", async () => {
     const entries = await sitemap();
     const urls = entries.map((entry) => entry.url);
-    const allPosts = await getAllBlogPosts();
-    const publishedPosts = await getPublishedBlogPosts();
+    const allEntries = await getAllDiaryEntries();
+    const publishedEntries = await getPublishedDiaryEntries();
 
-    expect(urls).toContain(`${SEO.url}/blog`);
+    expect(urls).toContain(`${SEO.url}/diary`);
 
-    for (const post of publishedPosts) {
-      expect(urls).toContain(`${SEO.url}/blog/${post.slug}`);
+    for (const entry of publishedEntries) {
+      expect(urls).toContain(`${SEO.url}/diary/${entry.slug}`);
     }
 
-    for (const post of allPosts.filter((entry) => entry.draft)) {
-      expect(urls).not.toContain(`${SEO.url}/blog/${post.slug}`);
+    for (const entry of allEntries.filter((entry) => entry.draft)) {
+      expect(urls).not.toContain(`${SEO.url}/diary/${entry.slug}`);
     }
   });
 });

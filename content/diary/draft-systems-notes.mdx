@@ -1,0 +1,11 @@
+import { defineDiaryEntry } from "@/lib/diary/metadata";
+
+export const metadata = defineDiaryEntry({
+  title: "Draft Systems Notes",
+  description:
+    "Unpublished notes used to verify that draft diary entries stay out of public static surfaces.",
+  tags: ["drafts", "systems"],
+  draft: true,
+});
+
+This draft exists so the diary helpers, sitemap, RSS feed, and static params have a real unpublished MDX entry to exclude.

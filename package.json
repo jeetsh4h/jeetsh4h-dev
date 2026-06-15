@@ -12,7 +12,7 @@
     "lint:fix": "eslint . --fix",
     "typecheck": "next typegen && tsc --noEmit --pretty false --incremental false",
     "test": "vitest run",
-    "blog:new": "node scripts/new-blog-post.mjs",
+    "diary:new": "node scripts/new-diary-entry.mjs",
     "cv:check-deps": "bash scripts/check-cv-deps.sh",
     "cv:install-deps:cachyos": "fish scripts/install-cv-deps.fish",
     "cv:build": "bash scripts/build-cv.sh",

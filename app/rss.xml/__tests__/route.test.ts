@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { getAllBlogPosts, getPublishedBlogPosts } from "@/lib/blog/posts";
+import {
+  getAllDiaryEntries,
+  getPublishedDiaryEntries,
+} from "@/lib/diary/entries";
 
 import { escapeXml, GET } from "../route";
 
@@ -11,25 +14,25 @@ describe("rss.xml route", () => {
     );
   });
 
-  it("includes published posts and excludes drafts", async () => {
+  it("includes published entries and excludes drafts", async () => {
     const response = await GET();
     const xml = await response.text();
-    const allPosts = await getAllBlogPosts();
-    const publishedPosts = await getPublishedBlogPosts();
+    const allEntries = await getAllDiaryEntries();
+    const publishedEntries = await getPublishedDiaryEntries();
 
     expect(response.headers.get("Content-Type")).toBe(
       "application/rss+xml; charset=utf-8",
     );
     expect(xml).toContain('<rss version="2.0">');
 
-    for (const post of publishedPosts) {
-      expect(xml).toContain(escapeXml(post.title));
-      expect(xml).toContain(escapeXml(`/blog/${post.slug}`));
+    for (const entry of publishedEntries) {
+      expect(xml).toContain(escapeXml(entry.title));
+      expect(xml).toContain(escapeXml(`/diary/${entry.slug}`));
     }
 
-    for (const post of allPosts.filter((entry) => entry.draft)) {
-      expect(xml).not.toContain(escapeXml(post.title));
-      expect(xml).not.toContain(escapeXml(`/blog/${post.slug}`));
+    for (const entry of allEntries.filter((entry) => entry.draft)) {
+      expect(xml).not.toContain(escapeXml(entry.title));
+      expect(xml).not.toContain(escapeXml(`/diary/${entry.slug}`));
     }
   });
 });

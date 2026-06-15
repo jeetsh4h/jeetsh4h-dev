@@ -1,15 +1,15 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const BLOG_CONTENT_DIR = path.join(process.cwd(), "content", "blog");
+const DIARY_CONTENT_DIR = path.join(process.cwd(), "content", "diary");
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const DATE_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
 
 function usage() {
   return [
-    'Usage: pnpm blog:new -- "Post Title" [--slug custom-slug] [--date YYYY-MM-DD] [--published]',
+    'Usage: pnpm diary:new -- "Entry Title" [--slug custom-slug] [--date YYYY-MM-DD] [--published]',
     "",
-    "Creates content/blog/{slug}.mdx with a typed metadata export.",
+    "Creates content/diary/{slug}.mdx with a typed metadata export.",
   ].join("\n");
 }
 
@@ -65,20 +65,20 @@ function parseArgs(argv) {
     }
 
     if (options.title) {
-      throw new Error("Provide the post title as a single quoted argument.");
+      throw new Error("Provide the entry title as a single quoted argument.");
     }
 
     options.title = arg;
   }
 
   if (!options.title) {
-    throw new Error("Post title is required.");
+    throw new Error("Entry title is required.");
   }
 
   const title = options.title.trim();
 
   if (!title) {
-    throw new Error("Post title is required.");
+    throw new Error("Entry title is required.");
   }
 
   return {
@@ -135,11 +135,11 @@ function assertValidDate(value) {
   }
 }
 
-function renderPost({ title, date, published }) {
+function renderEntry({ title, date, published }) {
   const lines = [
-    'import { defineBlogPost } from "@/lib/blog/metadata";',
+    'import { defineDiaryEntry } from "@/lib/diary/metadata";',
     "",
-    "export const metadata = defineBlogPost({",
+    "export const metadata = defineDiaryEntry({",
     `  title: ${JSON.stringify(title)},`,
     '  description: "",',
     `  publishedAt: ${JSON.stringify(date)},`,
@@ -161,14 +161,14 @@ async function main() {
   assertValidSlug(options.slug);
   assertValidDate(options.date);
 
-  await fs.mkdir(BLOG_CONTENT_DIR, { recursive: true });
+  await fs.mkdir(DIARY_CONTENT_DIR, { recursive: true });
 
-  const filePath = path.join(BLOG_CONTENT_DIR, `${options.slug}.mdx`);
+  const filePath = path.join(DIARY_CONTENT_DIR, `${options.slug}.mdx`);
 
   try {
     await fs.access(filePath);
     throw new Error(
-      `Blog post already exists: ${path.relative(process.cwd(), filePath)}`,
+      `Diary entry already exists: ${path.relative(process.cwd(), filePath)}`,
     );
   } catch (error) {
     if (error && error.code !== "ENOENT") {
@@ -176,7 +176,7 @@ async function main() {
     }
   }
 
-  await fs.writeFile(filePath, renderPost(options), "utf8");
+  await fs.writeFile(filePath, renderEntry(options), "utf8");
   console.log(`Created ${path.relative(process.cwd(), filePath)}`);
 }
 

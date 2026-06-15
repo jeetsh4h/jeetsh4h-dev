@@ -54,7 +54,7 @@ function MdxCode({ className, children, ...props }: ComponentProps<"code">) {
   return (
     <code
       className={cn(
-        "blog-inline-code bg-input/30 px-1.5 py-0.5 text-secondary",
+        "diary-inline-code bg-input/30 px-1.5 py-0.5 text-secondary",
         className,
       )}
       {...props}

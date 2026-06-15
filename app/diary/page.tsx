@@ -10,28 +10,28 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { getPublishedBlogPosts } from "@/lib/blog/posts";
+import { getPublishedDiaryEntries } from "@/lib/diary/entries";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Diary",
   description:
     "Writing by Jeet Shah on software engineering, systems, web interfaces, and research.",
   alternates: {
-    canonical: "/blog",
+    canonical: "/diary",
     types: {
       "application/rss+xml": "/rss.xml",
     },
   },
   openGraph: {
-    title: "Blog | Jeet Shah",
+    title: "Diary | Jeet Shah",
     description:
       "Writing by Jeet Shah on software engineering, systems, web interfaces, and research.",
-    url: "/blog",
+    url: "/diary",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog | Jeet Shah",
+    title: "Diary | Jeet Shah",
     description:
       "Writing by Jeet Shah on software engineering, systems, web interfaces, and research.",
   },
@@ -44,12 +44,12 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
   timeZone: "UTC",
 });
 
-function formatPostDate(date: string) {
+function formatEntryDate(date: string) {
   return dateFormatter.format(new Date(`${date}T00:00:00.000Z`));
 }
 
-export default async function BlogPage() {
-  const posts = await getPublishedBlogPosts();
+export default async function DiaryPage() {
+  const entries = await getPublishedDiaryEntries();
 
   return (
     <main
@@ -74,7 +74,7 @@ export default async function BlogPage() {
         <div className="mb-10 space-y-3 border-l-2 border-accent pl-4">
           <p className="text-xs text-muted-foreground">guest@jeetsh4h-dev:~</p>
           <h1 className="text-3xl font-bold tracking-normal text-primary md:text-4xl">
-            blog
+            diary
           </h1>
           <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
             Notes on software engineering, systems, interfaces, and research.
@@ -82,28 +82,28 @@ export default async function BlogPage() {
         </div>
 
         <div className="grid grid-cols-1 gap-5">
-          {posts.map((post) => (
+          {entries.map((entry) => (
             <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
+              key={entry.slug}
+              href={`/diary/${entry.slug}`}
               className="group block"
             >
               <Card variant="interactive">
                 <CardHeader className="px-0">
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
                     <CardTitle className="text-lg text-primary transition-colors group-hover:text-accent">
-                      {post.title}
+                      {entry.title}
                     </CardTitle>
-                    <Badge>{formatPostDate(post.publishedAt)}</Badge>
+                    <Badge>{formatEntryDate(entry.publishedAt)}</Badge>
                   </div>
                   <CardDescription className="text-sm">
-                    {post.description}
+                    {entry.description}
                   </CardDescription>
                 </CardHeader>
-                {post.tags.length > 0 && (
+                {entry.tags.length > 0 && (
                   <CardContent className="px-0">
                     <div className="flex flex-wrap gap-2">
-                      {post.tags.map((tag) => (
+                      {entry.tags.map((tag) => (
                         <Badge
                           key={tag}
                           size="xs"

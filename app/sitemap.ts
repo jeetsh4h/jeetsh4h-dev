@@ -1,12 +1,12 @@
 import type { MetadataRoute } from "next";
-import { getPublishedBlogPosts } from "@/lib/blog/posts";
+import { getPublishedDiaryEntries } from "@/lib/diary/entries";
 import { SEO } from "@/lib/content/seo";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
-  const blogPosts = await getPublishedBlogPosts();
-  const latestBlogEdit = blogPosts
-    .map((post) => post.editedAt)
+  const diaryEntries = await getPublishedDiaryEntries();
+  const latestDiaryEdit = diaryEntries
+    .map((entry) => entry.editedAt)
     .sort()
     .at(-1);
 
@@ -24,17 +24,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
-      url: `${SEO.url}/blog`,
+      url: `${SEO.url}/diary`,
       lastModified:
-        latestBlogEdit ?
-          new Date(`${latestBlogEdit}T00:00:00.000Z`)
+        latestDiaryEdit ?
+          new Date(`${latestDiaryEdit}T00:00:00.000Z`)
         : lastModified,
       changeFrequency: "weekly",
       priority: 0.8,
     },
-    ...blogPosts.map((post) => ({
-      url: `${SEO.url}/blog/${post.slug}`,
-      lastModified: new Date(`${post.editedAt}T00:00:00.000Z`),
+    ...diaryEntries.map((entry) => ({
+      url: `${SEO.url}/diary/${entry.slug}`,
+      lastModified: new Date(`${entry.editedAt}T00:00:00.000Z`),
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),

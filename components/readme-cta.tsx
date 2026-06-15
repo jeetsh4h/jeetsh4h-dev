@@ -112,8 +112,8 @@ export default function ReadmeCta() {
         <TooltipTrigger
           render={
             <Link
-              href="/blog"
-              aria-label="Open blog"
+              href="/diary"
+              aria-label="Open diary"
               className={cn(
                 buttonVariants({
                   variant: "tertiary",

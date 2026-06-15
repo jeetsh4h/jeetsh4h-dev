@@ -5,15 +5,15 @@ import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-  getPublishedBlogPost,
-  getPublishedBlogPostSlugs,
-  type PublishedBlogPost,
-} from "@/lib/blog/posts";
+  getPublishedDiaryEntry,
+  getPublishedDiaryEntrySlugs,
+  type PublishedDiaryEntry,
+} from "@/lib/diary/entries";
 import { SEO } from "@/lib/content/seo";
 
-type BlogPostPageProps = {
+type DiaryEntryPageProps = {
   params: Promise<{
-    slug: string;
+    entry: string;
   }>;
 };
 
@@ -24,15 +24,15 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
   timeZone: "UTC",
 });
 
-function formatPostDate(date: string) {
+function formatEntryDate(date: string) {
   return dateFormatter.format(new Date(`${date}T00:00:00.000Z`));
 }
 
-async function getPublishedPost(
-  slug: string,
-): Promise<PublishedBlogPost | null> {
+async function getPublishedEntry(
+  entrySlug: string,
+): Promise<PublishedDiaryEntry | null> {
   try {
-    return await getPublishedBlogPost(slug);
+    return await getPublishedDiaryEntry(entrySlug);
   } catch {
     return null;
   }
@@ -41,38 +41,38 @@ async function getPublishedPost(
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const slugs = await getPublishedBlogPostSlugs();
+  const slugs = await getPublishedDiaryEntrySlugs();
 
-  return slugs.map((slug) => ({ slug }));
+  return slugs.map((slug) => ({ entry: slug }));
 }
 
 export async function generateMetadata({
   params,
-}: BlogPostPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await getPublishedPost(slug);
+}: DiaryEntryPageProps): Promise<Metadata> {
+  const { entry: entrySlug } = await params;
+  const entry = await getPublishedEntry(entrySlug);
 
-  if (!post) {
+  if (!entry) {
     return {};
   }
 
-  const url = `/blog/${post.slug}`;
-  const title = post.title;
+  const url = `/diary/${entry.slug}`;
+  const title = entry.title;
 
   return {
     title,
-    description: post.description,
+    description: entry.description,
     alternates: {
       canonical: url,
     },
     authors: [{ name: "Jeet Shah", url: SEO.url }],
     openGraph: {
       title,
-      description: post.description,
+      description: entry.description,
       url,
       type: "article",
-      publishedTime: post.publishedAt,
-      modifiedTime: post.editedAt,
+      publishedTime: entry.publishedAt,
+      modifiedTime: entry.editedAt,
       authors: ["Jeet Shah"],
       images: [
         {
@@ -86,21 +86,21 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title,
-      description: post.description,
+      description: entry.description,
       images: ["/twitter-image"],
     },
   };
 }
 
-export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = await params;
-  const post = await getPublishedPost(slug);
+export default async function DiaryEntryPage({ params }: DiaryEntryPageProps) {
+  const { entry: entrySlug } = await params;
+  const entry = await getPublishedEntry(entrySlug);
 
-  if (!post) {
+  if (!entry) {
     notFound();
   }
 
-  const { Component } = post;
+  const { Component } = entry;
 
   return (
     <main
@@ -110,34 +110,34 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <div className="mx-auto flex w-full flex-none items-center justify-between px-4 pt-2 pb-2 md:p-4 md:pb-2">
         <Button
           nativeButton={false}
-          render={<Link href="/blog" />}
+          render={<Link href="/diary" />}
           variant="link"
           className="flex text-xs"
         >
           <span className="transition-transform group-hover:-translate-x-0.5">
             ←
           </span>
-          <span className="underline">../blog</span>
+          <span className="underline">../diary</span>
         </Button>
       </div>
 
       <article className="mx-auto max-w-3xl px-6 pb-12 pt-3 md:pb-16 md:pt-8">
         <header className="mb-10 space-y-5 border-l-2 border-accent pl-4">
           <div className="flex flex-wrap items-center gap-2">
-            <Badge>{formatPostDate(post.publishedAt)}</Badge>
-            {post.editedAt !== post.publishedAt && (
-              <Badge>Edited {formatPostDate(post.editedAt)}</Badge>
+            <Badge>{formatEntryDate(entry.publishedAt)}</Badge>
+            {entry.editedAt !== entry.publishedAt && (
+              <Badge>Edited {formatEntryDate(entry.editedAt)}</Badge>
             )}
           </div>
           <h1 className="text-3xl font-bold tracking-normal text-primary md:text-5xl">
-            {post.title}
+            {entry.title}
           </h1>
           <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            {post.description}
+            {entry.description}
           </p>
-          {post.tags.length > 0 && (
+          {entry.tags.length > 0 && (
             <div className="flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
+              {entry.tags.map((tag) => (
                 <Badge
                   key={tag}
                   size="xs"
@@ -150,7 +150,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           )}
         </header>
 
-        <div className="blog-prose space-y-6">
+        <div className="diary-prose space-y-6">
           <Component />
         </div>
       </article>

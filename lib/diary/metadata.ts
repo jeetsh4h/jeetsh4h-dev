@@ -1,6 +1,6 @@
 export type DateString = `${number}-${number}-${number}`;
 
-type BaseBlogPostMetadataInput = {
+type BaseDiaryEntryMetadataInput = {
   title: string;
   description?: string;
   publishedAt?: DateString;
@@ -8,21 +8,21 @@ type BaseBlogPostMetadataInput = {
   tags?: readonly string[];
 };
 
-type PublishedBlogPostMetadataInput = BaseBlogPostMetadataInput & {
+type PublishedDiaryEntryMetadataInput = BaseDiaryEntryMetadataInput & {
   description: string;
   publishedAt: DateString;
   draft?: false;
 };
 
-type DraftBlogPostMetadataInput = BaseBlogPostMetadataInput & {
+type DraftDiaryEntryMetadataInput = BaseDiaryEntryMetadataInput & {
   draft: true;
 };
 
-export type BlogPostMetadataInput =
-  | PublishedBlogPostMetadataInput
-  | DraftBlogPostMetadataInput;
+export type DiaryEntryMetadataInput =
+  | PublishedDiaryEntryMetadataInput
+  | DraftDiaryEntryMetadataInput;
 
-export type BlogPostMetadata = {
+export type DiaryEntryMetadata = {
   title: string;
   description: string;
   publishedAt?: DateString;
@@ -31,11 +31,11 @@ export type BlogPostMetadata = {
   draft: boolean;
 };
 
-export type BlogPostSummary = BlogPostMetadata & {
+export type DiaryEntrySummary = DiaryEntryMetadata & {
   slug: string;
 };
 
-export type PublishedBlogPostSummary = BlogPostSummary & {
+export type PublishedDiaryEntrySummary = DiaryEntrySummary & {
   draft: false;
   publishedAt: DateString;
   editedAt: DateString;
@@ -120,9 +120,11 @@ function normalizeTags(input: unknown) {
   return input.map((tag) => requiredString(tag, "tags"));
 }
 
-export function defineBlogPost(input: BlogPostMetadataInput): BlogPostMetadata {
+export function defineDiaryEntry(
+  input: DiaryEntryMetadataInput,
+): DiaryEntryMetadata {
   if (!isRecord(input)) {
-    throw new Error("Blog post metadata must be an object.");
+    throw new Error("Diary entry metadata must be an object.");
   }
 
   const title = requiredString(input.title, "title");
@@ -138,11 +140,11 @@ export function defineBlogPost(input: BlogPostMetadataInput): BlogPostMetadata {
 
   if (!draft) {
     if (!description) {
-      throw new Error("description is required for published posts.");
+      throw new Error("description is required for published entries.");
     }
 
     if (!publishedAt) {
-      throw new Error("publishedAt is required for published posts.");
+      throw new Error("publishedAt is required for published entries.");
     }
   }
 

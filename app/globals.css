@@ -254,9 +254,9 @@
   --warning: #eed49f; /* Yellow */
   --term-muted: #5b6078; /* Surface2 */
 
-  --blog-prose-font-size: 0.9375rem;
-  --blog-prose-line-height: 1.75;
-  --blog-inline-code-radius: 0.25rem;
+  --diary-prose-font-size: 0.9375rem;
+  --diary-prose-line-height: 1.75;
+  --diary-inline-code-radius: 0.25rem;
   --syntax-background: var(--card);
   --syntax-foreground: var(--foreground);
   --syntax-code-line-height: 1.65;
@@ -345,13 +345,13 @@
       );
   }
 
-  .blog-prose {
-    font-size: var(--blog-prose-font-size);
-    line-height: var(--blog-prose-line-height);
+  .diary-prose {
+    font-size: var(--diary-prose-font-size);
+    line-height: var(--diary-prose-line-height);
   }
 
-  .blog-inline-code {
-    border-radius: var(--blog-inline-code-radius);
+  .diary-inline-code {
+    border-radius: var(--diary-inline-code-radius);
   }
 
   .shiki {

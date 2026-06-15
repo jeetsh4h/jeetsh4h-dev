@@ -1,9 +1,9 @@
 declare module "*.css";
 declare module "*.mdx" {
   import type { ComponentType } from "react";
-  import type { BlogPostMetadata } from "@/lib/blog/metadata";
+  import type { DiaryEntryMetadata } from "@/lib/diary/metadata";
 
-  export const metadata: BlogPostMetadata;
+  export const metadata: DiaryEntryMetadata;
 
   const MDXContent: ComponentType;
   export default MDXContent;

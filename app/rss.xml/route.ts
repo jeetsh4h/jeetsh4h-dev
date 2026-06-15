@@ -1,4 +1,4 @@
-import { getPublishedBlogPosts } from "@/lib/blog/posts";
+import { getPublishedDiaryEntries } from "@/lib/diary/entries";
 import { SEO } from "@/lib/content/seo";
 
 export const dynamic = "force-static";
@@ -17,22 +17,22 @@ function rfc822Date(date: string) {
 }
 
 export async function GET() {
-  const posts = await getPublishedBlogPosts();
-  const lastEditedAt = posts
-    .map((post) => post.editedAt)
+  const entries = await getPublishedDiaryEntries();
+  const lastEditedAt = entries
+    .map((entry) => entry.editedAt)
     .sort()
     .at(-1);
-  const items = posts
-    .map((post) => {
-      const url = `${SEO.url}/blog/${post.slug}`;
+  const items = entries
+    .map((entry) => {
+      const url = `${SEO.url}/diary/${entry.slug}`;
 
       return [
         "    <item>",
-        `      <title>${escapeXml(post.title)}</title>`,
+        `      <title>${escapeXml(entry.title)}</title>`,
         `      <link>${escapeXml(url)}</link>`,
         `      <guid>${escapeXml(url)}</guid>`,
-        `      <description>${escapeXml(post.description)}</description>`,
-        `      <pubDate>${rfc822Date(post.publishedAt)}</pubDate>`,
+        `      <description>${escapeXml(entry.description)}</description>`,
+        `      <pubDate>${rfc822Date(entry.publishedAt)}</pubDate>`,
         "    </item>",
       ].join("\n");
     })
@@ -42,8 +42,8 @@ export async function GET() {
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<rss version="2.0">',
     "  <channel>",
-    `    <title>${escapeXml("Jeet Shah Blog")}</title>`,
-    `    <link>${escapeXml(`${SEO.url}/blog`)}</link>`,
+    `    <title>${escapeXml("Jeet Shah Diary")}</title>`,
+    `    <link>${escapeXml(`${SEO.url}/diary`)}</link>`,
     `    <description>${escapeXml(
       "Writing by Jeet Shah on software engineering, systems, web interfaces, and research.",
     )}</description>`,

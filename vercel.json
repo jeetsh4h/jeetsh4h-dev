@@ -6,7 +6,5 @@
   "github": {
     "enabled": false
   },
-  "regions": [
-    "bom1"
-  ]
+  "regions": ["bom1"]
 }

@@ -47,7 +47,9 @@ export async function GET() {
     `    <description>${escapeXml(
       "Writing by Jeet Shah on software engineering, systems, web interfaces, and research.",
     )}</description>`,
-    lastEditedAt ? `    <lastBuildDate>${rfc822Date(lastEditedAt)}</lastBuildDate>` : "",
+    lastEditedAt ?
+      `    <lastBuildDate>${rfc822Date(lastEditedAt)}</lastBuildDate>`
+    : "",
     items,
     "  </channel>",
     "</rss>",

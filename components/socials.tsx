@@ -1,7 +1,11 @@
 import TerminalCommandLink from "./terminal-command-link";
 import Link from "next/link";
 import { buildSocialsSection } from "@/lib/site-content";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function Socials() {
   const socials = buildSocialsSection();
@@ -20,8 +24,7 @@ export default function Socials() {
         {socials.links.map((link) => {
           const SocialIcon = link.icon;
           const opensInNewTab =
-            link.href.startsWith("http://") ||
-            link.href.startsWith("https://");
+            link.href.startsWith("http://") || link.href.startsWith("https://");
           const label = `Open ${link.label}`;
 
           return (

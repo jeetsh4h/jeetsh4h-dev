@@ -95,7 +95,8 @@ describe("executeParsedCommand", () => {
       }),
     ).toEqual({
       kind: "error",
-      message: "Invalid argument: --invalid. Usage: theme [--toggle | --system]",
+      message:
+        "Invalid argument: --invalid. Usage: theme [--toggle | --system]",
     });
   });
 });

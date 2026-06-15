@@ -61,8 +61,7 @@ export function SpotifyPromptSegment({
     url: "",
   };
   const spotifyData = data ?? fallbackData;
-  const bracketColor =
-    spotifyData.isPlaying ? "text-success" : "text-warning";
+  const bracketColor = spotifyData.isPlaying ? "text-success" : "text-warning";
 
   return (
     <div className="flex items-center text-xs font-bold select-none">

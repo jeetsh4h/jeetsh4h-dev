@@ -11,7 +11,9 @@ import {
 } from "../posts";
 
 async function getExpectedSlugs() {
-  const filenames = await fs.readdir(path.join(process.cwd(), "content", "blog"));
+  const filenames = await fs.readdir(
+    path.join(process.cwd(), "content", "blog"),
+  );
 
   return filenames
     .filter((filename) => filename.endsWith(".mdx"))

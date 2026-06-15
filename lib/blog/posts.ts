@@ -60,7 +60,9 @@ async function getBlogPostFiles() {
   return mdxFiles.sort();
 }
 
-async function readBlogPostMetadata(filename: string): Promise<BlogPostSummary> {
+async function readBlogPostMetadata(
+  filename: string,
+): Promise<BlogPostSummary> {
   const slug = getSlugFromFilename(filename);
   const postModule = await importBlogPostModule(slug);
 
@@ -74,7 +76,9 @@ async function readBlogPostMetadata(filename: string): Promise<BlogPostSummary> 
   };
 }
 
-function isPublishedPost(post: BlogPostSummary): post is PublishedBlogPostSummary {
+function isPublishedPost(
+  post: BlogPostSummary,
+): post is PublishedBlogPostSummary {
   return !post.draft && Boolean(post.publishedAt && post.editedAt);
 }
 

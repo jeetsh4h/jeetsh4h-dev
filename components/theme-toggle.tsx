@@ -89,9 +89,7 @@ function ThemeToggleBase() {
             </Button>
           }
         />
-        <TooltipContent
-          side="bottom"
-        >
+        <TooltipContent side="bottom">
           <IconTerminal2 className="size-3" />
           theme --system
         </TooltipContent>

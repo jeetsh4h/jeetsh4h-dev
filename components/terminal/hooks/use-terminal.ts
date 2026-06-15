@@ -145,12 +145,15 @@ export function useTerminal(
 
       const executedCommand = parseCommandInput(trimmed)?.rawInput ?? null;
 
-      setHistory((prev) => applyCommandToHistory({
-        history: prev,
-        commandStr: trimmed,
-        dimensions,
-        includeCommandEntry: true,
-      }).history);
+      setHistory(
+        (prev) =>
+          applyCommandToHistory({
+            history: prev,
+            commandStr: trimmed,
+            dimensions,
+            includeCommandEntry: true,
+          }).history,
+      );
       setCmdHistory((prev) => {
         if (!executedCommand || prev[prev.length - 1] === executedCommand) {
           return prev;

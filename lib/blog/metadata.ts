@@ -73,7 +73,10 @@ function optionalString(input: unknown, fieldName: string) {
   return requiredString(input, fieldName, { allowEmpty: true });
 }
 
-function validateDate(input: unknown, fieldName: string): DateString | undefined {
+function validateDate(
+  input: unknown,
+  fieldName: string,
+): DateString | undefined {
   if (input === undefined) {
     return undefined;
   }
@@ -117,9 +120,7 @@ function normalizeTags(input: unknown) {
   return input.map((tag) => requiredString(tag, "tags"));
 }
 
-export function defineBlogPost(
-  input: BlogPostMetadataInput,
-): BlogPostMetadata {
+export function defineBlogPost(input: BlogPostMetadataInput): BlogPostMetadata {
   if (!isRecord(input)) {
     throw new Error("Blog post metadata must be an object.");
   }
@@ -133,8 +134,7 @@ export function defineBlogPost(
 
   const description = optionalString(input.description, "description") ?? "";
   const publishedAt = validateDate(input.publishedAt, "publishedAt");
-  const editedAt =
-    validateDate(input.editedAt, "editedAt") ?? publishedAt;
+  const editedAt = validateDate(input.editedAt, "editedAt") ?? publishedAt;
 
   if (!draft) {
     if (!description) {

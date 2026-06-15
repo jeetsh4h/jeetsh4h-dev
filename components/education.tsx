@@ -53,9 +53,7 @@ export default function Education() {
               {education.priorEducation.map((edu, index) => (
                 <div
                   key={`${edu.institution}-${edu.period}`}
-                  className={
-                    index > 0 ? "border-t border-input/50 pt-4" : ""
-                  }
+                  className={index > 0 ? "border-t border-input/50 pt-4" : ""}
                 >
                   <CardHeader className="flex items-center justify-between -mx-4">
                     <CardTitle className="min-w-0 text-lg font-bold text-primary">

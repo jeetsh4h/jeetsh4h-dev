@@ -9,8 +9,7 @@ export default function Socials() {
       {socials.links.map((link) => {
         const SocialIcon = link.icon;
         const opensInNewTab =
-          link.href.startsWith("http://") ||
-          link.href.startsWith("https://");
+          link.href.startsWith("http://") || link.href.startsWith("https://");
 
         return (
           <Link

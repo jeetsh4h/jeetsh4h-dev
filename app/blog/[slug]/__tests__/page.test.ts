@@ -13,9 +13,7 @@ describe("blog post page", () => {
       .filter((post) => post.draft)
       .map((post) => ({ slug: post.slug }));
 
-    expect(params).toEqual(
-      publishedPosts.map((post) => ({ slug: post.slug })),
-    );
+    expect(params).toEqual(publishedPosts.map((post) => ({ slug: post.slug })));
     expect(params).not.toEqual(expect.arrayContaining(draftSlugs));
   });
 });

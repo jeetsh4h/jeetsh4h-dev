@@ -28,7 +28,9 @@ function formatPostDate(date: string) {
   return dateFormatter.format(new Date(`${date}T00:00:00.000Z`));
 }
 
-async function getPublishedPost(slug: string): Promise<PublishedBlogPost | null> {
+async function getPublishedPost(
+  slug: string,
+): Promise<PublishedBlogPost | null> {
   try {
     return await getPublishedBlogPost(slug);
   } catch {

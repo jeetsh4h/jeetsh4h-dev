@@ -70,10 +70,7 @@ function compileShader(
   return shader;
 }
 
-function createProgram(
-  gl: WebGLRenderingContext,
-  shaders: ShaderSource,
-) {
+function createProgram(gl: WebGLRenderingContext, shaders: ShaderSource) {
   const vertexShader = compileShader(gl, gl.VERTEX_SHADER, shaders.vert);
   const fragmentShader = compileShader(gl, gl.FRAGMENT_SHADER, shaders.frag);
 

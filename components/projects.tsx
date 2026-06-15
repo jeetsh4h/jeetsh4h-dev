@@ -7,9 +7,7 @@ import type { ProjectEntryModel } from "@/lib/site-content";
 
 function ProjectCard({ project }: { project: ProjectEntryModel }) {
   return (
-    <Card
-      variant={project.link ? "interactive" : "content"}
-    >
+    <Card variant={project.link ? "interactive" : "content"}>
       <CardHeader className="flex justify-between items-start p-0 gap-3">
         <h3
           className={`text-lg font-bold text-primary transition-all ${

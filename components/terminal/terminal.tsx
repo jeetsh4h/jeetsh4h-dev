@@ -109,9 +109,7 @@ const TransientPrompt = ({
 }) => (
   <div className="flex min-h-6 items-center gap-2 mb-2">
     <PromptMarker
-      className={cn(
-        status === "error" ? "text-destructive" : "text-success",
-      )}
+      className={cn(status === "error" ? "text-destructive" : "text-success")}
     />
     <span className="text-sm leading-5 text-foreground whitespace-pre-wrap">
       {command}

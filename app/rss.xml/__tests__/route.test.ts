@@ -20,7 +20,7 @@ describe("rss.xml route", () => {
     expect(response.headers.get("Content-Type")).toBe(
       "application/rss+xml; charset=utf-8",
     );
-    expect(xml).toContain("<rss version=\"2.0\">");
+    expect(xml).toContain('<rss version="2.0">');
 
     for (const post of publishedPosts) {
       expect(xml).toContain(escapeXml(post.title));

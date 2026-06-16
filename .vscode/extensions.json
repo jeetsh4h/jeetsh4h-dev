@@ -3,6 +3,8 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "unifiedjs.vscode-mdx",
-    "yzhang.markdown-all-in-one"
+    "yzhang.markdown-all-in-one",
+    "csstools.postcss",
+    "bradlc.vscode-tailwindcss"
   ]
 }

@@ -8,7 +8,7 @@ export default function Footer({ className }: { className?: string }) {
   return (
     <footer
       className={cn(
-        "pt-12 pb-8 border-t border-muted/30 text-center text-xs text-muted-foreground font-mono",
+        "pt-10 pb-8 border-t border-muted/30 text-center text-xs text-muted-foreground font-mono",
         className,
       )}
     >

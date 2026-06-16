@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { Crafty_Girls, JetBrains_Mono } from "next/font/google";
+import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -113,7 +114,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <TooltipProvider>{children}</TooltipProvider>
+          <TooltipProvider>
+            <div className="flex min-h-dvh flex-col">
+              <div className="flex flex-1 flex-col">{children}</div>
+              <Footer className="mt-16" />
+            </div>
+          </TooltipProvider>
           <CrtOverlay />
         </ThemeProvider>
         <Analytics />

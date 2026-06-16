@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import ThemeToggle from "@/components/theme-toggle";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -105,9 +106,8 @@ export default async function DiaryEntryPage({ params }: DiaryEntryPageProps) {
   return (
     <main
       id="main-content"
-      className="min-h-screen font-mono"
+      className="flex-1 font-mono"
     >
-      {/* TODO: add theme toggle */}
       <div className="mx-auto flex w-full flex-none items-center justify-between px-4 pt-2 pb-2 md:p-4 md:pb-2">
         <Button
           nativeButton={false}
@@ -120,6 +120,7 @@ export default async function DiaryEntryPage({ params }: DiaryEntryPageProps) {
           </span>
           <span className="underline">../diary</span>
         </Button>
+        <ThemeToggle />
       </div>
 
       <article className="mx-auto max-w-3xl px-6 pb-12 pt-3 md:pb-16 md:pt-6">
@@ -155,7 +156,6 @@ export default async function DiaryEntryPage({ params }: DiaryEntryPageProps) {
           <Component />
         </div>
       </article>
-      {/* TODO: add copyright footer in the root layout */}
     </main>
   );
 }

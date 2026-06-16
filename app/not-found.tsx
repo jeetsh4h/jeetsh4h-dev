@@ -1,4 +1,3 @@
-import Footer from "@/components/footer";
 import NotFoundPath from "@/components/not-found-path";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -6,7 +5,7 @@ import { IconTerminal2, IconFileCv } from "@tabler/icons-react";
 
 export default async function NotFound() {
   return (
-    <div className="min-h-screen flex flex-col font-mono">
+    <div className="flex flex-1 flex-col font-mono">
       <div className="mx-auto flex w-full flex-none items-center justify-between px-4 pt-2 pb-2 md:p-4 md:pb-2 z-10">
         <Button
           nativeButton={false}
@@ -21,7 +20,10 @@ export default async function NotFound() {
         </Button>
       </div>
 
-      <main className="flex-1 flex flex-col items-center justify-center px-6 text-center space-y-6 -mt-16">
+      <main
+        id="main-content"
+        className="flex-1 flex flex-col items-center justify-center px-6 text-center space-y-6 -mt-16"
+      >
         <div className="space-y-2">
           <h1 className="text-6xl font-bold tracking-tighter text-primary">
             404
@@ -59,8 +61,6 @@ export default async function NotFound() {
           </Button>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }

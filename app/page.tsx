@@ -5,7 +5,6 @@ import Research from "@/components/research";
 import Education from "@/components/education";
 import Skills from "@/components/skills";
 import Projects from "@/components/projects";
-import Footer from "@/components/footer";
 import { ABOUT } from "@/lib/content/about";
 import { EDUCATION } from "@/lib/content/education";
 import { SEO } from "@/lib/content/seo";
@@ -93,7 +92,7 @@ export default function Page() {
   return (
     <main
       id="main-content"
-      className="min-h-screen font-mono"
+      className="flex-1 font-mono"
     >
       <script
         type="application/ld+json"
@@ -139,8 +138,6 @@ export default function Page() {
           <Skills />
         </section>
       </div>
-
-      <Footer />
     </main>
   );
 }

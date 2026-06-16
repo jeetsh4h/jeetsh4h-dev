@@ -54,7 +54,7 @@ export default async function DiaryPage() {
   return (
     <main
       id="main-content"
-      className="min-h-screen font-mono"
+      className="flex-1 font-mono"
     >
       {/* TODO: add cmd-k search bar and theme toggle */}
       <div className="mx-auto flex w-full flex-none items-center justify-between px-4 pt-2 pb-2 md:p-4 md:pb-2">
@@ -121,7 +121,6 @@ export default async function DiaryPage() {
           ))}
         </div>
       </div>
-      {/* TODO: add copyright footer in the root layout */}
     </main>
   );
 }

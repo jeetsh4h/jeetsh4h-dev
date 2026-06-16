@@ -36,6 +36,10 @@ export const metadata: Metadata = {
     description:
       "Writing by Jeet Shah on software engineering, systems, web interfaces, and research.",
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 const dateFormatter = new Intl.DateTimeFormat("en", {

@@ -4,7 +4,7 @@ type BaseDiaryEntryMetadataInput = {
   title: string;
   description?: string;
   publishedAt?: DateString;
-  editedAt?: DateString;
+  updatedAt?: DateString;
   tags?: readonly string[];
 };
 
@@ -26,7 +26,7 @@ export type DiaryEntryMetadata = {
   title: string;
   description: string;
   publishedAt?: DateString;
-  editedAt?: DateString;
+  updatedAt?: DateString;
   tags: readonly string[];
   draft: boolean;
 };
@@ -38,7 +38,7 @@ export type DiaryEntrySummary = DiaryEntryMetadata & {
 export type PublishedDiaryEntrySummary = DiaryEntrySummary & {
   draft: false;
   publishedAt: DateString;
-  editedAt: DateString;
+  updatedAt: DateString;
 };
 
 type MetadataRecord = Record<string, unknown>;
@@ -108,6 +108,14 @@ function validateDate(
   return input as DateString;
 }
 
+export function dateStringToIsoDateTime(date: DateString) {
+  return `${date}T00:00:00.000Z`;
+}
+
+export function dateStringToUtcDate(date: DateString) {
+  return new Date(dateStringToIsoDateTime(date));
+}
+
 function normalizeTags(input: unknown) {
   if (input === undefined) {
     return [];
@@ -136,7 +144,7 @@ export function defineDiaryEntry(
 
   const description = optionalString(input.description, "description") ?? "";
   const publishedAt = validateDate(input.publishedAt, "publishedAt");
-  const editedAt = validateDate(input.editedAt, "editedAt") ?? publishedAt;
+  const updatedAt = validateDate(input.updatedAt, "updatedAt") ?? publishedAt;
 
   if (!draft) {
     if (!description) {
@@ -148,15 +156,15 @@ export function defineDiaryEntry(
     }
   }
 
-  if (publishedAt && editedAt && editedAt < publishedAt) {
-    throw new Error("editedAt cannot be earlier than publishedAt.");
+  if (publishedAt && updatedAt && updatedAt < publishedAt) {
+    throw new Error("updatedAt cannot be earlier than publishedAt.");
   }
 
   return {
     title,
     description,
     publishedAt,
-    editedAt,
+    updatedAt,
     tags: normalizeTags(input.tags),
     draft,
   };

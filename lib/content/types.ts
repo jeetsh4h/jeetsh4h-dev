@@ -1,4 +1,5 @@
 import type { TablerIcon } from "@tabler/icons-react";
+import type { DateString } from "@/lib/diary/metadata";
 
 export interface AboutContent {
   name: string;
@@ -11,7 +12,8 @@ export interface SeoContent {
   title: string;
   description: string;
   url: string;
-  keywords: string[];
+  updatedAt: DateString;
+  areas: string[];
 }
 
 export interface SocialLink {

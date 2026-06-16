@@ -52,7 +52,7 @@ export default function Page() {
   const knowsAbout = [
     ...new Set([
       "Software engineering",
-      ...SEO.keywords.filter((keyword) => keyword !== ABOUT.name),
+      ...SEO.areas,
       ...Object.values(SKILLS).flat(),
     ]),
   ];
@@ -60,6 +60,7 @@ export default function Page() {
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${SEO.url}/#person`,
     name: ABOUT.name,
     url: SEO.url,
     jobTitle,
@@ -80,8 +81,12 @@ export default function Page() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${SEO.url}/#website`,
     name: ABOUT.name,
     url: SEO.url,
+    publisher: {
+      "@id": `${SEO.url}/#person`,
+    },
   };
 
   const structuredData = JSON.stringify([personSchema, websiteSchema]).replace(

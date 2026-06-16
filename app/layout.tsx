@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import CrtOverlay from "@/components/ui/crt-overlay";
-import { SEO } from "@/lib/content/seo";
+import { SEO, SITE_TITLE_TEMPLATE } from "@/lib/content/seo";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -24,10 +24,9 @@ const craftyGirls = Crafty_Girls({
 export const metadata: Metadata = {
   title: {
     default: SEO.title,
-    template: "%s | Jeet Shah",
+    template: SITE_TITLE_TEMPLATE,
   },
   description: SEO.description,
-  keywords: SEO.keywords,
   metadataBase: new URL(SEO.url),
   alternates: {
     canonical: "/",

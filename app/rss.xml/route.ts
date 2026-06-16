@@ -1,5 +1,9 @@
 import { getPublishedDiaryEntries } from "@/lib/diary/entries";
 import { SEO } from "@/lib/content/seo";
+import {
+  dateStringToIsoDateTime,
+  type PublishedDiaryEntrySummary,
+} from "@/lib/diary/metadata";
 
 export const dynamic = "force-static";
 
@@ -16,10 +20,14 @@ function rfc822Date(date: string) {
   return new Date(`${date}T00:00:00.000Z`).toUTCString();
 }
 
-export async function GET() {
-  const entries = await getPublishedDiaryEntries();
-  const lastEditedAt = entries
-    .map((entry) => entry.editedAt)
+type RssEntry = Pick<
+  PublishedDiaryEntrySummary,
+  "title" | "description" | "slug" | "publishedAt" | "updatedAt"
+>;
+
+export function buildRssXml(entries: readonly RssEntry[]) {
+  const lastUpdatedAt = entries
+    .map((entry) => entry.updatedAt)
     .sort()
     .at(-1);
   const items = entries
@@ -33,6 +41,9 @@ export async function GET() {
         `      <guid>${escapeXml(url)}</guid>`,
         `      <description>${escapeXml(entry.description)}</description>`,
         `      <pubDate>${rfc822Date(entry.publishedAt)}</pubDate>`,
+        `      <atom:updated>${escapeXml(
+          dateStringToIsoDateTime(entry.updatedAt),
+        )}</atom:updated>`,
         "    </item>",
       ].join("\n");
     })
@@ -40,22 +51,31 @@ export async function GET() {
 
   const rss = [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<rss version="2.0">',
+    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
     "  <channel>",
     `    <title>${escapeXml("Jeet Shah Diary")}</title>`,
     `    <link>${escapeXml(`${SEO.url}/diary`)}</link>`,
+    `    <atom:link href="${escapeXml(
+      `${SEO.url}/rss.xml`,
+    )}" rel="self" type="application/rss+xml" />`,
     `    <description>${escapeXml(
       "Writing by Jeet Shah on software engineering, systems, web interfaces, and research.",
     )}</description>`,
-    lastEditedAt ?
-      `    <lastBuildDate>${rfc822Date(lastEditedAt)}</lastBuildDate>`
+    lastUpdatedAt ?
+      `    <lastBuildDate>${rfc822Date(lastUpdatedAt)}</lastBuildDate>`
     : "",
     items,
     "  </channel>",
     "</rss>",
   ].join("\n");
 
-  return new Response(rss, {
+  return rss;
+}
+
+export async function GET() {
+  const entries = await getPublishedDiaryEntries();
+
+  return new Response(buildRssXml(entries), {
     headers: {
       "Content-Type": "application/rss+xml; charset=utf-8",
     },

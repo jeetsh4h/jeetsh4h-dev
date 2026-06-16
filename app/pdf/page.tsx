@@ -5,10 +5,14 @@ import PDFViewer from "@/components/pdf-viewer";
 import ThemeToggle from "@/components/theme-toggle";
 
 export const metadata: Metadata = {
-  title: "Jeet Shah | CV",
+  title: "CV",
+  description: "Jeet Shah's CV as an embeddable PDF viewer.",
+  alternates: {
+    canonical: "/pdf",
+  },
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
   },
 };
 

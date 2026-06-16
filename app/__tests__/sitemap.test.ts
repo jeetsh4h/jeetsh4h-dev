@@ -5,17 +5,16 @@ import {
   getPublishedDiaryEntries,
 } from "@/lib/diary/entries";
 import { SEO } from "@/lib/content/seo";
+import { dateStringToUtcDate } from "@/lib/diary/metadata";
 
-import sitemap from "../sitemap";
+import sitemap, { buildSitemapEntries } from "../sitemap";
 
 describe("sitemap", () => {
-  it("includes the diary index and published entries while excluding drafts", async () => {
+  it("includes published diary entries and excludes drafts", async () => {
     const entries = await sitemap();
     const urls = entries.map((entry) => entry.url);
     const allEntries = await getAllDiaryEntries();
     const publishedEntries = await getPublishedDiaryEntries();
-
-    expect(urls).toContain(`${SEO.url}/diary`);
 
     for (const entry of publishedEntries) {
       expect(urls).toContain(`${SEO.url}/diary/${entry.slug}`);
@@ -24,5 +23,46 @@ describe("sitemap", () => {
     for (const entry of allEntries.filter((entry) => entry.draft)) {
       expect(urls).not.toContain(`${SEO.url}/diary/${entry.slug}`);
     }
+  });
+
+  it("uses content update dates for generated sitemap entries", () => {
+    const cvLastModified = new Date("2026-06-14T12:34:56.000Z");
+    const entries = buildSitemapEntries({
+      cvLastModified,
+      diaryEntries: [
+        {
+          slug: "published-entry",
+          updatedAt: "2026-06-08",
+        },
+        {
+          slug: "older-entry",
+          updatedAt: "2026-06-02",
+        },
+      ],
+    });
+    const urls = entries.map((entry) => entry.url);
+    const diaryIndex = entries.find(
+      (entry) => entry.url === `${SEO.url}/diary`,
+    );
+    const publishedEntry = entries.find(
+      (entry) => entry.url === `${SEO.url}/diary/published-entry`,
+    );
+    const pdfPage = entries.find((entry) => entry.url === `${SEO.url}/pdf`);
+
+    expect(urls).toEqual(
+      expect.arrayContaining([
+        SEO.url,
+        `${SEO.url}/pdf`,
+        `${SEO.url}/cv.pdf`,
+        `${SEO.url}/diary`,
+        `${SEO.url}/diary/published-entry`,
+        `${SEO.url}/diary/older-entry`,
+      ]),
+    );
+    expect(diaryIndex?.lastModified).toEqual(dateStringToUtcDate("2026-06-08"));
+    expect(publishedEntry?.lastModified).toEqual(
+      dateStringToUtcDate("2026-06-08"),
+    );
+    expect(pdfPage?.lastModified).toEqual(cvLastModified);
   });
 });

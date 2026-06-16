@@ -1,6 +1,10 @@
 {
-  "name": "jeetsh4h Portfolio",
+  "name": "Jeet Shah",
   "short_name": "jeetsh4h",
+  "description": "Jeet Shah is a software engineer and Columbia MSCS student building startup software, systems, and research projects.",
+  "start_url": "/",
+  "scope": "/",
+  "id": "/",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

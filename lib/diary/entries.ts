@@ -12,9 +12,17 @@ const DIARY_CONTENT_DIR = path.join(process.cwd(), "content", "diary");
 const MDX_EXTENSION = ".mdx";
 const VALID_SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
-type DiaryEntryModule = {
+export type DiaryEntryModule = {
   default: ComponentType;
   metadata?: DiaryEntryMetadata;
+};
+
+export type DiaryEntrySourceOptions = {
+  contentDir?: string;
+  importEntryModule?: (
+    slug: string,
+    filePath: string,
+  ) => Promise<DiaryEntryModule>;
 };
 
 export type DiaryEntry = DiaryEntrySummary & {
@@ -39,8 +47,15 @@ function assertValidSlug(slug: string) {
   }
 }
 
-async function getDiaryEntryFiles() {
-  const filenames = await fs.readdir(DIARY_CONTENT_DIR);
+function resolveDiaryEntrySource(options: DiaryEntrySourceOptions = {}) {
+  return {
+    contentDir: options.contentDir ?? DIARY_CONTENT_DIR,
+    importEntryModule: options.importEntryModule ?? importDiaryEntryModule,
+  };
+}
+
+async function getDiaryEntryFiles(contentDir: string) {
+  const filenames = await fs.readdir(contentDir);
   const mdxFiles = filenames.filter((filename) =>
     filename.endsWith(MDX_EXTENSION),
   );
@@ -62,9 +77,11 @@ async function getDiaryEntryFiles() {
 
 async function readDiaryEntryMetadata(
   filename: string,
+  source: ReturnType<typeof resolveDiaryEntrySource>,
 ): Promise<DiaryEntrySummary> {
   const slug = getSlugFromFilename(filename);
-  const entryModule = await importDiaryEntryModule(slug);
+  const filePath = path.join(source.contentDir, filename);
+  const entryModule = await source.importEntryModule(slug, filePath);
 
   if (!entryModule.metadata) {
     throw new Error(`${filename} must export metadata.`);
@@ -79,7 +96,7 @@ async function readDiaryEntryMetadata(
 function isPublishedEntry(
   entry: DiaryEntrySummary,
 ): entry is PublishedDiaryEntrySummary {
-  return !entry.draft && Boolean(entry.publishedAt && entry.editedAt);
+  return !entry.draft && Boolean(entry.publishedAt && entry.updatedAt);
 }
 
 function sortNewestFirst(entries: DiaryEntrySummary[]) {
@@ -100,36 +117,50 @@ async function importDiaryEntryModule(slug: string) {
   return (await import(`@/content/diary/${slug}.mdx`)) as DiaryEntryModule;
 }
 
-export async function getAllDiaryEntries() {
-  const files = await getDiaryEntryFiles();
-  const entries = await Promise.all(files.map(readDiaryEntryMetadata));
+export async function getAllDiaryEntries(options?: DiaryEntrySourceOptions) {
+  const source = resolveDiaryEntrySource(options);
+  const files = await getDiaryEntryFiles(source.contentDir);
+  const entries = await Promise.all(
+    files.map((filename) => readDiaryEntryMetadata(filename, source)),
+  );
 
   return sortNewestFirst(entries);
 }
 
-export async function getPublishedDiaryEntries() {
-  const entries = await getAllDiaryEntries();
+export async function getPublishedDiaryEntries(
+  options?: DiaryEntrySourceOptions,
+) {
+  const entries = await getAllDiaryEntries(options);
 
   return entries.filter(isPublishedEntry);
 }
 
-export async function getPublishedDiaryEntrySlugs() {
-  const entries = await getPublishedDiaryEntries();
+export async function getPublishedDiaryEntrySlugs(
+  options?: DiaryEntrySourceOptions,
+) {
+  const entries = await getPublishedDiaryEntries(options);
 
   return entries.map((entry) => entry.slug);
 }
 
-export async function getDiaryEntry(slug: string): Promise<DiaryEntry | null> {
+export async function getDiaryEntry(
+  slug: string,
+  options?: DiaryEntrySourceOptions,
+): Promise<DiaryEntry | null> {
   assertValidSlug(slug);
 
-  const entries = await getAllDiaryEntries();
+  const source = resolveDiaryEntrySource(options);
+  const entries = await getAllDiaryEntries(options);
   const entry = entries.find((candidate) => candidate.slug === slug);
 
   if (!entry) {
     return null;
   }
 
-  const entryModule = await importDiaryEntryModule(slug);
+  const entryModule = await source.importEntryModule(
+    slug,
+    path.join(source.contentDir, `${slug}${MDX_EXTENSION}`),
+  );
 
   return {
     ...entry,
@@ -139,17 +170,22 @@ export async function getDiaryEntry(slug: string): Promise<DiaryEntry | null> {
 
 export async function getPublishedDiaryEntry(
   slug: string,
+  options?: DiaryEntrySourceOptions,
 ): Promise<PublishedDiaryEntry | null> {
   assertValidSlug(slug);
 
-  const entries = await getPublishedDiaryEntries();
+  const source = resolveDiaryEntrySource(options);
+  const entries = await getPublishedDiaryEntries(options);
   const entry = entries.find((candidate) => candidate.slug === slug);
 
   if (!entry) {
     return null;
   }
 
-  const entryModule = await importDiaryEntryModule(slug);
+  const entryModule = await source.importEntryModule(
+    slug,
+    path.join(source.contentDir, `${slug}${MDX_EXTENSION}`),
+  );
 
   return {
     ...entry,

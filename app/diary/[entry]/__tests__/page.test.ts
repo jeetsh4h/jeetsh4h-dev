@@ -19,6 +19,8 @@ describe("diary entry page", () => {
     expect(params).toEqual(
       publishedEntries.map((entry) => ({ entry: entry.slug })),
     );
-    expect(params).not.toEqual(expect.arrayContaining(draftParams));
+    for (const draftParam of draftParams) {
+      expect(params).not.toContainEqual(draftParam);
+    }
   });
 });

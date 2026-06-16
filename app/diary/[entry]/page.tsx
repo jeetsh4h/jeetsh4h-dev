@@ -11,6 +11,7 @@ import {
   type PublishedDiaryEntry,
 } from "@/lib/diary/entries";
 import { SEO } from "@/lib/content/seo";
+import { dateStringToIsoDateTime } from "@/lib/diary/metadata";
 
 type DiaryEntryPageProps = {
   params: Promise<{
@@ -59,6 +60,8 @@ export async function generateMetadata({
 
   const url = `/diary/${entry.slug}`;
   const title = entry.title;
+  const publishedTime = dateStringToIsoDateTime(entry.publishedAt);
+  const modifiedTime = dateStringToIsoDateTime(entry.updatedAt);
 
   return {
     title,
@@ -67,13 +70,17 @@ export async function generateMetadata({
       canonical: url,
     },
     authors: [{ name: "Jeet Shah", url: SEO.url }],
+    robots: {
+      index: true,
+      follow: true,
+    },
     openGraph: {
       title,
       description: entry.description,
       url,
       type: "article",
-      publishedTime: entry.publishedAt,
-      modifiedTime: entry.editedAt,
+      publishedTime,
+      modifiedTime,
       authors: ["Jeet Shah"],
       images: [
         {
@@ -102,12 +109,42 @@ export default async function DiaryEntryPage({ params }: DiaryEntryPageProps) {
   }
 
   const { Component } = entry;
+  const entryUrl = `${SEO.url}/diary/${entry.slug}`;
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `${entryUrl}#blogposting`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": entryUrl,
+    },
+    headline: entry.title,
+    description: entry.description,
+    url: entryUrl,
+    datePublished: dateStringToIsoDateTime(entry.publishedAt),
+    dateModified: dateStringToIsoDateTime(entry.updatedAt),
+    author: {
+      "@type": "Person",
+      "@id": `${SEO.url}/#person`,
+      name: "Jeet Shah",
+      url: SEO.url,
+    },
+    image: `${SEO.url}/opengraph-image`,
+  };
+  const structuredData = JSON.stringify(blogPostingSchema).replace(
+    /</g,
+    "\\u003c",
+  );
 
   return (
     <main
       id="main-content"
       className="flex-1 font-mono"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: structuredData }}
+      />
       <div className="mx-auto flex w-full flex-none items-center justify-between px-4 pt-2 pb-2 md:p-4 md:pb-2">
         <Button
           nativeButton={false}
@@ -127,8 +164,8 @@ export default async function DiaryEntryPage({ params }: DiaryEntryPageProps) {
         <header className="mb-10 space-y-5 border-l-2 border-accent pl-4">
           <div className="flex flex-wrap items-center gap-2">
             <Badge>{formatEntryDate(entry.publishedAt)}</Badge>
-            {entry.editedAt !== entry.publishedAt && (
-              <Badge>Edited {formatEntryDate(entry.editedAt)}</Badge>
+            {entry.updatedAt !== entry.publishedAt && (
+              <Badge>Updated {formatEntryDate(entry.updatedAt)}</Badge>
             )}
           </div>
           <h1 className="text-3xl font-bold tracking-normal text-primary md:text-5xl">

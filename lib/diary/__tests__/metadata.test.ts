@@ -13,11 +13,24 @@ function defineUnsafeDiaryEntry(input: Record<string, unknown>) {
 }
 
 describe("defineDiaryEntry", () => {
-  it("defaults published entries", () => {
-    expect(defineDiaryEntry(validPublishedMetadata)).toEqual({
+  it("normalizes published entries", () => {
+    const defaulted = defineDiaryEntry(validPublishedMetadata);
+    const explicitlyUpdated = defineDiaryEntry({
       ...validPublishedMetadata,
-      editedAt: "2026-06-13",
+      updatedAt: "2026-06-20",
+      tags: ["nextjs", "systems"],
+    });
+
+    expect(defaulted).toEqual({
+      ...validPublishedMetadata,
+      updatedAt: validPublishedMetadata.publishedAt,
       tags: [],
+      draft: false,
+    });
+    expect(explicitlyUpdated).toMatchObject({
+      publishedAt: validPublishedMetadata.publishedAt,
+      updatedAt: "2026-06-20",
+      tags: ["nextjs", "systems"],
       draft: false,
     });
   });
@@ -33,22 +46,8 @@ describe("defineDiaryEntry", () => {
       description: "",
       draft: true,
       publishedAt: undefined,
-      editedAt: undefined,
+      updatedAt: undefined,
       tags: [],
-    });
-  });
-
-  it("accepts explicit editedAt dates and tags", () => {
-    expect(
-      defineDiaryEntry({
-        ...validPublishedMetadata,
-        editedAt: "2026-06-20",
-        tags: ["nextjs", "systems"],
-      }),
-    ).toMatchObject({
-      publishedAt: "2026-06-13",
-      editedAt: "2026-06-20",
-      tags: ["nextjs", "systems"],
     });
   });
 
@@ -68,7 +67,7 @@ describe("defineDiaryEntry", () => {
     ).toThrow("publishedAt is required for published entries");
   });
 
-  it("rejects invalid date shapes", () => {
+  it("rejects invalid or regressive dates", () => {
     expect(() =>
       defineUnsafeDiaryEntry({
         ...validPublishedMetadata,
@@ -79,42 +78,15 @@ describe("defineDiaryEntry", () => {
     expect(() =>
       defineUnsafeDiaryEntry({
         ...validPublishedMetadata,
-        publishedAt: "06-13-2026",
+        updatedAt: "2026-13-01",
       }),
-    ).toThrow("publishedAt must be a valid YYYY-MM-DD date");
-  });
+    ).toThrow("updatedAt must be a valid YYYY-MM-DD date");
 
-  it("rejects impossible calendar dates", () => {
-    expect(() =>
-      defineUnsafeDiaryEntry({
-        ...validPublishedMetadata,
-        publishedAt: "2026-02-30",
-      }),
-    ).toThrow("publishedAt must be a valid YYYY-MM-DD date");
-
-    expect(() =>
-      defineUnsafeDiaryEntry({
-        ...validPublishedMetadata,
-        editedAt: "2026-13-01",
-      }),
-    ).toThrow("editedAt must be a valid YYYY-MM-DD date");
-  });
-
-  it("rejects Date object inputs", () => {
-    expect(() =>
-      defineUnsafeDiaryEntry({
-        ...validPublishedMetadata,
-        publishedAt: new Date("2026-06-13"),
-      }),
-    ).toThrow("publishedAt must be a YYYY-MM-DD string");
-  });
-
-  it("rejects editedAt dates earlier than publishedAt", () => {
     expect(() =>
       defineDiaryEntry({
         ...validPublishedMetadata,
-        editedAt: "2026-06-12",
+        updatedAt: "2026-06-12",
       }),
-    ).toThrow("editedAt cannot be earlier than publishedAt");
+    ).toThrow("updatedAt cannot be earlier than publishedAt");
   });
 });

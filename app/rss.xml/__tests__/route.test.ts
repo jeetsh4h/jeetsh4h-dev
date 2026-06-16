@@ -5,7 +5,7 @@ import {
   getPublishedDiaryEntries,
 } from "@/lib/diary/entries";
 
-import { escapeXml, GET } from "../route";
+import { buildRssXml, escapeXml, GET } from "../route";
 
 describe("rss.xml route", () => {
   it("escapes XML-sensitive characters", () => {
@@ -23,7 +23,6 @@ describe("rss.xml route", () => {
     expect(response.headers.get("Content-Type")).toBe(
       "application/rss+xml; charset=utf-8",
     );
-    expect(xml).toContain('<rss version="2.0">');
 
     for (const entry of publishedEntries) {
       expect(xml).toContain(escapeXml(entry.title));
@@ -34,5 +33,25 @@ describe("rss.xml route", () => {
       expect(xml).not.toContain(escapeXml(entry.title));
       expect(xml).not.toContain(escapeXml(`/diary/${entry.slug}`));
     }
+  });
+
+  it("uses updatedAt for RSS update fields", () => {
+    const xml = buildRssXml([
+      {
+        title: "Updated entry",
+        description: "An entry with an explicit update date.",
+        slug: "updated-entry",
+        publishedAt: "2026-06-01",
+        updatedAt: "2026-06-08",
+      },
+    ]);
+
+    expect(xml).toContain(
+      "<lastBuildDate>Mon, 08 Jun 2026 00:00:00 GMT</lastBuildDate>",
+    );
+    expect(xml).toContain(
+      "<atom:updated>2026-06-08T00:00:00.000Z</atom:updated>",
+    );
+    expect(xml).toContain("<pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>");
   });
 });

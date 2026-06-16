@@ -69,6 +69,23 @@ pnpm build
 pnpm verify
 ```
 
+## Manual Date Maintenance
+
+Some dates are content decisions and must be reviewed by hand when changing the
+site:
+
+- `content/diary/*.mdx`: keep `publishedAt` as the original publish date and set
+  `updatedAt` only when the entry content meaningfully changes.
+- `lib/content/seo.ts`: update `SEO.updatedAt` when the homepage/site content has
+  a meaningful content update; it feeds sitemap freshness for the canonical
+  homepage.
+- `lib/content/experience.ts`, `lib/content/education.ts`, and
+  `lib/content/research.ts`: review date ranges, `Present` entries, research
+  years, and any revisit notes whenever profile content changes.
+- `cv/cv.tex`: keep experience, publication, and education dates in sync with
+  the site content.
+- Ensure the footer copyright years and License copyright year is updated.
+
 ## Diary Entries
 
 ```bash

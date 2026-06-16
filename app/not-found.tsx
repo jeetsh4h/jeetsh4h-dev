@@ -1,7 +1,8 @@
 import NotFoundPath from "@/components/not-found-path";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { IconTerminal2, IconFileCv } from "@tabler/icons-react";
+import { IconTerminal2, IconFileCv, IconMarkdown } from "@tabler/icons-react";
+import ThemeToggle from "@/components/theme-toggle";
 
 export default async function NotFound() {
   return (
@@ -18,6 +19,7 @@ export default async function NotFound() {
           </span>
           <span className="underline">../home</span>
         </Button>
+        <ThemeToggle />
       </div>
 
       <main
@@ -39,6 +41,17 @@ export default async function NotFound() {
         </p>
 
         <div className="flex items-center gap-4 pt-4">
+          <Button
+            nativeButton={false}
+            render={<Link href="/diary" />}
+            variant="tertiary"
+            size="lg"
+            className="flex font-mono"
+          >
+            <IconMarkdown className="size-4" />
+            <span>./README.md</span>
+          </Button>
+
           <Button
             nativeButton={false}
             render={<Link href="/terminal" />}

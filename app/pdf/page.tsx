@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import PDFViewer from "@/components/pdf-viewer";
+import ThemeToggle from "@/components/theme-toggle";
 
 export const metadata: Metadata = {
   title: "Jeet Shah | CV",
@@ -29,6 +30,7 @@ export default function PDFPage() {
           </span>
           <span className="underline">../home</span>
         </Button>
+        <ThemeToggle />
       </div>
       <div className="w-full flex-1 min-h-0 max-w-3xl mx-auto px-4 pb-4">
         <PDFViewer />

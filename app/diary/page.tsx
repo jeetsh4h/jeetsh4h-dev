@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getPublishedDiaryEntries } from "@/lib/diary/entries";
+import ThemeToggle from "@/components/theme-toggle";
 
 export const metadata: Metadata = {
   title: "Diary",
@@ -69,6 +70,7 @@ export default async function DiaryPage() {
           </span>
           <span className="underline">../home</span>
         </Button>
+        <ThemeToggle />
       </div>
 
       <div className="mx-auto max-w-3xl px-6 pb-12 pt-3 md:pb-16 md:pt-6">
@@ -92,7 +94,7 @@ export default async function DiaryPage() {
               <Card variant="interactive">
                 <CardHeader className="px-0">
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
-                    <CardTitle className="text-lg text-primary transition-colors group-hover:text-accent">
+                    <CardTitle className="text-lg text-primary">
                       {entry.title}
                     </CardTitle>
                     <Badge>{formatEntryDate(entry.publishedAt)}</Badge>

@@ -14,10 +14,14 @@ export default function Profile() {
   return (
     <>
       <div className="relative space-y-2">
-        <div className="relative">
-          <h1 className="text-4xl md:text-5xl font-bold text-primary tracking-tight">
+        <div className="relative flex items-center justify-between gap-3 md:block">
+          <h1 className="min-w-0 text-4xl font-bold tracking-tight text-primary md:text-5xl">
             {intro.name}
           </h1>
+
+          <div className="flex shrink-0 md:hidden">
+            <ThemeToggle />
+          </div>
 
           <div className="absolute right-0 top-1/2 hidden -translate-y-1/2 items-center md:flex">
             <Button

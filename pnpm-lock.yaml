@@ -60,6 +60,12 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0
     devDependencies:
+      '@jridgewell/trace-mapping':
+        specifier: ^0.3.31
+        version: 0.3.31
+      '@mdx-js/mdx':
+        specifier: ^3.1.1
+        version: 3.1.1
       '@mdx-js/rollup':
         specifier: ^3.1.1
         version: 3.1.1(rollup@4.62.0)
@@ -105,6 +111,9 @@ importers:
       prettier:
         specifier: ^3.8.4
         version: 3.8.4
+      source-map:
+        specifier: ^0.7.6
+        version: 0.7.6
       tailwindcss:
         specifier: ^4.3.1
         version: 4.3.1

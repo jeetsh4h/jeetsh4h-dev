@@ -77,6 +77,7 @@ export default async function DiaryPage() {
         <ThemeToggle />
       </div>
 
+      {/* TODO: add rss feed viewer icon so that people know it is present */}
       <div className="mx-auto max-w-3xl px-6 pb-12 pt-3 md:pb-16 md:pt-6">
         <div className="mb-10 space-y-3 border-l-2 border-accent pl-4">
           <h1 className="text-3xl font-bold tracking-normal text-primary md:text-4xl">

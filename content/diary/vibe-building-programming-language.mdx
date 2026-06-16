@@ -1,0 +1,55 @@
+import { defineDiaryEntry } from "@/lib/diary/metadata";
+
+export const metadata = defineDiaryEntry({
+  title: "Vibe-building a Programming Language",
+  description:
+    "My programming workflow and how I use AI agents to build hobby (and not so hobby) projects.",
+  publishedAt: "2026-06-16",
+  tags: ["vibe-coding", "programming languages", "typescript", "ai"],
+  // draft: true,
+});
+
+Prof. Aamod Sane, Prajas Naik (my colleague), and I are building an educational programming language called DPL. Without going into too much detail about the wonderful people I work with, I am going to talk through my workflow for building and maintaining a project like a programming language.
+
+DPL is starting out as an educational language, this means making it easier for complete novices to programming to just pick up and write the language as-is. This constraint influences a lot of decisions about how the language is built and designed. One such decision is that it is an interpreted language where the interpreter is written entirely in Typescript. This allows the language to be run client-sided on a web browser, foregoing the need to install and maintain it on someone's local machine. The second important design decision is that it has a Python-like syntax with indentation based code blocks.
+
+Now that you have a rough understanding of what the programming language we are actually building is, let us talk about **my** workflow when it comes to building the language.
+
+As previously mentioned, the DPL interpreter is built entirely in Typescript, with only one real dependency: [`chevrotain`](https://chevrotain.io/docs/). This reduces the need for context of your model (agent harness) of choice. Moreover, using Typescript does help as models tend to be better when a programming language is more prevalent in their training data (like ts, js and python). Once you have stacked the odds in favour of you, you can pull the lever of the slot machine (colloquially known as vibe coding). For all the TLDR enjoyers of the world, the main takeaway is always going to be:
+
+> Rely on technologies that are battle-tested with good documenation. One can definitely use LLM-assisted programming for a myriad of tasks but vibe-coding does not really allow for living on the razor's edge of rolling release.
+
+Circling back to the actual point of this long and winded read: I have no particular loyalty towards any of the models or their providers. That being said, I have grown to like using GPT-5.5 over the codex CLI. However, I do not use the raw CLI, or the desktop app that OpenAI has released; I use it in conjunction with the T3Code frontend. My rationale hinges upon the fact that there is a good chance I might switch out the actual tool or harness I will use going forward but it is nice to have a familiar UI for all of those tools.
+
+I do NOT use any AGENTS.md (and its derivatives) files or maintain a skills folder. I have found them to be tedious to maintain as newer and better models keep being released. Moreover, they also bloat up the context and usually turn into hurdles an LLM has to throw tokens at to overcome. [Here is a great article](https://www.seangoedecke.com/prompts-are-technical-debt-too/) by Sean Goedecke who describes prompt files as technical debt and I, for one, wholeheartedly agree. There is merit to writing a minimal globals AGENTS.md file that succinctly describe your pet peeves so a matrix multiplication machine does not elicit frustration from a biomechanical bodybag.
+
+For any project where I use AI agents (boring ones, with looming deadlines), I always dedicate two conversation (agentic?) thread to a single feature. The first thread uses T3Code's `Plan` mode and the second one implements the plan within the codebase (`Build` mode). This distinction is important for two reasons:
+
+1. model context
+2. my context
+
+Model context saturation is a common problem that even normies have noticed and are slowly adapting to, however, personal context is a far more insidious problem that no one really talks about or mentions. My first instinct when I have been thrust into a wall of text is to scroll past it and hit accept as soon as humanly possible. This needs to be unlearned when one wants to effectively work with AI agents, actively **be** the human in the loop; ask it stupid questions, prod the plan until it is exactly how you have envisioned it, fight through the agent's sycophantic tendencies and ask it to question the human. I spend a significant amount of my workday reading code, reviewing code & reading plans, reviewing plans. This is the harder way to do it (one could say, a less vibier way), however, it will definitely improve your code quality and your skills as a systems designer.
+
+When specifically talking about building a programming language from scratch using vibe-adjacent methods, here are the steps in which I broke down entire process:
+
+- Build a turing complete language.
+- Implement the feature that is unique to this language.
+- Start adding all the niceties and extra features one at a time.
+
+The above process only works if you can maintain correctness of your previous steps. This entails writing high-signal tests that maintain a baseline while features get added on top. Writing tests is extremely annoying, allowing it to be offloaded seems like a lifesaver. It is a lifesaver, if offloading the writing of tests allows you to focus more energy on making sure the right edge cases are being covered. A programming language (compiler/interpreter) demands determinsm and correctness, which is the exact opposite of what an AI agent is, therefore you can manage this disconnect by making sure the test cases actually mean something except _“BRR!!! number go up”_.
+
+Unless a project (or a programming language) only has one you as a user, make sure that it gets used and abused by as many people as possible. It is impossible to fund bugs alone and even a fuzzer can only do so much. Get your projects out there, there is no better gratification than seeing random strangers find something you have built be useful to their lives.
+
+The above paragraph would be such an excellent way to conclude this tirade of thought, alas, it is just a segue into building an online editor for your vibe-built programming language. Technology has provided mankind with a disgustingly wide array of creature comforts, this includes but is not limited to:
+
+- seamless installation of software
+- web browser
+- syntax highlighting and LSP support
+- hooks into the LSP for AI agents
+- tiramisu
+
+The above list is disgustingly infinite. What I am trying to convey is, make sure that there is an easy way for someone to try and learn the programming language, or any project for that matter. Build an online editor and a robust documentaion website. Add LSP and syntax highlighting support within the online editor and build standalone extensions for popular editors like VSCode and NeoVim. I used [monaco-editor](https://microsoft.github.io/monaco-editor/) to build the online editor and asked the agent to use the tool to build something usable. Keep adding features until you are sure a complete stranger that stumbles onto the website does not leave with the _something's missing_ feeling.
+
+### TL;DR
+
+Build the programming language in a piecewise fashion. Utilise pre-existing battle-tested technologies to ease the context burden. Build the nice-to-haves like an online editor and a LSP. Never forget having up-to-date documentation; for yourself, for the user, or for the agent lurking in a nebulous nvidia node.

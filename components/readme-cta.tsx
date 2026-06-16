@@ -17,7 +17,7 @@ export default function ReadmeCta() {
     <div className="relative isolate h-24 w-full min-w-0 max-w-[16rem] justify-self-center overflow-visible">
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -rotate-35 right-4 -top-2 inline-block origin-[50%_65%]  font-hand text-md font-extrabold leading-none text-secondary sm:-right-6 sm:top-6 sm:rotate-20"
+        className="pointer-events-none inline-block absolute font-extrabold font-hand text-md leading-none text-secondary rotate-15 right-3 -top-3 sm:-right-6 sm:top-6 sm:rotate-20"
       >
         <span className="relative inline-block whitespace-nowrap leading-tight">
           <span className="inline-block motion-safe:invisible">thoughts?</span>

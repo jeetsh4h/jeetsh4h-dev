@@ -39,7 +39,7 @@ export default function Socials() {
                     className="group/social relative inline-flex size-11 shrink-0 items-center justify-center bg-transparent text-primary outline-none focus-visible:ring-1 focus-visible:ring-ring/50"
                   >
                     <SocialIcon
-                      className="size-9"
+                      className="size-8 md:size-9"
                       stroke={1.35}
                       aria-hidden="true"
                     />

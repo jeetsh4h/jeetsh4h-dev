@@ -94,7 +94,7 @@ jobs:
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Verify
-        run: pnpm format:check && pnpm lint && pnpm test
+        run: pnpm format:check && pnpm lint && pnpm typecheck && pnpm test
 
       - name: Build Project Artifacts
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}

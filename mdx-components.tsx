@@ -66,6 +66,7 @@ function MdxCode({ className, children, ...props }: ComponentProps<"code">) {
 
 const headingClassName = "scroll-mt-24 font-bold tracking-normal text-primary";
 
+// TODO: Add table and image component
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     a: MdxLink,

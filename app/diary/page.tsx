@@ -56,6 +56,7 @@ export default async function DiaryPage() {
       id="main-content"
       className="min-h-screen font-mono"
     >
+      {/* TODO: add cmd-k search bar and theme toggle */}
       <div className="mx-auto flex w-full flex-none items-center justify-between px-4 pt-2 pb-2 md:p-4 md:pb-2">
         <Button
           nativeButton={false}
@@ -70,14 +71,14 @@ export default async function DiaryPage() {
         </Button>
       </div>
 
-      <div className="mx-auto max-w-3xl px-6 pb-12 pt-3 md:pb-16 md:pt-8">
+      <div className="mx-auto max-w-3xl px-6 pb-12 pt-3 md:pb-16 md:pt-6">
         <div className="mb-10 space-y-3 border-l-2 border-accent pl-4">
-          <p className="text-xs text-muted-foreground">guest@jeetsh4h-dev:~</p>
           <h1 className="text-3xl font-bold tracking-normal text-primary md:text-4xl">
             diary
           </h1>
           <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            Notes on software engineering, systems, interfaces, and research.
+            An SEO-friendly albeit random archive of my thoughts, learnings, and
+            interests.
           </p>
         </div>
 
@@ -120,6 +121,7 @@ export default async function DiaryPage() {
           ))}
         </div>
       </div>
+      {/* TODO: add copyright footer in the root layout */}
     </main>
   );
 }

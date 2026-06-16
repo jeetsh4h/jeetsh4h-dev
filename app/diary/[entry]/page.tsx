@@ -107,6 +107,7 @@ export default async function DiaryEntryPage({ params }: DiaryEntryPageProps) {
       id="main-content"
       className="min-h-screen font-mono"
     >
+      {/* TODO: add theme toggle */}
       <div className="mx-auto flex w-full flex-none items-center justify-between px-4 pt-2 pb-2 md:p-4 md:pb-2">
         <Button
           nativeButton={false}
@@ -121,7 +122,7 @@ export default async function DiaryEntryPage({ params }: DiaryEntryPageProps) {
         </Button>
       </div>
 
-      <article className="mx-auto max-w-3xl px-6 pb-12 pt-3 md:pb-16 md:pt-8">
+      <article className="mx-auto max-w-3xl px-6 pb-12 pt-3 md:pb-16 md:pt-6">
         <header className="mb-10 space-y-5 border-l-2 border-accent pl-4">
           <div className="flex flex-wrap items-center gap-2">
             <Badge>{formatEntryDate(entry.publishedAt)}</Badge>
@@ -154,6 +155,7 @@ export default async function DiaryEntryPage({ params }: DiaryEntryPageProps) {
           <Component />
         </div>
       </article>
+      {/* TODO: add copyright footer in the root layout */}
     </main>
   );
 }

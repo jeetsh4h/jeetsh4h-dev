@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 export default function Footer({ className }: { className?: string }) {
   const currentYear = new Date().getFullYear();
 
+  // TODO: add rose/tulsi easter egg that you can water on top of the footer separator.
   return (
     <footer
       className={cn(

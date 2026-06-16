@@ -17,6 +17,8 @@
 
 - https://catppuccin.com
 
+<!-- Add attribution for the SVGs and note about AI-generated SVGs -->
+
 ## Local Development
 
 ```bash
@@ -67,7 +69,4 @@ pnpm build
 pnpm verify
 ```
 
-## Notes
-
-Some project details are intentionally limited because they involve private
-client codebases.
+<!-- TODO: Add information about adding new entries -->

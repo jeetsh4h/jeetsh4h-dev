@@ -49,6 +49,8 @@ function HelpContent() {
   );
 }
 
+// TODO: add a diary command, a comprehensive command where
+// you can read, go to or search through the diary entries
 const TERMINAL_COMMANDS: TerminalCommand[] = [
   createCommand(
     {

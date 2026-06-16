@@ -69,4 +69,25 @@ pnpm build
 pnpm verify
 ```
 
-<!-- TODO: Add information about adding new entries -->
+## Diary Entries
+
+```bash
+pnpm diary:new
+```
+
+Creates `content/diary/change-this-diary-entry-slug.mdx` with placeholder
+title/description and today's date. The placeholders are intentionally loud;
+change the slug, title, and description before publishing.
+
+Useful variants:
+
+```bash
+pnpm diary:new -- "Entry Title"
+pnpm diary:new -- "Entry Title" --slug custom-slug --date YYYY-MM-DD
+pnpm diary:new -- "Entry Title" --published
+```
+
+- Pass the title as one quoted argument.
+- Drafts include `draft: true` and stay out of the diary index, RSS, and sitemap.
+- Published entries need a non-empty `description` and `publishedAt`.
+- Slugs must be lowercase letters/numbers with single hyphens.

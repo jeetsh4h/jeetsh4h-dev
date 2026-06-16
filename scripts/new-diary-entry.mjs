@@ -4,22 +4,29 @@ import path from "node:path";
 const DIARY_CONTENT_DIR = path.join(process.cwd(), "content", "diary");
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const DATE_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
+const DEFAULT_TITLE = "CHANGE THIS DIARY ENTRY TITLE";
+const DEFAULT_DESCRIPTION =
+  "CHANGE THIS DIARY ENTRY DESCRIPTION BEFORE PUBLISHING.";
+const DEFAULT_SLUG = "change-this-diary-entry-slug";
 
 function usage() {
   return [
-    'Usage: pnpm diary:new -- "Entry Title" [--slug custom-slug] [--date YYYY-MM-DD] [--published]',
+    'Usage: pnpm diary:new ["Entry Title"] [--slug custom-slug] [--date YYYY-MM-DD] [--published]',
     "",
     "Creates content/diary/{slug}.mdx with a typed metadata export.",
+    "Running without a title creates a draft scaffold with placeholders that must be changed.",
   ].join("\n");
 }
 
 function parseArgs(argv) {
   const options = {
-    title: undefined,
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
     slug: undefined,
     date: today(),
     published: false,
   };
+  let hasCustomTitle = false;
 
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
@@ -64,15 +71,12 @@ function parseArgs(argv) {
       throw new Error(`Unknown option: ${arg}`);
     }
 
-    if (options.title) {
+    if (hasCustomTitle) {
       throw new Error("Provide the entry title as a single quoted argument.");
     }
 
     options.title = arg;
-  }
-
-  if (!options.title) {
-    throw new Error("Entry title is required.");
+    hasCustomTitle = true;
   }
 
   const title = options.title.trim();
@@ -84,7 +88,8 @@ function parseArgs(argv) {
   return {
     ...options,
     title,
-    slug: options.slug ?? slugify(title),
+    slug: options.slug ?? (hasCustomTitle ? slugify(title) : DEFAULT_SLUG),
+    usesDefaultSlug: options.slug === undefined && !hasCustomTitle,
   };
 }
 
@@ -135,13 +140,13 @@ function assertValidDate(value) {
   }
 }
 
-function renderEntry({ title, date, published }) {
+function renderEntry({ title, description, date, published }) {
   const lines = [
     'import { defineDiaryEntry } from "@/lib/diary/metadata";',
     "",
     "export const metadata = defineDiaryEntry({",
     `  title: ${JSON.stringify(title)},`,
-    '  description: "",',
+    `  description: ${JSON.stringify(description)},`,
     `  publishedAt: ${JSON.stringify(date)},`,
     "  tags: [],",
   ];
@@ -155,6 +160,35 @@ function renderEntry({ title, date, published }) {
   return lines.join("\n");
 }
 
+async function fileExists(filePath) {
+  try {
+    await fs.access(filePath);
+    return true;
+  } catch (error) {
+    if (error && error.code === "ENOENT") {
+      return false;
+    }
+
+    throw error;
+  }
+}
+
+async function getAvailableDefaultSlug() {
+  let suffix = 0;
+
+  while (true) {
+    const slug =
+      suffix === 0 ? DEFAULT_SLUG : `${DEFAULT_SLUG}-${String(suffix)}`;
+    const filePath = path.join(DIARY_CONTENT_DIR, `${slug}.mdx`);
+
+    if (!(await fileExists(filePath))) {
+      return { slug, filePath };
+    }
+
+    suffix += 1;
+  }
+}
+
 async function main() {
   const options = parseArgs(process.argv.slice(2));
 
@@ -163,17 +197,18 @@ async function main() {
 
   await fs.mkdir(DIARY_CONTENT_DIR, { recursive: true });
 
-  const filePath = path.join(DIARY_CONTENT_DIR, `${options.slug}.mdx`);
+  let filePath = path.join(DIARY_CONTENT_DIR, `${options.slug}.mdx`);
 
-  try {
-    await fs.access(filePath);
+  if (options.usesDefaultSlug) {
+    const availableDefault = await getAvailableDefaultSlug();
+    options.slug = availableDefault.slug;
+    filePath = availableDefault.filePath;
+  }
+
+  if (await fileExists(filePath)) {
     throw new Error(
       `Diary entry already exists: ${path.relative(process.cwd(), filePath)}`,
     );
-  } catch (error) {
-    if (error && error.code !== "ENOENT") {
-      throw error;
-    }
   }
 
   await fs.writeFile(filePath, renderEntry(options), "utf8");

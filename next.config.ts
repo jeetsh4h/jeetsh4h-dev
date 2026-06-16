@@ -13,6 +13,15 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_COMMIT_SHA:
       process.env.VERCEL_GIT_COMMIT_SHA || process.env.GITHUB_SHA || "HEAD",
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.scdn.co",
+        pathname: "/image/**",
+      },
+    ],
+  },
   async headers() {
     return [
       {

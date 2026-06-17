@@ -8,7 +8,7 @@ import {
   type PublishedDiaryEntrySummary,
 } from "@/lib/diary/metadata";
 
-const DIARY_CONTENT_DIR = path.join(process.cwd(), "content", "diary");
+const DIARY_CONTENT_DIR = path.join(process.cwd(), "diary");
 const MDX_EXTENSION = ".mdx";
 const VALID_SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
@@ -114,7 +114,7 @@ function sortNewestFirst(entries: DiaryEntrySummary[]) {
 }
 
 async function importDiaryEntryModule(slug: string) {
-  return (await import(`@/content/diary/${slug}.mdx`)) as DiaryEntryModule;
+  return (await import(`@/diary/${slug}.mdx`)) as DiaryEntryModule;
 }
 
 export async function getAllDiaryEntries(options?: DiaryEntrySourceOptions) {

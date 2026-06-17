@@ -22,7 +22,7 @@ const eslintConfig = defineConfig([
     },
   },
   {
-    files: ["content/diary/*.mdx"],
+    files: ["diary/*.mdx"],
     rules: {
       "local-mdx/diary-entry-metadata": "warn",
     },

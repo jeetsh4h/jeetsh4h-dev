@@ -74,7 +74,7 @@ pnpm verify
 Some dates are content decisions and must be reviewed by hand when changing the
 site:
 
-- `content/diary/*.mdx`: keep `publishedAt` as the original publish date and set
+- `diary/*.mdx`: keep `publishedAt` as the original publish date and set
   `updatedAt` only when the entry content meaningfully changes.
 - `lib/content/seo.ts`: update `SEO.updatedAt` when the homepage/site content has
   a meaningful content update; it feeds sitemap freshness for the canonical
@@ -92,7 +92,7 @@ site:
 pnpm diary:new
 ```
 
-Creates `content/diary/change-this-diary-entry-slug.mdx` with placeholder
+Creates `diary/change-this-diary-entry-slug.mdx` with placeholder
 title/description and today's date. The placeholders are intentionally loud;
 change the slug, title, and description before publishing.
 

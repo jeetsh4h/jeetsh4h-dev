@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const DIARY_CONTENT_DIR = path.join(process.cwd(), "content", "diary");
+const DIARY_CONTENT_DIR = path.join(process.cwd(), "diary");
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const DATE_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
 const DEFAULT_TITLE = "CHANGE THIS DIARY ENTRY TITLE";
@@ -13,7 +13,7 @@ function usage() {
   return [
     'Usage: pnpm diary:new ["Entry Title"] [--slug custom-slug] [--date YYYY-MM-DD] [--published]',
     "",
-    "Creates content/diary/{slug}.mdx with a typed metadata export.",
+    "Creates diary/{slug}.mdx with a typed metadata export.",
     "Running without a title creates a draft scaffold with placeholders that must be changed.",
   ].join("\n");
 }

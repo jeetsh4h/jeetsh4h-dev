@@ -1,11 +1,10 @@
 name: Vercel Preview Deployment
 env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   NEXT_TELEMETRY_DISABLED: 1
   VERCEL_TELEMETRY_DISABLED: 1
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
   LATEX_IMAGE: ghcr.io/${{ github.repository }}/latex-cv:latest
+  VERCEL_CLI_VERSION: 54.14.0
 
 on:
   pull_request:
@@ -23,17 +22,20 @@ concurrency:
 jobs:
   deploy-preview:
     runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     environment:
       name: Preview
       url: ${{ steps.vercel-deploy.outputs.url }}
 
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+        with:
+          persist-credentials: false
 
       - name: Cache PDF
         id: cache-pdf
-        uses: actions/cache@v5
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
           path: public/cv.pdf
           key: ${{ runner.os }}-pdf-${{ hashFiles('cv/**/*.tex', 'cv/**/*.bib', '.github/docker/latex-cv/Dockerfile') }}
@@ -42,7 +44,7 @@ jobs:
 
       - name: Log in to GHCR
         if: steps.cache-pdf.outputs.cache-hit != 'true'
-        uses: docker/login-action@v4
+        uses: docker/login-action@650006c6eb7dba73a995cc03b0b2d7f5ca915bee # v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -64,23 +66,24 @@ jobs:
         if: steps.cache-pdf.outputs.cache-hit != 'true'
         run: |
           mkdir -p public
-          if [ -f cv/cv.pdf ]; then cp cv/cv.pdf public/; fi
+          test -s cv/cv.pdf
+          cp cv/cv.pdf public/cv.pdf
 
       - name: Cache Next.js Build
-        uses: actions/cache@v5
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
           path: .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('app/**/*', 'components/**/*', 'lib/**/*', 'next.config.*', 'postcss.config.*', 'tailwind.config.*', 'tsconfig.json', 'package.json') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('app/**/*', '!app/**/__tests__/**', '!app/**/*.test.*', 'components/**/*', '!components/**/__tests__/**', '!components/**/*.test.*', 'diary/**/*', 'lib/**/*', '!lib/**/__tests__/**', '!lib/**/*.test.*', 'mdx-components.tsx', 'next.config.*', 'postcss.config.*', 'tailwind.config.*', 'tsconfig.json', 'package.json') }}
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v6
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6
         with:
           version: 10
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
           node-version: 22
           cache: pnpm
@@ -89,32 +92,46 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Install Vercel CLI
-        run: pnpm install -g vercel@latest
-
-      - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
-
       - name: Verify
         run: pnpm format:check && pnpm lint && pnpm typecheck && pnpm test
 
+      - name: Install Vercel CLI
+        run: pnpm install -g vercel@$VERCEL_CLI_VERSION
+
+      - name: Pull Vercel Environment Information
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=preview
+
       - name: Build Project Artifacts
-        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: vercel build
 
       - name: Deploy Project Artifacts to Vercel
         id: vercel-deploy
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
-          DEPLOYMENT_URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} --yes)
+          DEPLOYMENT_URL=$(vercel deploy --prebuilt --yes)
           echo "url=$DEPLOYMENT_URL" >> $GITHUB_OUTPUT
 
       - name: Comment on Pull Request
-        uses: actions/github-script@v9
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
+        env:
+          DEPLOYMENT_URL: ${{ steps.vercel-deploy.outputs.url }}
         with:
           script: |
-            const url = '${{ steps.vercel-deploy.outputs.url }}';
-            github.rest.issues.createComment({
+            const url = process.env.DEPLOYMENT_URL;
+            await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `🚀 **Preview Deployment Ready!**\n\nVisit your preview here: ${url}`
-            })
+              body: `🚀 **Preview Deployment Ready!**\n\nVisit your preview here: ${url}`,
+            });

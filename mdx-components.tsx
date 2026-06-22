@@ -113,7 +113,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ol: ({ className, ...props }) => (
       <ol
         className={cn(
-          "ml-5 list-decimal space-y-2 marker:text-accent",
+          "ml-8 list-decimal space-y-2 marker:text-accent",
           className,
         )}
         {...props}

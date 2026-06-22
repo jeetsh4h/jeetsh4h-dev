@@ -1,0 +1,54 @@
+import { defineDiaryEntry } from "@/lib/diary/metadata";
+
+export const metadata = defineDiaryEntry({
+  title: "What is the point of anything?",
+  description:
+    "The alleged reason behind the open-sourcing of my diary and its questionable content.",
+  publishedAt: "2026-06-14",
+  tags: ["am-i-stupid?", "seo", "crypto-scam", "i-am-not-alone"],
+  // draft: true,
+});
+
+There is a multitude of reasons as to why I am building a personal website and filling it up with propaganda that has been generated using something that was an inspiration to the entire field of artificial intelligence: natural intelligence(?) We will touch upon most of the reasons as one goes along this diary entry, but the raison d'être of the website is the fact that I want the search term _"jeet shah"_ to denote my personhood and not the various other *jeet shah*s that are present in the world. The other similarly nominated persons must bow down to the canonical _JEET SHAH_ which is ME and ME alone.
+
+> I also wanted to make sure that any of the other *jeet*s which partakes in questionable businesses do not hog my search results.
+
+Now that I have revealed my burning desire to be the *jeet*est of the *jeet*s, let me go through all the research I have done to become moderatley aware about the frightfully existential world that is Search Engine Optimisation. My theory is that any system which has any form of ranking whatsoever will be gamed and abused until the true goal of the rankings are forgotten. The only place where abusing the system is the goal of the rankings is speedrunning and absolutely no other example that crosses my mind. I can probably spew out multiple performative diary entries discussing the various other verticals that have been consumed by optimising for an arbitrary leaderboard but today the one we are going to be touching is discoverability on the internet.
+
+What an odd thing to think about? I used to think that everything on the internet is discoverable, we just do not have enough time as individuals to scuttle across the digital web. With the decrease of my neuroplasticity, and the molting of my naïveté I have come to the realisation that concepts of equality and equity are utopian ideals only humans can strive for. The internet, however, i far from a utopia as one can be (as a whole), therefore a pecking order must be established. The establishment that is in-charge of overseeing and playing god is none other than our very own Alphabet Inc. (and Microsoft). One must battle and play by the rules set by these corporations.
+
+> Yes, there are other search engines but most of them use Bing's search index like Yahoo and DuckDuckGo.
+
+To start with, SEO seemed like such a broad and unnecssarily complicated topic to cover but it can be boiled down to three things:
+
+1. Accessible Content
+2. URL hygeine
+3. Keywords
+
+I am not going to lie to you, the first one folds more than a singular concept within the point but I gotta use the power of three like my Enlish teacher taught me.
+
+### Accessible Content
+
+This refers to two main things, how accessible your website and the content within it is to humans and to webcrawlers. Ensuring accessibility is incredibly important for everybody, not just the ones who need it. A high accessibility score directly corresponds to the number of people that can access your website and not come away being annoyed by it for various reasons. A website with no care for tab-ordering affects people with impairments that cannot comfortably use the mouse and people who use Vim. Having a light and dark mode allows for people with visual impairment to choose the kind of look that fits their vision best while allowing for the light v/s dark mode debate to thrive. Alt text help users that rely on screen readers and users with slow network speeds. Accessibility is not something one works towards for a small subset of people, it helps everyone when one focusses on it.
+
+The other aspect of accessible content is to make sure that all types of clankers can also read and _understand_ your website and the content within. Most web-crawlers do not run the javascript on your website, therefore one has to make sure that all the plaintext html that is served contains the content, easily parseable by the bots clanking around on the web of human desires. This lead me down the rabbit hole of how do websites with paywall-gated content get their entire article indexed. They serve separate html pages to the index bots and to the end-user. "Jeet of all *jeet*s", you may ask, "How do they determine whether they are real users or web-crawlers?" If you have spent enough times in the ouroboresque sphere that is web development, the answer should slingshot out of your javascript-addled brain: "USER AGENT!", you exclaim loudly. This is exactly what I thought and then I tested the first Wall Street Journal paywalled article I found with `curl`. Suffice it to say, it is not as simple as checking the user agent string. I reckon DNS lookup and verification take place to make sure the web crawler is requesting the content from the proper IP address ranges. However, there will be sites which are not as robust.
+
+> Try your luck at you own peril. This is not advice of any kind.
+
+### URL Hygeine
+
+This is as straightforward as it gets; make sure that your URLs are human-readable. URL structures are a remnant of the times when the internet was just a collection of directories exposed to the world willy-nilly. We do not live during the good ol' days of the Wild Web anymore, however, the same metaphor still holds when building and choosing URLs for one's website. Each URL crumb can be treated as directories and then pages within them can be further divvied up as files and sub-directories. It would be absolutely atrocious sitting down at a random computer and every single folder and file names are just UUIDs (for most people, it is the internet after all). Make sure your it is easy to remember and type out your URLs.
+
+### Keywords
+
+`SEO`, `search engine optimisation`, `jeet shah`, `ai`, `crypto`, `web3`, `javascript framework`, `elon musk`, `chatgpt`, `vibe-coding`, `10x engineer`, `ultracode`,...
+
+I think I have proven my point.
+
+On second thoughts, PLEASE do NOT do what I did. Make sure your content onyl contain keywords that are relevant. Do not overuse them, these will cause your site to be flagged as spam by the search indices. Keywords are quite important as this is what determine which results should be surfaced when a traditional search is performed. However, we cannot ignore the cloud of parameters in the room: AI powered search is making this less and less important as the information gets surfaced via natural language while still being relevant to the query posted. There are also a multitude of negatives with this approach and one that merits it's own entry (I do have quite a few thoughts on it).
+
+<hr />
+
+SEO is a skill one can hone and get better at. I vow to hone it and implement this until I am the only _Jeet Shah_ that can successfully claim their victorious namesake.
+
+P.S. I also get to spew performative nonsense out to the world about my hobbies :-D

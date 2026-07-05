@@ -1,0 +1,222 @@
+import { defineDiaryEntry } from "@/lib/diary/metadata";
+
+export const metadata = defineDiaryEntry({
+  title: "Learning AI Through Visualisation",
+  description:
+    "Notes from an online course from Columbia+; developed and taught by Prof. Ali Hirsa.",
+  publishedAt: "2026-07-05",
+  tags: ["notes", "ai"],
+  draft: true,
+});
+
+Artificial Intelligence (AI) broadly defines the ability of computer systems to execute human tasks. It should not be conflated with the contemporary definition that seems to be floating around. Large Language Models (LLMs), like ChatGPT, Claude, and Gemini, is classified as AI but they are a very specific type of AI. Simpler things like image classification, speech-to-text (and vice-versa), and weather prediction is also AI.
+
+I always distinguished Machine Learning (ML) and Deep Learning (DL) by the amount of data they were trained on, however, the _correct_ way to look at it is to see the type of training data. DL models and techniques focus on non-linear data relations while ML deals with simpler, linear correlation. Just to reiterate, ML and DL is also considered a subset of AI. LLMs is a subset of DL.
+
+AI has come into the forefront in the recent years because the algorithms have become good enough to be useful for general human tasks and not just specialised ones which may or may not be as exciting. We have been using AI to do simpler things in our day-to-day lives for over two decades at this point (do not quote me on this).
+
+## Becoming an AI Chef
+
+Recipe to build an AI model.
+
+### Ingredients
+
+- Data
+- Model Architecture
+- Objective Function
+- Inital Conditions
+- Optimization
+
+### Steps
+
+1. Specification of dataset
+2. Define model architecture
+3. Define objective function
+4. Choose an optimisation routine
+5. Training & Validation
+6. Testing
+7. Robustness (against adversarial attacks)
+
+#### Step 1
+
+AI models are only as good as the data that you provide them. Data is the single most important thing when it comes to anything related to AI. This is doubly true as an individual too; be cognizant of your private data!
+
+The things one should always know about their dataset:
+
+{/* TODO: allow for ol to use lowercase letters too */}
+
+1. Stationary or non-Stationary
+
+- Unconditional joint probability distribution does not change when shifted in time.
+- If it does change, it is non-staationary. A simpler way to understand is that the shape of the (frequency) graph of the data stays the same even if forward or rewind time.
+- When talking about the passage of time, we talk about when we are observing and noting down the data point.
+
+2. Parametric or non-Parametric
+
+- Distribution-free; does not rely on the assumptions that the data is drawn from a given parametric family (assuming a limited number of parameters)
+- If the data can be described by a paramteric equation, for e.g. if the data is distributed normally, it can be defined by the mean and the standard devation (two parameters), it is parametric.
+
+3. Markovian or non-Markovian
+
+- Conditional probability of a future state is ONLY dependent on the present state (and is independent of any prior state).
+- If one can draw conclusions of future data point ONLY using the current data point, then the data is markovian. If it requires today's and the last `n` data points to predict the future data points then it is non-markovian.
+
+A simpler things to know about one's dataset is the type of data one is working with. This can include but is not limited to:
+
+- time series
+- categorical data
+- text
+- images
+- sounds
+- videos
+
+What one must do once we do have the data? Again, these steps depend on the type of data and the kind of task the AI models are supposed to do. However, most of these steps are used in every case.
+
+- collecting & cleaning data for training
+- generating more data for training
+- generating labels (supervised, semi-supervised learning)
+- imputation of missing data
+
+These steps (and many others) refer to processing of the data. This is usually sub-divided into pre & post processing of data. The temporality that these terms refer to simply refers to your definition of cleaned data given the context of the problem. Pre-processing steps usually refer to everything you have done to the raw data to develop something that _could_ be fed into an AI model. One however, does post-processing on the data to ensure that the model performance gets as high as it does in the context of accuracy and speed.
+
+The last thing one must do is divide the dataset into chunks. Usually these chunks are called:
+
+- training set
+- validation set
+- testing set
+
+> We can and do use AI techniques to do processing of data.
+
+#### Step 2
+
+An un-exhaustive list of model architectures and what they tend to be used for:
+
+1. Classification models
+
+- Logistic regression
+- Decision trees
+- Random forest
+- Naïve Bayes
+
+2. Dimensionality reduction models
+
+- Prinicpal Component Analysis (PCA)
+- Robust Rolling PCA (R2-PCA)
+- Kernel PCA
+- Independent Component Analysis (ICA)
+- Autoencoder
+
+3. Clustering
+
+- K-means
+- Robust Rolling K-means (R2K-means)
+- Density-Based Spatial Clustering of Applications with Noise (DBSCAN)
+- Gaussian mixture model
+
+4. Solving equations
+
+- Feedforward Neural Networks (FNN)
+- Neural networks
+
+5. Image classification
+
+- Convolutional Neural Network (CNN)
+
+6. Sequence analysis & Natural Language Processing (NLP)
+
+- Recurrent Neural Network (RNN)
+- Long Short-Term Memory (LSTM)
+- Gated Recurrent Unit (GRU)
+
+7. Sentiment analysis, mathematical reason, and more...
+
+- Generative Pre-trained Transformer (GPT)
+
+8. Sampling
+
+- Markov Chain Monte Carlo (MCMC)
+- Generative Adversarial Network (GAN)
+
+We can keep going on, there are a LOT of different types of algorithms and AI models; one should always make sure that the data that you use must be properly processed and make sure that it IS correct. Moreover, the model you use must match the data that you have.
+
+#### Step 3
+
+> Objective functions are also called loss functions. These are interchangable terms, to a certain extent; definitely for this diary entry's extent.
+
+Like everything else we have discussed, there are a myriad ways of defining and objective function. I am always of the opinion that your objective function depends on the shape of one's data and the actual result you are looking for.
+
+Here are some obvious ones that can be used in a lot of places:
+
+{/* TODO: add math support */}
+
+1. Mean Squared Error (MSE)
+   $$
+   $$
+
+- This is also known as $L_2$ loss.
+- One can calculate Root Mean Squared Error (RMSE) by taking the square root of MSE.
+
+2. Absolute Error
+   $$
+   $$
+
+- This is also known as $L_1$ loss.
+
+3. Cross Entropy Loss
+   $$
+   $$
+
+We can also regularise the objective function by introducing a penalty term to the defined objective function. In simple terms, it penalises the model from straying far from the regularisation target. Let us say that we know that the answer is around 1, we will introduce a penalty term that calculates how far you are from 1 and penalises accordingly. This is usually done to avoid overfitting.
+
+Choosing the initial condition is just as important as defining the correct objective function. If the initial condition is bad enough, regardless of the data or the model, the objective function will never land on an extremum; it will never optimise or it might just take way too long.
+
+There are multiple ways of choosing one's initial parameter. Here is another un-exhaustive list for the same.
+
+1. Zero initialisation
+2. Random initialisation
+3. Xavier initialisation
+
+Another important thing to look out for is the loss surface. We can visualise the loss surface by performing gradient descent on the parameter sets (condition) to figure out the best initial condition. This seems like overkill, however, as model and data complexity grows, this becomes more and more important.
+
+> Refer to visualisation below to properly gauge what I am trying to say about loss surface.
+
+#### Step 4
+
+Reducing loss function, optimising the output of the loss function is what machine learning is built on. This is what Steve Balmer meant when he exclaimed, "GRADIENT DESCENT! GRADIENT DESCENT! GRADIENT DESCENT!" However, there are multiple ways to do this and the simplest way (and one everyone should start with) is
+
+1. Brute-force (grid) search
+
+- This refers to just having a grid of parameters and calculating the loss across all combinations. - Then pick the lowest one
+
+2. Gradient-free routines
+
+- One easy way to visualise this is by drawing a polytope around a random point.
+- Figuring out which point within the polytope gives the least loss, draw a ploytope around it.
+- Repeat until you have reached a certain minimum.
+- This does not depend on the shape of the loss surface (to some extent)
+
+3. Gradient-based routines
+
+- This is where we use gradient descent and it's derivatives.
+- Quite dependent on the shape of the loss surface.
+
+> When we talk about the shape of the loss surface, I am referring to the differentiability of the loss surface. Gradient-based routines work wonderfully (assume every generalisation has an asterisk) when the loss surface is differentiable and gradient-free routines when it is not.
+
+#### Step 5
+
+Training tends to be the easiest if one has taken the time and effort to do the previous steps with the proper care and attention it deserves. I will expand upon training below but it is the application of all the steps we have done before.
+
+Simply put, it is the act of passing input through the model, calculating the loss for the input set and optimising the parameters. We repeat this process until we are satisfied with our loss or we can see that the training is not working.
+
+Validation refers to the the model behaviour when a different set of input is given (while training is underway) and checking how the model behaves. If the validation loss is too far from the training loss, we assume that something is wrong and stop. This also allows one to check overfitting.
+
+#### Step 6
+
+This is the most nerve-wracking step. After everything that you have done, spent multiple hundred comute hours on training, you finally chech how your model performs on unseen data. The next step feeds into this one. Only if your model performs satisfactorily within the test set (and the robustness check), can you exclaim, "Eureka!"
+
+#### Step 7
+
+What does your model do when we add noise to the input and ask it to give an output? Does it give an entirely different result? Is it consistent with your training and testing? How can we fix it so that the model behaves correctly, regradless of input?
+One can ensure robustness of the model if it performs as expected, regardless of the type of input that is given.
+
+> This step is incredibly important for trading engines.

@@ -24,7 +24,7 @@ Recipe to build an AI model.
 - Data
 - Model Architecture
 - Objective Function
-- Inital Conditions
+- Initial Conditions
 - Optimization
 
 ### Steps
@@ -48,13 +48,13 @@ The things one should always know about their dataset:
 1. Stationary or non-Stationary
 
 - Unconditional joint probability distribution does not change when shifted in time.
-- If it does change, it is non-staationary. A simpler way to understand is that the shape of the (frequency) graph of the data stays the same even if forward or rewind time.
+- If it does change, it is non-stationary. A simpler way to understand is that the shape of the (frequency) graph of the data stays the same even if forward or rewind time.
 - When talking about the passage of time, we talk about when we are observing and noting down the data point.
 
 2. Parametric or non-Parametric
 
 - Distribution-free; does not rely on the assumptions that the data is drawn from a given parametric family (assuming a limited number of parameters)
-- If the data can be described by a paramteric equation, for e.g. if the data is distributed normally, it can be defined by the mean and the standard devation (two parameters), it is parametric.
+- If the data can be described by a parametric equation, for e.g. if the data is distributed normally, it can be defined by the mean and the standard deviation (two parameters), it is parametric.
 
 3. Markovian or non-Markovian
 
@@ -89,7 +89,7 @@ The last thing one must do is divide the dataset into chunks. Usually these chun
 
 #### Step 2
 
-An un-exhaustive list of model architectures and what they tend to be used for:
+A non-exhaustive list of model architectures and what they tend to be used for:
 
 1. Classification models
 
@@ -100,7 +100,7 @@ An un-exhaustive list of model architectures and what they tend to be used for:
 
 2. Dimensionality reduction models
 
-- Prinicpal Component Analysis (PCA)
+- Principal Component Analysis (PCA)
 - Robust Rolling PCA (R2-PCA)
 - Kernel PCA
 - Independent Component Analysis (ICA)
@@ -141,7 +141,7 @@ We can keep going on, there are a LOT of different types of algorithms and AI mo
 
 #### Step 3
 
-> Objective functions are also called loss functions. These are interchangable terms, to a certain extent; definitely for this diary entry's extent.
+> Objective functions are also called loss functions. These are interchangeable terms, to a certain extent; definitely for this diary entry's extent.
 
 Like everything else we have discussed, there are a myriad ways of defining and objective function. I am always of the opinion that your objective function depends on the shape of one's data and the actual result you are looking for.
 
@@ -170,7 +170,7 @@ We can also regularise the objective function by introducing a penalty term to t
 
 Choosing the initial condition is just as important as defining the correct objective function. If the initial condition is bad enough, regardless of the data or the model, the objective function will never land on an extremum; it will never optimise or it might just take way too long.
 
-There are multiple ways of choosing one's initial parameter. Here is another un-exhaustive list for the same.
+There are multiple ways of choosing one's initial parameter. Here is another non-exhaustive list for the same.
 
 1. Zero initialisation
 2. Random initialisation
@@ -182,7 +182,7 @@ Another important thing to look out for is the loss surface. We can visualise th
 
 #### Step 4
 
-Reducing loss function, optimising the output of the loss function is what machine learning is built on. This is what Steve Balmer meant when he exclaimed, "GRADIENT DESCENT! GRADIENT DESCENT! GRADIENT DESCENT!" However, there are multiple ways to do this and the simplest way (and one everyone should start with) is
+Reducing loss function, optimising the output of the loss function is what machine learning is built on. This is what Steve Ballmer meant when he exclaimed, "GRADIENT DESCENT! GRADIENT DESCENT! GRADIENT DESCENT!" However, there are multiple ways to do this and the simplest way (and one everyone should start with) is
 
 1. Brute-force (grid) search
 
@@ -191,7 +191,7 @@ Reducing loss function, optimising the output of the loss function is what machi
 2. Gradient-free routines
 
 - One easy way to visualise this is by drawing a polytope around a random point.
-- Figuring out which point within the polytope gives the least loss, draw a ploytope around it.
+- Figuring out which point within the polytope gives the least loss, draw a polytope around it.
 - Repeat until you have reached a certain minimum.
 - This does not depend on the shape of the loss surface (to some extent)
 
@@ -212,11 +212,11 @@ Validation refers to the the model behaviour when a different set of input is gi
 
 #### Step 6
 
-This is the most nerve-wracking step. After everything that you have done, spent multiple hundred comute hours on training, you finally chech how your model performs on unseen data. The next step feeds into this one. Only if your model performs satisfactorily within the test set (and the robustness check), can you exclaim, "Eureka!"
+This is the most nerve-wracking step. After everything that you have done, spent multiple hundred compute hours on training, you finally check how your model performs on unseen data. The next step feeds into this one. Only if your model performs satisfactorily within the test set (and the robustness check), can you exclaim, "Eureka!"
 
 #### Step 7
 
-What does your model do when we add noise to the input and ask it to give an output? Does it give an entirely different result? Is it consistent with your training and testing? How can we fix it so that the model behaves correctly, regradless of input?
+What does your model do when we add noise to the input and ask it to give an output? Does it give an entirely different result? Is it consistent with your training and testing? How can we fix it so that the model behaves correctly, regardless of input?
 One can ensure robustness of the model if it performs as expected, regardless of the type of input that is given.
 
 > This step is incredibly important for trading engines.

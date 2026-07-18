@@ -10,6 +10,7 @@ import { EDUCATION } from "@/lib/content/education";
 import { SEO } from "@/lib/content/seo";
 import { SKILLS } from "@/lib/content/skills";
 import { SOCIALS } from "@/lib/content/socials";
+import { dateStringToIsoDateTime } from "@/lib/diary/metadata";
 
 export const metadata: Metadata = {
   title: {
@@ -58,7 +59,6 @@ export default function Page() {
   ];
 
   const personSchema = {
-    "@context": "https://schema.org",
     "@type": "Person",
     "@id": `${SEO.url}/#person`,
     name: ABOUT.name,
@@ -79,7 +79,6 @@ export default function Page() {
   };
 
   const websiteSchema = {
-    "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${SEO.url}/#website`,
     name: ABOUT.name,
@@ -89,10 +88,24 @@ export default function Page() {
     },
   };
 
-  const structuredData = JSON.stringify([personSchema, websiteSchema]).replace(
-    /</g,
-    "\\u003c",
-  );
+  const profilePageSchema = {
+    "@type": "ProfilePage",
+    "@id": `${SEO.url}/#profile-page`,
+    url: SEO.url,
+    name: SEO.title,
+    dateModified: dateStringToIsoDateTime(SEO.updatedAt),
+    mainEntity: {
+      "@id": `${SEO.url}/#person`,
+    },
+    isPartOf: {
+      "@id": `${SEO.url}/#website`,
+    },
+  };
+
+  const structuredData = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [personSchema, websiteSchema, profilePageSchema],
+  }).replace(/</g, "\\u003c");
 
   return (
     <main

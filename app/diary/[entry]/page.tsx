@@ -129,7 +129,6 @@ export default async function DiaryEntryPage({ params }: DiaryEntryPageProps) {
       name: "Jeet Shah",
       url: SEO.url,
     },
-    image: `${SEO.url}/opengraph-image`,
   };
   const structuredData = JSON.stringify(blogPostingSchema).replace(
     /</g,

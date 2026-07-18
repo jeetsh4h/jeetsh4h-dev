@@ -47,22 +47,23 @@ describe("sitemap", () => {
     const publishedEntry = entries.find(
       (entry) => entry.url === `${SEO.url}/diary/published-entry`,
     );
-    const pdfPage = entries.find((entry) => entry.url === `${SEO.url}/pdf`);
+    const cvPdf = entries.find((entry) => entry.url === `${SEO.url}/cv.pdf`);
 
     expect(urls).toEqual(
       expect.arrayContaining([
         SEO.url,
-        `${SEO.url}/pdf`,
         `${SEO.url}/cv.pdf`,
         `${SEO.url}/diary`,
         `${SEO.url}/diary/published-entry`,
         `${SEO.url}/diary/older-entry`,
       ]),
     );
+    expect(urls).not.toContain(`${SEO.url}/pdf`);
+    expect(urls).not.toContain(`${SEO.url}/terminal`);
     expect(diaryIndex?.lastModified).toEqual(dateStringToUtcDate("2026-06-08"));
     expect(publishedEntry?.lastModified).toEqual(
       dateStringToUtcDate("2026-06-08"),
     );
-    expect(pdfPage?.lastModified).toEqual(cvLastModified);
+    expect(cvPdf?.lastModified).toEqual(cvLastModified);
   });
 });

@@ -26,7 +26,13 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/cv.pdf",
-        headers: [{ key: "X-Robots-Tag", value: "index, follow" }],
+        headers: [
+          { key: "X-Robots-Tag", value: "index, follow" },
+          {
+            key: "Link",
+            value: '<https://jeetsh4h.dev/cv.pdf>; rel="canonical"',
+          },
+        ],
       },
     ];
   },

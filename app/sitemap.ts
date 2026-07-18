@@ -35,10 +35,6 @@ export function buildSitemapEntries({
       lastModified: dateStringToUtcDate(SEO.updatedAt),
     },
     {
-      url: `${SEO.url}/pdf`,
-      lastModified: cvLastModified,
-    },
-    {
       url: `${SEO.url}/cv.pdf`,
       lastModified: cvLastModified,
     },

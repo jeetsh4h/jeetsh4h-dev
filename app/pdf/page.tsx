@@ -7,11 +7,8 @@ import ThemeToggle from "@/components/theme-toggle";
 export const metadata: Metadata = {
   title: "CV",
   description: "Jeet Shah's CV as an embeddable PDF viewer.",
-  alternates: {
-    canonical: "/pdf",
-  },
   robots: {
-    index: true,
+    index: false,
     follow: true,
   },
 };

@@ -12,156 +12,368 @@
 \usepackage[margin=0.62in]{geometry}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{enumitem}
+\usepackage{fancyhdr}
 \usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{needspace}
 \usepackage{tabularx}
 \usepackage{titlesec}
 
-\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\definecolor{ink}{HTML}{252638}
+\definecolor{muted}{HTML}{5C6078}
+\definecolor{accent}{HTML}{5B5BD6}
+\definecolor{rule}{HTML}{D8DAE7}
+
 \hypersetup{
   colorlinks=true,
   breaklinks=true,
-  urlcolor=linkcolour,
-  linkcolor=linkcolour,
-  pdftitle={Jeet Shah CV},
+  urlcolor=accent,
+  linkcolor=accent,
+  pdftitle={Jeet Shah Curriculum Vitae},
   pdfauthor={Jeet Shah},
-  pdfsubject={Software engineering, systems, programming languages, and applied research},
-  pdfkeywords={Jeet Shah, Software Engineer, Columbia University, Computer Science, Network Systems, React Native, Convex, FastAPI, Supabase, Weather4Cast, Masters, MS, CS, MSCS}
+  pdfsubject={Software engineering, computer science, and applied machine-learning research},
+  pdfkeywords={Jeet Shah, Software Engineer, Columbia University, Computer Science, React Native, Convex, FastAPI, PostgreSQL, Programming Languages, Weather4Cast, Precipitation Nowcasting}
 }
 
-\pagestyle{empty}
+\color{ink}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2pt}
-\setlist[itemize]{leftmargin=1.15em, itemsep=1pt, topsep=2pt, parsep=0pt}
-\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
-\titlespacing{\section}{0pt}{8pt}{4pt}
+\setlist[itemize]{
+  leftmargin=1.2em,
+  itemsep=1pt,
+  topsep=2pt,
+  parsep=0pt,
+  label=\textcolor{accent}{\textbullet}
+}
+
+\titleformat{\section}
+  {\needspace{4\baselineskip}\large\bfseries\color{ink}}
+  {}{0em}{}
+  [\vspace{2pt}\color{rule}\titlerule]
+\titlespacing{\section}{0pt}{9pt}{4pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[L]{\footnotesize\color{muted}Jeet Shah · Curriculum Vitae}
+\fancyfoot[R]{\footnotesize\color{muted}\thepage}
 
 \newcommand{\headerlink}[2]{\href{#1}{#2}}
 
-\newcommand{\educationentry}[4]{%
+\newcommand{\datedentry}[4]{%
+  \needspace{4\baselineskip}
   \begin{tabularx}{\linewidth}{@{}X r@{}}
-    \textbf{#1} & \textit{#2}\\
-    #3 & #4
-  \end{tabularx}\par
-  \vspace{5pt}
+    \textbf{#1} & \textit{\color{muted}#2}\\
+    \textcolor{accent}{#3} & \textcolor{muted}{#4}
+  \end{tabularx}
 }
 
-\newcommand{\experienceentry}[3]{%
+\newcommand{\experienceentry}[4]{%
+  \needspace{5\baselineskip}
   \begin{tabularx}{\linewidth}{@{}X r@{}}
-    \textbf{#1} & \textit{#2}
+    \textbf{#1} & \textit{\color{muted}#2}\\
+    \textcolor{accent}{#3} & \\
   \end{tabularx}
-  \vspace{-10pt}
-  #3
-  \vspace{8pt}
+  \vspace{-8pt}
+  #4
+  \vspace{3pt}
+}
+
+\newcommand{\projectentry}[4]{%
+  \needspace{4\baselineskip}
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+    \textbf{#1} & #2\\
+  \end{tabularx}
+  \textcolor{muted}{#3}\par
+  #4
+  \vspace{4pt}
+}
+
+\newcommand{\courseitem}[4]{%
+  \needspace{3\baselineskip}
+  \textbf{#1 · #2}\hfill\href{#4}{Repository artifact}\\[-1pt]
+  \textcolor{muted}{#3}\par\vspace{3pt}
 }
 
 \newcommand{\skillrow}[2]{%
-  \textbf{#1} & #2\\[6pt]
-}
-
-\newcommand{\publication}[5]{%
-  \begingroup
-  \hangindent=1.2em
-  \hangafter=1
-  #1 (#2). #3. \textit{#4}. #5\par
-  \endgroup
-}
-
-\newcommand{\researchnote}[1]{%
-  \hspace*{1.2em}\textit{Note.} #1\par
-}
-
-\newcommand{\researchdirection}[1]{%
-  \vspace{3pt}
-  \textbf{Current research direction}\\[-1pt]
-  #1\par
+  \textbf{#1} & #2\\[5pt]
 }
 
 \begin{document}
 
 \begin{center}
-  {\Huge Jeet Shah}\\[4pt]
-  \headerlink{https://jeetsh4h.dev}{Website} \ $|$ \
-  \headerlink{https://github.com/jeetsh4h}{GitHub} \ $|$ \
-  \headerlink{https://www.linkedin.com/in/jeetsh4h}{LinkedIn} \ $|$ \
-  \headerlink{mailto:jeetsh4h@gmail.com}{Email}
+  {\fontsize{28}{32}\selectfont\bfseries Jeet Shah}\\[4pt]
+  {\large\color{muted}Software Engineer · Columbia University M.S. Computer Science}\\[7pt]
+  \headerlink{https://jeetsh4h.dev}{jeetsh4h.dev}
+  \quad\textcolor{rule}{|}\quad
+  \headerlink{https://github.com/jeetsh4h}{github.com/jeetsh4h}
+  \quad\textcolor{rule}{|}\quad
+  \headerlink{https://www.linkedin.com/in/jeetsh4h}{linkedin.com/in/jeetsh4h}
+  \quad\textcolor{rule}{|}\quad
+  \headerlink{mailto:jeetsh4h@gmail.com}{jeetsh4h@gmail.com}
 \end{center}
 
-\section{Summary}
-Software engineer and Columbia University M.S. Computer Science student in New York City. Researched deeply about weather forecasting using deep-learning techniques; developed DL models at ISRO for precipitation nowcasting and have won the Weather4Cast challenge, a NeurIPS competition. Currently building and maintating production software for multiple start-ups across various domains: mobile applications, data pipelines.
-
-
-\section{Experience}
-\experienceentry{Software Engineer, Elevate Fitness}{Dec 2025 -- Present}{
-\begin{itemize}
-  \item Building Movynn, a React Native/Convex fitness platform entering closed beta.
-  \item Own auth/session flows and turf-booking workflows across a two-person engineering team.
-  \item Co-own app architecture, code quality, and release readiness for the pre-beta mobile app.
-\end{itemize}
-}
-
-\experienceentry{Software Engineer, Voltek AI / Nanoloy}{Oct 2024 -- Present}{
-\begin{itemize}
-  \item Led frontend development for an internal dashboard supporting battery manufacturing research workflows.
-  \item Co-designed Supabase/Postgres data models and FastAPI services for experimental data ingestion and retrieval.
-  \item Improved query latency by 67\% through database indexing and API-layer optimization.
-  \item Co-maintain NDAX/Neware ingestion handlers for unreliable client environments, file reconciliation, and edge-case parsing.
-\end{itemize}
-}
-
-\experienceentry{Project Solutions Intern, National Federation of the Blind Maharashtra}{May 2024 -- Sep 2024}{
-\begin{itemize}
-  \item Built Raspberry Pi/OpenCV assistive-navigation prototypes and conducted user-facing technical support sessions.
-\end{itemize}
-}
-
-\experienceentry{Research Intern (SRTD), ISRO, Space Applications Centre}{May 2023 -- Aug 2023}{
-\begin{itemize}
-  \item Developed ConvLSTM models for precipitation nowcasting using INSAT-3D satellite data.
-  \item Outperformed optical-flow baselines by 30.7\%.
-  \item Worked in an air-gapped HPC environment with large spatiotemporal satellite datasets.
-\end{itemize}
-}
-
-\section{Research}
-\publication{Bhuskute, A., Gopalan, K., \& Shah, J.}{2025}{Computationally-efficient deep learning models for nowcasting of precipitation}{arXiv}{\href{https://arxiv.org/abs/2511.11197}{Paper} \ $|$ \ \href{https://weather4cast.net/neurips2025/}{Result}}
-\researchnote{Co-author. Team kaubega placed 2nd in the official Weather4Cast 2025 cumulative rainfall challenge.}
-
-\publication{Deshpande, A., Gopalan, K., Shah, J., \& Simu, H.}{2024}{A conditional Generative Adversarial Network model for the Weather4Cast 2024 Challenge}{arXiv}{\href{https://arxiv.org/abs/2412.00451}{Paper} \ $|$ \ \href{https://weather4cast.net/neurips2024/competitions/w4c24-cum1/?leaderboard=}{Leaderboard}}
-\researchnote{Co-author. Team kaubega placed 1st on the Weather4Cast 2024 core/cumulative-rainfall challenge at the competition deadline.}
-
-\researchdirection{Programming-language design and AI-assisted software engineering workflows. Details withheld pending peer review or public release.}
+\section{Profile}
+Software engineer and computer-science graduate student working across mobile products, data platforms, developer tools, and applied machine-learning research. Experience includes React Native and Convex product development, FastAPI and PostgreSQL data systems, air-gapped HPC research at ISRO, and two Weather4Cast papers. Team kaubega placed first in the 2024 core challenge and second in the 2025 cumulative-rainfall challenge.
 
 \section{Education}
-\educationentry{Columbia University}{2026 -- 2028}{M.S. Computer Science}{Network Systems pathway}
-\educationentry{FLAME University}{2021 -- 2025}{B.Sc. (Hons.) Computer Science; PG Diploma in Interdisciplinary Studies}{Merit Scholarship}
+\datedentry
+  {Columbia University}
+  {2026 -- 2027}
+  {M.S. Computer Science}
+  {New York, NY}
+\begin{itemize}
+  \item Graduate study in computer science.
+\end{itemize}
 
+\datedentry
+  {FLAME University}
+  {2021 -- 2025}
+  {B.Sc. (Hons.) Computer Science · PG Diploma in Interdisciplinary Studies}
+  {Pune, India}
+\begin{itemize}
+  \item CGPA: 8.9/10.
+  \item Merit scholarship: 25\% from 2021--2024 and 60\% from 2024--2025.
+  \item Undergraduate honours thesis focused on precipitation nowcasting with INSAT-3D satellite data.
+\end{itemize}
 
-\newpage
-\section{Projects}
-\textbf{Personal Website} \hfill \href{https://github.com/jeetsh4h/jeetsh4h-dev}{GitHub}\\
-Personal website built as an archive of my work and thoughts. The project itself is a design exercise for myself, focussing on accessibility, performance, SEO, and maintainability. Built with Next.JS and it's surrounding ecosystem while building and maintaining my own CI/CD pipeline.
-\vspace{5pt}
+\section{Professional Experience}
+\experienceentry
+  {Elevate Fitness}
+  {Dec 2025 -- Present}
+  {Software Engineer}
+  {
+    \begin{itemize}
+      \item Build Movynn, a fitness application using React Native, Expo, and Convex.
+      \item Own authentication, session, and turf-booking workflows across a two-person engineering team.
+      \item Co-own application architecture, code quality, and release readiness.
+    \end{itemize}
+  }
 
-\textbf{Jyeshthanubandh} \hfill \href{https://play.google.com/store/apps/details?id=com.Jyeshthanubandh.pcmc_app}{Play Store}\\
-Safety app deployed with Pimpri-Chinchwad Police for senior-citizen support workflows. Built while working with \href{https://cai.flame.edu.in/}{CAI} @ FLAME University.
-\vspace{5pt}
+\experienceentry
+  {Voltek AI / Nanoloy}
+  {Oct 2024 -- Present}
+  {Software Engineer}
+  {
+    \begin{itemize}
+      \item Led frontend development for an internal dashboard supporting battery-manufacturing research workflows.
+      \item Co-designed Supabase/PostgreSQL data models and FastAPI services for experimental-data ingestion and retrieval.
+      \item Reduced query latency through database indexing and API-layer optimisation.
+      \item Co-maintain NDAX and Neware ingestion handlers, file reconciliation, and edge-case parsing for unreliable client environments.
+    \end{itemize}
+  }
 
-\textbf{Precipitation Nowcasting} \hfill \href{https://github.com/jeetsh4h/DISS384}{GitHub}\\
-A CLI tool that I developed to train a ConvLSTM model for precipitation nowcasting using INSAT-3D satellite data. This is the repository that functioned as my source of truth while researching and writing my undergraduate honors thesis at FLAME University.
-\vspace{5pt}
+\experienceentry
+  {National Federation of the Blind Maharashtra}
+  {May 2024 -- Sep 2024}
+  {Project Solutions Intern}
+  {
+    \begin{itemize}
+      \item Built Raspberry Pi and OpenCV assistive-navigation prototypes for Jagriti Blind School.
+      \item Tested multiple edge-deployable object-detection models and conducted user-facing technical-support sessions.
+    \end{itemize}
+  }
 
-\section{Skills}
+\experienceentry
+  {Sportskeeda}
+  {Aug 2023 -- Oct 2023}
+  {Golf Content Writer}
+  {
+    \begin{itemize}
+      \item Reported and wrote published golf news articles and listicles.
+    \end{itemize}
+  }
+
+\experienceentry
+  {Space Applications Centre, ISRO}
+  {May 2023 -- Aug 2023}
+  {Research Intern, Space Research and Training Division}
+  {
+    \begin{itemize}
+      \item Developed ConvLSTM models for precipitation nowcasting using INSAT-3D satellite data.
+      \item Processed large spatiotemporal datasets and trained models in an air-gapped HPC environment.
+    \end{itemize}
+  }
+
+\experienceentry
+  {FLAME Q Centre}
+  {Sep 2022 -- Apr 2025}
+  {Peer Tutor}
+  {
+    \begin{itemize}
+      \item Tutored students in programming, mathematics, economics, and other quantitative coursework.
+      \item Supplemented individual tutoring with student-led programming workshops through DotSlash FLAME.
+    \end{itemize}
+  }
+
+\experienceentry
+  {FLAME Mathematical Modelling Centre}
+  {Oct 2022 -- Apr 2023}
+  {Student Researcher}
+  {
+    \begin{itemize}
+      \item Explored genetic algorithms and variational autoencoders for generating synthetic examples of imbalanced and protein datasets.
+    \end{itemize}
+  }
+
+\experienceentry
+  {Analyse India}
+  {May 2022 -- Aug 2022}
+  {Technical Intern}
+  {
+    \begin{itemize}
+      \item Automated market-data collection using Google Finance and Yahoo Finance data.
+      \item Added technical-analysis alerts for candlestick-pattern detection and wrote finance book reviews.
+    \end{itemize}
+  }
+
+\experienceentry
+  {SNEHA}
+  {May 2022 -- Aug 2022}
+  {IT/IM Intern}
+  {
+    \begin{itemize}
+      \item Audited office network infrastructure across Mumbai and produced a network diagram.
+      \item Supported field survey software and devices used by activists and counsellors.
+    \end{itemize}
+  }
+
+\section{Research and Publications}
+\textbf{Bhuskute, A., Gopalan, K., \& Shah, J.} (2025).
+\href{https://arxiv.org/abs/2511.11197}{Computationally-efficient deep learning models for nowcasting of precipitation: A solution for the Weather4cast 2025 challenge}.
+\textit{arXiv:2511.11197 [cs.CV].}
+\begin{itemize}
+  \item Co-author; the paper presents a ConvGRU transfer-learning framework for short-term rainfall prediction.
+  \item Team kaubega placed second in the official Weather4Cast 2025 cumulative-rainfall challenge.
+\end{itemize}
+
+\textbf{Deshpande, A., Gopalan, K., Shah, J., \& Simu, H.} (2024).
+\href{https://arxiv.org/abs/2412.00451}{A conditional Generative Adversarial network model for the Weather4Cast 2024 Challenge}.
+\textit{arXiv:2412.00451 [cs.CV].}
+\begin{itemize}
+  \item Co-author; the work combines optical-flow radiance forecasts with a conditional GAN for cumulative-rainfall prediction.
+  \item Team kaubega placed first on the core challenge leaderboard at the competition deadline.
+\end{itemize}
+
+\textbf{Undergraduate honours thesis: Precipitation Nowcasting} (2025).
+\href{https://github.com/jeetsh4h/DISS384}{Research repository and training CLI}.
+\begin{itemize}
+  \item Built a reproducible command-line workflow for caching MOSDAC satellite data and training ConvLSTM models.
+  \item Extended earlier INSAT-3D optical-flow and deep-learning work completed for CSIT334 and the ISRO internship.
+\end{itemize}
+
+\textbf{Jeet Shah}, Kaushik Gopalan, \& Dr. Bipasha Paul Shukla (2023).
+\href{https://events.iitj.ac.in/ncvpripg2023/srs.html}{Precipitation Nowcasting with OLR data using Optical Flow and Machine Learning}.
+\textit{Student Research Symposium, Eighth NCVPRIPG, IIT Jodhpur.}
+\begin{itemize}
+  \item Presented selected work on INSAT-3D OLR data, optical flow, and machine-learning approaches to precipitation nowcasting.
+  \item \href{https://github.com/jeetsh4h/Nowcasting-OLR}{Code and research artifact}.
+\end{itemize}
+
+\section{Selected Projects}
+\projectentry
+  {Personal Website}
+  {\href{https://github.com/jeetsh4h/jeetsh4h-dev}{Repository}}
+  {Next.js · TypeScript · MDX · LaTeX}
+  {Built this portfolio and diary as an accessibility, performance, SEO, and maintainability exercise. It includes local MDX publishing, terminal and PDF views, structured metadata, generated social images, test coverage, and a CI-built CV.}
+
+\projectentry
+  {Jyeshthanubandh}
+  {\href{https://play.google.com/store/apps/details?id=com.Jyeshthanubandh.pcmc_app}{Play Store}}
+  {React Native · AWS}
+  {Developed a senior-citizen safety application with FLAME University's AI Centre and Pimpri-Chinchwad Police. The system pairs user identity, medical, location, and emergency information with police-facing support workflows.}
+
+\projectentry
+  {Precipitation Nowcasting}
+  {\href{https://github.com/jeetsh4h/DISS384}{Repository}}
+  {Python · TensorFlow · OpenCV}
+  {Created the source-of-truth research codebase for an undergraduate honours thesis, including data caching and ConvLSTM training commands for INSAT-3D data.}
+
+\projectentry
+  {Project Euler+ Solutions}
+  {\href{https://github.com/jeetsh4h/ProjectEuler}{Repository}}
+  {Python · Jupyter · Algorithms}
+  {Documented solutions, iterations, and time/space-complexity analysis for 52 HackerRank Project Euler+ problems in a single Jupyter notebook.}
+
+\projectentry
+  {Primary-source Research Corpus and Analyst Pipeline}
+  {\textit{\color{muted}Private repository}}
+  {Python · typed LLM workflows · PDF generation}
+  {Built a local corpus-ingestion and distillation pipeline for public primary sources, plus an analyst workflow that assembles official company and macroeconomic packets, retrieves supporting evidence, and saves versioned Markdown, JSON, and PDF artifacts.}
+
+\projectentry
+  {Curriculum Mapping}
+  {\href{https://github.com/jeetsh4h/Course_Mapping}{Repository}}
+  {React · TypeScript · React Flow}
+  {Built an interactive prerequisite graph for computer science, economics, and psychology curricula, including course-detail views and custom CSV upload support.}
+
+\projectentry
+  {RefreshRateChange}
+  {\href{https://github.com/jeetsh4h/RefreshRateChange}{Repository}}
+  {C++ · PowerShell · Windows Task Scheduler}
+  {Released a command-line utility and scheduled-task configuration for switching a display's refresh rate when a laptop's power state changes.}
+
+\projectentry
+  {Event Extract}
+  {\href{https://github.com/jeetsh4h/EventExtractAddOn}{Repository}}
+  {Google Apps Script · JavaScript}
+  {Developed a Google Workspace add-on that extracts dates from university email and creates calendar events. The course project was deployed and published to the Google Workspace Marketplace.}
+
+\projectentry
+  {Paudha Yodha}
+  {\href{https://github.com/jeetsh4h/paudhayodha}{Repository}}
+  {Python · Streamlit · Computer Vision}
+  {Built a plant-species and leaf-disease detection application with Aniket Khetan for Bit N Build 2024 Maharashtra, reaching the hackathon's final round.}
+
+\projectentry
+  {JJDB}
+  {\href{https://github.com/jeetsh4h/CSIT372/tree/main/db_internals}{Repository}}
+  {C++ · File structures · Database internals}
+  {Implemented a file-backed database CLI with schema files, typed records, CSV loading, command chaining, and index-file creation for an Advanced Database Systems course.}
+
+\section{Selected Computer Science Coursework}
+\courseitem
+  {CSIT402}
+  {Advanced Distributed Systems}
+  {Implemented logical and vector clocks in Python and maintained structured course notes on distributed computation.}
+  {https://github.com/jeetsh4h/CSIT402}
+\courseitem
+  {CSIT372}
+  {Advanced Database Systems}
+  {Built JJDB and worked through B-trees, hashing, indexing, CSV-backed storage, and file-structure exercises in C++.}
+  {https://github.com/jeetsh4h/CSIT372}
+\courseitem
+  {CSIT301}
+  {Design and Analysis of Algorithms}
+  {Compared naive, Held--Karp, and nearest-neighbour approaches to the travelling salesperson problem.}
+  {https://github.com/jeetsh4h/TravelingSalesmanProblem}
+\courseitem
+  {CSIT302}
+  {Principles of Programming Languages}
+  {Collaborated on a game project and submitted a final technical report.}
+  {https://github.com/jeetsh4h/Mario-SJ}
+
+\section{Leadership and Service}
+\begin{itemize}
+  \item \textbf{DotSlash FLAME:} President (2023--2024) and Treasurer (2024--2025); organised and supported student programming workshops.
+  \item \textbf{TEDxFLAMEUniversity:} Technology team member (2022--2024) and Technology Head (2024--2025).
+  \item \textbf{WageIndicator x FLAME Conference:} Technology Head (2023--2024).
+  \item \textbf{FLAME student organisations:} Treasurer, E-Sports Club (2023--2025); Treasurer, The Reading Initiative (2022--2024); Treasurer, Music Club (2022--2023).
+\end{itemize}
+
+\section{Technical Skills}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\skillrow{Languages}{TypeScript, Python, C++, Zig}
-\skillrow{Frontend}{React Native, Expo, Next.js, Tailwind CSS}
-\skillrow{Backend}{FastAPI, Supabase/Postgres, Convex, Docker, SQL}
-\skillrow{ML}{PyTorch, TensorFlow, Computer Vision, ConvLSTM, RAG}
-\skillrow{Systems}{Linux, HPC environments, Git, Browser Engineering}
+  \skillrow{Languages}{TypeScript, Python, C++, JavaScript, Rust, C\#, SQL}
+  \skillrow{Product and frontend}{React, React Native, Next.js, Expo, Astro, Tailwind CSS}
+  \skillrow{Backend and data}{FastAPI, PostgreSQL, Supabase, Convex, SQLite, REST APIs}
+  \skillrow{ML and research}{PyTorch, TensorFlow, OpenCV, ConvLSTM, computer vision, retrieval-augmented generation}
+  \skillrow{Systems and tooling}{Linux, air-gapped HPC environments, Docker, Git, Bash, PowerShell, CI/CD}
 \end{tabularx}
 
 \vfill
 \begin{center}
-  \footnotesize Last updated: \today
+  \footnotesize\color{muted}Last updated: \today
 \end{center}
 
 \end{document}

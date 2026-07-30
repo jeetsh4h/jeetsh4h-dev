@@ -1,4 +1,5 @@
 import { ABOUT } from "@/lib/content/about";
+import { COURSEWORK } from "@/lib/content/coursework";
 import { EDUCATION, PRIOR_EDUCATION } from "@/lib/content/education";
 import { EXPERIENCE } from "@/lib/content/experience";
 import { PROJECTS } from "@/lib/content/projects";
@@ -7,6 +8,7 @@ import { SKILLS } from "@/lib/content/skills";
 import { SOCIALS } from "@/lib/content/socials";
 import type {
   EducationItem,
+  CourseworkItem,
   ExperienceItem,
   PriorEducationItem,
   ProjectItem,
@@ -38,6 +40,7 @@ export type ExperienceEntryModel = ExperienceItem;
 export type ResearchEntryModel = ResearchItem;
 export type ProjectEntryModel = ProjectItem;
 export type EducationEntryModel = EducationItem;
+export type CourseworkEntryModel = CourseworkItem;
 export type PriorEducationEntryModel = PriorEducationItem;
 
 export interface IntroSectionModel {
@@ -84,6 +87,7 @@ export interface EducationSectionModel {
   id: "education";
   higherEducation: EducationEntryModel[];
   priorEducation: PriorEducationEntryModel[];
+  coursework: CourseworkEntryModel[];
 }
 
 export function buildSocialsSection(): SocialsSectionModel {
@@ -141,5 +145,6 @@ export function buildEducationSection(): EducationSectionModel {
     id: "education",
     higherEducation: EDUCATION,
     priorEducation: PRIOR_EDUCATION,
+    coursework: COURSEWORK,
   };
 }

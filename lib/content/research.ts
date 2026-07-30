@@ -3,9 +3,9 @@ import type { ResearchItem } from "./types";
 export const RESEARCH: ResearchItem[] = [
   {
     title:
-      "Computationally-efficient deep learning models for nowcasting of precipitation",
+      "Computationally-efficient deep learning models for nowcasting of precipitation: A solution for the Weather4cast 2025 challenge",
     year: "2025",
-    citationAuthors: "Bhuskute, Anushree, et al.",
+    citationAuthors: "Anushree Bhuskute, Kaushik Gopalan, and Jeet Shah",
     kind: "publication",
     status: "published",
     summary:
@@ -23,9 +23,10 @@ export const RESEARCH: ResearchItem[] = [
   },
   {
     title:
-      "A conditional Generative Adversarial Network model for the Weather4Cast 2024 Challenge",
+      "A conditional Generative Adversarial network model for the Weather4Cast 2024 Challenge",
     year: "2024",
-    citationAuthors: "Deshpande, Atharva, et al.",
+    citationAuthors:
+      "Atharva Deshpande, Kaushik Gopalan, Jeet Shah, and Hrishikesh Simu",
     kind: "publication",
     status: "published",
     summary:
@@ -43,11 +44,22 @@ export const RESEARCH: ResearchItem[] = [
   },
   {
     title:
-      "Programming languages and AI-assisted software engineering workflows",
-    year: "Active",
-    kind: "interest",
-    status: "in-progress",
+      "Precipitation Nowcasting with OLR data using Optical Flow and Machine Learning",
+    year: "2023",
+    citationAuthors: "Jeet Shah, Kaushik Gopalan, and Dr. Bipasha Paul Shukla",
+    kind: "presentation",
+    status: "presented",
     summary:
-      "Current unpublished research direction. Details withheld pending peer review or public release.",
+      "Presented at the NCVPRIPG 2023 Student Research Symposium at IIT Jodhpur, covering INSAT-3D OLR data, optical flow, and machine-learning approaches to precipitation nowcasting.",
+    links: [
+      {
+        label: "Official symposium programme",
+        href: "https://events.iitj.ac.in/ncvpripg2023/srs.html",
+      },
+      {
+        label: "Research repository",
+        href: "https://github.com/jeetsh4h/Nowcasting-OLR",
+      },
+    ],
   },
 ];

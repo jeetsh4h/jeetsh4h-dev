@@ -31,8 +31,8 @@ export interface ResearchItem {
   title: string;
   year: string;
   citationAuthors?: string;
-  kind: "publication" | "interest";
-  status?: "published" | "in-progress";
+  kind: "publication" | "presentation" | "interest";
+  status?: "published" | "presented" | "in-progress";
   summary: string;
   contribution?: string;
   result?: string;
@@ -44,6 +44,13 @@ export interface EducationItem {
   period: string;
   degree: string;
   details: string[];
+}
+
+export interface CourseworkItem {
+  code: string;
+  title: string;
+  artifact: string;
+  link: string;
 }
 
 export interface PriorEducationItem {

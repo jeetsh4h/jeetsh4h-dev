@@ -3,7 +3,6 @@ export default function Current() {
     "Building Movynn for Elevate Fitness.",
     "Maintaining Nanoloy internal tooling for battery manufacturing research workflows.",
     "Pursuing Columbia University M.S. Computer Science in New York City.",
-    "Exploring networked systems, programming-language design, and AI-assisted software engineering workflows.",
   ];
 
   return (

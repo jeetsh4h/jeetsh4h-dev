@@ -10,6 +10,7 @@ import {
   buildSocialsSection,
 } from "../site-content";
 import { ABOUT } from "../content/about";
+import { COURSEWORK } from "../content/coursework";
 import { EDUCATION, PRIOR_EDUCATION } from "../content/education";
 import { EXPERIENCE } from "../content/experience";
 import { PROJECTS } from "../content/projects";
@@ -76,6 +77,7 @@ describe("site-content", () => {
       id: "education",
       higherEducation: EDUCATION,
       priorEducation: PRIOR_EDUCATION,
+      coursework: COURSEWORK,
     });
   });
 });

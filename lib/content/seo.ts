@@ -9,17 +9,16 @@ export function applySiteTitleTemplate(title: string) {
 export const SEO: SeoContent = {
   title: "Jeet Shah | Software Engineer, Columbia MSCS",
   description:
-    "Jeet Shah is a New York City software developer and Columbia MSCS student building startup software across mobile apps, data platforms, systems, and research.",
+    "Jeet Shah is a software engineer and Columbia MSCS student building mobile products, data platforms, developer tools, and precipitation-nowcasting research.",
   url: "https://jeetsh4h.dev",
-  updatedAt: "2026-06-17",
+  updatedAt: "2026-07-30",
   areas: [
     "Software engineering",
     "Columbia University",
     "FLAME University",
     "Computer science",
-    "Network systems",
     "Programming languages",
-    "AI-assisted software engineering",
+    "Developer tools",
     "React Native",
     "Convex",
     "FastAPI",
@@ -27,5 +26,7 @@ export const SEO: SeoContent = {
     "Weather4Cast",
     "NeurIPS",
     "Precipitation nowcasting",
+    "Distributed systems",
+    "Database systems",
   ],
 };

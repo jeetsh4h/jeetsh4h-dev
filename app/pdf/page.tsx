@@ -33,7 +33,7 @@ export default function PDFPage() {
         </Button>
         <ThemeToggle />
       </div>
-      <div className="w-full flex-1 min-h-0 max-w-3xl mx-auto px-4 pb-4">
+      <div className="mx-auto min-h-0 w-full max-w-6xl flex-1 px-4 pb-4">
         <PDFViewer />
       </div>
     </main>

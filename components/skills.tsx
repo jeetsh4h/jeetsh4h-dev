@@ -11,12 +11,11 @@ export default function Skills() {
       <SectionHeading
         id="skills-heading"
         command="skills"
-        className="gap-4"
       />
 
       <SectionGrid
         columns="sm"
-        className="text-sm"
+        className="text-sm lg:grid-cols-3"
       >
         {skills.categories.map((category) => (
           <Card

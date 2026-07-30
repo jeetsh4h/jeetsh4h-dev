@@ -11,10 +11,7 @@ export default function Research() {
         const secondaryLinks = paper.links?.slice(1) ?? [];
 
         return (
-          <div
-            key={`${paper.title}-${paper.year}`}
-            className="border-l-2 border-accent pl-3"
-          >
+          <div key={`${paper.title}-${paper.year}`}>
             {primaryLink ?
               <Link
                 href={primaryLink.href}
@@ -26,8 +23,10 @@ export default function Research() {
               </Link>
             : <div className="font-bold mb-1 text-primary">{paper.title}</div>}
             <div className="text-xs text-foreground">
-              {paper.citationAuthors && <span>{paper.citationAuthors} </span>}
-              <span className="text-secondary">{paper.year}</span>
+              {paper.citationAuthors && (
+                <span className="text-secondary">{paper.citationAuthors} </span>
+              )}
+              <span className="text-subtext">{paper.year}</span>
             </div>
             <p className="mt-1 text-xs text-foreground">{paper.summary}</p>
             {secondaryLinks.length > 0 && (

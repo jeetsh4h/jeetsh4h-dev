@@ -1,5 +1,6 @@
 import ExperienceDescription from "./experience-description";
 import { Badge } from "./ui/badge";
+import { Card } from "./ui/card";
 import { SectionHeading } from "./ui/section";
 import { buildExperienceSection } from "@/lib/site-content";
 
@@ -13,7 +14,7 @@ export default function Experience() {
         command="experience"
       />
 
-      <div className="border-l-2 border-input/50 ml-2 space-y-10 pl-8 relative -mt-2">
+      <div className="relative ml-2 space-y-10 border-l-2 border-input/50 pl-8">
         {experience.featuredEntries.map((job) => (
           <div
             key={`${job.company}-${job.role}-${job.period}`}
@@ -25,7 +26,7 @@ export default function Experience() {
               <h3 className="text-lg font-bold text-primary">{job.company}</h3>
               <Badge>{job.period}</Badge>
             </div>
-            <div className="text-sm text-secondary font-medium mb-3">
+            <div className="mb-3 text-sm font-medium text-secondary">
               {job.role}
             </div>
 
@@ -43,33 +44,44 @@ export default function Experience() {
             )}
           </div>
         ))}
-
-        <div className="-mt-2 space-y-4">
-          {experience.compactEntries.map((job) => (
-            <div
-              key={`${job.company}-${job.role}-${job.period}`}
-              className="relative group"
-            >
-              <div className="absolute -left-10.75 top-2.5 z-10 size-5 -translate-y-1/2 rounded-full bg-card before:absolute before:inset-1 before:rounded-full before:border-2 before:border-accent before:bg-card before:content-['']" />
-
-              <div className="text-sm">
-                <div className="flex justify-between items-baseline">
-                  <span className="font-bold text-primary">{job.company}</span>
-                  <Badge>{job.period}</Badge>
-                </div>
-                <div className="text-foreground text-xs mt-1 ml-2">
-                  {job.description && (
-                    <ExperienceDescription
-                      text={job.description[0]}
-                      links={job.textLinks}
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
+
+      {experience.compactEntries.length > 0 && (
+        <div>
+          <div className="mb-4 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+            Earlier work
+          </div>
+          <div className="grid gap-3 md:grid-cols-2">
+            {experience.compactEntries.map((job) => (
+              <Card
+                key={`${job.company}-${job.role}-${job.period}`}
+                variant="content"
+                className="gap-2"
+              >
+                <div className="text-sm">
+                  <div className="flex flex-wrap justify-between gap-2">
+                    <span className="font-bold text-primary">
+                      {job.company}
+                    </span>
+                    <Badge>{job.period}</Badge>
+                  </div>
+                  <div className="mt-1 text-xs font-medium text-secondary">
+                    {job.role}
+                  </div>
+                  <div className="mt-2 text-xs leading-relaxed text-foreground">
+                    {job.description && (
+                      <ExperienceDescription
+                        text={job.description[0]}
+                        links={job.textLinks}
+                      />
+                    )}
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      )}
     </>
   );
 }

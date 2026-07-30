@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   const [currentEducation, ...completedEducation] = EDUCATION;
-  const jobTitle = ABOUT.role.split("|")[0]?.trim() || ABOUT.role;
+  const jobTitle = ABOUT.role.split(" & ")[0]?.trim() || ABOUT.role;
   const affiliation =
     currentEducation ?
       {
@@ -116,8 +116,8 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: structuredData }}
       />
-      <div className="max-w-3xl mx-auto px-6 pt-8 pb-12 md:py-20 space-y-10 md:space-y-12">
-        <section className="space-y-6">
+      <div className="mx-auto max-w-6xl space-y-14 px-5 pb-16 pt-5 sm:px-7 md:space-y-20 md:py-12">
+        <section>
           <Profile />
         </section>
 

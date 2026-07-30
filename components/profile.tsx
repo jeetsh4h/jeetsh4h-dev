@@ -12,107 +12,95 @@ export default function Profile() {
   const intro = buildIntroSection();
 
   return (
-    <>
-      <div className="relative space-y-2">
-        <div className="relative flex items-center justify-between gap-3 md:block">
-          <h1 className="min-w-0 text-4xl font-bold tracking-tight text-primary md:text-5xl">
-            {intro.name}
-          </h1>
+    <div className="relative overflow-hidden border border-input/70 bg-card/55 p-5 sm:p-7 md:p-9">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-24 -top-32 size-80 rounded-full bg-primary/8 blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-28 left-1/3 size-64 rounded-full bg-accent/8 blur-3xl"
+      />
 
-          <div className="flex shrink-0 md:hidden">
-            <ThemeToggle />
-          </div>
+      <div className="relative space-y-7">
+        <div className="space-y-3">
+          <div className="flex items-start justify-between gap-4">
+            <h1 className="min-w-0 text-4xl font-bold tracking-[-0.04em] text-primary sm:text-5xl md:text-6xl">
+              {intro.name}
+            </h1>
+            <div className="flex shrink-0 items-center">
+              <div className="hidden items-center md:flex">
+                <Button
+                  nativeButton={false}
+                  render={<Link href="/terminal" />}
+                  size="lg"
+                  className="mr-2"
+                >
+                  <IconTerminal2 className="size-4" />
+                  <span>Open in Terminal</span>
+                </Button>
 
-          <div className="absolute right-0 top-1/2 hidden -translate-y-1/2 items-center md:flex">
-            <Button
-              nativeButton={false}
-              render={<Link href="/terminal" />}
-              size="lg"
-              className="mr-2"
-            >
-              <IconTerminal2 className="size-4" />
-              <span>Open in Terminal</span>
-            </Button>
-
-            <Tooltip>
-              <TooltipTrigger
-                render={
-                  <Button
-                    nativeButton={false}
-                    render={<Link href="/pdf" />}
-                    variant="secondary"
-                    size="lg"
-                    className="mr-2"
+                <Tooltip>
+                  <TooltipTrigger
+                    render={
+                      <Button
+                        nativeButton={false}
+                        render={<Link href="/pdf" />}
+                        variant="secondary"
+                        size="lg"
+                        className="mr-2"
+                      >
+                        <IconFileCv className="size-4" />
+                        <span>Open as PDF</span>
+                      </Button>
+                    }
+                  />
+                  <TooltipContent
+                    side="bottom"
+                    alignOffset={2}
                   >
-                    <IconFileCv className="size-4" />
-                    <span>Open as PDF</span>
-                  </Button>
-                }
-              />
-              <TooltipContent
-                side="bottom"
-                alignOffset={2}
-              >
-                <IconTerminal2 className="size-3" />
-                pdf
-              </TooltipContent>
-            </Tooltip>
-
-            <ThemeToggle />
+                    <IconTerminal2 className="size-3" />
+                    pdf
+                  </TooltipContent>
+                </Tooltip>
+              </div>
+              <ThemeToggle />
+            </div>
           </div>
+          <p className="max-w-3xl text-lg font-semibold text-secondary sm:text-xl">
+            {intro.role}
+          </p>
+          <p className="text-sm text-subtext">{intro.location}</p>
         </div>
 
-        <p className="text-xl font-semibold text-secondary max-w-2xl">
-          {intro.role}
-        </p>
-        <p className="text-sm text-accent">{intro.location}</p>
-      </div>
-
-      <div className="relative">
         <About />
-      </div>
 
-      <div className="relative grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3 text-sm sm:gap-6 md:min-h-24">
-        <Socials />
-        <ReadmeCta />
-      </div>
+        <div className="grid items-center gap-5 text-sm sm:grid-cols-[auto_minmax(0,1fr)]">
+          <Socials />
+          <ReadmeCta />
+        </div>
 
-      {/* Mobile CTA */}
-      <div className="md:hidden flex gap-1">
-        <Button
-          nativeButton={false}
-          render={<Link href="/terminal" />}
-          size="lg"
-          className="flex mr-2"
-        >
-          <IconTerminal2 className="size-4" />
-          <span>Open in Terminal</span>
-        </Button>
-
-        <Tooltip>
-          <TooltipTrigger
-            render={
-              <Button
-                nativeButton={false}
-                render={<Link href="/pdf" />}
-                variant="secondary"
-                size="lg"
-                className="flex mr-2"
-              >
-                <IconFileCv className="size-4" />
-                <span>Open as PDF</span>
-              </Button>
-            }
-          />
-          <TooltipContent
-            side="bottom"
-            alignOffset={2}
+        <div className="flex flex-wrap gap-2 md:hidden">
+          <Button
+            nativeButton={false}
+            render={<Link href="/terminal" />}
+            size="lg"
           >
-            <IconTerminal2 className="size-3" />
-            pdf
-          </TooltipContent>
-        </Tooltip>
+            <IconTerminal2 className="size-4" />
+            <span>Open in Terminal</span>
+          </Button>
+
+          <Button
+            nativeButton={false}
+            render={<Link href="/pdf" />}
+            variant="secondary"
+            size="lg"
+          >
+            <IconFileCv className="size-4" />
+            <span>Open as PDF</span>
+          </Button>
+        </div>
       </div>
-    </>
+    </div>
   );
 }

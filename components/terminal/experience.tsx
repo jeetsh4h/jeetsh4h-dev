@@ -24,7 +24,7 @@ export default function Experience() {
                 {job.period}
               </span>
             </div>
-            <div className="text-secondary text-sm mb-2 font-semibold">
+            <div className="mb-2 text-sm font-semibold text-secondary">
               {job.role}
             </div>
 
@@ -57,14 +57,17 @@ export default function Experience() {
 
                 <div>
                   <div className="flex justify-between items-baseline">
-                    <span className="font-semi-bold text-primary text-sm">
+                    <span className="text-sm font-semibold text-primary">
                       {job.company}
                     </span>
                     <span className="text-xs text-muted-foreground font-mono bg-input/20 px-2 py-0.5 rounded w-fit">
                       {job.period}
                     </span>
                   </div>
-                  <div className="ml-2 mt-0.5 text-sx text-foreground">
+                  <div className="mt-0.5 text-xs font-semibold text-secondary">
+                    {job.role}
+                  </div>
+                  <div className="ml-2 mt-0.5 text-xs text-foreground">
                     {job.description?.[0] && (
                       <ExperienceDescription
                         text={job.description[0]}

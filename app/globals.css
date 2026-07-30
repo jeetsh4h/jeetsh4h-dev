@@ -13,6 +13,7 @@
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-term-muted: var(--term-muted);
+  --color-subtext: var(--subtext);
 
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -232,6 +233,7 @@
   /* Secondary - Pink */
   --secondary: #f5bde6;
   --secondary-foreground: #1e2030;
+  --subtext: #b8c0e0;
 
   /* Muted - Surface */
   --muted: #363a4f;
@@ -281,13 +283,14 @@
   /* Secondary - Pink */
   --secondary: #ea76cb;
   --secondary-foreground: #eff1f5;
+  --subtext: #5c5f77;
 
   /* Muted - Subtext */
   --muted: #ccd0da;
-  --muted-foreground: #8c8fa1;
+  --muted-foreground: #5c5f77;
 
-  /* Accent - Soft Lavender */
-  --accent: #7287fd;
+  /* Accent - Blue */
+  --accent: #1e66f5;
   --accent-foreground: #eff1f5;
 
   --destructive: #d20f39;

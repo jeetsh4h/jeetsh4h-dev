@@ -1,5 +1,14 @@
 import { buildEducationSection } from "@/lib/site-content";
 
+function DegreeName({ degree }: { degree: string }) {
+  return degree.split(" · ").map((part, index) => (
+    <span key={`${part}-${index}`}>
+      {index > 0 && <span className="text-accent"> · </span>}
+      {part}
+    </span>
+  ));
+}
+
 export default function Education() {
   const education = buildEducationSection();
 
@@ -18,7 +27,9 @@ export default function Education() {
               {edu.period}
             </span>
           </div>
-          <div className="text-secondary text-sm mb-1">{edu.degree}</div>
+          <div className="mb-1 text-sm text-secondary">
+            <DegreeName degree={edu.degree} />
+          </div>
           <div className="text-xs text-foreground grid grid-cols-2 gap-2 mt-1">
             {edu.details.map((detail) => {
               const [label, val] = detail.split(": ");
@@ -39,12 +50,26 @@ export default function Education() {
             {education.priorEducation.map((edu) => (
               <li key={`${edu.institution}-${edu.period}`}>
                 <span className="text-primary">{edu.institution}</span>{" "}
-                <span className="text-secondary">({edu.degree})</span>
+                <span className="text-secondary">
+                  (<DegreeName degree={edu.degree} />)
+                </span>
               </li>
             ))}
           </ul>
         </div>
       )}
+
+      <div className="border-t border-input/50 pt-2">
+        <span className="text-accent font-bold">Selected Coursework:</span>
+        <ul className="mt-1 ml-1 space-y-1 text-xs text-foreground marker:text-accent list-disc list-inside">
+          {education.coursework.map((course) => (
+            <li key={course.code}>
+              <span className="text-secondary">{course.code}</span>{" "}
+              {course.title} — {course.artifact}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

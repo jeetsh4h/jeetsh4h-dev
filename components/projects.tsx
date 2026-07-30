@@ -58,17 +58,10 @@ function ProjectCard({ project }: { project: ProjectEntryModel }) {
   );
 }
 
-function ProjectCardItem({
-  project,
-  order,
-}: {
-  project: ProjectEntryModel;
-  order: number;
-}) {
+function ProjectCardItem({ project }: { project: ProjectEntryModel }) {
   const card = <ProjectCard project={project} />;
   const itemProps = {
-    className: "block",
-    style: { order },
+    className: "block h-full [&>[data-slot=card]]:h-full",
   };
 
   return project.link ?
@@ -85,11 +78,6 @@ function ProjectCardItem({
 
 export default function Projects() {
   const projects = buildProjectsSection();
-  const projectColumns = [0, 1].map((columnIndex) =>
-    projects.entries
-      .map((project, index) => ({ project, index }))
-      .filter(({ index }) => index % 2 === columnIndex),
-  );
 
   return (
     <>
@@ -98,20 +86,12 @@ export default function Projects() {
         command="projects"
       />
 
-      <div className="grid grid-cols-1 gap-4 -mt-2 md:grid-cols-2 md:items-start">
-        {projectColumns.map((column, columnIndex) => (
-          <div
-            key={columnIndex}
-            className="contents md:flex md:flex-col md:gap-4"
-          >
-            {column.map(({ project, index }) => (
-              <ProjectCardItem
-                key={project.title}
-                project={project}
-                order={index}
-              />
-            ))}
-          </div>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {projects.entries.map((project) => (
+          <ProjectCardItem
+            key={project.title}
+            project={project}
+          />
         ))}
       </div>
     </>

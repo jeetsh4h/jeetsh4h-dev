@@ -9,7 +9,7 @@ function ResearchEntry({ paper }: { paper: ResearchEntryModel }) {
   const secondaryLinks = paper.links?.slice(1) ?? [];
 
   return (
-    <div className="flex flex-col sm:flex-row gap-4 sm:items-start">
+    <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
       <div className="flex-1 space-y-2">
         <div className="flex items-start justify-between gap-4">
           {primaryLink ?
@@ -67,7 +67,7 @@ export default function Research() {
         command="research"
       />
 
-      <div className="space-y-6 -mt-2">
+      <div className="-mt-2 space-y-6">
         {research.entries.map((paper) => (
           <ResearchEntry
             key={`${paper.title}-${paper.year}`}

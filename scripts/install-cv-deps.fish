@@ -8,6 +8,7 @@ set -l packages \
   texlive-latex \
   texlive-latexrecommended \
   texlive-latexextra \
+  texlive-plaingeneric \
   texlive-fontsrecommended
 
 if not type -q paru

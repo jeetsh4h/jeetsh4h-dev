@@ -16,6 +16,7 @@ REQUIRED_TEX_FILES=(
   hyperref.sty
   tabularx.sty
   titlesec.sty
+  soul.sty
   texgyrepagella-regular.otf
   texgyrepagella-bold.otf
   texgyrepagella-italic.otf

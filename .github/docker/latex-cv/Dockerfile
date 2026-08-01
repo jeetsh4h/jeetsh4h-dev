@@ -9,6 +9,7 @@ RUN apt-get update \
     texlive-xetex \
     texlive-latex-recommended \
     texlive-latex-extra \
+    texlive-plain-generic \
     texlive-fonts-recommended \
     fonts-texgyre \
   && apt-get clean \

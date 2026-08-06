@@ -68,7 +68,7 @@ export default function Research() {
         command="research"
       />
 
-      <div className="-mt-2 space-y-6 pl-4 sm:pl-6">
+      <div className="-mt-2 space-y-6 pl-1 sm:pl-6">
         {featuredResearch.map((paper) => (
           <ResearchEntry
             key={`${paper.title}-${paper.year}`}

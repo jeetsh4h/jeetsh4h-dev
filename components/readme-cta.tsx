@@ -119,7 +119,7 @@ export default function ReadmeCta() {
                   variant: "tertiary",
                   className: "py-4.5",
                 }),
-                "absolute left-1/2 top-12 z-20 origin-center [--readme-button-rotate:-10deg] transform-[translateX(-50%)_rotate(var(--readme-button-rotate))] px-2 py-1.5 motion-safe:animate-[readme-button-wiggle_2.8s_ease-in-out_infinite] sm:[--readme-button-rotate:-8deg]",
+                "absolute left-1/2 top-13 z-20 origin-center [--readme-button-rotate:-10deg] transform-[translateX(-50%)_rotate(var(--readme-button-rotate))] px-2 py-1.5 motion-safe:animate-[readme-button-wiggle_2.8s_ease-in-out_infinite] sm:top-12 sm:[--readme-button-rotate:-8deg]",
               )}
             >
               <IconMarkdown

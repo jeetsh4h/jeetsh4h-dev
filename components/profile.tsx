@@ -75,7 +75,7 @@ export default function Profile() {
 
         <About />
 
-        <div className="grid items-center gap-5 text-sm sm:grid-cols-[auto_minmax(0,1fr)]">
+        <div className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-5 text-sm">
           <Socials />
           <ReadmeCta />
         </div>

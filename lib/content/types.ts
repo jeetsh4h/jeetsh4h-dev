@@ -43,6 +43,7 @@ export interface ResearchItem {
 export interface EducationItem {
   institution: string;
   period: string;
+  location: string;
   degree: string;
   details: string[];
 }
@@ -70,7 +71,7 @@ export interface ExperienceItem {
   company: string;
   role: string;
   period: string;
-  type: "work" | "research" | "internship" | "contract";
+  category: "engineering" | "research" | "teaching-writing";
   description: string[];
   compact?: boolean;
   textLinks?: ExperienceTextLink[];
@@ -82,10 +83,23 @@ export interface ProjectItem {
   status?: "public" | "private" | "pre-beta" | "research";
   stack?: string[];
   highlights?: string[];
-  link?: string;
-  linkText?: string;
+  links: LinkItem[];
   confidentialityNote?: string;
   featured?: boolean;
+}
+
+export interface AwardItem {
+  title: string;
+  year: string;
+  result: string;
+  link?: LinkItem;
+}
+
+export interface LeadershipItem {
+  organization: string;
+  roles: string[];
+  period: string;
+  description?: string;
 }
 
 export type Skills = Record<string, string[]>;

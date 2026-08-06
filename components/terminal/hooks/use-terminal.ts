@@ -7,6 +7,7 @@ import { parseCommandInput } from "../command-parser";
 import { TERMINAL_COMMAND_NAMES } from "../command-registry";
 import type { TerminalCommandResult } from "../command-types";
 import type { HistoryItem, TerminalDimensions } from "../types";
+import type { PublishedDiaryEntrySummary } from "@/lib/diary/metadata";
 
 function createHistoryItemId() {
   return crypto.randomUUID();
@@ -38,11 +39,13 @@ function applyCommandToHistory({
   history,
   commandStr,
   dimensions,
+  diaryEntries,
   includeCommandEntry,
 }: {
   history: HistoryItem[];
   commandStr: string;
   dimensions: TerminalDimensions;
+  diaryEntries: PublishedDiaryEntrySummary[];
   includeCommandEntry: boolean;
 }) {
   const parsedCommand = parseCommandInput(commandStr);
@@ -54,6 +57,7 @@ function applyCommandToHistory({
   const result = executeParsedCommand(parsedCommand, {
     args: parsedCommand.args,
     dimensions,
+    diaryEntries,
   });
 
   if (result.kind === "clear") {
@@ -92,15 +96,17 @@ export function useTerminal(
   dimensions: TerminalDimensions,
   initialCommand?: string,
   autoRunCommand?: string,
+  diaryEntries: PublishedDiaryEntrySummary[] = [],
 ) {
   const [history, setHistory] = useState<HistoryItem[]>(() => {
     let nextHistory: HistoryItem[] = [];
 
-    if (initialCommand) {
+    if (initialCommand && !autoRunCommand) {
       nextHistory = applyCommandToHistory({
         history: nextHistory,
         commandStr: initialCommand,
         dimensions,
+        diaryEntries,
         includeCommandEntry: false,
       }).history;
     }
@@ -110,6 +116,7 @@ export function useTerminal(
         history: nextHistory,
         commandStr: autoRunCommand,
         dimensions,
+        diaryEntries,
         includeCommandEntry: true,
       }).history;
     }
@@ -151,6 +158,7 @@ export function useTerminal(
             history: prev,
             commandStr: trimmed,
             dimensions,
+            diaryEntries,
             includeCommandEntry: true,
           }).history,
       );
@@ -164,11 +172,14 @@ export function useTerminal(
       setHistoryIndex(-1);
       setInput("");
     },
-    [dimensions],
+    [dimensions, diaryEntries],
   );
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+    if (e.ctrlKey && e.key.toLowerCase() === "l") {
+      e.preventDefault();
+      execute("clear");
+    } else if (e.key === "Enter") {
       execute(input);
     } else if (e.key === "ArrowUp") {
       e.preventDefault();

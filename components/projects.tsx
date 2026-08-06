@@ -5,13 +5,19 @@ import Link from "next/link";
 import { buildProjectsSection } from "@/lib/site-content";
 import type { ProjectEntryModel } from "@/lib/site-content";
 
-function ProjectCard({ project }: { project: ProjectEntryModel }) {
+function ProjectCard({
+  project,
+  interactive = false,
+}: {
+  project: ProjectEntryModel;
+  interactive?: boolean;
+}) {
   return (
-    <Card variant={project.link ? "interactive" : "content"}>
+    <Card variant={interactive ? "interactive" : "content"}>
       <CardHeader className="flex justify-between items-start p-0 gap-3">
         <h3
           className={`text-lg font-bold text-primary transition-all ${
-            project.link ?
+            interactive ?
               "underline decoration-primary/30 group-hover:decoration-primary"
             : ""
           }`}
@@ -54,26 +60,50 @@ function ProjectCard({ project }: { project: ProjectEntryModel }) {
           {project.confidentialityNote}
         </p>
       )}
+      {!interactive && project.links.length > 0 && (
+        <div className="flex flex-wrap gap-3 text-xs font-semibold text-accent underline decoration-accent/30">
+          {project.links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:decoration-accent"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      )}
     </Card>
   );
 }
 
 function ProjectCardItem({ project }: { project: ProjectEntryModel }) {
-  const card = <ProjectCard project={project} />;
-  const itemProps = {
-    className: "block h-full [&>[data-slot=card]]:h-full",
-  };
+  const primaryLink = project.links[0];
+  const itemClassName = "block h-full [&>[data-slot=card]]:h-full";
 
-  return project.link ?
+  if (project.links.length === 1 && primaryLink) {
+    return (
       <Link
-        href={project.link}
+        href={primaryLink.href}
         target="_blank"
         rel="noreferrer"
-        {...itemProps}
+        className={itemClassName}
       >
-        {card}
+        <ProjectCard
+          project={project}
+          interactive
+        />
       </Link>
-    : <div {...itemProps}>{card}</div>;
+    );
+  }
+
+  return (
+    <div className={itemClassName}>
+      <ProjectCard project={project} />
+    </div>
+  );
 }
 
 export default function Projects() {

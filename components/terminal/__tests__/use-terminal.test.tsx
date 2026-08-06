@@ -14,9 +14,11 @@ const dimensions: TerminalDimensions = {
 function createKeyboardEvent(
   key: string,
   selectionStart = 0,
+  ctrlKey = false,
 ): React.KeyboardEvent<HTMLInputElement> {
   return {
     key,
+    ctrlKey,
     preventDefault: () => {},
     currentTarget: {
       selectionStart,
@@ -30,14 +32,13 @@ describe("useTerminal", () => {
       useTerminal(dimensions, "help", "about"),
     );
 
-    expect(result.current.history).toHaveLength(3);
-    expect(result.current.history[0]?.type).toBe("output");
-    expect(result.current.history[1]).toMatchObject({
+    expect(result.current.history).toHaveLength(2);
+    expect(result.current.history[0]).toMatchObject({
       type: "command",
       content: "about",
       status: "success",
     });
-    expect(result.current.history[2]?.type).toBe("output");
+    expect(result.current.history[1]?.type).toBe("output");
   });
 
   it("appends command and output entries for valid commands", () => {
@@ -125,5 +126,16 @@ describe("useTerminal", () => {
     });
 
     expect(result.current.input).toBe("help");
+  });
+
+  it("clears output with Ctrl+L", () => {
+    const { result } = renderHook(() => useTerminal(dimensions));
+
+    act(() => {
+      result.current.execute("about");
+      result.current.handleKeyDown(createKeyboardEvent("l", 0, true));
+    });
+
+    expect(result.current.history).toEqual([]);
   });
 });

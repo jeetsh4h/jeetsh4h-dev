@@ -1,14 +1,34 @@
 import { buildSkillsSection } from "@/lib/site-content";
 
-export default function Skills() {
+export default function Skills({ filter }: { filter?: string }) {
   const skills = buildSkillsSection();
+  const normalizedFilter = filter?.toLowerCase();
+  const categories =
+    normalizedFilter ?
+      skills.categories.filter(
+        (category) =>
+          category.name.toLowerCase().includes(normalizedFilter) ||
+          category.items.some((item) =>
+            item.toLowerCase().includes(normalizedFilter),
+          ),
+      )
+    : skills.categories;
+
+  if (categories.length === 0) {
+    return (
+      <p className="text-xs text-muted-foreground">
+        No skill category matches{" "}
+        <span className="text-secondary">{filter}</span>.
+      </p>
+    );
+  }
 
   return (
     <div className="flex flex-col gap-2">
-      {skills.categories.map((category) => (
+      {categories.map((category) => (
         <div
           key={category.name}
-          className="grid grid-cols-[6.5rem_auto_1fr] gap-x-1"
+          className="grid grid-cols-1 gap-x-1 sm:grid-cols-[11rem_auto_1fr]"
         >
           <span className="text-primary font-bold">{category.name}</span>
           <span className="text-accent">:</span>

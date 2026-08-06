@@ -40,6 +40,9 @@ export default function Education() {
             </CardHeader>
             <div className="min-h-12 text-sm leading-6 text-secondary">
               <DegreeName degree={edu.degree} />
+              <div className="text-xs text-muted-foreground">
+                {edu.location}
+              </div>
             </div>
             <div className="space-y-2 border-t border-input/50 pt-4">
               {edu.details.map((detail) => (

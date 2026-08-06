@@ -5,6 +5,7 @@ import { IconTerminal2 } from "@tabler/icons-react";
 import Link from "next/link";
 import { Terminal } from "@/components/terminal/terminal";
 import { Button } from "@/components/ui/button";
+import type { PublishedDiaryEntrySummary } from "@/lib/diary/metadata";
 
 const MIN_ZOOMED_TERMINAL_PAGE_HEIGHT_PX = 560;
 
@@ -17,7 +18,11 @@ function getTerminalPageHeight(viewport: VisualViewport) {
   return `${height}px`;
 }
 
-export default function TerminalPageClient() {
+export default function TerminalPageClient({
+  diaryEntries,
+}: {
+  diaryEntries: PublishedDiaryEntrySummary[];
+}) {
   const [viewportHeight, setViewportHeight] = useState("100dvh");
   const [externalCommand, setExternalCommand] = useState<string | null>(null);
   const helpTriggerTimeoutRef = useRef<number | null>(null);
@@ -95,7 +100,10 @@ export default function TerminalPageClient() {
 
       <div className="mx-auto min-h-0 w-full max-w-3xl flex-1 px-4 pb-4">
         <Suspense fallback={<div className="size-full" />}>
-          <Terminal externalCommand={externalCommand} />
+          <Terminal
+            externalCommand={externalCommand}
+            diaryEntries={diaryEntries}
+          />
         </Suspense>
       </div>
     </main>

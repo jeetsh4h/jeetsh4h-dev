@@ -4,7 +4,6 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 export type TerminalCommandLinkCommand =
-  | "about"
   | "socials"
   | "experience"
   | "research"

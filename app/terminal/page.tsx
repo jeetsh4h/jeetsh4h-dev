@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import TerminalPageClient from "@/components/terminal/terminal-page-client";
+import { getPublishedDiaryEntries } from "@/lib/diary/entries";
 
 export const metadata: Metadata = {
   title: "Terminal",
@@ -12,6 +13,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TerminalPage() {
-  return <TerminalPageClient />;
+export default async function TerminalPage() {
+  const diaryEntries = await getPublishedDiaryEntries();
+
+  return <TerminalPageClient diaryEntries={diaryEntries} />;
 }

@@ -1,19 +1,23 @@
 import { ABOUT } from "@/lib/content/about";
+import { AWARDS } from "@/lib/content/awards";
 import { COURSEWORK } from "@/lib/content/coursework";
 import { EDUCATION, PRIOR_EDUCATION } from "@/lib/content/education";
 import { EXPERIENCE } from "@/lib/content/experience";
+import { LEADERSHIP } from "@/lib/content/leadership";
 import { PROJECTS } from "@/lib/content/projects";
 import { RESEARCH } from "@/lib/content/research";
 import { SKILLS } from "@/lib/content/skills";
 import { SOCIALS } from "@/lib/content/socials";
 import type {
   EducationItem,
+  AwardItem,
   CourseworkItem,
   ExperienceItem,
   PriorEducationItem,
   ProjectItem,
   ResearchItem,
   SocialLink,
+  LeadershipItem,
 } from "@/lib/content/types";
 
 export type SiteSectionId =
@@ -42,6 +46,8 @@ export type ProjectEntryModel = ProjectItem;
 export type EducationEntryModel = EducationItem;
 export type CourseworkEntryModel = CourseworkItem;
 export type PriorEducationEntryModel = PriorEducationItem;
+export type AwardEntryModel = AwardItem;
+export type LeadershipEntryModel = LeadershipItem;
 
 export interface IntroSectionModel {
   id: "intro";
@@ -88,6 +94,14 @@ export interface EducationSectionModel {
   higherEducation: EducationEntryModel[];
   priorEducation: PriorEducationEntryModel[];
   coursework: CourseworkEntryModel[];
+}
+
+export interface AwardsSectionModel {
+  entries: AwardEntryModel[];
+}
+
+export interface LeadershipSectionModel {
+  entries: LeadershipEntryModel[];
 }
 
 export function buildSocialsSection(): SocialsSectionModel {
@@ -147,4 +161,12 @@ export function buildEducationSection(): EducationSectionModel {
     priorEducation: PRIOR_EDUCATION,
     coursework: COURSEWORK,
   };
+}
+
+export function buildAwardsSection(): AwardsSectionModel {
+  return { entries: AWARDS };
+}
+
+export function buildLeadershipSection(): LeadershipSectionModel {
+  return { entries: LEADERSHIP };
 }

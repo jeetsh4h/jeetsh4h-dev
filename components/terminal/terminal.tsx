@@ -9,6 +9,7 @@ import { Card, CardHeader } from "@/components/ui/card";
 import TerminalCrtOverlay from "@/components/ui/terminal-crt-overlay";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
+import type { PublishedDiaryEntrySummary } from "@/lib/diary/metadata";
 
 import { useTerminalDimensions } from "./hooks/use-dimension";
 import { useTerminal } from "./hooks/use-terminal";
@@ -120,11 +121,13 @@ const TransientPrompt = ({
 interface TerminalProps {
   initialCommand?: string;
   externalCommand?: string | null;
+  diaryEntries?: PublishedDiaryEntrySummary[];
 }
 
 export function Terminal({
   initialCommand = "help",
   externalCommand = null,
+  diaryEntries = [],
 }: TerminalProps) {
   const searchParams = useSearchParams();
   const autoRunCommand = searchParams.get("cmd") || undefined;
@@ -134,6 +137,7 @@ export function Terminal({
       initialCommand={initialCommand}
       autoRunCommand={autoRunCommand}
       externalCommand={externalCommand}
+      diaryEntries={diaryEntries}
       key={autoRunCommand}
     />
   );
@@ -143,6 +147,7 @@ function TerminalBase({
   initialCommand,
   autoRunCommand,
   externalCommand,
+  diaryEntries = [],
 }: TerminalProps & { autoRunCommand?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -150,7 +155,11 @@ function TerminalBase({
 
   const dimensions = useTerminalDimensions(containerRef);
   const { history, input, setInput, handleKeyDown, suggestion, execute } =
-    useTerminal(dimensions, initialCommand, autoRunCommand);
+    useTerminal(dimensions, initialCommand, autoRunCommand, diaryEntries);
+
+  useEffect(() => {
+    inputRef.current?.focus({ preventScroll: true });
+  }, []);
 
   useEffect(() => {
     if (!externalCommand) {
@@ -164,7 +173,7 @@ function TerminalBase({
 
     lastExternalCommandRef.current = externalCommand;
     execute(externalCommand);
-    inputRef.current?.focus();
+    inputRef.current?.focus({ preventScroll: true });
   }, [execute, externalCommand]);
 
   useEffect(() => {
@@ -174,26 +183,45 @@ function TerminalBase({
 
     if (!scrollAreaViewport) return;
 
-    const scrollToBottom = (behavior: ScrollBehavior = "auto") => {
+    const scrollToLatestCommand = (behavior: ScrollBehavior = "auto") => {
+      const commandEntries =
+        containerRef.current?.querySelectorAll<HTMLElement>(
+          '[data-history-type="command"]',
+        );
+      const latestCommand = commandEntries?.[commandEntries.length - 1];
+
       scrollAreaViewport.scrollTo({
-        top: scrollAreaViewport.scrollHeight,
+        top: latestCommand ? Math.max(latestCommand.offsetTop - 8, 0) : 0,
         behavior,
       });
     };
 
-    scrollToBottom("auto");
+    scrollToLatestCommand("auto");
 
     const timeout = setTimeout(() => {
-      scrollToBottom("auto");
+      scrollToLatestCommand("auto");
     }, 250);
 
     return () => clearTimeout(timeout);
   }, [history, dimensions]);
 
+  useEffect(() => {
+    if (!input) return;
+
+    const scrollAreaViewport = containerRef.current?.querySelector(
+      '[data-slot="scroll-area-viewport"]',
+    ) as HTMLElement;
+
+    scrollAreaViewport?.scrollTo({
+      top: scrollAreaViewport.scrollHeight,
+      behavior: "auto",
+    });
+  }, [input]);
+
   const handleFocus = () => {
     const selection = window.getSelection();
     if (selection && selection.toString().length > 0) return;
-    inputRef.current?.focus();
+    inputRef.current?.focus({ preventScroll: true });
   };
 
   return (
@@ -232,6 +260,7 @@ function TerminalBase({
             {history.map((item) => (
               <div
                 key={item.id}
+                data-history-type={item.type}
                 className="mb-4"
               >
                 {item.type === "command" ?
@@ -277,7 +306,6 @@ function TerminalBase({
                 autoCapitalize="off"
                 enterKeyHint="send"
                 spellCheck={false}
-                autoFocus
               />
             </div>
           </ActivePrompt>

@@ -3,9 +3,12 @@
 import { useTheme } from "next-themes";
 import { useEffect, useRef, useState } from "react";
 
-export type ThemeArgs = "--toggle" | "--system";
+export type ThemeArgs = "light" | "dark" | "system" | "toggle";
 export const isThemeArg = (value: string): value is ThemeArgs =>
-  value === "--toggle" || value === "--system";
+  value === "light" ||
+  value === "dark" ||
+  value === "system" ||
+  value === "toggle";
 
 export function Theme({ args }: { args: [] | [ThemeArgs] }) {
   const { setTheme, resolvedTheme, theme } = useTheme();
@@ -27,14 +30,12 @@ export function Theme({ args }: { args: [] | [ThemeArgs] }) {
 
     if (!arg) return;
 
-    if (arg === "--toggle") {
+    if (arg === "toggle") {
       setTheme(staticNextTheme);
       return;
     }
 
-    if (arg === "--system") {
-      setTheme("system");
-    }
+    setTheme(arg);
   }, [args, staticNextTheme, setTheme]);
 
   const arg = args[0];
@@ -47,7 +48,7 @@ export function Theme({ args }: { args: [] | [ThemeArgs] }) {
     );
   }
 
-  if (arg === "--toggle") {
+  if (arg === "toggle") {
     return (
       <p className="text-foreground text-xs">
         Theme toggled to{" "}
@@ -56,13 +57,9 @@ export function Theme({ args }: { args: [] | [ThemeArgs] }) {
     );
   }
 
-  if (arg === "--system") {
-    return (
-      <p className="text-foreground text-xs">
-        Theme set to <span className="rounded bg-muted px-1">system</span>.
-      </p>
-    );
-  }
-
-  return <p className="text-destructive">Invalid argument</p>;
+  return (
+    <p className="text-foreground text-xs">
+      Theme set to <span className="rounded bg-muted px-1">{arg}</span>.
+    </p>
+  );
 }

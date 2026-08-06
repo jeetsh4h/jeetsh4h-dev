@@ -2,29 +2,48 @@ import type { Skills } from "./types";
 
 export const SKILLS: Skills = {
   Languages: ["TypeScript", "Python", "C++", "JavaScript", "Rust", "C#", "SQL"],
-  "Product & frontend": [
+  "Web & mobile": [
     "React",
     "React Native",
     "Next.js",
     "Expo",
     "Astro",
     "Tailwind CSS",
+    "React Flow",
+    "Vite",
+    "Streamlit",
+    "MDX",
   ],
   "Backend & data": ["FastAPI", "PostgreSQL", "Supabase", "Convex", "SQLite"],
-  "ML & research": [
+  "ML & scientific computing": [
     "PyTorch",
-    "TensorFlow",
+    "TensorFlow/Keras",
     "OpenCV",
+    "NumPy",
     "ConvLSTM",
+    "ConvGRU",
+    "conditional GANs",
+    "variational autoencoders",
+    "genetic algorithms",
     "Computer Vision",
     "RAG",
   ],
-  "Systems & tooling": [
+  "Systems & infrastructure": [
     "Linux",
-    "HPC environments",
-    "Git",
     "Docker",
+    "TCP",
+    "HTTP/1.1",
+    "GPU-server administration",
+    "air-gapped HPC environments",
+  ],
+  "Automation & tooling": [
+    "Git",
+    "GitHub Actions",
     "Bash",
     "PowerShell",
+    "LaTeX",
+    "Google Apps Script",
+    "Windows Task Scheduler",
+    "Jupyter",
   ],
 };

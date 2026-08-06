@@ -1,12 +1,25 @@
 import Link from "next/link";
 import { buildResearchSection } from "@/lib/site-content";
 
-export default function Research() {
+export default function Research({ kind }: { kind?: string }) {
   const research = buildResearchSection();
+  const entries =
+    kind ?
+      research.entries.filter((entry) => entry.kind === kind)
+    : research.entries;
+
+  if (entries.length === 0) {
+    return (
+      <p className="mt-2 text-xs text-muted-foreground">
+        No research entries match <span className="text-secondary">{kind}</span>
+        .
+      </p>
+    );
+  }
 
   return (
     <div className="flex flex-col gap-4 mt-2">
-      {research.entries.map((paper) => {
+      {entries.map((paper) => {
         const primaryLink = paper.links?.[0];
         const secondaryLinks = paper.links?.slice(1) ?? [];
 

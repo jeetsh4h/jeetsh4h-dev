@@ -1,18 +1,22 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  buildAwardsSection,
   buildEducationSection,
   buildExperienceSection,
   buildIntroSection,
+  buildLeadershipSection,
   buildProjectsSection,
   buildResearchSection,
   buildSkillsSection,
   buildSocialsSection,
 } from "../site-content";
 import { ABOUT } from "../content/about";
+import { AWARDS } from "../content/awards";
 import { COURSEWORK } from "../content/coursework";
 import { EDUCATION, PRIOR_EDUCATION } from "../content/education";
 import { EXPERIENCE } from "../content/experience";
+import { LEADERSHIP } from "../content/leadership";
 import { PROJECTS } from "../content/projects";
 import { RESEARCH } from "../content/research";
 import { SKILLS } from "../content/skills";
@@ -79,5 +83,7 @@ describe("site-content", () => {
       priorEducation: PRIOR_EDUCATION,
       coursework: COURSEWORK,
     });
+    expect(buildAwardsSection()).toEqual({ entries: AWARDS });
+    expect(buildLeadershipSection()).toEqual({ entries: LEADERSHIP });
   });
 });

@@ -5,7 +5,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     company: "Elevate Fitness",
     role: "Software Engineer",
     period: "Dec 2025 - Present",
-    type: "contract",
+    category: "engineering",
     description: [
       "Develop and maintain Movynn, a React Native and Expo fitness application backed by Convex and published on the Apple App Store and Google Play.",
       "Own end-to-end authentication, session-management, and turf-booking workflows within a two-engineer team.",
@@ -22,7 +22,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     company: "Voltek AI / Nanoloy",
     role: "Software Engineer",
     period: "Oct 2024 - Present",
-    type: "contract",
+    category: "engineering",
     description: [
       "Lead frontend development of an internal dashboard for ingesting, reviewing, and analyzing battery-experiment data.",
       "Co-design Supabase/PostgreSQL schemas and FastAPI services for ingesting and retrieving experimental data.",
@@ -40,7 +40,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     company: "Centre for Interdisciplinary AI, FLAME University",
     role: "Research Assistant",
     period: "Jan 2024 - May 2025",
-    type: "research",
+    category: "research",
     description: [
       "Configured and administered a multi-user GPU compute server for research and model training, including user management, drivers, storage, and environment isolation.",
       "Co-developed ConvGRU, conditional-GAN, and ConvLSTM training pipelines and satellite-data ingestion tooling for precipitation nowcasting.",
@@ -51,7 +51,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     company: "ISRO, Space Applications Centre",
     role: "Research Intern, Space Research and Training Division",
     period: "May 2023 - Aug 2023",
-    type: "research",
+    category: "research",
     description: [
       "Developed ConvLSTM precipitation-nowcasting models using INSAT-3D satellite data in an air-gapped HPC environment.",
       "Improved RMSE by 30.7% relative to baseline optical-flow models.",
@@ -61,7 +61,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     company: "National Federation of the Blind Maharashtra",
     role: "Project Solutions Intern",
     period: "May 2024 - Sep 2024",
-    type: "internship",
+    category: "engineering",
     compact: true,
     description: [
       "Prototyped object identification with navigation cues on Raspberry Pi for students at Jagriti Blind School.",
@@ -72,7 +72,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     company: "Sportskeeda",
     role: "Golf Content Writer",
     period: "Aug 2023 - Oct 2023",
-    type: "work",
+    category: "teaching-writing",
     compact: true,
     description: ["Reported and published golf news articles and listicles."],
   },
@@ -80,7 +80,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     company: "FLAME Q Centre",
     role: "Peer Tutor",
     period: "Sep 2022 - Apr 2025",
-    type: "work",
+    category: "teaching-writing",
     compact: true,
     description: [
       "Provided one-to-one tutoring in programming, mathematics, and quantitative economics.",
@@ -90,7 +90,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     company: "FLAME Mathematical Modelling Centre",
     role: "Student Researcher",
     period: "Oct 2022 - Apr 2023",
-    type: "research",
+    category: "research",
     compact: true,
     description: [
       "Implemented and evaluated genetic algorithms and variational autoencoders for synthetic sample generation in imbalanced classification and protein data experiments.",
@@ -100,7 +100,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     company: "Analyse India",
     role: "Technical Intern",
     period: "May 2022 - Aug 2022",
-    type: "internship",
+    category: "engineering",
     compact: true,
     description: [
       "Built Python tooling to collect and normalize market data from Google Finance and Yahoo Finance for technical research.",
@@ -111,7 +111,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     company: "SNEHA",
     role: "IT/IM Intern",
     period: "May 2022 - Aug 2022",
-    type: "internship",
+    category: "engineering",
     compact: true,
     description: [
       "Audited network infrastructure across three Mumbai offices and produced a consolidated topology diagram.",

@@ -11,7 +11,7 @@ export default function About() {
         textStyles="text-md"
         buttonStyles="px-2 py-1.5"
       />
-      <p className="max-w-4xl pt-3 text-sm leading-7 text-foreground sm:text-base">
+      <p className="max-w-4xl text-sm leading-7 text-foreground sm:text-base">
         {intro.bio}
       </p>
     </>

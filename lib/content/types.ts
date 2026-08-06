@@ -31,9 +31,10 @@ export interface ResearchItem {
   title: string;
   year: string;
   citationAuthors?: string;
-  kind: "publication" | "presentation" | "interest";
-  status?: "published" | "presented" | "in-progress";
+  kind: "preprint" | "thesis" | "presentation" | "interest";
+  status?: "preprint" | "completed" | "presented" | "in-progress";
   summary: string;
+  featured?: boolean;
   contribution?: string;
   result?: string;
   links?: LinkItem[];
@@ -84,6 +85,7 @@ export interface ProjectItem {
   link?: string;
   linkText?: string;
   confidentialityNote?: string;
+  featured?: boolean;
 }
 
 export type Skills = Record<string, string[]>;

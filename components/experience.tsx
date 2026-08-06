@@ -1,6 +1,5 @@
 import ExperienceDescription from "./experience-description";
 import { Badge } from "./ui/badge";
-import { Card } from "./ui/card";
 import { SectionHeading } from "./ui/section";
 import { buildExperienceSection } from "@/lib/site-content";
 
@@ -45,43 +44,6 @@ export default function Experience() {
           </div>
         ))}
       </div>
-
-      {experience.compactEntries.length > 0 && (
-        <div>
-          <div className="mb-4 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-            Earlier work
-          </div>
-          <div className="grid gap-3 md:grid-cols-2">
-            {experience.compactEntries.map((job) => (
-              <Card
-                key={`${job.company}-${job.role}-${job.period}`}
-                variant="content"
-                className="gap-2"
-              >
-                <div className="text-sm">
-                  <div className="flex flex-wrap justify-between gap-2">
-                    <span className="font-bold text-primary">
-                      {job.company}
-                    </span>
-                    <Badge>{job.period}</Badge>
-                  </div>
-                  <div className="mt-1 text-xs font-medium text-secondary">
-                    {job.role}
-                  </div>
-                  <div className="mt-2 text-xs leading-relaxed text-foreground">
-                    {job.description && (
-                      <ExperienceDescription
-                        text={job.description[0]}
-                        links={job.textLinks}
-                      />
-                    )}
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      )}
     </>
   );
 }

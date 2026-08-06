@@ -7,9 +7,9 @@ export const EXPERIENCE: ExperienceItem[] = [
     period: "Dec 2025 - Present",
     type: "contract",
     description: [
-      "Build Movynn, a React Native and Convex fitness application.",
-      "Own authentication, session, and turf-booking workflows across a two-person engineering team.",
-      "Co-own application architecture, code quality, and release readiness.",
+      "Develop and maintain Movynn, a React Native and Expo fitness application backed by Convex and published on the Apple App Store and Google Play.",
+      "Own end-to-end authentication, session-management, and turf-booking workflows within a two-engineer team.",
+      "Co-design application architecture and release processes, including testing, continuous integration, and deployment workflows.",
     ],
     textLinks: [
       {
@@ -24,10 +24,10 @@ export const EXPERIENCE: ExperienceItem[] = [
     period: "Oct 2024 - Present",
     type: "contract",
     description: [
-      "Led frontend development for an internal dashboard supporting battery manufacturing research workflows.",
-      "Co-designed Supabase/Postgres data models and FastAPI services for experimental data ingestion and retrieval.",
-      "Reduced query latency through database indexing and API-layer optimization.",
-      "Co-maintain NDAX and Neware ingestion handlers, file reconciliation, and edge-case parsing for unreliable client environments.",
+      "Lead frontend development of an internal dashboard for ingesting, reviewing, and analyzing battery-experiment data.",
+      "Co-design Supabase/PostgreSQL schemas and FastAPI services for ingesting and retrieving experimental data.",
+      "Reduced median query latency by 67% through database indexing and API-layer optimization.",
+      "Co-maintain NDAX and Neware ingestion pipelines, including file reconciliation and defensive parsing for incomplete file sets.",
     ],
     textLinks: [
       {
@@ -37,22 +37,35 @@ export const EXPERIENCE: ExperienceItem[] = [
     ],
   },
   {
-    company: "National Federation of the Blind Maharashtra",
-    role: "Project Solutions Intern",
-    period: "May 2024 - Sep 2024",
-    type: "internship",
+    company: "Centre for Interdisciplinary AI, FLAME University",
+    role: "Research Assistant",
+    period: "Jan 2024 - May 2025",
+    type: "research",
     description: [
-      "Built Raspberry Pi/OpenCV assistive-navigation prototypes and conducted user-facing technical support sessions.",
+      "Configured and administered a multi-user GPU compute server for research and model training, including user management, drivers, storage, and environment isolation.",
+      "Co-developed ConvGRU, conditional-GAN, and ConvLSTM training pipelines and satellite-data ingestion tooling for precipitation nowcasting.",
+      "Supported team kaubega's Weather4Cast 2024 and 2025 submissions through model development, data-ingestion tooling, and GPU infrastructure.",
     ],
   },
   {
     company: "ISRO, Space Applications Centre",
-    role: "Research Intern (SRTD)",
+    role: "Research Intern, Space Research and Training Division",
     period: "May 2023 - Aug 2023",
     type: "research",
     description: [
-      "Developed ConvLSTM models for precipitation nowcasting using INSAT-3D satellite data.",
-      "Worked in an air-gapped HPC environment with large spatiotemporal satellite datasets.",
+      "Developed ConvLSTM precipitation-nowcasting models using INSAT-3D satellite data in an air-gapped HPC environment.",
+      "Improved RMSE by 30.7% relative to baseline optical-flow models.",
+    ],
+  },
+  {
+    company: "National Federation of the Blind Maharashtra",
+    role: "Project Solutions Intern",
+    period: "May 2024 - Sep 2024",
+    type: "internship",
+    compact: true,
+    description: [
+      "Prototyped object identification with navigation cues on Raspberry Pi for students at Jagriti Blind School.",
+      "Benchmarked more than 10 object-detection models for edge deployment using accuracy and memory usage as evaluation criteria.",
     ],
   },
   {
@@ -61,9 +74,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     period: "Aug 2023 - Oct 2023",
     type: "work",
     compact: true,
-    description: [
-      "Reported and wrote published golf news articles and listicles.",
-    ],
+    description: ["Reported and published golf news articles and listicles."],
   },
   {
     company: "FLAME Q Centre",
@@ -72,7 +83,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     type: "work",
     compact: true,
     description: [
-      "Tutored students in programming, mathematics, economics, and other quantitative coursework.",
+      "Provided one-to-one tutoring in programming, mathematics, and quantitative economics.",
     ],
   },
   {
@@ -82,7 +93,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     type: "research",
     compact: true,
     description: [
-      "Explored genetic algorithms and variational autoencoders for synthetic examples of imbalanced and protein datasets.",
+      "Implemented and evaluated genetic algorithms and variational autoencoders for synthetic sample generation in imbalanced classification and protein data experiments.",
     ],
   },
   {
@@ -92,7 +103,8 @@ export const EXPERIENCE: ExperienceItem[] = [
     type: "internship",
     compact: true,
     description: [
-      "Automated market-data collection and technical-analysis alerts using Google Finance and Yahoo Finance data.",
+      "Built Python tooling to collect and normalize market data from Google Finance and Yahoo Finance for technical research.",
+      "Implemented candlestick-pattern detection and alerting within MetaStock.",
     ],
   },
   {
@@ -102,7 +114,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     type: "internship",
     compact: true,
     description: [
-      "Audited office network infrastructure across Mumbai and supported field survey software and devices.",
+      "Audited network infrastructure across three Mumbai offices and produced a consolidated topology diagram.",
     ],
   },
 ];

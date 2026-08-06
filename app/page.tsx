@@ -3,12 +3,10 @@ import Profile from "@/components/profile";
 import Experience from "@/components/experience";
 import Research from "@/components/research";
 import Education from "@/components/education";
-import Skills from "@/components/skills";
 import Projects from "@/components/projects";
 import { ABOUT } from "@/lib/content/about";
 import { EDUCATION } from "@/lib/content/education";
 import { SEO } from "@/lib/content/seo";
-import { SKILLS } from "@/lib/content/skills";
 import { SOCIALS } from "@/lib/content/socials";
 import { dateStringToIsoDateTime } from "@/lib/diary/metadata";
 
@@ -50,13 +48,7 @@ export default function Page() {
     "@type": "CollegeOrUniversity",
     name: institution,
   }));
-  const knowsAbout = [
-    ...new Set([
-      "Software engineering",
-      ...SEO.areas,
-      ...Object.values(SKILLS).flat(),
-    ]),
-  ];
+  const knowsAbout = [...new Set(["Software engineering", ...SEO.areas])];
 
   const personSchema = {
     "@type": "Person",
@@ -137,7 +129,7 @@ export default function Page() {
 
         <section
           className="space-y-8"
-          aria-labelledby="projects-heading"
+          aria-labelledby="featured-work-heading"
         >
           <Projects />
         </section>
@@ -147,13 +139,6 @@ export default function Page() {
           aria-labelledby="education-heading"
         >
           <Education />
-        </section>
-
-        <section
-          className="space-y-6"
-          aria-labelledby="skills-heading"
-        >
-          <Skills />
         </section>
       </div>
     </main>

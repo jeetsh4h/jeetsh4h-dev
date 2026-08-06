@@ -78,16 +78,19 @@ function ProjectCardItem({ project }: { project: ProjectEntryModel }) {
 
 export default function Projects() {
   const projects = buildProjectsSection();
+  const featuredProjects = projects.entries.filter(
+    (project) => project.featured,
+  );
 
   return (
     <>
       <SectionHeading
-        id="projects-heading"
+        id="featured-work-heading"
         command="projects"
       />
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {projects.entries.map((project) => (
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {featuredProjects.map((project) => (
           <ProjectCardItem
             key={project.title}
             project={project}

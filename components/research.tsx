@@ -18,11 +18,11 @@ function ResearchEntry({ paper }: { paper: ResearchEntryModel }) {
               target="_blank"
               rel="noreferrer"
             >
-              <h3 className="font-bold leading-tight text-primary underline decoration-primary/20 hover:decoration-primary transition-all">
+              <h3 className="-ml-2 font-bold leading-tight text-primary underline decoration-primary/20 transition-all hover:decoration-primary sm:-ml-3">
                 {paper.title}
               </h3>
             </Link>
-          : <h3 className="font-bold leading-tight text-primary">
+          : <h3 className="-ml-2 font-bold leading-tight text-primary sm:-ml-3">
               {paper.title}
             </h3>
           }
@@ -59,6 +59,7 @@ function ResearchEntry({ paper }: { paper: ResearchEntryModel }) {
 
 export default function Research() {
   const research = buildResearchSection();
+  const featuredResearch = research.entries.filter((entry) => entry.featured);
 
   return (
     <>
@@ -67,8 +68,8 @@ export default function Research() {
         command="research"
       />
 
-      <div className="-mt-2 space-y-6">
-        {research.entries.map((paper) => (
+      <div className="-mt-2 space-y-6 pl-4 sm:pl-6">
+        {featuredResearch.map((paper) => (
           <ResearchEntry
             key={`${paper.title}-${paper.year}`}
             paper={paper}

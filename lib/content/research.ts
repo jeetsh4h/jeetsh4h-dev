@@ -6,10 +6,11 @@ export const RESEARCH: ResearchItem[] = [
       "Computationally-efficient deep learning models for nowcasting of precipitation: A solution for the Weather4cast 2025 challenge",
     year: "2025",
     citationAuthors: "Anushree Bhuskute, Kaushik Gopalan, and Jeet Shah",
-    kind: "publication",
-    status: "published",
+    kind: "preprint",
+    status: "preprint",
     summary:
-      "Co-author. Team kaubega placed 2nd in the official Weather4Cast 2025 cumulative rainfall challenge.",
+      "arXiv preprint. Co-author. Team kaubega placed second in the Weather4Cast 2025 cumulative-rainfall task.",
+    featured: true,
     links: [
       {
         label: "arXiv",
@@ -27,10 +28,11 @@ export const RESEARCH: ResearchItem[] = [
     year: "2024",
     citationAuthors:
       "Atharva Deshpande, Kaushik Gopalan, Jeet Shah, and Hrishikesh Simu",
-    kind: "publication",
-    status: "published",
+    kind: "preprint",
+    status: "preprint",
     summary:
-      "Co-author. Team kaubega placed 1st on the Weather4Cast 2024 core/cumulative-rainfall challenge at the competition deadline; the public leaderboard now includes later post-deadline submissions.",
+      "arXiv preprint. Co-author. Team kaubega placed first on the Weather4Cast 2024 core-challenge leaderboard.",
+    featured: true,
     links: [
       {
         label: "arXiv",
@@ -44,9 +46,26 @@ export const RESEARCH: ResearchItem[] = [
   },
   {
     title:
+      "Precipitation Nowcasting Using ConvLSTM with INSAT-3D Satellite Data over the Indian Subcontinent",
+    year: "2025",
+    citationAuthors: "Jeet Shah",
+    kind: "thesis",
+    status: "completed",
+    summary:
+      "FLAME Scholar's Program undergraduate thesis supervised by Kaushik Gopalan, consolidating research begun in CSIT334 and continued during the ISRO internship.",
+    featured: true,
+    links: [
+      {
+        label: "Thesis repository",
+        href: "https://github.com/jeetsh4h/DISS384",
+      },
+    ],
+  },
+  {
+    title:
       "Precipitation Nowcasting with OLR data using Optical Flow and Machine Learning",
     year: "2023",
-    citationAuthors: "Jeet Shah, Kaushik Gopalan, and Dr. Bipasha Paul Shukla",
+    citationAuthors: "Jeet Shah",
     kind: "presentation",
     status: "presented",
     summary:

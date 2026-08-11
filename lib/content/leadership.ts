@@ -18,7 +18,7 @@ export const LEADERSHIP: LeadershipItem[] = [
     period: "2023-2024",
   },
   {
-    organization: "E-Sports Club",
+    organization: "FLAME E-Sports Club",
     roles: ["Treasurer"],
     period: "2023-2025",
   },
@@ -28,7 +28,7 @@ export const LEADERSHIP: LeadershipItem[] = [
     period: "2022-2024",
   },
   {
-    organization: "Music Club",
+    organization: "FLAME Music Club",
     roles: ["Member"],
     period: "2022-2023",
   },

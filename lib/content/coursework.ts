@@ -3,7 +3,7 @@ import type { CourseworkItem } from "./types";
 export const COURSEWORK: CourseworkItem[] = [
   {
     code: "CSIT402",
-    title: "Advanced Distributed Systems",
+    title: "Distributed Systems",
     artifact:
       "Implemented Lamport logical clocks and vector clocks in Python and documented happened-before relations, causality, and event ordering.",
     link: "https://github.com/jeetsh4h/CSIT402",
@@ -26,7 +26,7 @@ export const COURSEWORK: CourseworkItem[] = [
     code: "CSIT302",
     title: "Principles of Programming Languages",
     artifact:
-      "Co-developed a platform-game prototype in Unity and GDevelop and co-authored the final technical report.",
+      "Co-developed a simple 2D platformer in Unity and GDevelop designed to teach programming concepts; wrote the final technical report and completed part of the programming.",
     link: "https://github.com/jeetsh4h/Mario-SJ",
   },
 ];

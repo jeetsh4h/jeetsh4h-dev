@@ -36,8 +36,8 @@
   filecolor=linkblue,
   pdftitle={Jeet Shah Curriculum Vitae},
   pdfauthor={Jeet Shah},
-  pdfsubject={Software engineering, computer science, and applied machine-learning research},
-  pdfkeywords={Jeet Shah, Software Engineer, Columbia University, Computer Science, React Native, Convex, FastAPI, PostgreSQL, Programming Languages, Weather4Cast, Precipitation Nowcasting},
+  pdfsubject={Software engineering, data systems, and applied machine-learning research},
+  pdfkeywords={Jeet Shah, Software Engineer, Columbia University, Computer Science, Python, React Native, FastAPI, PostgreSQL, Retrieval-Augmented Generation, Weather4Cast, Precipitation Nowcasting},
 }
 
 % Ink-skipping underlines for hyperlinks. White artifact copies mask the rule
@@ -145,7 +145,16 @@
 
 \newcommand{\courseitem}[4]{%
   \needspace{2.6\baselineskip}
-  \textbf{#1 · #2}\hfill\href{#4}{Repository}\\[-1pt]
+  \if\relax\detokenize{#1}\relax
+    \textbf{#2}%
+  \else
+    \textbf{#1 · #2}%
+  \fi
+  \if\relax\detokenize{#4}\relax
+  \else
+    \hfill\href{#4}{Repository}%
+  \fi
+  \\[-1pt]
   \textcolor{muted}{#3}\par\vspace{1pt}
 }
 
@@ -219,7 +228,7 @@
   {
     \begin{itemize}
       \item Develop and maintain Movynn, a React Native and Expo fitness application backed by Convex and published on the Apple App Store and Google Play.
-      \item Own end-to-end authentication, session-management, and turf-booking workflows within a two-engineer team.
+      \item Coordinate development within a two-engineer team and own end-to-end authentication, session-management, and turf-booking workflows.
       \item Co-design application architecture and release processes, including testing, continuous integration, and deployment workflows.
     \end{itemize}
   }
@@ -230,8 +239,9 @@
   {Software Engineer}
   {
     \begin{itemize}
-      \item Lead frontend development of an internal dashboard for ingesting, reviewing, and analyzing battery-experiment data.
+      \item Lead frontend development of an internal battery-research dashboard and coordinate delivery across the team.
       \item Co-design Supabase/PostgreSQL schemas and FastAPI services for ingesting and retrieving experimental data.
+      \item Built a multi-LLM retrieval-augmented generation pipeline that routes battery-research queries to specialized models.
       \item Reduced median query latency by 67\% through database indexing and API-layer optimization.
       \item Co-maintain NDAX and Neware ingestion pipelines, including file reconciliation and defensive parsing for incomplete file sets.
     \end{itemize}
@@ -243,8 +253,8 @@
   {Project Solutions Intern}
   {
     \begin{itemize}
-      \item Prototyped object identification with navigation cues on Raspberry Pi for students at Jagriti Blind School.
-      \item Benchmarked more than 10 object-detection models for edge deployment using accuracy and memory usage as evaluation criteria.
+      \item Interviewed officials at Jagriti School for Blind Girls and field-tested a Raspberry Pi prototype that provided object-identification and navigation cues for students.
+      \item Benchmarked more than 10 object-detection models for edge deployment, comparing accuracy and memory usage.
     \end{itemize}
   }
 
@@ -254,8 +264,8 @@
   {Technical Intern}
   {
     \begin{itemize}
-      \item Built Python tooling to collect and normalize market data from Google Finance and Yahoo Finance for technical research.
-      \item Implemented candlestick-pattern detection and alerting within MetaStock.
+      \item Built Python tooling to collect and normalize Google Finance and Yahoo Finance data for publicly listed companies on India's National Stock Exchange.
+      \item Backtested trading strategies, calculated returns and technical indicators, and implemented candlestick-pattern detection and alerting within MetaStock.
     \end{itemize}
   }
 
@@ -300,7 +310,7 @@
   {Student Researcher}
   {
     \begin{itemize}
-      \item Implemented and evaluated genetic algorithms and variational autoencoders for synthetic sample generation in imbalanced classification and protein data experiments.
+      \item Implemented and evaluated genetic algorithms and variational autoencoders for synthetic sample generation in experiments on imbalanced classification and protein datasets.
     \end{itemize}
   }
 
@@ -311,7 +321,7 @@
   {Peer Tutor}
   {
     \begin{itemize}
-      \item Provided one-to-one tutoring in programming, mathematics, and quantitative economics.
+      \item Provided one-to-one tutoring in programming, mathematics, and quantitative economics, supporting an average of seven students per academic year.
     \end{itemize}
   }
 
@@ -325,7 +335,7 @@
     \end{itemize}
   }
 
-\cvsection{8}{Research}
+\cvsection{8}{Publications and Presentations}
 \researchlabel{Preprints}
 
 Bhuskute, A., Gopalan, K., \& \textbf{Shah, J.} (2025).
@@ -380,7 +390,7 @@ Supervisor: Kaushik Gopalan.
   {Jyeshthanubandh}
   {\href{https://play.google.com/store/apps/details?id=com.Jyeshthanubandh.pcmc_app}{Google Play}}
   {React Native · AWS}
-  {Co-developed a senior-citizen safety application with FLAME University and Pimpri-Chinchwad Police, integrating registered profiles, medical information, location, and emergency-assistance workflows with a police-response dashboard.}
+  {Worked directly with Pimpri-Chinchwad Police while co-developing a senior-citizen safety application with FLAME University, integrating registered profiles, medical information, location, and emergency-assistance workflows with a police-response dashboard.}
 
 \projectentry
   {INSAT-3D Nowcasting Toolkit}
@@ -428,7 +438,7 @@ Supervisor: Kaushik Gopalan.
 \cvsection{6}{Selected Computer Science Coursework}
 \courseitem
   {CSIT402}
-  {Advanced Distributed Systems}
+  {Distributed Systems}
   {Implemented Lamport logical clocks and vector clocks in Python and documented happened-before relations, causality, and event ordering.}
   {https://github.com/jeetsh4h/CSIT402}
 \courseitem
@@ -444,8 +454,22 @@ Supervisor: Kaushik Gopalan.
 \courseitem
   {CSIT302}
   {Principles of Programming Languages}
-  {Co-developed a platform-game prototype in Unity and GDevelop and co-authored the final technical report.}
+  {Co-developed a simple 2D platformer in Unity and GDevelop designed to teach programming concepts; wrote the final technical report and completed part of the programming.}
   {https://github.com/jeetsh4h/Mario-SJ}
+\courseitem
+  {CSIT322}
+  {Fundamentals of User Interaction and Experience}
+  {Prototyped a room-allotment system for campus housing.}
+  {}
+\courseitem
+  {DESG216}
+  {Makers Studio (Technology Tinkering)}
+  {Built a rotating LED display using an Arduino, LEDs, motors, and basic soldering.}
+  {}
+
+\cvsection{4}{Additional Training}
+\textbf{FLAME Investment Lab · Equity Analysis for Beginners}\par
+Completed an introductory program covering financial statements and ratios, business and industry analysis, valuation, and portfolio construction.
 
 \cvsection{8}{Leadership and Service}
 
@@ -474,25 +498,33 @@ Supervisor: Kaushik Gopalan.
 \leadershipitem
   {Project Impact:}
   {Volunteer Teacher, (2024--2025)}
-  {}
+  {Established a computer laboratory at Z.P. School in Lavale and taught digital literacy, including email, web surfing, and cybersecurity.}
 
 \cvsection{9}{Technical Skills}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
   \skillrow
     {Languages}
-    {TypeScript, Python, C++, Rust, JavaScript, SQL}
+    {TypeScript, Python, R, C++, Rust, JavaScript, SQL}
 
   \skillrow
     {Web and mobile}
     {React, React Native, Next.js, Expo, Tailwind CSS, React Flow, Vite, Streamlit, MDX}
 
   \skillrow
+    {UX research and design}
+    {User interviews, usability testing, Figma prototyping, implementation from designer-provided Figma specifications}
+
+  \skillrow
+    {Hardware prototyping}
+    {Arduino, Raspberry Pi, LEDs, motors, basic soldering}
+
+  \skillrow
     {Backend and data}
-    {FastAPI, PostgreSQL, Supabase, Convex}
+    {FastAPI, PostgreSQL, Supabase, Convex, data ingestion and reconciliation, Python and R data visualization}
 
   \skillrow
     {ML and scientific computing}
-    {TensorFlow/Keras, OpenCV, NumPy, ConvLSTM, ConvGRU, conditional GANs, variational autoencoders, genetic algorithms}
+    {TensorFlow/Keras, OpenCV, NumPy, retrieval-augmented generation, multi-LLM routing, ConvLSTM, ConvGRU, conditional GANs, variational autoencoders, genetic algorithms}
 
   \skillrow
     {Systems and infrastructure}

@@ -8,7 +8,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     category: "engineering",
     description: [
       "Develop and maintain Movynn, a React Native and Expo fitness application backed by Convex and published on the Apple App Store and Google Play.",
-      "Own end-to-end authentication, session-management, and turf-booking workflows within a two-engineer team.",
+      "Coordinate development within a two-engineer team and own end-to-end authentication, session-management, and turf-booking workflows.",
       "Co-design application architecture and release processes, including testing, continuous integration, and deployment workflows.",
     ],
     textLinks: [
@@ -24,8 +24,9 @@ export const EXPERIENCE: ExperienceItem[] = [
     period: "Oct 2024 - Present",
     category: "engineering",
     description: [
-      "Lead frontend development of an internal dashboard for ingesting, reviewing, and analyzing battery-experiment data.",
+      "Lead frontend development of an internal battery-research dashboard and coordinate delivery across the team.",
       "Co-design Supabase/PostgreSQL schemas and FastAPI services for ingesting and retrieving experimental data.",
+      "Built a multi-LLM retrieval-augmented generation pipeline that routes battery-research queries to specialized models.",
       "Reduced median query latency by 67% through database indexing and API-layer optimization.",
       "Co-maintain NDAX and Neware ingestion pipelines, including file reconciliation and defensive parsing for incomplete file sets.",
     ],
@@ -64,8 +65,8 @@ export const EXPERIENCE: ExperienceItem[] = [
     category: "engineering",
     compact: true,
     description: [
-      "Prototyped object identification with navigation cues on Raspberry Pi for students at Jagriti Blind School.",
-      "Benchmarked more than 10 object-detection models for edge deployment using accuracy and memory usage as evaluation criteria.",
+      "Interviewed officials at Jagriti School for Blind Girls and field-tested a Raspberry Pi prototype that provided object-identification and navigation cues for students.",
+      "Benchmarked more than 10 object-detection models for edge deployment, comparing accuracy and memory usage.",
     ],
   },
   {
@@ -83,7 +84,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     category: "teaching-writing",
     compact: true,
     description: [
-      "Provided one-to-one tutoring in programming, mathematics, and quantitative economics.",
+      "Provided one-to-one tutoring in programming, mathematics, and quantitative economics, supporting an average of seven students per academic year.",
     ],
   },
   {
@@ -93,7 +94,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     category: "research",
     compact: true,
     description: [
-      "Implemented and evaluated genetic algorithms and variational autoencoders for synthetic sample generation in imbalanced classification and protein data experiments.",
+      "Implemented and evaluated genetic algorithms and variational autoencoders for synthetic sample generation in experiments on imbalanced classification and protein datasets.",
     ],
   },
   {
@@ -103,8 +104,8 @@ export const EXPERIENCE: ExperienceItem[] = [
     category: "engineering",
     compact: true,
     description: [
-      "Built Python tooling to collect and normalize market data from Google Finance and Yahoo Finance for technical research.",
-      "Implemented candlestick-pattern detection and alerting within MetaStock.",
+      "Built Python tooling to collect and normalize Google Finance and Yahoo Finance data for publicly listed companies on India's National Stock Exchange.",
+      "Backtested trading strategies, calculated returns and technical indicators, and implemented candlestick-pattern detection and alerting within MetaStock.",
     ],
   },
   {

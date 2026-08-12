@@ -36,5 +36,7 @@ export const LEADERSHIP: LeadershipItem[] = [
     organization: "Project Impact",
     roles: ["Volunteer Teacher"],
     period: "2024-2025",
+    description:
+      "Established a computer laboratory at Z.P. School in Lavale and taught digital literacy, including email, web surfing, and cybersecurity.",
   },
 ];

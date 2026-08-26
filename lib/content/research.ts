@@ -63,16 +63,36 @@ export const RESEARCH: ResearchItem[] = [
   },
   {
     title:
+      "Precipitation Nowcasting Using ConvLSTM with INSAT-3D Satellite Data over the Indian Subcontinent",
+    year: "2025",
+    citationAuthors: "Jeet Shah, Kaushik Gopalan, and Bipasha P. Shukla",
+    kind: "presentation",
+    status: "presented",
+    summary:
+      "Presented at the 10th International Conference on Computer Vision and Image Processing (CVIP 2025) at IIT Ropar, covering ConvLSTM precipitation nowcasting with INSAT-3D satellite data. Refer to my undergraduate thesis for more details.",
+    links: [
+      {
+        label: "Official conference program",
+        href: "https://docs.google.com/spreadsheets/d/1Gks_2rXhL25L8i9UvlmlGgsrd5H_BH57RFZFV-cOLKI/edit?gid=345563849#gid=345563849",
+      },
+      {
+        label: "Official Conference website",
+        href: "https://cvip2025.vercel.app/",
+      },
+    ],
+  },
+  {
+    title:
       "Precipitation Nowcasting with OLR data using Optical Flow and Machine Learning",
     year: "2023",
-    citationAuthors: "Jeet Shah",
+    citationAuthors: "Jeet Shah, Kaushik Gopalan, and Bipasha P. Shukla",
     kind: "presentation",
     status: "presented",
     summary:
       "Presented at the NCVPRIPG 2023 Student Research Symposium at IIT Jodhpur, covering INSAT-3D OLR data, optical flow, and machine-learning approaches to precipitation nowcasting.",
     links: [
       {
-        label: "Official symposium programme",
+        label: "Official symposium program",
         href: "https://events.iitj.ac.in/ncvpripg2023/srs.html",
       },
       {

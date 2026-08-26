@@ -52,7 +52,7 @@ export const RESEARCH: ResearchItem[] = [
     kind: "thesis",
     status: "completed",
     summary:
-      "FLAME Scholar's Program undergraduate thesis supervised by Kaushik Gopalan, consolidating research begun in CSIT334 and continued during the ISRO internship.",
+      "FLAME Scholar's Program undergraduate thesis supervised by Kaushik Gopalan. The ConvLSTM forecast reduced six-hour RMSE by 30.7% compared with a Lucas-Kanade optical-flow baseline.",
     featured: true,
     links: [
       {

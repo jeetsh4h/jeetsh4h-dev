@@ -2,6 +2,45 @@ import type { ProjectItem } from "./types";
 
 export const PROJECTS: ProjectItem[] = [
   {
+    title: "DPL Programming Language",
+    description:
+      "I collaborate with Prof. Aamod Sane and Prajas Naik on an educational language with Python-like syntax and indentation-based blocks. My work spans the parser, static checks, interpreter, runtime diagnostics, CLI, documentation, and browser playground.",
+    status: "private",
+    links: [],
+    stack: ["TypeScript", "Chevrotain", "Monaco", "Playwright"],
+    confidentialityNote:
+      "The repository remains private while the research project is under development.",
+    featured: true,
+  },
+  {
+    title: "INSAT-3D Nowcasting Toolkit",
+    description:
+      "An end-to-end research toolkit for caching MOSDAC satellite data, generating temporal windows, training ConvLSTM models, and comparing forecasts with optical-flow baselines. The ConvLSTM reduced six-hour RMSE by 30.7%.",
+    status: "research",
+    links: [
+      {
+        label: "Repository",
+        href: "https://github.com/jeetsh4h/DISS384",
+      },
+    ],
+    stack: ["Python", "TensorFlow/Keras", "OpenCV", "HDF5"],
+    featured: true,
+  },
+  {
+    title: "Ladybird Browser Contribution",
+    description:
+      "Added an Open Link in New Window context-menu action across LibWebView, Qt, and AppKit; merged upstream in May 2026.",
+    status: "public",
+    links: [
+      {
+        label: "Merged pull request",
+        href: "https://github.com/LadybirdBrowser/ladybird/pull/8009",
+      },
+    ],
+    stack: ["C++", "Objective-C++", "Qt", "AppKit"],
+    featured: true,
+  },
+  {
     title: "Personal Website and Diary",
     description:
       "A Next.js portfolio and file-based MDX diary with terminal and PDF views, generated Open Graph images, automated Vitest checks, and a GitHub Actions pipeline that compiles the LaTeX CV and deploys the site.",
@@ -19,12 +58,12 @@ export const PROJECTS: ProjectItem[] = [
       "LaTeX",
       "GitHub Actions",
     ],
-    featured: true,
+    featured: false,
   },
   {
     title: "Jyeshthanubandh",
     description:
-      "A senior-citizen safety application co-developed with FLAME University and Pimpri-Chinchwad Police, integrating registered profiles, medical information, location, and emergency-assistance workflows with a police-response dashboard.",
+      "A senior-citizen safety application developed with FLAME University and Pimpri-Chinchwad Police. I contributed Firebase phone authentication, React Native integration, Android build work, and release fixes.",
     links: [
       {
         label: "Google Play",
@@ -32,20 +71,7 @@ export const PROJECTS: ProjectItem[] = [
       },
     ],
     stack: ["React Native", "AWS"],
-    featured: true,
-  },
-  {
-    title: "INSAT-3D Nowcasting Toolkit",
-    description:
-      "A command-line research toolkit for caching MOSDAC satellite data and training ConvLSTM models on INSAT-3D imagery.",
-    status: "research",
-    links: [
-      {
-        label: "Repository",
-        href: "https://github.com/jeetsh4h/DISS384",
-      },
-    ],
-    stack: ["Python", "TensorFlow/Keras", "OpenCV"],
+    featured: false,
   },
   {
     title: "Rust Systems Projects",
@@ -62,7 +88,7 @@ export const PROJECTS: ProjectItem[] = [
       },
     ],
     stack: ["Rust", "Tokio", "TCP", "HTTP/1.1"],
-    featured: true,
+    featured: false,
   },
   {
     title: "Project Euler+ Solutions",
@@ -111,7 +137,7 @@ export const PROJECTS: ProjectItem[] = [
       },
     ],
     stack: ["Google Apps Script", "JavaScript", "Google Calendar API"],
-    featured: true,
+    featured: false,
   },
   {
     title: "Paudha Yodha",

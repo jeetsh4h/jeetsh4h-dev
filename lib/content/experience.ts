@@ -3,31 +3,31 @@ import type { ExperienceItem } from "./types";
 export const EXPERIENCE: ExperienceItem[] = [
   {
     company: "Elevate Fitness",
-    role: "Software Engineer",
-    period: "Dec 2025 - Present",
+    role: "Software Engineer (Part-time)",
+    period: "Dec 2025 - Aug 2026",
     category: "engineering",
     description: [
-      "Develop and maintain Movynn, a React Native and Expo fitness application backed by Convex and published on the Apple App Store and Google Play.",
-      "Coordinate development within a two-engineer team and own end-to-end authentication, session-management, and turf-booking workflows.",
-      "Co-design application architecture and release processes, including testing, continuous integration, and deployment workflows.",
+      "Build and maintain Movynn, a React Native and Expo fitness application backed by Convex and published on the Apple App Store in India.",
+      "Implemented native Apple Sign-In and secure session recovery, including nonce verification and first-login profile persistence.",
+      "Built multi-ticket booking and Razorpay payment recovery and reconciliation, requiring server-confirmed capture before order fulfillment.",
+      "Added account-deletion and pseudonymization flows, automated app and backend tests, continuous-integration checks, and release documentation.",
     ],
     textLinks: [
       {
-        label: "Movynn",
-        href: "https://www.instagram.com/movynn_in/",
+        label: "Movynn on the App Store",
+        href: "https://apps.apple.com/in/app/movynn/id6767674156",
       },
     ],
   },
   {
     company: "Voltek AI / Nanoloy",
-    role: "Software Engineer",
-    period: "Oct 2024 - Present",
+    role: "Software Engineer (Part-time)",
+    period: "Oct 2024 - Aug 2026",
     category: "engineering",
     description: [
-      "Lead frontend development of an internal battery-research dashboard and coordinate delivery across the team.",
-      "Co-design Supabase/PostgreSQL schemas and FastAPI services for ingesting and retrieving experimental data.",
-      "Built a multi-LLM retrieval-augmented generation pipeline that routes battery-research queries to specialized models.",
-      "Reduced median query latency by 67% through database indexing and API-layer optimization.",
+      "Lead frontend development for Nanoloy, an internal battery-research platform used by 10-100 users.",
+      "Redesigned PostgreSQL process storage from process-specific, join-heavy tables to three indexed canonical tables with transactional writes and backfill validation, reducing observed material-query latency from 3-20 seconds to under 500 ms.",
+      "Built the Next.js orchestration layer for a battery-research assistant supporting OpenAI, Anthropic, Gemini, and xAI, with internal-document retrieval, web search, citations, streamed responses, and chat history.",
       "Co-maintain NDAX and Neware ingestion pipelines, including file reconciliation and defensive parsing for incomplete file sets.",
     ],
     textLinks: [
@@ -55,7 +55,6 @@ export const EXPERIENCE: ExperienceItem[] = [
     category: "research",
     description: [
       "Developed ConvLSTM precipitation-nowcasting models using INSAT-3D satellite data in an air-gapped HPC environment.",
-      "Improved RMSE by 30.7% relative to baseline optical-flow models.",
     ],
   },
   {

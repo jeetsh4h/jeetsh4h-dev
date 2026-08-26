@@ -55,3 +55,6 @@ cv/*.synctex.gz
 cv/*.toc
 cv/*.xdv
 cv/cv.pdf
+
+# used for CLI
+docs/*

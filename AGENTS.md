@@ -15,6 +15,9 @@
 ## CV
 
 - `cv/cv.pdf` and `public/cv.pdf` are generated, ignored artifacts. Never edit or commit them as source; edit `cv/cv.tex` and use the documented build scripts.
+- `cv/resume-template.tex` and `cv/letter-template.tex` are reusable starter templates, not completed application documents. For a specific application, preserve the templates and tailor copies unless explicitly asked to refine the templates themselves.
+- `cv/cv.tex` is the current source of truth for CV facts, but it is not exhaustive. When tailoring an application, read relevant material in `docs/` for supplemental context; if sources conflict, ask rather than silently choosing one.
+- Keep every application claim accurate and supported by the available sources. Never invent experience, skills, dates, or metrics.
 - Keep overlapping experience, education, research, and date information in the CV and website in sync.
 
 ## SEO-sensitive edits

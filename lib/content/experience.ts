@@ -25,7 +25,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     period: "Oct 2024 - Aug 2026",
     category: "engineering",
     description: [
-      "Lead frontend development for Nanoloy, an internal battery-research platform used by 10-100 users.",
+      "Lead frontend development for Voltek AI, an internal battery-research platform used by 10--100 internal Nanoloy users.",
       "Redesigned PostgreSQL process storage from process-specific, join-heavy tables to three indexed canonical tables with transactional writes and backfill validation, reducing observed material-query latency from 3-20 seconds to under 500 ms.",
       "Built the Next.js orchestration layer for a battery-research assistant supporting OpenAI, Anthropic, Gemini, and xAI, with internal-document retrieval, web search, citations, streamed responses, and chat history.",
       "Co-maintain NDAX and Neware ingestion pipelines, including file reconciliation and defensive parsing for incomplete file sets.",

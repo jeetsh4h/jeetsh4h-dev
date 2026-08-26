@@ -189,7 +189,7 @@
 
 \begin{center}
   {\fontsize{28}{32}\selectfont\bfseries Jeet Shah}\\[4pt]
-  {\large\color{muted}Software Engineer · Incoming M.S. Computer Science Student, Columbia University}\\[7pt]
+  {\large\color{muted}Software Engineer · M.S. Computer Science Student, Columbia University}\\[7pt]
   \headerlink{https://jeetsh4h.dev}{jeetsh4h.dev}
   \quad\textcolor{rule}{|}\quad
   \headerlink{https://github.com/jeetsh4h}{github.com/jeetsh4h}
@@ -223,26 +223,26 @@
 \cvsection{9}{Engineering Experience}
 \experienceentry
   {Elevate Fitness}
-  {Dec 2025 -- Present}
-  {Software Engineer}
+  {Dec 2025 -- Aug 2026}
+  {Software Engineer (Part-time)}
   {
     \begin{itemize}
-      \item Develop and maintain Movynn, a React Native and Expo fitness application backed by Convex and published on the Apple App Store and Google Play.
-      \item Coordinate development within a two-engineer team and own end-to-end authentication, session-management, and turf-booking workflows.
-      \item Co-design application architecture and release processes, including testing, continuous integration, and deployment workflows.
+      \item Build and maintain Movynn, a React Native and Expo fitness application backed by Convex and published on the Apple App Store in India.
+      \item Implemented native Apple Sign-In and secure session recovery, including nonce verification and first-login profile persistence.
+      \item Built multi-ticket booking and Razorpay payment recovery and reconciliation, requiring server-confirmed capture before order fulfillment.
+      \item Added account-deletion and pseudonymization flows, automated app and backend tests, continuous-integration checks, and release documentation.
     \end{itemize}
   }
 
 \experienceentry
   {Voltek AI / Nanoloy}
-  {Oct 2024 -- Present}
-  {Software Engineer}
+  {Oct 2024 -- Aug 2026}
+  {Software Engineer (Part-time)}
   {
     \begin{itemize}
-      \item Lead frontend development of an internal battery-research dashboard and coordinate delivery across the team.
-      \item Co-design Supabase/PostgreSQL schemas and FastAPI services for ingesting and retrieving experimental data.
-      \item Built a multi-LLM retrieval-augmented generation pipeline that routes battery-research queries to specialized models.
-      \item Reduced median query latency by 67\% through database indexing and API-layer optimization.
+      \item Lead frontend development for Nanoloy, an internal battery-research platform used by 10--100 users.
+      \item Redesigned PostgreSQL process storage from process-specific, join-heavy tables to three indexed canonical tables with transactional writes and backfill validation, reducing observed material-query latency from 3--20 seconds to under 500 ms.
+      \item Built the Next.js orchestration layer for a battery-research assistant supporting OpenAI, Anthropic, Gemini, and xAI, with internal-document retrieval, web search, citations, streamed responses, and chat history.
       \item Co-maintain NDAX and Neware ingestion pipelines, including file reconciliation and defensive parsing for incomplete file sets.
     \end{itemize}
   }
@@ -300,7 +300,6 @@
   {
     \begin{itemize}
       \item Developed ConvLSTM precipitation-nowcasting models using INSAT-3D satellite data in an air-gapped HPC environment.
-      \item Improved RMSE by 30.7\% relative to baseline optical-flow models.
     \end{itemize}
   }
 
@@ -359,6 +358,7 @@ Deshpande, A., Gopalan, K., \textbf{Shah, J.}, \& Simu, H. (2024).
 Supervisor: Kaushik Gopalan.
 \begin{itemize}
   \item Consolidated research begun in CSIT334 and continued during the ISRO internship into a unified ConvLSTM study using INSAT-3D satellite data.
+  \item Reduced six-hour forecast RMSE by 30.7\% compared with a Lucas--Kanade optical-flow baseline.
 \end{itemize}
 
 \researchlabel{Conference Presentation}
@@ -381,22 +381,34 @@ Supervisor: Kaushik Gopalan.
 
 \cvsection{7}{Projects}
 \projectentry
-  {Personal Website and Diary}
-  {\href{https://github.com/jeetsh4h/jeetsh4h-dev}{Repository}}
-  {Next.js · TypeScript · MDX · Tailwind CSS · LaTeX · GitHub Actions}
-  {Develop and maintain a Next.js portfolio and file-based MDX diary with terminal and PDF views, generated Open Graph images, automated Vitest checks, and a GitHub Actions pipeline that compiles the LaTeX CV and deploys the site.}
-
-\projectentry
-  {Jyeshthanubandh}
-  {\href{https://play.google.com/store/apps/details?id=com.Jyeshthanubandh.pcmc_app}{Google Play}}
-  {React Native · AWS}
-  {Worked directly with Pimpri-Chinchwad Police while co-developing a senior-citizen safety application with FLAME University, integrating registered profiles, medical information, location, and emergency-assistance workflows with a police-response dashboard.}
+  {DPL Programming Language}
+  {May 2026 -- Present}
+  {Research collaboration · Private repository · TypeScript · Chevrotain · Monaco · Playwright}
+  {Collaborate with Prof. Aamod Sane and Prajas Naik on an educational language with Python-like syntax and indentation-based blocks. My work spans the parser, static checks, interpreter, runtime diagnostics, CLI, documentation, browser playground, and cross-browser tests.}
 
 \projectentry
   {INSAT-3D Nowcasting Toolkit}
   {\href{https://github.com/jeetsh4h/DISS384}{Repository}}
-  {Python · TensorFlow/Keras · OpenCV}
-  {Built a command-line research toolkit for caching MOSDAC satellite data and training ConvLSTM models on INSAT-3D imagery.}
+  {Python · TensorFlow/Keras · OpenCV · HDF5}
+  {Built an end-to-end toolkit for caching MOSDAC satellite data, generating temporal windows, training ConvLSTM models, and comparing forecasts with optical-flow baselines; reduced six-hour RMSE by 30.7\%.}
+
+\projectentry
+  {Ladybird Browser Contribution}
+  {\href{https://github.com/LadybirdBrowser/ladybird/pull/8009}{Merged pull request}}
+  {C++ · Objective-C++ · Qt · AppKit}
+  {Added an ``Open Link in New Window'' context-menu action across LibWebView, Qt, and AppKit; merged upstream in May 2026.}
+
+\projectentry
+  {Personal Website and Diary}
+  {\href{https://github.com/jeetsh4h/jeetsh4h-dev}{Repository}}
+  {Next.js · TypeScript · MDX · LaTeX · GitHub Actions}
+  {Built a Next.js portfolio and file-based MDX diary with terminal and PDF views, generated Open Graph images, automated Vitest checks, and a deployment pipeline that compiles this LaTeX CV.}
+
+\projectentry
+  {Jyeshthanubandh}
+  {\href{https://play.google.com/store/apps/details?id=com.Jyeshthanubandh.pcmc_app}{Google Play}}
+  {React Native · Firebase · Android}
+  {Contributed Firebase phone authentication, React Native integration, Android build work, and release fixes to a senior-citizen safety application developed with FLAME University and Pimpri-Chinchwad Police.}
 
 \projectentry
   {Rust Systems Projects}
@@ -404,37 +416,6 @@ Supervisor: Kaushik Gopalan.
   {Rust · Tokio · TCP · HTTP/1.1}
   {Built a command shell with built-in commands, PATH resolution, and external-process execution, and an asynchronous HTTP/1.1 server with concurrent TCP handling, file upload and download, and gzip support.}
 
-\projectentry
-  {Project Euler+ Solutions}
-  {\href{https://github.com/jeetsh4h/ProjectEuler}{Repository}}
-  {Python · Jupyter · Algorithms}
-  {Documented solutions to 52 HackerRank Project Euler+ problems with time- and space-complexity notes.}
-
-\projectentry
-  {Curriculum Mapping}
-  {\href{https://github.com/jeetsh4h/Course_Mapping}{Repository}}
-  {React · TypeScript · React Flow · Vite}
-  {Built an interactive prerequisite-graph application for computer science, economics, and psychology curricula, with course-detail views and custom CSV uploads.}
-
-\projectentry
-  {RefreshRateChange}
-  {\href{https://github.com/jeetsh4h/RefreshRateChange}{Repository}}
-  {C++ · PowerShell · Windows Task Scheduler}
-  {Released a C++ command-line utility with PowerShell and Windows Task Scheduler automation to switch display refresh rates when a laptop transitions between AC and battery power.}
-
-\projectentry
-  {Event Extract}
-  {\href{https://github.com/jeetsh4h/EventExtractAddOn}{Repository}}
-  {Google Apps Script · JavaScript · Google Calendar API}
-  {Co-developed a regex-based Google Workspace add-on that extracts dates from university emails and lets users create Google Calendar events; deployed the proof of concept to the Google Workspace Marketplace.}
-
-\projectentry
-  {Paudha Yodha}
-  {\href{https://github.com/jeetsh4h/paudhayodha}{Repository}}
-  {Python · TensorFlow/Keras · Streamlit · Computer Vision}
-  {Co-developed a Streamlit image-classification application that predicts plant species and leaf-health conditions across 38 classes and returns plant-care guidance.}
-
-\newpage
 \cvsection{6}{Selected Computer Science Coursework}
 \courseitem
   {CSIT402}
@@ -520,11 +501,11 @@ Completed an introductory program covering financial statements and ratios, busi
 
   \skillrow
     {Backend and data}
-    {FastAPI, PostgreSQL, Supabase, Convex, data ingestion and reconciliation, Python and R data visualization}
+    {FastAPI, PostgreSQL, Supabase, Convex, SQLite, data ingestion and reconciliation}
 
   \skillrow
     {ML and scientific computing}
-    {TensorFlow/Keras, OpenCV, NumPy, retrieval-augmented generation, multi-LLM routing, ConvLSTM, ConvGRU, conditional GANs, variational autoencoders, genetic algorithms}
+    {PyTorch, TensorFlow/Keras, OpenCV, NumPy, retrieval-augmented generation, ConvLSTM, ConvGRU, conditional GANs, variational autoencoders}
 
   \skillrow
     {Systems and infrastructure}

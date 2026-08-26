@@ -51,6 +51,29 @@ The installer wraps:
 paru -S --needed texlive-bin texlive-binextra texlive-basic texlive-xetex texlive-latex texlive-latexrecommended texlive-latexextra texlive-fontsrecommended
 ```
 
+## Merge PDFs
+
+The Fish CLI requires `pdfunite`, provided by Poppler. By default it prompts
+for the PDF order and output path:
+
+```fish
+pnpm pdf:merge resume.pdf letter.pdf transcript.pdf
+```
+
+At the order prompt, press Enter to keep the displayed order or enter every
+item number in the desired order, such as `2 1 3`.
+
+For automation, skip either or both prompts:
+
+```fish
+pnpm pdf:merge --current-order resume.pdf letter.pdf
+pnpm pdf:merge --output application.pdf resume.pdf letter.pdf
+pnpm pdf:merge --current-order --output application.pdf resume.pdf letter.pdf
+```
+
+An explicit `--output` path replaces an existing file. The interactive path
+asks before replacing one.
+
 ## CI LaTeX Image
 
 Deploy workflows build `public/cv.pdf` with a slim GHCR image:

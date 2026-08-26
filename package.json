@@ -17,6 +17,7 @@
     "cv:install-deps:cachyos": "fish scripts/install-cv-deps.fish",
     "cv:build": "bash scripts/build-cv.sh",
     "cv:clean": "bash scripts/clean-cv.sh",
+    "pdf:merge": "fish scripts/merge-pdfs.fish",
     "verify": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build"
   },
   "dependencies": {

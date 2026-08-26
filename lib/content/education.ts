@@ -10,7 +10,7 @@ export const EDUCATION: EducationItem[] = [
   },
   {
     institution: "FLAME University",
-    period: "Aug 2021 - Apr 2025",
+    period: "Aug 2021 - May 2025",
     location: "Pune, India",
     degree:
       "B.Sc. (Hons.) Computer Science · PG Diploma in Interdisciplinary Studies",

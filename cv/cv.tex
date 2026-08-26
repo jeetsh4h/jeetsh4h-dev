@@ -10,7 +10,7 @@
   Ligatures=TeX,
   RawFeature={-liga,-clig},
 ]
-\usepackage[margin=0.62in]{geometry}
+\usepackage[margin=0.55in]{geometry}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{enumitem}
 \usepackage{fancyhdr}
@@ -83,11 +83,17 @@
 \color{ink}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{1pt}
+% Keep each paragraph together so a page never starts with the trailing line of
+% a sentence. Page breaks remain available between entries and list items.
+\interlinepenalty=10000
+\widowpenalty=10000
+\clubpenalty=10000
+\emergencystretch=1em
 \raggedbottom
 \setlist[itemize]{
   leftmargin=1.2em,
-  itemsep=1pt,
-  topsep=2pt,
+  itemsep=0.5pt,
+  topsep=1pt,
   parsep=0pt,
   label=\textcolor{accent}{\textbullet}
 }
@@ -96,12 +102,12 @@
   {\large\bfseries\color{ink}}
   {}{0em}{}
   [\vspace{2pt}\color{rule}\titlerule]
-\titlespacing{\section}{0pt}{7pt}{3pt}
+\titlespacing{\section}{0pt}{5pt}{2pt}
 
 % Reserve enough room for a section heading and the beginning of its first item.
 % The first argument is the minimum number of baselines required.
 \newcommand{\cvsection}[2]{%
-  \needspace{#1\baselineskip}%
+  \needspace{\dimexpr#1\baselineskip+3\baselineskip\relax}%
   \section{#2}%
 }
 
@@ -186,6 +192,7 @@
 }
 
 \begin{document}
+\small
 
 \begin{center}
   {\fontsize{28}{32}\selectfont\bfseries Jeet Shah}\\[4pt]
@@ -211,7 +218,7 @@
 
 \datedentry
   {FLAME University}
-  {Aug 2021 -- Apr 2025}
+  {Aug 2021 -- May 2025}
   {B.Sc. (Hons.) Computer Science · PG Diploma in Interdisciplinary Studies}
   {Pune, India}
 \begin{itemize}
@@ -279,7 +286,6 @@
     \end{itemize}
   }
 
-\newpage
 \cvsection{6}{Research Experience}
 \experienceentry
   {Centre for Interdisciplinary AI, FLAME University}
@@ -437,6 +443,7 @@ Supervisor: Kaushik Gopalan.
   {Advanced Database Systems}
   {Built JJDB, a C++ command-line database with schema files, CSV loading, record operations, and column indexes; also implemented hashing and binary-search-tree exercises.}
   {https://github.com/jeetsh4h/CSIT372}
+
 \courseitem
   {CSIT301}
   {Design and Analysis of Algorithms}
@@ -526,9 +533,8 @@ Completed an introductory program covering financial statements and ratios, busi
     {Git, GitHub Actions, Bash, PowerShell, LaTeX, Google Apps Script, Windows Task Scheduler, Jupyter}
 \end{tabularx}
 
-\vfill
-\begin{center}
-\footnotesize\color{muted}Last updated: \today
-\end{center}
+\fancyfoot[C]{%
+  \raisebox{2\baselineskip}[0pt][0pt]{\footnotesize\color{muted}Last updated: \today}%
+}
 
 \end{document}

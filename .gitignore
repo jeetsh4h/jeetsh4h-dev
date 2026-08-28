@@ -56,5 +56,6 @@ cv/*.toc
 cv/*.xdv
 cv/cv.pdf
 
-# used for CLI
+# miscellaneous
 docs/*
+applications

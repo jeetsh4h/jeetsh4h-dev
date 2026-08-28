@@ -10,22 +10,56 @@
   Ligatures=TeX,
   RawFeature={-liga,-clig},
 ]
-\usepackage[margin=0.85in]{geometry}
+\usepackage[margin=0.75in]{geometry}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
 \usepackage{microtype}
 \usepackage{parskip}
 
+\definecolor{ink}{HTML}{1F2430}
+\definecolor{muted}{HTML}{4B5563}
+\definecolor{accent}{HTML}{3D497E}
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=accent,
+  pdftitle={Jeet Shah - DV Commodities Software Engineering Internship Cover Letter},
+  pdfauthor={Jeet Shah},
+  pdfsubject={Application for Software Engineering Internship, Summer 2027, Job 4719119005},
+}
+
+\color{ink}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{9pt}
-\linespread{1.04}
+\linespread{1.03}
 \pagestyle{empty}
 \raggedbottom
 
 \begin{document}
 
 \begin{center}
-  {\Large\bfseries Letter}
+  {\fontsize{24}{28}\selectfont\bfseries Jeet Shah}\\[4pt]
+  {\color{muted}New York, NY \enspace·\enspace
+  \href{mailto:jeetsh4h@gmail.com}{jeetsh4h@gmail.com} \enspace·\enspace
+  \href{https://jeetsh4h.dev}{jeetsh4h.dev}}
 \end{center}
 
-% Write the letter here
+\vspace{8pt}
+
+<date>
+
+<company> Recruiting Team\\
+<company>\\
+New York, NY
+
+\textbf{Re: <job role>, (<job id>)}
+
+Dear <company> Recruiting Team:
+
+% Cover Letter Body
+
+Sincerely,
+
+\textbf{Jeet Shah}
 
 \end{document}

@@ -50,7 +50,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build CV and role-specific resumes
+      - name: Build CV and role-specific résumés
         if: steps.cache-pdf.outputs.cache-hit != 'true'
         run: |
           docker pull --quiet "$LATEX_IMAGE"

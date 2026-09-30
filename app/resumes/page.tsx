@@ -8,9 +8,9 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { getResumes } from "@/lib/resumes";
 
 export const metadata: Metadata = {
-  title: "Resumes",
+  title: "Résumés",
   description:
-    "Role-specific resumes for Jeet Shah, with PDF downloads and update dates.",
+    "Role-specific résumés for Jeet Shah, with PDF downloads and update dates.",
   alternates: { canonical: "/resumes" },
   robots: { index: false, follow: true },
 };
@@ -46,10 +46,10 @@ export default async function ResumesPage() {
       <div className="mx-auto max-w-3xl px-6 pb-12 pt-3 md:pb-16 md:pt-6">
         <header className="mb-8 space-y-3 border-l-2 border-accent pl-4">
           <h1 className="text-3xl font-bold text-primary md:text-4xl">
-            resumes
+            résumés
           </h1>
           <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            One-page resumes tailored to each role. For my full experience,
+            One-page résumés tailored to each role. For my full experience,
             research, and education,{" "}
             <Link
               href="/cv.pdf"
@@ -63,7 +63,7 @@ export default async function ResumesPage() {
 
         <ul
           className="space-y-4"
-          aria-label="Role-specific resumes"
+          aria-label="Role-specific résumés"
         >
           {resumes.map((resume) => (
             <li key={resume.slug}>
@@ -97,7 +97,7 @@ export default async function ResumesPage() {
                       }
                       variant="secondary"
                       size="icon"
-                      aria-label={`View ${resume.title} resume PDF (new tab)`}
+                      aria-label={`View ${resume.title} résumé PDF (new tab)`}
                     >
                       <IconArrowUpRight
                         className="size-4"
@@ -114,7 +114,7 @@ export default async function ResumesPage() {
                       }
                       variant="secondary"
                       size="icon"
-                      aria-label={`Download ${resume.title} resume PDF`}
+                      aria-label={`Download ${resume.title} résumé PDF`}
                     >
                       <IconDownload
                         className="size-4"

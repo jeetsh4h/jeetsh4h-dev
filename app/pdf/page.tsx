@@ -48,7 +48,7 @@ export default function PDFPage() {
             variant="link"
             className="text-xs"
           >
-            <span className="underline">./resumes</span>
+            <span className="underline">./résumés</span>
             <span
               aria-hidden="true"
               className="transition-transform group-hover:translate-x-0.5"

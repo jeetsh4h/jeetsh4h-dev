@@ -1,0 +1,55 @@
+\input{resume-layout.tex}
+\resumemetadata{Quantitative Developer}{2026-09-30}{Financial data tooling, data pipelines, C++ databases, and algorithms.}
+\begin{document}
+\resumeheader
+\section{Education}
+\entry{Columbia University}{Sep 2026 -- Expected Dec 2027}{M.S. Computer Science, Network Systems Pathway · New York, NY}
+Current coursework: Operating Systems I, Computer Networks, Analysis of Algorithms.\par
+\vspace{3pt}
+\entry{FLAME University}{Aug 2021 -- May 2025}{B.Sc. (Hons.) Computer Science; PG Diploma in Interdisciplinary Studies · Pune, India}
+CGPA: 8.9/10; merit scholarships covering 25\% (2021--2024) and 60\% (2024--2025) of tuition.
+\section{Engineering and Financial Experience}
+\entry{Voltek AI}{Oct 2024 -- Aug 2026}{Software Engineer (Part-time)}
+\begin{itemize}
+  \item Replaced join-heavy process storage with three indexed PostgreSQL tables, transactional writes, and validated backfills; reduced observed query latency from 3--20 seconds to under 500 ms.
+  \item Built a Next.js research assistant with four model providers, document retrieval, web search, citations, streamed responses, and chat history.
+  \item Co-maintained NDAX and Neware ingestion pipelines with file reconciliation and defensive parsing.
+  \item Led frontend development for an internal battery-research platform serving 10--100 \href{https://www.nanoloy.com}{Nanoloy} users.
+\end{itemize}
+\entry{Analyse India}{May 2022 -- Aug 2022}{Technical Intern}
+\begin{itemize}
+  \item Built Python tools to collect and normalize Google Finance and Yahoo Finance data for National Stock Exchange-listed companies.
+  \item Backtested trading strategies, calculated returns and technical indicators, and implemented candlestick-pattern detection and alerts in MetaStock.
+\end{itemize}
+\section{Selected Systems and Research Projects}
+\project{Project Euler Algorithm Journal}{\href{https://github.com/jeetsh4h/ProjectEuler}{Coursework \& code}}
+\begin{itemize}
+  \item Documented implementations and optimization iterations across 52 numbered problems, including prime sieves, prefix sums, caching, and dynamic programming.
+\end{itemize}
+\project{JJDB and Distributed Systems Coursework}{\href{https://github.com/jeetsh4h/CSIT372}{Database} · \href{https://github.com/jeetsh4h/CSIT402}{Clocks}}
+\begin{itemize}
+  \item Built a C++ command-line database with schema files, CSV loading, record operations, and column indexes; implemented Lamport and vector clocks in Python to study causality and event ordering.
+\end{itemize}
+\project{Nilakan Programming Language}{\href{https://nilakan.jeetsh4h.workers.dev}{Documenation \& Playground}}
+\begin{itemize}
+  \item Implement Nilakan with Prajas Naik; language fundamentals designed by Prof. Aamod Sane.
+  \item Implement the parser, static checks, interpreter, runtime diagnostics, CLI, documentation, and browser playground using TypeScript, Chevrotain, Monaco, and Playwright.
+\end{itemize}
+\project{INSAT-3D Precipitation Nowcasting}{\href{https://github.com/jeetsh4h/DISS384}{Thesis \& code}}
+\begin{itemize}
+  \item Built satellite-data caching, temporal-window generation, and ConvLSTM training/evaluation pipelines in Python, TensorFlow/Keras, OpenCV, and HDF5.
+  \item Reduced six-hour forecast RMSE by 30.7\% against a Lucas--Kanade optical-flow baseline; undergraduate thesis supervised by Kaushik Gopalan (2025).
+\end{itemize}
+\section{Research Experience}
+\entry{Centre for Interdisciplinary AI, FLAME University}{Jan 2024 -- May 2025}{Research Assistant}
+\begin{itemize}
+  \item Co-developed nowcasting training/data pipelines and administered a multi-user GPU server.
+\end{itemize}
+\entry{Space Applications Centre, ISRO}{May 2023 -- Aug 2023}{Research Intern}
+\begin{itemize}
+  \item Developed ConvLSTM nowcasting models with satellite data in an air-gapped HPC environment.
+\end{itemize}
+\section{Technical Skills}
+\textbf{Languages and systems:} Python, C++, Rust, SQL, TypeScript, Linux, Docker, TCP, HTTP/1.1.\\
+\textbf{Data and modelling:} PostgreSQL, NumPy, TensorFlow/Keras, PyTorch, OpenCV, HDF5.
+\end{document}

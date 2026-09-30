@@ -51,6 +51,44 @@ The installer wraps:
 paru -S --needed texlive-bin texlive-binextra texlive-basic texlive-xetex texlive-latex texlive-latexrecommended texlive-latexextra texlive-fontsrecommended
 ```
 
+## Role-specific Resumes
+
+Role-specific resume sources live in `cv/resumes/`.
+
+```bash
+pnpm resumes:build
+```
+
+This uses the CV’s TeX Live installation. The command discovers resume sources,
+rejects multiple pages or overflowing content, and publishes the PDFs to
+`public/resumes/`. Temporary TeX build files are removed automatically. Generated
+PDFs remain ignored, like `public/cv.pdf`, and both deploy workflows regenerate
+them from source. Build the CV and resumes before running `pnpm verify`.
+
+Each resume declares its catalog title, last content-update date, and description
+in its TeX source, immediately after the shared layout input:
+
+```tex
+\resumemetadata{Role Title}{2026-09-30}{Relevant experience for this role.}
+```
+
+Keep these three fields as single-line plain text without TeX commands or braces.
+Change the date only when editing content, not when rebuilding. The page reads
+these declarations directly; there is no separate catalog to maintain. New
+role sources are discovered automatically by the build and page. To add a
+resume, create a `<role>.tex` file with the shared layout and metadata. To remove
+one, delete its source. Run `pnpm resumes:build` after either change; the build
+also removes stale PDFs. No fixed list or count needs updating.
+
+Edit the corresponding `.tex` source and rebuild; `resume-layout.tex` controls
+shared typography. Review the resulting PDF after changing content. Preserve
+one-page density by selecting relevant evidence and adjusting spacing, rather
+than shrinking the font or adding filler.
+
+Resumes use black text with blue, underlined links. The internal selection
+record in `cv/content-review.md` tracks included evidence, exclusions, and facts
+that still need clarification.
+
 ## Merge PDFs
 
 The Fish CLI requires `pdfunite`, provided by Poppler. By default it prompts
@@ -76,7 +114,7 @@ asks before replacing one.
 
 ## CI LaTeX Image
 
-Deploy workflows build `public/cv.pdf` with a slim GHCR image:
+Deploy workflows build `public/cv.pdf` and `public/resumes/*.pdf` with a slim GHCR image:
 
 `ghcr.io/jeetsh4h/jeetsh4h-dev/latex-cv:latest`
 
@@ -106,7 +144,10 @@ site:
   `lib/content/research.ts`: review date ranges, `Present` entries, research
   years, and any revisit notes whenever profile content changes.
 - `cv/cv.tex`: keep experience, publication, and education dates in sync with
-  the site content.
+  the site content and LinkedIn. Update the explicit footer date after meaningful
+  CV changes; rebuilding alone must not claim a fresh content date.
+- `cv/resumes/*.tex`: update `\resumemetadata` dates after content edits and run
+  `pnpm resumes:build` to refresh the public downloads.
 - Ensure the footer copyright years and License copyright year is updated.
 
 ## Diary Entries

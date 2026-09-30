@@ -1,0 +1,43 @@
+% Shared typography for the role-specific, one-page application resumes.
+\documentclass[letterpaper,10pt]{article}
+\usepackage{fontspec}
+\setmainfont{texgyrepagella}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic,Ligatures=TeX,RawFeature={-liga,-clig}]
+\usepackage[margin=0.55in]{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{soul}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{titlesec}
+\definecolor{linkblue}{HTML}{3657D6}
+\hypersetup{colorlinks=true,urlcolor=linkblue,linkcolor=linkblue,pdfauthor={Jeet Shah}}
+\setul{0.18ex}{0.45pt}
+\setulcolor{linkblue}
+\let\originalhref\href
+\renewcommand{\href}[2]{\originalhref{#1}{\textcolor{linkblue}{\ul{#2}}}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\emergencystretch=1em
+\raggedright
+\setlist[itemize]{leftmargin=1.2em,itemsep=1pt,topsep=2pt,parsep=0pt,partopsep=0pt}
+\titleformat{\section}{\normalsize\bfseries}{}{0pt}{}[\vspace{1pt}\titlerule]
+\titlespacing{\section}{0pt}{6pt}{3pt}
+\newcommand{\entry}[3]{\textbf{#1}\hfill\textit{#2}\par #3\par}
+\newcommand{\project}[2]{\textbf{#1}\hfill #2\par}
+% Plain-text metadata is also read by the website's resume catalog.
+\newcommand{\resumemetadata}[3]{%
+  \def\resumetitle{#1}%
+  \def\resumeupdated{#2}%
+  \hypersetup{pdftitle={Jeet Shah - #1 Resume},pdfsubject={#3 Updated #2}}%
+}
+\newcommand{\resumeheader}{%
+  \begin{center}
+    {\fontsize{23}{25}\selectfont\bfseries Jeet Shah}\\[3pt]
+    \resumetitle\\[4pt]
+    \href{mailto:jeetsh4h@gmail.com}{jeetsh4h@gmail.com} \enspace|\enspace
+    \href{https://jeetsh4h.dev}{jeetsh4h.dev} \enspace|\enspace
+    \href{https://github.com/jeetsh4h}{github.com/jeetsh4h} \enspace|\enspace
+    \href{https://www.linkedin.com/in/jeetsh4h}{linkedin.com/in/jeetsh4h}
+  \end{center}
+}

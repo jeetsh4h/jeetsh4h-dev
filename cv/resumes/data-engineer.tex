@@ -1,0 +1,49 @@
+\input{resume-layout.tex}
+\resumemetadata{Data Engineer}{2026-09-30}{Instrument ingestion, PostgreSQL storage, reconciliation, and satellite-data pipelines.}
+\titlespacing{\section}{0pt}{10pt}{3pt}
+\begin{document}
+\resumeheader
+\section{Education}
+\entry{Columbia University}{Sep 2026 -- Expected Dec 2027}{M.S. Computer Science, Network Systems Pathway · New York, NY}
+\vspace{3pt}
+\entry{FLAME University}{Aug 2021 -- May 2025}{B.Sc. (Hons.) Computer Science; PG Diploma in Interdisciplinary Studies · Pune, India}
+CGPA: 8.9/10; merit scholarships covering 25\% (2021--2024) and 60\% (2024--2025) of tuition.\\
+Selected completed coursework: Advanced Database Systems, Distributed Systems.
+\section{Engineering and Data Experience}
+\entry{Voltek AI}{Oct 2024 -- Aug 2026}{Software Engineer (Part-time)}
+\begin{itemize}
+  \item Redesigned PostgreSQL process storage from join-heavy tables to three indexed canonical tables with transactional writes and validated backfills; reduced observed material-query latency from 3--20 seconds to under 500 ms.
+  \item Co-maintained NDAX and Neware instrument-data ingestion pipelines, including file reconciliation and defensive parsing for incomplete file sets.
+  \item Built a Next.js battery-research assistant with internal-document retrieval, web search, citations, streamed responses, and chat history across four model providers.
+  \item Led frontend development for an internal battery-research platform used by 10--100 \href{https://www.nanoloy.com}{Nanoloy} users.
+\end{itemize}
+\entry{Elevate Fitness}{Dec 2025 -- Aug 2026}{Software Engineer (Part-time)}
+\begin{itemize}
+  \item Built multi-ticket booking and Razorpay payment recovery and reconciliation for Movynn, a React Native/Expo fitness app backed by Convex and published on the Apple App Store and the Google Play Store in India.
+  \item Required server-confirmed payment capture before fulfillment; added account-deletion and pseudonymization flows, automated app/backend tests, and CI checks.
+\end{itemize}
+\entry{Centre for Interdisciplinary AI, FLAME University}{Jan 2024 -- May 2025}{Research Assistant}
+\begin{itemize}
+  \item Co-developed satellite-data ingestion tooling and ConvGRU, conditional-GAN, and ConvLSTM training pipelines for precipitation nowcasting.
+  \item Administered a multi-user GPU server, managing user accounts, drivers, storage, and isolated training environments.
+\end{itemize}
+\entry{Analyse India}{May 2022 -- Aug 2022}{Technical Intern}
+\begin{itemize}
+  \item Built Python tools to collect and normalize Google Finance and Yahoo Finance data for National Stock Exchange-listed companies.
+  \item Backtested trading strategies, calculated returns and technical indicators, and implemented candlestick-pattern detection and alerts in MetaStock.
+\end{itemize}
+\section{Selected Data and Software Projects}
+\project{INSAT-3D Nowcasting Data Pipeline}{\href{https://github.com/jeetsh4h/DISS384}{Thesis \& code}}
+\begin{itemize}
+  \item Built satellite-data caching, temporal-window generation, and ConvLSTM training/evaluation pipelines in Python, TensorFlow/Keras, OpenCV, and HDF5.
+  \item Reduced six-hour forecast RMSE by 30.7\% against a Lucas--Kanade optical-flow baseline; undergraduate thesis supervised by Kaushik Gopalan (2025).
+\end{itemize}
+\project{JJDB and Distributed Systems Coursework}{\href{https://github.com/jeetsh4h/CSIT372}{Database} · \href{https://github.com/jeetsh4h/CSIT402}{Clocks}}
+\begin{itemize}
+  \item Built a C++ command-line database with schema files, CSV loading, record operations, and column indexes; implemented Lamport and vector clocks in Python to study causality and event ordering.
+\end{itemize}
+\section{Technical Skills}
+\textbf{Programming and storage:} Python, SQL, TypeScript, C++; PostgreSQL, Convex, SQLite, HDF5.\\
+\textbf{Data processing:} NumPy, OpenCV, satellite-data caching, temporal-window generation, instrument-data ingestion, file reconciliation, database backfills.\\
+\textbf{Infrastructure and tooling:} Linux, Docker, Git, GitHub Actions, GPU-server administration, TensorFlow/Keras.
+\end{document}

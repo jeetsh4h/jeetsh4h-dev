@@ -1,0 +1,50 @@
+\input{resume-layout.tex}
+\resumemetadata{Data Scientist}{2026-09-30}{Forecast modelling, baseline evaluation, synthetic-data experiments, and financial analysis.}
+\begin{document}
+\resumeheader
+\section{Education}
+\entry{Columbia University}{Sep 2026 -- Expected Dec 2027}{M.S. Computer Science, Network Systems Pathway · New York, NY}
+\vspace{3pt}
+\entry{FLAME University}{Aug 2021 -- May 2025}{B.Sc. (Hons.) Computer Science; PG Diploma in Interdisciplinary Studies · Pune, India}
+CGPA: 8.9/10.
+\section{Research Experience}
+\entry{Centre for Interdisciplinary AI, FLAME University}{Jan 2024 -- May 2025}{Research Assistant}
+\begin{itemize}
+  \item Co-developed ConvGRU, conditional-GAN, and ConvLSTM training pipelines and satellite-data ingestion tooling for precipitation nowcasting.
+\end{itemize}
+\entry{Space Applications Centre, ISRO}{May 2023 -- Aug 2023}{Research Intern}
+\begin{itemize}
+  \item Developed ConvLSTM precipitation-nowcasting models with INSAT-3D satellite data in an air-gapped high-performance computing environment.
+\end{itemize}
+\entry{FLAME Mathematical Modelling Centre}{Oct 2022 -- Apr 2023}{Student Researcher}
+\begin{itemize}
+  \item Implemented genetic algorithms and variational autoencoders; evaluated synthetic sample generation on imbalanced classification and protein datasets.
+\end{itemize}
+\section{Applied Data Experience}
+\entry{Voltek AI}{Oct 2024 -- Aug 2026}{Software Engineer (Part-time)}
+\begin{itemize}
+  \item Built a battery-research assistant with document retrieval, web search, citations, streamed responses, and chat history across four model providers.
+  \item Redesigned PostgreSQL process storage with indexed tables, transactional writes, and validated backfills; reduced observed material-query latency from 3--20 seconds to under 500 ms.
+\end{itemize}
+\entry{Analyse India}{May 2022 -- Aug 2022}{Technical Intern}
+\begin{itemize}
+  \item Collected and normalized data for National Stock Exchange-listed companies in Python; backtested trading strategies, calculated returns and indicators, and implemented candlestick-pattern alerts in MetaStock.
+\end{itemize}
+\section{Selected Modelling Work}
+\project{INSAT-3D Precipitation Nowcasting}{\href{https://github.com/jeetsh4h/DISS384}{Thesis \& code}}
+\begin{itemize}
+  \item Built satellite-data caching, temporal-window generation, and ConvLSTM training/evaluation pipelines in Python, TensorFlow/Keras, OpenCV, and HDF5.
+  \item Reduced six-hour forecast RMSE by 30.7\% against a Lucas--Kanade optical-flow baseline; undergraduate thesis supervised by Kaushik Gopalan (2025).
+\end{itemize}
+\section{Research Outputs}
+\textbf{Weather4Cast, team kaubega:} First on the 2024 core-challenge leaderboard; second in the 2025 cumulative-rainfall task.\par
+\begin{itemize}
+  \item Co-author, \href{https://arxiv.org/abs/2511.11197}{Computationally-efficient deep learning models for nowcasting of precipitation} (Weather4Cast 2025), arXiv:2511.11197. \textit{Preprint.}
+  \item Co-author, \href{https://arxiv.org/abs/2412.00451}{A conditional Generative Adversarial network model for the Weather4Cast 2024 Challenge}, arXiv:2412.00451. \textit{Preprint.}
+\end{itemize}
+\section{Technical Skills and Relevant Coursework}
+\textbf{Programming and data:} Python, R, SQL; NumPy, PostgreSQL, OpenCV, HDF5.\\
+\textbf{Modelling:} TensorFlow/Keras, PyTorch, ConvLSTM, ConvGRU, conditional GANs, variational autoencoders, genetic algorithms.\\
+\textbf{Evaluation:} Forecast RMSE, optical-flow baselines, trading-strategy backtesting.\\
+\textbf{Completed coursework:} Probability and Statistics, Applied Multivariate Statistics, Advanced Machine Learning.
+\end{document}

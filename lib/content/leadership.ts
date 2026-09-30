@@ -5,12 +5,15 @@ export const LEADERSHIP: LeadershipItem[] = [
     organization: "DotSlash FLAME",
     roles: ["President", "Treasurer"],
     period: "President 2023-2024 · Treasurer 2024-2025",
-    description: "Designed and delivered student programming workshops.",
+    description:
+      "Organized student programming workshops and events with more than 30 attendees.",
   },
   {
     organization: "TEDxFLAMEUniversity",
     roles: ["Technology Team Member", "Technology Head"],
     period: "Team Member 2022-2024 · Technology Head 2024-2025",
+    description:
+      "Managed the website and ticket-booking system for two TEDx events, each attended by 250 ticket holders.",
   },
   {
     organization: "WageIndicator x FLAME Conference",
@@ -24,13 +27,19 @@ export const LEADERSHIP: LeadershipItem[] = [
   },
   {
     organization: "The Reading Initiative",
-    roles: ["Member"],
+    roles: ["Treasurer"],
     period: "2022-2024",
   },
   {
     organization: "FLAME Music Club",
-    roles: ["Member"],
+    roles: ["Treasurer"],
     period: "2022-2023",
+  },
+  {
+    organization: "Indian Students Association Columbia (ISAC)",
+    roles: ["Council Member"],
+    period: "Sep 2026-Present",
+    description: "Part of the events management team.",
   },
   {
     organization: "Project Impact",

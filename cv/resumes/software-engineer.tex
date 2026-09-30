@@ -1,0 +1,53 @@
+\input{resume-layout.tex}
+\resumemetadata{Software Engineer}{2026-09-30}{Shipped applications, backend systems, database performance, and language implementation.}
+\begin{document}
+\resumeheader
+\section{Education}
+\entry{Columbia University}{Sep 2026 -- Expected Dec 2027}{M.S. Computer Science, Network Systems Pathway · New York, NY}
+Current coursework: Operating Systems I, Computer Networks, Analysis of Algorithms.\par
+\vspace{3pt}
+\entry{FLAME University}{Aug 2021 -- May 2025}{B.Sc. (Hons.) Computer Science; PG Diploma in Interdisciplinary Studies · Pune, India}
+CGPA: 8.9/10; merit scholarships covering 25\% (2021--2024) and 60\% (2024--2025) of tuition.\\
+Selected completed coursework: Advanced Database Systems, Distributed Systems, Principles of Programming Languages, Applied Formal Methods.
+\section{Engineering Experience}
+\entry{Elevate Fitness}{Dec 2025 -- Aug 2026}{Software Engineer (Part-time)}
+\begin{itemize}
+  \item Built and maintained Movynn, a React Native/Expo fitness app backed by Convex and published on the Apple App Store and the Google Play Store in India.
+  \item Implemented native Apple Sign-In with nonce verification and secure session recovery.
+  \item Built multi-ticket booking and Razorpay payment reconciliation, requiring server-confirmed capture before fulfillment.
+  \item Added account deletion, pseudonymization, automated app/backend tests, CI checks, and release documentation.
+\end{itemize}
+\entry{Voltek AI}{Oct 2024 -- Aug 2026}{Software Engineer (Part-time)}
+\begin{itemize}
+  \item Led frontend development for an internal battery-research platform serving 10--100 \href{https://www.nanoloy.com}{Nanoloy} users.
+  \item Replaced join-heavy process storage with three indexed PostgreSQL tables, transactional writes, and validated backfills; reduced observed query latency from 3--20 seconds to under 500 ms.
+  \item Built a Next.js research assistant with four model providers, document retrieval, web search, citations, streamed responses, and chat history.
+  \item Co-maintained NDAX and Neware ingestion pipelines with file reconciliation and defensive parsing.
+\end{itemize}
+\section{Selected Projects}
+\project{Nilakan Programming Language}{\href{https://nilakan.jeetsh4h.workers.dev}{Documenation \& Playground}}
+\begin{itemize}
+  \item Implement Nilakan with Prajas Naik; language fundamentals designed by Prof. Aamod Sane.
+  \item Implement the parser, static checks, interpreter, runtime diagnostics, CLI, documentation, and browser playground using TypeScript, Chevrotain, Monaco, and Playwright.
+\end{itemize}
+\project{Ladybird Browser Contribution}{\href{https://github.com/LadybirdBrowser/ladybird/pull/8009}{Merged upstream}}
+\begin{itemize}
+  \item Added an ``Open Link in New Window'' context-menu action across LibWebView, Qt, and AppKit using C++ and Objective-C++.
+\end{itemize}
+\project{Jyeshthanubandh}{\href{https://play.google.com/store/apps/details?id=com.Jyeshthanubandh.pcmc_app}{Google Play}}
+\begin{itemize}
+  \item Contributed Firebase phone authentication, React Native integration, Android builds, and release fixes to a senior-citizen safety app developed with FLAME University and Pimpri-Chinchwad Police.
+\end{itemize}
+\section{Research Experience}
+\entry{Centre for Interdisciplinary AI, FLAME University}{Jan 2024 -- May 2025}{Research Assistant}
+\begin{itemize}
+  \item Co-developed ConvGRU, conditional-GAN, and ConvLSTM training pipelines and satellite-data tooling; administered a multi-user GPU server with isolated training environments.
+\end{itemize}
+\section{Leadership}
+\project{DotSlash FLAME}{President, 2023--2024; Treasurer, 2024--2025}
+Organized programming workshops and student events with more than 30 attendees.
+\section{Technical Skills}
+\textbf{Languages:} TypeScript, Python, C++, Rust, JavaScript, SQL.\\
+\textbf{Application and data:} React, React Native, Next.js, Expo, FastAPI, PostgreSQL, Convex, SQLite.\\
+\textbf{Systems and tooling:} Linux, Docker, Git, GitHub Actions, TCP, HTTP/1.1, TensorFlow/Keras.
+\end{document}

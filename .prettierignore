@@ -6,6 +6,8 @@ coverage
 .vercel
 pnpm-lock.yaml
 public/cv.pdf
+public/resumes/*.pdf
+cv/resumes/.build.*/
 cv/*.aux
 cv/*.bbl
 cv/*.bcf

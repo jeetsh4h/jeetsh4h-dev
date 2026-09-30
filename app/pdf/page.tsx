@@ -20,17 +20,43 @@ export default function PDFPage() {
       className="h-dvh flex flex-col"
     >
       <div className="mx-auto flex w-full flex-none items-center justify-between px-4 pt-2 pb-2 md:p-4 md:pb-2">
-        <Button
-          nativeButton={false}
-          render={<Link href="/" />}
-          variant="link"
-          className="flex text-xs"
+        <nav
+          aria-label="Page navigation"
+          className="flex items-center gap-3"
         >
-          <span className="transition-transform group-hover:-translate-x-0.5">
-            ←
-          </span>
-          <span className="underline">../home</span>
-        </Button>
+          <Button
+            nativeButton={false}
+            render={<Link href="/" />}
+            variant="link"
+            className="text-xs"
+          >
+            <span
+              aria-hidden="true"
+              className="transition-transform group-hover:-translate-x-0.5"
+            >
+              ←
+            </span>
+            <span className="underline">../home</span>
+          </Button>
+          <span
+            aria-hidden="true"
+            className="h-4 border-l border-border"
+          />
+          <Button
+            nativeButton={false}
+            render={<Link href="/resumes" />}
+            variant="link"
+            className="text-xs"
+          >
+            <span className="underline">./resumes</span>
+            <span
+              aria-hidden="true"
+              className="transition-transform group-hover:translate-x-0.5"
+            >
+              →
+            </span>
+          </Button>
+        </nav>
         <ThemeToggle />
       </div>
       <div className="mx-auto min-h-0 w-full max-w-6xl flex-1 px-4 pb-4">

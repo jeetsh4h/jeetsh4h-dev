@@ -2,14 +2,16 @@ import type { ProjectItem } from "./types";
 
 export const PROJECTS: ProjectItem[] = [
   {
-    title: "DPL Programming Language",
+    title: "Nilakan Programming Language",
     description:
-      "I collaborate with Prof. Aamod Sane and Prajas Naik on an educational language with Python-like syntax and indentation-based blocks. My work spans the parser, static checks, interpreter, runtime diagnostics, CLI, documentation, and browser playground.",
-    status: "private",
-    links: [],
+      "I implement Nilakan with Prajas Naik, based on language fundamentals designed by Prof. Aamod Sane. The language uses Python-like syntax and indentation-based blocks. My work spans the parser, static checks, interpreter, runtime diagnostics, CLI, documentation, and browser playground.",
+    links: [
+      {
+        label: "Website",
+        href: "https://nilakan.jeetsh4h.workers.dev",
+      },
+    ],
     stack: ["TypeScript", "Chevrotain", "Monaco", "Playwright"],
-    confidentialityNote:
-      "The repository remains private while the research project is under development.",
     featured: true,
   },
   {
@@ -70,30 +72,13 @@ export const PROJECTS: ProjectItem[] = [
         href: "https://play.google.com/store/apps/details?id=com.Jyeshthanubandh.pcmc_app",
       },
     ],
-    stack: ["React Native", "AWS"],
-    featured: false,
-  },
-  {
-    title: "Rust Systems Projects",
-    description:
-      "A command shell with built-in commands, PATH resolution, and external-process execution, plus an asynchronous HTTP/1.1 server with concurrent TCP handling, file upload and download, and gzip support.",
-    links: [
-      {
-        label: "HTTP server",
-        href: "https://github.com/jeetsh4h/http-server-rust-cc",
-      },
-      {
-        label: "Shell",
-        href: "https://github.com/jeetsh4h/basic-shell-rust-cc",
-      },
-    ],
-    stack: ["Rust", "Tokio", "TCP", "HTTP/1.1"],
+    stack: ["React Native", "Firebase"],
     featured: false,
   },
   {
     title: "Project Euler+ Solutions",
     description:
-      "Documented solutions to 52 HackerRank Project Euler+ problems with time- and space-complexity notes.",
+      "Documented implementations and optimization iterations across 52 numbered Project Euler problems, with space and time complexity analysis.",
     links: [
       {
         label: "Repository",
@@ -101,18 +86,6 @@ export const PROJECTS: ProjectItem[] = [
       },
     ],
     stack: ["Python", "Jupyter", "Algorithms"],
-  },
-  {
-    title: "Curriculum Mapping",
-    description:
-      "An interactive prerequisite-graph application for computer science, economics, and psychology curricula, with course-detail views and custom CSV uploads.",
-    links: [
-      {
-        label: "Repository",
-        href: "https://github.com/jeetsh4h/Course_Mapping",
-      },
-    ],
-    stack: ["React", "TypeScript", "React Flow", "Vite"],
   },
   {
     title: "RefreshRateChange",
@@ -125,19 +98,6 @@ export const PROJECTS: ProjectItem[] = [
       },
     ],
     stack: ["C++", "PowerShell", "Windows Task Scheduler"],
-  },
-  {
-    title: "Event Extract",
-    description:
-      "A regex-based Google Workspace add-on that extracts dates from university emails and lets users create Google Calendar events; deployed as a proof of concept to the Google Workspace Marketplace.",
-    links: [
-      {
-        label: "Repository",
-        href: "https://github.com/jeetsh4h/EventExtractAddOn",
-      },
-    ],
-    stack: ["Google Apps Script", "JavaScript", "Google Calendar API"],
-    featured: false,
   },
   {
     title: "Paudha Yodha",

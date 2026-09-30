@@ -7,7 +7,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     period: "Dec 2025 - Aug 2026",
     category: "engineering",
     description: [
-      "Build and maintain Movynn, a React Native and Expo fitness application backed by Convex and published on the Apple App Store in India.",
+      "Built and maintained Movynn, a React Native and Expo fitness application backed by Convex and published on the Apple App Store and the Google Play Store in India.",
       "Implemented native Apple Sign-In and secure session recovery, including nonce verification and first-login profile persistence.",
       "Built multi-ticket booking and Razorpay payment recovery and reconciliation, requiring server-confirmed capture before order fulfillment.",
       "Added account-deletion and pseudonymization flows, automated app and backend tests, continuous-integration checks, and release documentation.",
@@ -20,15 +20,15 @@ export const EXPERIENCE: ExperienceItem[] = [
     ],
   },
   {
-    company: "Voltek AI / Nanoloy",
+    company: "Voltek AI",
     role: "Software Engineer (Part-time)",
     period: "Oct 2024 - Aug 2026",
     category: "engineering",
     description: [
-      "Lead frontend development for Voltek AI, an internal battery-research platform used by 10--100 internal Nanoloy users.",
+      "Led frontend development for an internal battery-research platform used by 10 - 100 Nanoloy users.",
       "Redesigned PostgreSQL process storage from process-specific, join-heavy tables to three indexed canonical tables with transactional writes and backfill validation, reducing observed material-query latency from 3-20 seconds to under 500 ms.",
       "Built the Next.js orchestration layer for a battery-research assistant supporting OpenAI, Anthropic, Gemini, and xAI, with internal-document retrieval, web search, citations, streamed responses, and chat history.",
-      "Co-maintain NDAX and Neware ingestion pipelines, including file reconciliation and defensive parsing for incomplete file sets.",
+      "Co-maintained NDAX and Neware ingestion pipelines, including file reconciliation and defensive parsing for incomplete file sets.",
     ],
     textLinks: [
       {
@@ -49,8 +49,8 @@ export const EXPERIENCE: ExperienceItem[] = [
     ],
   },
   {
-    company: "ISRO, Space Applications Centre",
-    role: "Research Intern, Space Research and Training Division",
+    company: "Space Applications Centre, ISRO",
+    role: "Research Intern, Scientific Research and Training Division",
     period: "May 2023 - Aug 2023",
     category: "research",
     description: [
@@ -110,7 +110,7 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     company: "SNEHA",
     role: "IT/IM Intern",
-    period: "May 2022 - Aug 2022",
+    period: "Apr 2022 - Jun 2022",
     category: "engineering",
     compact: true,
     description: [

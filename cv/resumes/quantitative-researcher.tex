@@ -1,0 +1,51 @@
+\input{resume-layout.tex}
+\resumemetadata{Quantitative Researcher}{2026-09-30}{Forecast evaluation, financial backtesting, quantitative modelling, and research.}
+\titlespacing{\section}{0pt}{7pt}{3pt}
+\begin{document}
+\resumeheader
+\section{Education}
+\entry{Columbia University}{Sep 2026 -- Expected Dec 2027}{M.S. Computer Science, Network Systems Pathway · New York, NY}
+\vspace{3pt}
+\entry{FLAME University}{Aug 2021 -- May 2025}{B.Sc. (Hons.) Computer Science; PG Diploma in Interdisciplinary Studies · Pune, India}
+CGPA: 8.9/10; merit scholarships covering 25\% (2021--2024) and 60\% (2024--2025) of tuition.
+\section{Research and Financial Experience}
+\entry{Centre for Interdisciplinary AI, FLAME University}{Jan 2024 -- May 2025}{Research Assistant}
+\begin{itemize}
+  \item Co-developed ConvGRU, conditional-GAN, and ConvLSTM training pipelines and satellite-data ingestion tooling for precipitation nowcasting.
+  \item Administered a multi-user GPU server: accounts, drivers, storage, and isolated training environments.
+\end{itemize}
+\entry{Space Applications Centre, ISRO}{May 2023 -- Aug 2023}{Research Intern}
+\begin{itemize}
+  \item Developed ConvLSTM precipitation-nowcasting models with INSAT-3D satellite data in an air-gapped high-performance computing environment.
+\end{itemize}
+\entry{FLAME Mathematical Modelling Centre}{Oct 2022 -- Apr 2023}{Student Researcher}
+\begin{itemize}
+  \item Implemented and evaluated genetic algorithms and variational autoencoders for synthetic sample generation in experiments on imbalanced classification and protein datasets.
+\end{itemize}
+\entry{Analyse India}{May 2022 -- Aug 2022}{Technical Intern}
+\begin{itemize}
+  \item Built Python tools to collect and normalize Google Finance and Yahoo Finance data for National Stock Exchange-listed companies.
+  \item Backtested trading strategies, calculated returns and technical indicators, and implemented candlestick-pattern detection and alerts in MetaStock.
+\end{itemize}
+\section{Selected Modelling Work}
+\project{INSAT-3D Precipitation Nowcasting}{\href{https://github.com/jeetsh4h/DISS384}{Thesis \& code}}
+\begin{itemize}
+  \item Built satellite-data caching, temporal-window generation, and ConvLSTM training/evaluation pipelines in Python, TensorFlow/Keras, OpenCV, and HDF5.
+  \item Reduced six-hour forecast RMSE by 30.7\% against a Lucas--Kanade optical-flow baseline; undergraduate thesis supervised by Kaushik Gopalan (2025).
+\end{itemize}
+\project{Algorithm Implementation and Evaluation}{\href{https://github.com/jeetsh4h/TravelingSalesmanProblem}{Code}}
+\begin{itemize}
+  \item Benchmarked brute-force, Held--Karp, and nearest-neighbor algorithms; documented implementations and optimization iterations across 52 numbered \href{https://github.com/jeetsh4h/ProjectEuler}{Project Euler problems}.
+\end{itemize}
+\section{Selected Research Outputs}
+\textbf{Weather4Cast, team kaubega:} First on the 2024 core-challenge leaderboard; second in the 2025 cumulative-rainfall task.\par
+\begin{itemize}
+  \item Co-author, \href{https://arxiv.org/abs/2511.11197}{Computationally-efficient deep learning models for nowcasting of precipitation} (Weather4Cast 2025), arXiv:2511.11197. \textit{Preprint.}
+  \item Co-author, \href{https://arxiv.org/abs/2412.00451}{A conditional Generative Adversarial network model for the Weather4Cast 2024 Challenge}, arXiv:2412.00451. \textit{Preprint.}
+\end{itemize}
+\section{Technical Skills and Quantitative Training}
+\textbf{Programming:} Python, R, C++, SQL, Rust; NumPy, TensorFlow/Keras, PyTorch, OpenCV, HDF5.\\
+\textbf{Methods:} Forecast-error evaluation, optical-flow baselines, trading-strategy backtesting, genetic algorithms, variational autoencoders.\\
+\textbf{Coursework:} Linear algebra, probability and statistics, statistics and optimisation for computing, numerical methods, applied multivariate statistics, advanced machine learning.\\
+\textbf{FLAME Investment Lab:} Equity-analysis training in financial statements and ratios, valuation, and portfolio construction.
+\end{document}

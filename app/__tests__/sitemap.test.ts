@@ -60,6 +60,7 @@ describe("sitemap", () => {
     );
     expect(urls).not.toContain(`${SEO.url}/pdf`);
     expect(urls).not.toContain(`${SEO.url}/terminal`);
+    expect(urls).not.toContain(`${SEO.url}/resumes`);
     expect(diaryIndex?.lastModified).toEqual(dateStringToUtcDate("2026-06-08"));
     expect(publishedEntry?.lastModified).toEqual(
       dateStringToUtcDate("2026-06-08"),

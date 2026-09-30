@@ -55,6 +55,9 @@ cv/*.synctex.gz
 cv/*.toc
 cv/*.xdv
 cv/cv.pdf
+cv/resumes/build/
+cv/resumes/.build.*/
+public/resumes/*.pdf
 
 # miscellaneous
 docs/*

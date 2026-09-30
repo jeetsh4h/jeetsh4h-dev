@@ -34,6 +34,10 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: "/resumes/:role.pdf",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }],
+      },
     ];
   },
 };

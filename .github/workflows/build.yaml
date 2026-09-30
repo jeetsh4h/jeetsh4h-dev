@@ -32,12 +32,14 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Cache PDF
+      - name: Cache generated application PDFs
         id: cache-pdf
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
-          path: public/cv.pdf
-          key: ${{ runner.os }}-pdf-${{ hashFiles('cv/**/*.tex', 'cv/**/*.bib', '.github/docker/latex-cv/Dockerfile') }}
+          path: |
+            public/cv.pdf
+            public/resumes/
+          key: ${{ runner.os }}-documents-${{ hashFiles('cv/**/*.tex', 'cv/**/*.bib', 'scripts/*cv*.sh', 'scripts/build-resumes.sh', '.github/docker/latex-cv/Dockerfile') }}
 
       - name: Log in to GHCR
         if: steps.cache-pdf.outputs.cache-hit != 'true'
@@ -47,24 +49,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Compile LaTeX
+      - name: Build CV and role-specific resumes
         if: steps.cache-pdf.outputs.cache-hit != 'true'
         run: |
           docker pull --quiet "$LATEX_IMAGE"
           docker run --rm \
             --network none \
             --user "$(id -u):$(id -g)" \
-            -v ${{ github.workspace }}/cv:/workdir \
+            -v "${{ github.workspace }}:/workdir" \
             -w /workdir \
             "$LATEX_IMAGE" \
-            latexmk -xelatex -file-line-error -halt-on-error -interaction=nonstopmode cv.tex
-
-      - name: Copy PDF to /public
-        if: steps.cache-pdf.outputs.cache-hit != 'true'
-        run: |
-          mkdir -p public
-          test -s cv/cv.pdf
-          cp cv/cv.pdf public/cv.pdf
+            bash -c 'bash scripts/build-cv.sh && bash scripts/build-resumes.sh'
 
       - name: Cache Next.js Build
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5

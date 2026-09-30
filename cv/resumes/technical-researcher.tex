@@ -1,0 +1,51 @@
+\input{resume-layout.tex}
+\resumemetadata{Technical Researcher}{2026-09-30}{Research software, precipitation nowcasting, HPC work, and preprints.}
+\titlespacing{\section}{0pt}{8pt}{3pt}
+\begin{document}
+\resumeheader
+\section{Education}
+\entry{Columbia University}{Sep 2026 -- Expected graduation: 12/27}{M.S. Computer Science, Network Systems Pathway · New York, NY}
+Current coursework: Networks for AI, Analysis of Algorithms.\par
+\vspace{3pt}
+\entry{FLAME University}{Aug 2021 -- May 2025}{B.Sc. (Hons.) Computer Science; PG Diploma in Interdisciplinary Studies · Pune, India}
+CGPA: 8.9/10; merit scholarships covering 25\% (2021--2024) and 60\% (2024--2025) of tuition.\\
+Selected completed coursework: Advanced Machine Learning, Applied Multivariate Statistics, Numerical Methods.
+\section{Research Experience}
+\entry{Centre for Interdisciplinary AI, FLAME University}{Jan 2024 -- May 2025}{Research Assistant}
+\begin{itemize}
+  \item Co-developed ConvGRU, conditional-GAN, and ConvLSTM training pipelines and satellite-data ingestion tooling for precipitation nowcasting.
+  \item Administered a multi-user GPU server: accounts, drivers, storage, and isolated training environments.
+\end{itemize}
+\entry{Space Applications Centre, ISRO}{May 2023 -- Aug 2023}{Research Intern}
+\begin{itemize}
+  \item Developed ConvLSTM precipitation-nowcasting models with INSAT-3D satellite data in an air-gapped high-performance computing environment.
+\end{itemize}
+\section{Selected Research Outputs}
+\textbf{Weather4Cast, team kaubega:} First on the 2024 core-challenge leaderboard; second in the 2025 cumulative-rainfall task.\par
+\project{INSAT-3D Precipitation Nowcasting}{\href{https://github.com/jeetsh4h/DISS384}{Thesis \& code}}
+\begin{itemize}
+  \item Built satellite-data caching, temporal-window generation, and ConvLSTM training/evaluation pipelines in Python, TensorFlow/Keras, OpenCV, and HDF5.
+  \item Reduced six-hour forecast RMSE by 30.7\% against a Lucas--Kanade optical-flow baseline; undergraduate thesis supervised by Kaushik Gopalan (2025).
+\end{itemize}
+\textbf{Preprints and Presentations}\par
+\begin{itemize}
+  \item Co-author, \href{https://arxiv.org/abs/2511.11197}{Computationally-efficient deep learning models for nowcasting of precipitation} (Weather4Cast 2025), arXiv:2511.11197. \textit{Preprint.}
+  \item Co-author, \href{https://arxiv.org/abs/2412.00451}{A conditional Generative Adversarial network model for the Weather4Cast 2024 Challenge}, arXiv:2412.00451. \textit{Preprint.}
+  \item Presented thesis-based nowcasting work at CVIP 2025, IIT Ropar, and earlier OLR/optical-flow work at the NCVPRIPG 2023 Student Research Symposium, IIT Jodhpur.
+\end{itemize}
+\section{Research Software and Applied Engineering}
+\project{Nilakan Programming Language}{\href{https://nilakan.jeetsh4h.workers.dev}{Documenation \& Playground}}
+\begin{itemize}
+  \item Implement Nilakan with Prajas Naik; language fundamentals designed by Prof. Aamod Sane.
+  \item Implement the parser, static checks, interpreter, runtime diagnostics, CLI, documentation, and browser playground using TypeScript, Chevrotain, Monaco, and Playwright.
+\end{itemize}
+\entry{Voltek AI}{Oct 2024 -- Aug 2026}{Software Engineer (Part-time)}
+\begin{itemize}
+  \item Built a battery-research assistant with internal-document retrieval, web search, citations, streamed responses, and chat history across four model providers.
+  \item Redesigned PostgreSQL process storage; reduced observed material-query latency from 3--20 seconds to under 500 ms with indexed tables, transactional writes, and validated backfills.
+\end{itemize}
+\section{Technical Skills}
+\textbf{Languages:} Python, TypeScript, C++, R, SQL, Rust.\\
+\textbf{ML and data:} TensorFlow/Keras, PyTorch, NumPy, OpenCV, HDF5, ConvLSTM, ConvGRU, conditional GANs, variational autoencoders, retrieval-augmented generation.\\
+\textbf{Infrastructure:} Linux, GPU-server administration, air-gapped HPC, Docker, Git, GitHub Actions.
+\end{document}

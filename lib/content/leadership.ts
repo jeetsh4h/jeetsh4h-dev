@@ -36,10 +36,11 @@ export const LEADERSHIP: LeadershipItem[] = [
     period: "2022-2023",
   },
   {
-    organization: "Indian Students Association Columbia (ISAC)",
-    roles: ["Council Member"],
+    organization: "Indian Students Association at Columbia (ISAC)",
+    roles: ["Events Management Team Member"],
     period: "Sep 2026-Present",
-    description: "Part of the events management team.",
+    description:
+      "Help manage multiple events, including an upcoming Garba event with NYU.",
   },
   {
     organization: "Project Impact",
@@ -47,5 +48,12 @@ export const LEADERSHIP: LeadershipItem[] = [
     period: "2024-2025",
     description:
       "Established a computer laboratory at Z.P. School in Lavale and taught digital literacy, including email, web surfing, and cybersecurity.",
+  },
+  {
+    organization: "FLAME University Program Office",
+    roles: ["Scholarship Work"],
+    period: "2021-2022",
+    description:
+      "Supported class scheduling and registration for classes and students, and helped automate administrative work as part of my scholarship work.",
   },
 ];

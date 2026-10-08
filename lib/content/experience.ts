@@ -2,6 +2,30 @@ import type { ExperienceItem } from "./types";
 
 export const EXPERIENCE: ExperienceItem[] = [
   {
+    company: "Columbia Software Solutions",
+    role: "Software Engineer",
+    period: "Oct 2026 - Present",
+    category: "engineering",
+    description: [
+      "Student-run organization building free, custom software for nonprofits and small businesses in New York City.",
+    ],
+    textLinks: [
+      {
+        label: "Columbia Software Solutions",
+        href: "https://www.columbiasoftwaresolutions.com/",
+      },
+    ],
+  },
+  {
+    company: "Columbia University",
+    role: "Teaching Assistant",
+    period: "Fall 2026",
+    category: "teaching-writing",
+    description: [
+      "Hold office hours, grade coursework, facilitate discussions, and support assignments for COMS2702 · AI in Context, a course with approximately 180 enrolled students.",
+    ],
+  },
+  {
     company: "Elevate Fitness",
     role: "Software Engineer (Part-time)",
     period: "Dec 2025 - Aug 2026",

@@ -9,7 +9,8 @@ export type TerminalCommandLinkCommand =
   | "research"
   | "skills"
   | "projects"
-  | "education";
+  | "education"
+  | "leadership";
 
 export default function TerminalCommandLink({
   command,

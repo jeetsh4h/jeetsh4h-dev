@@ -59,7 +59,6 @@ function ResearchEntry({ paper }: { paper: ResearchEntryModel }) {
 
 export default function Research() {
   const research = buildResearchSection();
-  const featuredResearch = research.entries.filter((entry) => entry.featured);
 
   return (
     <>
@@ -69,9 +68,9 @@ export default function Research() {
       />
 
       <div className="-mt-2 space-y-6 pl-1 sm:pl-6">
-        {featuredResearch.map((paper) => (
+        {research.entries.map((paper) => (
           <ResearchEntry
-            key={`${paper.title}-${paper.year}`}
+            key={`${paper.kind}-${paper.title}-${paper.year}`}
             paper={paper}
           />
         ))}

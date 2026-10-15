@@ -4,6 +4,8 @@ import Experience from "@/components/experience";
 import Research from "@/components/research";
 import Education from "@/components/education";
 import Projects from "@/components/projects";
+import Skills from "@/components/skills";
+import Leadership from "@/components/leadership";
 import { ABOUT } from "@/lib/content/about";
 import { EDUCATION } from "@/lib/content/education";
 import { SEO } from "@/lib/content/seo";
@@ -114,31 +116,51 @@ export default function Page() {
         </section>
 
         <section
-          className="space-y-8"
+          id="experience"
+          className="scroll-mt-8 space-y-8"
           aria-labelledby="experience-heading"
         >
           <Experience />
         </section>
 
         <section
-          className="space-y-8"
+          id="research"
+          className="scroll-mt-8 space-y-8"
           aria-labelledby="research-heading"
         >
           <Research />
         </section>
 
         <section
-          className="space-y-8"
-          aria-labelledby="featured-work-heading"
+          id="projects"
+          className="scroll-mt-8 space-y-8"
+          aria-labelledby="projects-heading"
         >
           <Projects />
         </section>
 
         <section
-          className="space-y-8"
+          id="skills"
+          className="scroll-mt-8 space-y-8"
+          aria-labelledby="skills-heading"
+        >
+          <Skills />
+        </section>
+
+        <section
+          id="education"
+          className="scroll-mt-8 space-y-8"
           aria-labelledby="education-heading"
         >
           <Education />
+        </section>
+
+        <section
+          id="leadership"
+          className="scroll-mt-8 space-y-8"
+          aria-labelledby="leadership-heading"
+        >
+          <Leadership />
         </section>
       </div>
     </main>

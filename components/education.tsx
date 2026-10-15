@@ -1,4 +1,5 @@
 import { Badge } from "./ui/badge";
+import Link from "next/link";
 import { Card, CardHeader, CardTitle } from "./ui/card";
 import { SectionGrid, SectionHeading } from "./ui/section";
 import { buildEducationSection } from "@/lib/site-content";
@@ -91,6 +92,42 @@ export default function Education() {
             </Card>
           ))}
       </SectionGrid>
+
+      {education.coursework.length > 0 && (
+        <div className="space-y-4">
+          <h3 className="text-sm font-medium text-secondary">
+            Selected coursework, FLAME University
+          </h3>
+          <SectionGrid className="mt-0">
+            {education.coursework.map((course) => (
+              <Link
+                key={course.code}
+                href={course.link}
+                target="_blank"
+                rel="noreferrer"
+                className="block h-full [&>[data-slot=card]]:h-full"
+              >
+                <Card
+                  variant="interactive"
+                  size="sm"
+                >
+                  <CardHeader className="-mx-4 flex flex-wrap items-start justify-between gap-3">
+                    <CardTitle className="min-w-0 text-base font-bold leading-snug text-primary underline decoration-primary/30 transition-all group-hover:decoration-primary">
+                      {course.title}
+                    </CardTitle>
+                    <Badge className="mt-0.5 shrink-0 whitespace-nowrap">
+                      {course.code}
+                    </Badge>
+                  </CardHeader>
+                  <p className="text-xs leading-relaxed text-foreground">
+                    {course.artifact}
+                  </p>
+                </Card>
+              </Link>
+            ))}
+          </SectionGrid>
+        </div>
+      )}
     </>
   );
 }

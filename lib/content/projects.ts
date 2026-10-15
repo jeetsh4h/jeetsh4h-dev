@@ -4,7 +4,7 @@ export const PROJECTS: ProjectItem[] = [
   {
     title: "Nilakan Programming Language",
     description:
-      "I implement Nilakan with Prajas Naik, based on language fundamentals designed by Prof. Aamod Sane. The language uses Python-like syntax and indentation-based blocks. My work spans the parser, static checks, interpreter, runtime diagnostics, CLI, documentation, and browser playground.",
+      "I implement Nilakan with Prajas Naik, based on language fundamentals designed by Prof. Aamod Sane. The language uses Python-like syntax and indentation-based blocks. My work spans the parser, static checks, interpreter, runtime diagnostics, CLI, documentation, and browser playground. I build it primarily with Codex and Claude Code through T3 Code, running separate planning and implementation threads, reviewing the generated code, and checking that tests cover meaningful edge cases.",
     links: [
       {
         label: "Website",

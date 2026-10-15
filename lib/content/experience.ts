@@ -7,7 +7,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     period: "Oct 2026 - Present",
     category: "engineering",
     description: [
-      "Student-run organization building free, custom software for nonprofits and small businesses in New York City.",
+      "Building a free martial-arts class aggregator for Santa's Knights through Columbia Software Solutions, a student-run organization that builds free, custom software for nonprofits and small businesses in New York City.",
     ],
     textLinks: [
       {
@@ -93,14 +93,6 @@ export const EXPERIENCE: ExperienceItem[] = [
     ],
   },
   {
-    company: "Sportskeeda",
-    role: "Golf Content Writer",
-    period: "Aug 2023 - Oct 2023",
-    category: "teaching-writing",
-    compact: true,
-    description: ["Reported and published golf news articles and listicles."],
-  },
-  {
     company: "FLAME Q Centre",
     role: "Peer Tutor",
     period: "Sep 2022 - Apr 2025",
@@ -109,6 +101,14 @@ export const EXPERIENCE: ExperienceItem[] = [
     description: [
       "Provided one-to-one tutoring in programming, mathematics, and quantitative economics, supporting an average of seven students per academic year.",
     ],
+  },
+  {
+    company: "Sportskeeda",
+    role: "Golf Content Writer",
+    period: "Aug 2023 - Oct 2023",
+    category: "teaching-writing",
+    compact: true,
+    description: ["Reported and published golf news articles and listicles."],
   },
   {
     company: "FLAME Mathematical Modelling Centre",

@@ -1,0 +1,52 @@
+\input{resume-layout.tex}
+\resumemetadata{Forward Deployed Engineer}{2026-10-15}{Client-facing delivery, LLM integration, user research, field testing, and shipped applications.}
+\begin{document}
+\resumeheader
+\section{Education}
+\entry{Columbia University}{Sep 2026 -- Expected Dec 2027}{M.S. Computer Science, Network Systems Pathway · New York, NY}
+\vspace{3pt}
+\entry{FLAME University}{Aug 2021 -- May 2025}{B.Sc. (Hons.) Computer Science; PG Diploma in Interdisciplinary Studies · Pune, India}
+CGPA: 8.9/10; merit scholarships covering 25\% (2021--2024) and 60\% (2024--2025) of tuition.
+\section{Engineering Experience}
+\entry{Columbia Software Solutions}{Oct 2026 -- Present}{Software Engineer}
+\begin{itemize}
+  \item Building a free martial-arts class aggregator for Santa's Knights through a student-run organization that builds free, custom software for New York City nonprofits and small businesses.
+\end{itemize}
+\entry{Voltek AI}{Oct 2024 -- Aug 2026}{Software Engineer (Part-time)}
+\begin{itemize}
+  \item Led frontend development for an internal battery-research platform used by 10--100 \href{https://www.nanoloy.com}{Nanoloy} users.
+  \item Built the Next.js orchestration layer for a battery-research assistant supporting OpenAI, Anthropic, Gemini, and xAI, with internal-document retrieval, web search, citations, streamed responses, and chat history.
+  \item Co-maintained NDAX and Neware instrument-data ingestion pipelines with file reconciliation and defensive parsing.
+  \item Replaced join-heavy PostgreSQL process storage with three indexed tables, transactional writes, and validated backfills; reduced observed material-query latency from 3--20 seconds to under 500 ms.
+\end{itemize}
+\entry{Elevate Fitness}{Dec 2025 -- Aug 2026}{Software Engineer (Part-time)}
+\begin{itemize}
+  \item Built and maintained Movynn, a React Native/Expo fitness app published on the App Store and Google Play in India.
+  \item Built multi-ticket booking and Razorpay payment reconciliation requiring server-confirmed capture before fulfillment.
+  \item Implemented Apple Sign-In and account deletion; added automated tests, CI checks, and release documentation.
+\end{itemize}
+\entry{National Federation of the Blind Maharashtra}{May 2024 -- Sep 2024}{Project Solutions Intern}
+\begin{itemize}
+  \item Interviewed officials at Jagriti School for Blind Girls and field-tested a Raspberry Pi prototype that provided object-identification and navigation cues for students.
+  \item Benchmarked more than 10 object-detection models for edge deployment, comparing accuracy and memory usage.
+\end{itemize}
+\section{Selected Projects}
+\project{Nilakan Programming Language}{\href{https://nilakan.jeetsh4h.workers.dev}{Documentation \& Playground}}
+\begin{itemize}
+  \item Implement Nilakan with Prajas Naik, based on language fundamentals designed by Prof. Aamod Sane; build it primarily with Codex and Claude Code through T3 Code, reviewing generated code and tests.
+  \item Implement the TypeScript interpreter and browser playground so beginners can try Nilakan without installing it.
+\end{itemize}
+\project{TEDxFLAMEUniversity}{Technology Head, 2024--2025}
+Managed the website and ticket-booking system for two events, each attended by 250 ticket holders.\par
+\section{Communication and Leadership}
+\entry{Columbia University}{Fall 2026}{Teaching Assistant, COMS2702 (AI in Context)}
+Hold office hours, grade coursework, facilitate discussions, and support assignments in a course of about 180 students.\par
+\vspace{3pt}
+\project{DotSlash FLAME}{President, 2023--2024; Treasurer, 2024--2025}
+Organized programming workshops and student events with more than 30 attendees.
+\section{Technical Skills}
+\textbf{Delivery and discovery:} User interviews, usability testing, Figma prototyping, implementing designer specifications.\\
+\textbf{AI:} OpenAI, Anthropic, Gemini, and xAI APIs; retrieval-augmented generation; Claude Code, Codex, T3 Code.\\
+\textbf{Languages and frameworks:} TypeScript, Python, SQL; Next.js, React, React Native, Expo, FastAPI, PostgreSQL, Convex.\\
+\textbf{Testing and infrastructure:} Vitest, Playwright, pytest, GitHub Actions, Docker, Linux, Sentry.
+\end{document}

@@ -1,0 +1,47 @@
+\input{resume-layout.tex}
+\resumemetadata{AI Engineer}{2026-10-15}{LLM applications, retrieval, multi-provider orchestration, AI-assisted development, and shipped products.}
+\begin{document}
+\resumeheader
+\section{Education}
+\entry{Columbia University}{Sep 2026 -- Expected Dec 2027}{M.S. Computer Science, Network Systems Pathway · New York, NY}
+\vspace{3pt}
+\entry{FLAME University}{Aug 2021 -- May 2025}{B.Sc. (Hons.) Computer Science; PG Diploma in Interdisciplinary Studies · Pune, India}
+CGPA: 8.9/10; merit scholarships covering 25\% (2021--2024) and 60\% (2024--2025) of tuition.\\
+Completed coursework: Natural Language Processing, Advanced Machine Learning, Applied Multivariate Statistics.
+\section{Engineering Experience}
+\entry{Voltek AI}{Oct 2024 -- Aug 2026}{Software Engineer (Part-time)}
+\begin{itemize}
+  \item Built the Next.js orchestration layer for a battery-research assistant supporting OpenAI, Anthropic, Gemini, and xAI, with internal-document retrieval, web search, citations, streamed responses, and chat history.
+  \item Led frontend development for an internal battery-research platform used by 10--100 \href{https://www.nanoloy.com}{Nanoloy} users.
+  \item Replaced join-heavy PostgreSQL process storage with three indexed tables, transactional writes, and validated backfills; reduced observed material-query latency from 3--20 seconds to under 500 ms.
+  \item Co-maintained NDAX and Neware instrument-data ingestion pipelines with file reconciliation and defensive parsing.
+\end{itemize}
+\entry{Elevate Fitness}{Dec 2025 -- Aug 2026}{Software Engineer (Part-time)}
+\begin{itemize}
+  \item Built and maintained Movynn, a React Native/Expo fitness app published on the Apple App Store and the Google Play Store in India, including Razorpay payment reconciliation, native Apple Sign-In, automated tests, and CI checks.
+\end{itemize}
+\entry{Columbia University}{Fall 2026}{Teaching Assistant, COMS2702 (AI in Context)}
+Hold office hours, grade coursework, facilitate discussions, and support assignments in a course of about 180 students.\par
+\section{AI-Assisted Engineering}
+\project{Nilakan Programming Language}{\href{https://nilakan.jeetsh4h.workers.dev}{Documentation \& Playground}}
+\begin{itemize}
+  \item Implement Nilakan with Prajas Naik, based on language fundamentals designed by Prof. Aamod Sane; build it primarily with Codex and Claude Code through T3 Code.
+  \item Run separate planning and implementation threads with coding agents; review generated code and check that tests cover meaningful edge cases.
+  \item Implement the TypeScript parser, static checks, interpreter, runtime diagnostics, CLI, and Monaco browser playground; maintain documentation and Playwright cross-browser tests.
+\end{itemize}
+\section{Machine Learning Research}
+\entry{Centre for Interdisciplinary AI, FLAME University}{Jan 2024 -- May 2025}{Research Assistant}
+\begin{itemize}
+  \item Co-developed ConvGRU, conditional-GAN, and ConvLSTM training pipelines and satellite-data ingestion tooling; administered a multi-user GPU server with isolated training environments.
+  \item Co-authored two Weather4Cast arXiv preprints; team kaubega placed first on the 2024 core-challenge leaderboard and second in the 2025 cumulative-rainfall task.
+\end{itemize}
+\project{INSAT-3D Precipitation Nowcasting}{\href{https://github.com/jeetsh4h/DISS384}{Thesis \& code}}
+\begin{itemize}
+  \item Built ConvLSTM training and evaluation pipelines; optimized data loading and GPU memory use under limited compute; reduced six-hour forecast RMSE by 30.7\% against a Lucas--Kanade optical-flow baseline.
+\end{itemize}
+\section{Technical Skills}
+\textbf{LLM applications:} OpenAI, Anthropic, Gemini, and xAI APIs; retrieval-augmented generation; streamed responses.\\
+\textbf{AI-assisted development:} Claude Code, Codex, T3 Code; planning, implementation, and review with coding agents.\\
+\textbf{Languages and frameworks:} TypeScript, Python, SQL; Next.js, React, React Native, FastAPI, Pydantic, PostgreSQL.\\
+\textbf{ML and testing:} PyTorch, TensorFlow/Keras, scikit-learn; Vitest, Playwright, pytest; GitHub Actions, Docker.
+\end{document}

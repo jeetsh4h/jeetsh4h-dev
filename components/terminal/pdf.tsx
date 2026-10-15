@@ -5,7 +5,7 @@ import {
 } from "@tabler/icons-react";
 import Link from "next/link";
 
-const CV_PATH = "/cv.pdf";
+import { CV_DOWNLOAD_FILENAME, CV_PATH } from "@/lib/cv";
 
 export default function Pdf() {
   return (
@@ -43,7 +43,7 @@ export default function Pdf() {
         </Link>
         <Link
           href={CV_PATH}
-          download="Jeet_Shah_CV.pdf"
+          download={CV_DOWNLOAD_FILENAME}
           className="inline-flex items-center gap-1.5 text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-2 hover:decoration-accent"
         >
           Download PDF

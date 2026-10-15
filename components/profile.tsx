@@ -29,41 +29,6 @@ export default function Profile() {
               {intro.name}
             </h1>
             <div className="flex shrink-0 items-center">
-              <div className="hidden items-center md:flex">
-                <Button
-                  nativeButton={false}
-                  render={<Link href="/terminal" />}
-                  size="lg"
-                  className="mr-2"
-                >
-                  <IconTerminal2 className="size-4" />
-                  <span>Open in Terminal</span>
-                </Button>
-
-                <Tooltip>
-                  <TooltipTrigger
-                    render={
-                      <Button
-                        nativeButton={false}
-                        render={<Link href="/pdf" />}
-                        variant="secondary"
-                        size="lg"
-                        className="mr-2"
-                      >
-                        <IconFileCv className="size-4" />
-                        <span>Open as PDF</span>
-                      </Button>
-                    }
-                  />
-                  <TooltipContent
-                    side="bottom"
-                    alignOffset={2}
-                  >
-                    <IconTerminal2 className="size-3" />
-                    pdf
-                  </TooltipContent>
-                </Tooltip>
-              </div>
               <ThemeToggle />
             </div>
           </div>
@@ -71,6 +36,40 @@ export default function Profile() {
             {intro.role}
           </p>
           <p className="text-sm text-subtext">{intro.location}</p>
+
+          <div className="flex flex-wrap gap-2 pt-2">
+            <Tooltip>
+              <TooltipTrigger
+                render={
+                  <Button
+                    nativeButton={false}
+                    render={<Link href="/pdf" />}
+                    size="lg"
+                  >
+                    <IconFileCv className="size-4" />
+                    <span>Open as PDF</span>
+                  </Button>
+                }
+              />
+              <TooltipContent
+                side="bottom"
+                alignOffset={2}
+              >
+                <IconTerminal2 className="size-3" />
+                pdf
+              </TooltipContent>
+            </Tooltip>
+
+            <Button
+              nativeButton={false}
+              render={<Link href="/terminal" />}
+              variant="secondary"
+              size="lg"
+            >
+              <IconTerminal2 className="size-4" />
+              <span>Open in Terminal</span>
+            </Button>
+          </div>
         </div>
 
         <About />
@@ -78,27 +77,6 @@ export default function Profile() {
         <div className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-5 text-sm">
           <Socials />
           <ReadmeCta />
-        </div>
-
-        <div className="flex flex-wrap gap-2 md:hidden">
-          <Button
-            nativeButton={false}
-            render={<Link href="/terminal" />}
-            size="lg"
-          >
-            <IconTerminal2 className="size-4" />
-            <span>Open in Terminal</span>
-          </Button>
-
-          <Button
-            nativeButton={false}
-            render={<Link href="/pdf" />}
-            variant="secondary"
-            size="lg"
-          >
-            <IconFileCv className="size-4" />
-            <span>Open as PDF</span>
-          </Button>
         </div>
       </div>
     </div>

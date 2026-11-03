@@ -14,7 +14,6 @@ export const SKILLS: Skills = {
     "React Native",
     "Next.js",
     "Expo",
-    "Astro",
     "Tailwind CSS",
     "TanStack Query",
     "React Hook Form",

@@ -85,9 +85,7 @@ shared typography. Review the resulting PDF after changing content. Preserve
 one-page density by selecting relevant evidence and adjusting spacing, rather
 than shrinking the font or adding filler.
 
-Resumes use black text with blue, underlined links. The internal selection
-record in `cv/content-review.md` tracks included evidence, exclusions, and facts
-that still need clarification.
+Resumes use black text with blue, underlined links.
 
 ## Merge PDFs
 

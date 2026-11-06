@@ -31,10 +31,10 @@
   \def\resumeupdated{#2}%
   \hypersetup{pdftitle={Jeet Shah - #1 Resume},pdfsubject={#3 Updated #2}}%
 }
-\newcommand{\resumeheader}{%
+\newcommand{\resumeheader}[1][\resumetitle]{%
   \begin{center}
     {\fontsize{23}{25}\selectfont\bfseries Jeet Shah}\\[3pt]
-    \resumetitle\\[4pt]
+    #1\\[4pt]
     \href{mailto:jeetsh4h@gmail.com}{jeetsh4h@gmail.com} \enspace|\enspace
     \href{https://jeetsh4h.dev}{jeetsh4h.dev} \enspace|\enspace
     \href{https://github.com/jeetsh4h}{github.com/jeetsh4h} \enspace|\enspace

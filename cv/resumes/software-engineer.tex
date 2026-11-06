@@ -1,53 +1,85 @@
 \input{resume-layout.tex}
-\resumemetadata{Software Engineer}{2026-10-15}{Shipped applications, backend systems, database performance, and language implementation.}
+\resumemetadata{Software Engineer}{2026-11-06}{Summer 2027 software engineering internships.}
+% Dense but scannable: one-line entry headers (organization, role, dates),
+% one idea per bullet, no trailing periods, technology named inline.
+\newgeometry{left=0.55in,right=0.55in,top=0.45in,bottom=0.45in}
+\renewcommand{\normalsize}{\fontsize{10}{12}\selectfont}
+\titlespacing{\section}{0pt}{6pt}{2.5pt}
+\setlist[itemize]{leftmargin=1.1em,itemsep=0.8pt,topsep=1.2pt,parsep=0pt,partopsep=0pt}
+% #1 organization, #2 role, #3 right-aligned dates or link.
+\newcommand{\role}[3]{\par\vspace{2pt}\textbf{#1}\enspace\textperiodcentered\enspace\textit{#2}\hfill #3\par}
+\newcommand{\proj}[3]{\par\vspace{2pt}\textbf{#1}\enspace\textperiodcentered\enspace\textit{#2}\hfill #3\par}
+% One skill group per line; wrapped lines hang under the label.
+\newcommand{\skill}[2]{\par\hangindent=1.1em\hangafter=1\textbf{#1:} #2\par}
 \begin{document}
-\resumeheader
+\normalsize
+\resumeheader[M.S. Computer Science, Columbia University \textperiodcentered{} New York, NY \textperiodcentered{} Summer 2027 SWE internships (May--Aug)]
 \section{Education}
-\entry{Columbia University}{Sep 2026 -- Expected Dec 2027}{M.S. Computer Science, Network Systems Pathway · New York, NY}
-Current coursework: Operating Systems I, Computer Networks, Analysis of Algorithms.\par
-\vspace{3pt}
-\entry{FLAME University}{Aug 2021 -- May 2025}{B.Sc. (Hons.) Computer Science; PG Diploma in Interdisciplinary Studies · Pune, India}
-CGPA: 8.9/10; merit scholarships covering 25\% (2021--2024) and 60\% (2024--2025) of tuition.\\
-Selected completed coursework: Advanced Database Systems, Distributed Systems, Principles of Programming Languages, Applied Formal Methods.
-\section{Engineering Experience}
-\entry{Elevate Fitness}{Dec 2025 -- Aug 2026}{Software Engineer (Part-time)}
+\role{Columbia University, New York, NY}{M.S. Computer Science}{Sep 2026 -- Dec 2027 (expected)}
 \begin{itemize}
-  \item Built and maintained Movynn, a React Native/Expo fitness app backed by Convex and published on the Apple App Store and the Google Play Store in India.
-  \item Implemented native Apple Sign-In with nonce verification and secure session recovery.
-  \item Built multi-ticket booking and Razorpay payment reconciliation, requiring server-confirmed capture before fulfillment.
-  \item Added account deletion, pseudonymization, automated app/backend tests, CI checks, and release documentation.
+  \item Coursework: Operating Systems I, Computer Networks, Analysis of Algorithms
+  \item Teaching Assistant, COMS 2702 (AI in Context), Fall 2026: office hours, grading and discussions for about 180 students
 \end{itemize}
-\entry{Voltek AI}{Oct 2024 -- Aug 2026}{Software Engineer (Part-time)}
+\role{FLAME University, Pune, India}{B.Sc. (Hons.) Computer Science, GPA 3.77/4.0 (U.S. equivalent)}{Aug 2021 -- May 2025}
 \begin{itemize}
-  \item Led frontend development for an internal battery-research platform serving 10--100 \href{https://www.nanoloy.com}{Nanoloy} users.
-  \item Replaced join-heavy process storage with three indexed PostgreSQL tables, transactional writes, and validated backfills; reduced observed query latency from 3--20 seconds to under 500 ms.
-  \item Built a Next.js research assistant with four model providers, document retrieval, web search, citations, streamed responses, and chat history.
-  \item Co-maintained NDAX and Neware ingestion pipelines with file reconciliation and defensive parsing.
+  \item Coursework: Distributed Systems, Advanced Database Systems, Design and Analysis of Algorithms
+  \item Honors thesis: a ConvLSTM on INSAT-3D satellite data cut 6-hour forecast RMSE by 30.7\% vs.\ an optical-flow baseline
 \end{itemize}
-\section{Selected Projects}
-\project{Nilakan Programming Language}{\href{https://nilakan.jeetsh4h.workers.dev}{Documentation \& Playground}}
+\section{Experience}
+\role{Columbia Software Solutions}{Software Engineer (student organization)}{Oct 2026 -- Present}
 \begin{itemize}
-  \item Implement Nilakan with Prajas Naik; language fundamentals designed by Prof. Aamod Sane.
-  \item Implement the parser, static checks, interpreter, CLI, and browser playground in TypeScript and Chevrotain, primarily with Codex and Claude Code; review generated code and Playwright tests.
+  \item Building a free martial-arts class aggregator for Santa's Knights with Next.js and Supabase
 \end{itemize}
-\project{Ladybird Browser Contribution}{\href{https://github.com/LadybirdBrowser/ladybird/pull/8009}{Merged upstream}}
+\role{Elevate Fitness}{Software Engineer (part-time, two-engineer team)}{Dec 2025 -- Aug 2026}
 \begin{itemize}
-  \item Added an ``Open Link in New Window'' context-menu action across LibWebView, Qt, and AppKit using C++ and Objective-C++.
+  \item Shipped Movynn, a React Native (Expo) and Convex fitness app, to the App Store and Google Play in India
+  \item Built Razorpay ticket booking that fulfills orders only after server-confirmed capture, with payment reconciliation
+  \item Implemented native Sign in with Apple with nonce verification, session recovery and first-login profile setup
+  \item Added account deletion with data pseudonymization, Jest and Vitest tests for app and backend, and GitHub Actions CI
 \end{itemize}
-\project{Jyeshthanubandh}{\href{https://play.google.com/store/apps/details?id=com.Jyeshthanubandh.pcmc_app}{Google Play}}
+\role{Voltek AI}{Software Engineer (part-time)}{Oct 2024 -- Aug 2026}
 \begin{itemize}
-  \item Contributed Firebase phone authentication, React Native integration, Android builds, and release fixes to a senior-citizen safety app developed with FLAME University and Pimpri-Chinchwad Police.
+  \item Led frontend development of an internal battery-research platform (Next.js, TypeScript) with 10--100 users at Nanoloy
+  \item Cut material-query latency from 3--20 s to under 500 ms by replacing join-heavy, per-process PostgreSQL tables with three indexed tables, with transactional writes and validated backfills
+  \item Built the Next.js orchestration layer of an LLM research assistant supporting OpenAI, Anthropic, Gemini and xAI models, with document retrieval (RAG), web search, citations and streamed responses
+  \item Added FastAPI endpoints for experiment tagging and permission-checked material reads, covered by pytest tests
+  \item Co-maintained Python battery-test data ingestion pipelines, defensively parsing incomplete file sets
 \end{itemize}
-\section{Research Experience}
-\entry{Centre for Interdisciplinary AI, FLAME University}{Jan 2024 -- May 2025}{Research Assistant}
+\section{Projects}
+\proj{Nilakan}{programming language in TypeScript}{\href{https://nilakan.jeetsh4h.workers.dev}{Docs \& playground}}
 \begin{itemize}
-  \item Co-developed ConvGRU, conditional-GAN, and ConvLSTM training pipelines and satellite-data tooling; administered a multi-user GPU server with isolated training environments.
+  \item Co-designed with Prof.\ Aamod Sane; own the Chevrotain parser, static checker, interpreter, CLI and web playground
+  \item Develop with Codex and Claude Code over 450+ commits; review generated code and maintain 80+ test files
+  \item Run Vitest and Playwright browser tests in GitHub Actions on every PR; deploy to Cloudflare Workers with previews
 \end{itemize}
-\section{Leadership}
-\project{DotSlash FLAME}{President, 2023--2024; Treasurer, 2024--2025}
-Organized programming workshops and student events with more than 30 attendees.
-\section{Technical Skills}
-\textbf{Languages:} TypeScript, Python, C++, JavaScript, SQL.\\
-\textbf{Application and data:} React, React Native, Next.js, Expo, FastAPI, PostgreSQL, Convex, SQLite.\\
-\textbf{Systems and tooling:} Linux, Docker, Git, GitHub Actions, TCP, HTTP/1.1, TensorFlow/Keras, Claude Code, Codex.
+\proj{Ladybird}{open-source web browser, C++}{\href{https://github.com/LadybirdBrowser/ladybird/pull/8009}{Merged PR \#8009}}
+\begin{itemize}
+  \item Added ``Open in New Window'' to the link context menu in LibWebView (shared UI layer) and the Qt and AppKit UIs
+\end{itemize}
+\proj{Jyeshthanubandh}{senior-citizen safety app with FLAME and Pimpri-Chinchwad Police}{\href{https://play.google.com/store/apps/details?id=com.Jyeshthanubandh.pcmc_app}{10K+ Google Play downloads}}
+\begin{itemize}
+  \item Added Firebase phone authentication, React Native integration and Android build and release fixes (2024)
+\end{itemize}
+\proj{jeetsh4h.dev}{personal website and diary}{\href{https://github.com/jeetsh4h/jeetsh4h-dev}{Repository}}
+\begin{itemize}
+  \item Built with Next.js and MDX; GitHub Actions runs Vitest, compiles this LaTeX résumé in Docker and deploys to Vercel
+\end{itemize}
+\section{Research}
+\role{Centre for Interdisciplinary AI, FLAME University}{Research Assistant}{Jan 2024 -- May 2025}
+\begin{itemize}
+  \item Co-developed ConvLSTM, ConvGRU and conditional-GAN nowcasting pipelines and satellite-data ingestion tooling
+  \item Team placed 1st in Weather4Cast 2024 (core) and 2nd in 2025 (cumulative rainfall); co-authored two arXiv preprints
+  \item Set up and administered a multi-user GPU training server with per-user isolated environments
+\end{itemize}
+\role{Space Applications Centre, ISRO}{Research Intern}{May 2023 -- Aug 2023}
+\begin{itemize}
+  \item Developed ConvLSTM precipitation-nowcasting models on INSAT-3D satellite data in an air-gapped HPC environment
+\end{itemize}
+\section{Skills}
+\skill{Languages}{TypeScript, JavaScript, Python, C++, SQL}
+\skill{Frontend \& mobile}{React, Next.js, React Native, Expo, Tailwind CSS, TanStack Query, React Hook Form, Zod, Monaco}
+\skill{Backend \& data}{FastAPI, Pydantic, PostgreSQL, Supabase, Convex, SQLite, pandas, Chevrotain (parsing)}
+\skill{Testing}{Vitest, Jest, React Native Testing Library, pytest, Playwright (browser tests)}
+\skill{DevOps \& tools}{GitHub Actions, Docker, Linux, Git, Cloudflare Workers, Vercel, Sentry, Claude Code, Codex}
+\skill{ML \& AI}{PyTorch, TensorFlow/Keras, scikit-learn, OpenCV, NumPy, RAG, LLM APIs (OpenAI, Anthropic, Gemini, xAI)}
 \end{document}

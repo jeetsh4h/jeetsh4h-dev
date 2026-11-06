@@ -1,5 +1,4 @@
-import { Badge } from "./ui/badge";
-import { SectionHeading } from "./ui/section";
+import { SectionHeading, sectionRowClassName } from "./ui/section";
 import { buildLeadershipSection } from "@/lib/site-content";
 import type { LeadershipEntryModel } from "@/lib/site-content";
 
@@ -19,32 +18,29 @@ export default function Leadership() {
         command="leadership"
       />
 
-      <div className="-mt-2 grid grid-cols-1 gap-x-10 gap-y-6 pl-1 sm:pl-6 md:grid-cols-2">
-        {leadership.entries.map((entry) => (
-          <div
-            key={`${entry.organization}-${entry.period}`}
-            className="space-y-2"
-          >
-            <div className="flex items-start justify-between gap-4">
-              <h3 className="-ml-2 font-bold leading-tight text-primary sm:-ml-3">
+      <div className={sectionRowClassName}>
+        <ul className="grid grid-cols-1 gap-x-10 gap-y-7 md:grid-cols-2 lg:col-start-2">
+          {leadership.entries.map((entry) => (
+            <li
+              key={`${entry.organization}-${entry.period}`}
+              className="space-y-1"
+            >
+              <h3 className="text-[0.9375rem] font-bold leading-snug text-primary-readable">
                 {entry.organization}
               </h3>
-              {!periodNamesRoles(entry) && (
-                <Badge className="shrink-0">{entry.period}</Badge>
-              )}
-            </div>
-
-            <div className="text-sm text-secondary">
-              {periodNamesRoles(entry) ? entry.period : entry.roles.join(", ")}
-            </div>
-
-            {entry.description && (
-              <p className="text-sm text-foreground leading-relaxed">
-                {entry.description}
+              <p className="text-xs leading-5 text-subtext">
+                {periodNamesRoles(entry) ?
+                  entry.period
+                : `${entry.roles.join(", ")}, ${entry.period}`}
               </p>
-            )}
-          </div>
-        ))}
+              {entry.description && (
+                <p className="pt-1 text-sm leading-relaxed text-foreground">
+                  {entry.description}
+                </p>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   );

@@ -10,16 +10,19 @@ import { buildIntroSection } from "@/lib/site-content";
 
 export default function Profile() {
   const intro = buildIntroSection();
+  const emailLink = intro.socialLinks.find((link) =>
+    link.href.startsWith("mailto:"),
+  );
 
   return (
-    <div className="relative overflow-hidden border border-input/70 bg-card/55 p-5 sm:p-7 md:p-9">
+    <div className="relative overflow-hidden sm:border sm:border-input/70 sm:bg-card/55 sm:p-7 md:p-9">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-24 -top-32 size-80 rounded-full bg-primary/8 blur-3xl"
+        className="pointer-events-none absolute -right-24 -top-32 hidden size-80 rounded-full bg-primary/8 blur-3xl sm:block"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-28 left-1/3 size-64 rounded-full bg-accent/8 blur-3xl"
+        className="pointer-events-none absolute -bottom-28 left-1/3 hidden size-64 rounded-full bg-accent/8 blur-3xl sm:block"
       />
 
       <div className="relative space-y-7">
@@ -32,10 +35,21 @@ export default function Profile() {
               <ThemeToggle />
             </div>
           </div>
-          <p className="max-w-3xl text-lg font-semibold text-secondary sm:text-xl">
+          <p className="max-w-3xl text-lg font-semibold text-secondary-readable sm:text-xl">
             {intro.role}
           </p>
           <p className="text-sm text-subtext">{intro.location}</p>
+          <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-foreground">
+            <span>Open to Summer 2027 internships</span>
+            {emailLink && (
+              <a
+                href={emailLink.href}
+                className="rounded-sm text-primary-readable underline decoration-primary-readable/40 underline-offset-4 hover:decoration-primary-readable"
+              >
+                {emailLink.href.slice("mailto:".length)}
+              </a>
+            )}
+          </p>
 
           <div className="flex flex-wrap gap-2 pt-2">
             <Tooltip>
@@ -43,11 +57,11 @@ export default function Profile() {
                 render={
                   <Button
                     nativeButton={false}
-                    render={<Link href="/pdf" />}
+                    render={<a href="/resumes/software-engineer.pdf" />}
                     size="lg"
                   >
                     <IconFileCv className="size-4" />
-                    <span>Open as PDF</span>
+                    <span>Résumé</span>
                   </Button>
                 }
               />
@@ -55,8 +69,7 @@ export default function Profile() {
                 side="bottom"
                 alignOffset={2}
               >
-                <IconTerminal2 className="size-3" />
-                pdf
+                one page, pdf
               </TooltipContent>
             </Tooltip>
 
@@ -64,11 +77,19 @@ export default function Profile() {
               nativeButton={false}
               render={<Link href="/terminal" />}
               variant="secondary"
+              className="border-secondary-readable text-secondary-readable hover:bg-secondary-readable"
               size="lg"
             >
               <IconTerminal2 className="size-4" />
               <span>Open in Terminal</span>
             </Button>
+
+            <Link
+              href="/resumes"
+              className="self-center rounded-sm text-sm text-subtext underline decoration-subtext/40 underline-offset-4 hover:text-primary-readable hover:decoration-primary-readable"
+            >
+              all résumés
+            </Link>
           </div>
         </div>
 

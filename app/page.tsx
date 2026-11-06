@@ -110,7 +110,7 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: structuredData }}
       />
-      <div className="mx-auto max-w-6xl space-y-14 px-5 pb-16 pt-5 sm:px-7 md:space-y-20 md:py-12">
+      <div className="mx-auto max-w-6xl space-y-16 px-4 pb-16 pt-6 sm:px-7 md:space-y-24 md:py-12">
         <section>
           <Profile />
         </section>
@@ -124,19 +124,19 @@ export default function Page() {
         </section>
 
         <section
-          id="research"
-          className="scroll-mt-8 space-y-8"
-          aria-labelledby="research-heading"
-        >
-          <Research />
-        </section>
-
-        <section
           id="projects"
           className="scroll-mt-8 space-y-8"
           aria-labelledby="projects-heading"
         >
           <Projects />
+        </section>
+
+        <section
+          id="research"
+          className="scroll-mt-8 space-y-8"
+          aria-labelledby="research-heading"
+        >
+          <Research />
         </section>
 
         <section

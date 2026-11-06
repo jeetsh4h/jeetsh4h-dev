@@ -29,6 +29,12 @@ export const SKILLS: Skills = {
     "Monaco Editor",
     "Shiki/TextMate grammars",
   ],
+  "UX research & design": [
+    "user interviews",
+    "usability testing",
+    "Figma prototyping",
+    "implementation from designer-provided Figma specifications",
+  ],
   "Backend & data": [
     "FastAPI",
     "Pydantic",
@@ -39,6 +45,7 @@ export const SKILLS: Skills = {
     "Supabase",
     "Convex",
     "SQLite",
+    "data ingestion and reconciliation",
   ],
   "ML & scientific computing": [
     "PyTorch",
@@ -76,7 +83,6 @@ export const SKILLS: Skills = {
   "Automation & tooling": [
     "Git",
     "GitHub Actions",
-    "Bash",
     "PowerShell",
     "LaTeX",
     "Google Apps Script",

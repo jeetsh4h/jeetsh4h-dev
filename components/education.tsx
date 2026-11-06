@@ -1,16 +1,39 @@
-import { Badge } from "./ui/badge";
 import Link from "next/link";
-import { Card, CardHeader, CardTitle } from "./ui/card";
-import { SectionGrid, SectionHeading } from "./ui/section";
+import { IconArrowUpRight } from "@tabler/icons-react";
+
+import { Card } from "./ui/card";
+import {
+  SectionHeading,
+  formatPeriod,
+  sectionMetaClassName,
+  sectionRowClassName,
+} from "./ui/section";
 import { buildEducationSection } from "@/lib/site-content";
+import { cn } from "@/lib/utils";
 
 function DegreeName({ degree }: { degree: string }) {
   return degree.split(" · ").map((part, index) => (
-    <span key={`${part}-${index}`}>
-      {index > 0 && <span className="text-accent"> · </span>}
+    <span
+      key={`${part}-${index}`}
+      className="block"
+    >
       {part}
     </span>
   ));
+}
+
+function DetailList({ details }: { details: string[] }) {
+  if (details.length === 0) {
+    return null;
+  }
+
+  return (
+    <ul className="mt-3 max-w-[72ch] list-outside list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-foreground marker:text-muted-foreground">
+      {details.map((detail) => (
+        <li key={detail}>{detail}</li>
+      ))}
+    </ul>
+  );
 }
 
 export default function Education() {
@@ -23,109 +46,96 @@ export default function Education() {
         command="education"
       />
 
-      <SectionGrid>
+      <ol className="space-y-10">
         {education.higherEducation.map((edu) => (
-          <Card
-            variant="content"
-            size="sm"
-            className="p-5"
+          <li
             key={`${edu.institution}-${edu.period}`}
+            className={sectionRowClassName}
           >
-            <CardHeader className="-mx-4 flex flex-wrap items-start justify-between gap-3">
-              <CardTitle className="min-w-0 text-lg font-bold text-primary">
+            <div className="min-w-0">
+              <h3 className="text-base font-bold leading-snug text-primary-readable sm:text-lg">
                 {edu.institution}
-              </CardTitle>
-              <Badge className="mt-0.5 shrink-0 whitespace-nowrap">
-                {edu.period}
-              </Badge>
-            </CardHeader>
-            <div className="min-h-12 text-sm leading-6 text-secondary">
-              <DegreeName degree={edu.degree} />
-              <div className="text-xs text-muted-foreground">
+              </h3>
+              <p className="text-sm leading-6 text-foreground">
+                <DegreeName degree={edu.degree} />
+              </p>
+              <p className="text-xs leading-6 text-muted-foreground">
                 {edu.location}
-              </div>
+              </p>
+              <DetailList details={edu.details} />
             </div>
-            <div className="space-y-2 border-t border-input/50 pt-4">
-              {edu.details.map((detail) => (
-                <div
-                  key={`${edu.institution}-${detail}`}
-                  className="flex items-start gap-2 text-xs leading-relaxed text-foreground"
-                >
-                  <span className="mt-1.5 size-1 shrink-0 rounded-full bg-accent" />
-                  {detail}
-                </div>
-              ))}
-            </div>
-          </Card>
+            <p className={cn(sectionMetaClassName, "lg:pt-1")}>
+              {formatPeriod(edu.period)}
+            </p>
+          </li>
         ))}
 
-        {education.priorEducation.length > 0 &&
-          education.priorEducation.map((edu) => (
-            <Card
-              variant="content"
-              key={`${edu.institution}-${edu.period}`}
-            >
-              <CardHeader className="-mx-4 flex items-start justify-between gap-3">
-                <CardTitle className="min-w-0 text-base font-bold leading-snug text-primary">
-                  {edu.institution}
-                </CardTitle>
-                <Badge className="mt-0.5 shrink-0 whitespace-nowrap">
-                  {edu.period}
-                </Badge>
-              </CardHeader>
-              <div className="-mt-2 text-sm leading-6 text-secondary">
+        {education.priorEducation.map((edu) => (
+          <li
+            key={`${edu.institution}-${edu.period}`}
+            className={sectionRowClassName}
+          >
+            <div className="min-w-0">
+              <h3 className="text-base font-bold leading-snug text-primary-readable">
+                {edu.institution}
+              </h3>
+              <p className="text-sm leading-6 text-foreground">
                 <DegreeName degree={edu.degree} />
-              </div>
-              {edu.details.length > 0 && (
-                <div className="space-y-1.5 border-t border-input/50 pt-3 text-xs text-foreground">
-                  {edu.details.map((detail) => (
-                    <div
-                      key={`${edu.institution}-${detail}`}
-                      className="flex items-start gap-2"
-                    >
-                      <span className="mt-1.5 size-1 shrink-0 rounded-full bg-accent" />
-                      {detail}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </Card>
-          ))}
-      </SectionGrid>
+              </p>
+              <DetailList details={edu.details} />
+            </div>
+            <p className={sectionMetaClassName}>{formatPeriod(edu.period)}</p>
+          </li>
+        ))}
+      </ol>
 
       {education.coursework.length > 0 && (
-        <div className="space-y-4">
-          <h3 className="text-sm font-medium text-secondary">
-            Selected coursework, FLAME University
+        <div className={sectionRowClassName}>
+          <h3
+            className={cn(
+              sectionMetaClassName,
+              "text-sm font-bold text-primary-readable lg:pt-3",
+            )}
+          >
+            Selected coursework{" "}
+            <span className="block text-xs font-normal text-muted-foreground">
+              FLAME University
+            </span>
           </h3>
-          <SectionGrid className="mt-0">
+          <ul className="grid min-w-0 grid-cols-1 gap-3 md:grid-cols-2">
             {education.coursework.map((course) => (
-              <Link
-                key={course.code}
-                href={course.link}
-                target="_blank"
-                rel="noreferrer"
-                className="block h-full [&>[data-slot=card]]:h-full"
-              >
+              <li key={course.code}>
                 <Card
                   variant="interactive"
                   size="sm"
+                  className="relative h-full gap-2 p-4 has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-ring"
                 >
-                  <CardHeader className="-mx-4 flex flex-wrap items-start justify-between gap-3">
-                    <CardTitle className="min-w-0 text-base font-bold leading-snug text-primary underline decoration-primary/30 transition-all group-hover:decoration-primary">
-                      {course.title}
-                    </CardTitle>
-                    <Badge className="mt-0.5 shrink-0 whitespace-nowrap">
+                  <div className="flex items-start justify-between gap-3">
+                    <h4 className="text-sm font-bold leading-snug text-primary-readable">
+                      <Link
+                        href={course.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="outline-none after:absolute after:inset-0 after:content-['']"
+                      >
+                        {course.title}
+                      </Link>
+                    </h4>
+                    <span className="inline-flex shrink-0 items-center gap-1 text-[11px] leading-5 text-muted-foreground">
                       {course.code}
-                    </Badge>
-                  </CardHeader>
+                      <IconArrowUpRight
+                        className="size-3 text-accent-readable"
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </div>
                   <p className="text-xs leading-relaxed text-foreground">
                     {course.artifact}
                   </p>
                 </Card>
-              </Link>
+              </li>
             ))}
-          </SectionGrid>
+          </ul>
         </div>
       )}
     </>

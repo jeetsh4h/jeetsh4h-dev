@@ -11,7 +11,7 @@ export const SEO: SeoContent = {
   description:
     "Jeet Shah is a software engineer and Columbia MSCS student building mobile products, data platforms, developer tools, and precipitation-nowcasting research.",
   url: "https://jeetsh4h.dev",
-  updatedAt: "2026-10-15",
+  updatedAt: "2026-11-06",
   areas: [
     "Software engineering",
     "Columbia University",

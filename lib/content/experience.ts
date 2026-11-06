@@ -7,7 +7,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     period: "Oct 2026 - Present",
     category: "engineering",
     description: [
-      "Building a free martial-arts class aggregator for Santa's Knights through Columbia Software Solutions, a student-run organization that builds free, custom software for nonprofits and small businesses in New York City.",
+      "Building a free martial-arts class aggregator for Santa's Knights using Next.js and Supabase through Columbia Software Solutions, a student-run organization that builds free, custom software for nonprofits and small businesses in New York City.",
     ],
     textLinks: [
       {
@@ -31,7 +31,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     period: "Dec 2025 - Aug 2026",
     category: "engineering",
     description: [
-      "Built and maintained Movynn, a React Native and Expo fitness application backed by Convex and published on the Apple App Store and the Google Play Store in India.",
+      "One of two engineers who owned Movynn end to end: a React Native and Expo fitness application backed by Convex and published on the Apple App Store and the Google Play Store in India.",
       "Implemented native Apple Sign-In and secure session recovery, including nonce verification and first-login profile persistence.",
       "Built multi-ticket booking and Razorpay payment recovery and reconciliation, requiring server-confirmed capture before order fulfillment.",
       "Added account-deletion and pseudonymization flows, automated app and backend tests, continuous-integration checks, and release documentation.",
@@ -67,7 +67,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     period: "Jan 2024 - May 2025",
     category: "research",
     description: [
-      "Configured and administered a multi-user GPU compute server for research and model training, including user management, drivers, storage, and environment isolation.",
+      "Configured and administered a multi-user GPU compute server for research and model training, including user management and environment isolation.",
       "Co-developed ConvGRU, conditional-GAN, and ConvLSTM training pipelines and satellite-data ingestion tooling for precipitation nowcasting.",
       "Supported team kaubega's Weather4Cast 2024 and 2025 submissions through model development, data-ingestion tooling, and GPU infrastructure.",
     ],

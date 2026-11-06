@@ -22,6 +22,9 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
+  --color-secondary-readable: var(--secondary-readable);
+  --color-primary-readable: var(--primary-readable);
+  --color-accent-readable: var(--accent-readable);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
@@ -228,10 +231,12 @@
 
   /* Primary - Mauve */
   --primary: #c6a0f6;
+  --primary-readable: #c6a0f6;
   --primary-foreground: #1e2030;
 
   /* Secondary - Pink */
   --secondary: #f5bde6;
+  --secondary-readable: #f5bde6;
   --secondary-foreground: #1e2030;
   --subtext: #b8c0e0;
 
@@ -241,6 +246,7 @@
 
   /* Accent - Lavender */
   --accent: #8aadf4;
+  --accent-readable: #8aadf4;
   --accent-foreground: #1e2030;
 
   --destructive: #ed8796;
@@ -278,10 +284,14 @@
 
   /* Primary - Mauve */
   --primary: #8839ef;
+  /* Darker mauve for small text on Latte surfaces (WCAG AA). */
+  --primary-readable: #7d2fe0;
   --primary-foreground: #eff1f5;
 
   /* Secondary - Pink */
   --secondary: #ea76cb;
+  /* Darker pink for normal text on Latte surfaces (WCAG AA). */
+  --secondary-readable: #a72c84;
   --secondary-foreground: #eff1f5;
   --subtext: #5c5f77;
 
@@ -291,6 +301,8 @@
 
   /* Accent - Blue */
   --accent: #1e66f5;
+  /* Darker blue for link text on Latte surfaces (WCAG AA). */
+  --accent-readable: #1859d6;
   --accent-foreground: #eff1f5;
 
   --destructive: #d20f39;
@@ -320,6 +332,11 @@
     @apply bg-background text-foreground;
     background-color: var(--background);
     color: var(--foreground);
+  }
+
+  :where(a, summary, button):focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
   }
 }
 

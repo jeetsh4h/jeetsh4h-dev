@@ -1,7 +1,10 @@
-import { Badge } from "./ui/badge";
-import { Card, CardHeader } from "./ui/card";
-import { SectionGrid, SectionHeading } from "./ui/section";
+import {
+  SectionHeading,
+  sectionMetaClassName,
+  sectionRowClassName,
+} from "./ui/section";
 import { buildSkillsSection } from "@/lib/site-content";
+import { cn } from "@/lib/utils";
 
 export default function Skills() {
   const skills = buildSkillsSection();
@@ -13,32 +16,35 @@ export default function Skills() {
         command="skills"
       />
 
-      <SectionGrid
-        columns="sm"
-        className="text-sm lg:grid-cols-3"
-      >
+      <dl className="-mt-4 divide-y divide-border">
         {skills.categories.map((category) => (
-          <Card
+          <div
             key={category.name}
-            variant="content"
-            className="p-4"
+            className={cn(sectionRowClassName, "gap-y-2 py-4")}
           >
-            <CardHeader className="text-primary font-bold text-lg -mx-4">
+            <dt
+              className={cn(
+                sectionMetaClassName,
+                "text-sm font-bold text-primary-readable",
+              )}
+            >
               {category.name}
-            </CardHeader>
-            <div className="text-foreground leading-relaxed">
-              {category.items.map((skill) => (
-                <Badge
-                  key={skill}
-                  className="mr-2 mb-2"
-                >
-                  {skill}
-                </Badge>
-              ))}
-            </div>
-          </Card>
+            </dt>
+            <dd className="min-w-0">
+              <ul className="flex flex-wrap gap-1.5">
+                {category.items.map((skill) => (
+                  <li
+                    key={skill}
+                    className="rounded-sm border border-border bg-card/70 px-2 py-0.5 text-xs leading-5 text-foreground"
+                  >
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </div>
         ))}
-      </SectionGrid>
+      </dl>
     </>
   );
 }

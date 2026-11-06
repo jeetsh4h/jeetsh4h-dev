@@ -79,6 +79,8 @@ export interface ExperienceItem {
 
 export interface ProjectItem {
   title: string;
+  /** One-line value statement shown above the description on cards. */
+  summary?: string;
   description: string;
   status?: "public" | "private" | "pre-beta" | "research";
   stack?: string[];
